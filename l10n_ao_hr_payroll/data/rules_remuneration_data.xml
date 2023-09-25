@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Remuneration Rules -->
+        <record id="hr_salary_rule_subsdiodealimentao" model="hr.salary.rule">
+            <field name="code">SUB_ALIMENTA</field>
+            <field eval="106" name="sequence"/>
+            <field eval="1" name="appears_on_payslip"/>
+            <field name="condition_range">contract.wage</field>
+            <field name="condition_select">python</field>
+            <field name="struct_id" ref="l10n_ao_hr_payroll.hr_salary_structure_base"/>
+            <field name="amount_select">code</field>
+            <field eval="1" name="active"/>
+            <field name="name">Subsídio de Alimentação</field>
+            <field name="condition_python">
+                <![CDATA[
+res=False
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_ALIMENTA" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res=True
+result = res
+            ]]>
+            </field>
+            <field name="amount_python_compute">
+                <![CDATA[
+res=0.0
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_ALIMENTA" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res += rem.amount
+result = res
+            ]]>
+            </field>
+            <field name="category_id" ref="hr_salary_rule_category_abonossujeitosinss"/>
+            <field name="quantity">1.0</field>
+        </record>
+
+        <record id="hr_salary_rule_subsidiodetransporte" model="hr.salary.rule">
+            <field name="code">SUB_TRANS</field>
+            <field eval="107" name="sequence"/>
+            <field eval="1" name="appears_on_payslip"/>
+            <field name="condition_range">contract.wage</field>
+            <field eval="1000.0" name="amount_fix"/>
+            <field name="condition_select">python</field>
+            <field name="struct_id" ref="l10n_ao_hr_payroll.hr_salary_structure_base"/>
+            <field name="amount_select">code</field>
+            <field eval="1" name="active"/>
+            <field name="name">Subsídio de Transporte</field>
+            <field name="condition_python">
+                <![CDATA[
+res=False
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_TRANS" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res=True
+result = res
+            ]]>
+            </field>
+            <field name="amount_python_compute">
+                <![CDATA[
+res=0.0
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_TRANS" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res += rem.amount
+result = res
+            ]]>
+            </field>
+            <field name="category_id" ref="hr_salary_rule_category_abonossujeitosinss"/>
+            <field name="quantity">1.0</field>
+        </record>
+
+        <record id="hr_salary_rule_excessoalimentacaotransporte" model="hr.salary.rule">
+            <field name="code">EXC_ALIMEN_TRANS</field>
+            <field eval="108" name="sequence"/>
+            <field eval="0" name="appears_on_payslip"/>
+            <field eval="1000.0" name="amount_fix"/>
+            <field name="condition_select">python</field>
+            <field name="struct_id" ref="l10n_ao_hr_payroll.hr_salary_structure_base"/>
+            <field name="amount_select">code</field>
+            <field eval="1" name="active"/>
+            <field name="name">Excesso Sobre Alimentação e Transporte</field>
+            <field name="condition_python">
+                <![CDATA[
+ali = rules.SUB_ALIMENTA and SUB_ALIMENTA or 0.0
+trans = rules.SUB_TRASN and SUB_TRANS  or 0.0
+extra_ali = 0.0
+extra_trans = 0.0
+if ali > 30000.0:
+    extra_ali = ali - 30000.0
+if trans > 30000.0:
+    extra_trans = trans - 30000.0
+extra_all = extra_ali + extra_trans
+result = extra_all > 0.0
+            ]]>
+            </field>
+            <field name="amount_python_compute">
+                <![CDATA[
+ali = rules.SUB_ALIMENTA and SUB_ALIMENTA or 0.0
+trans = rules.SUB_TRANS and SUB_TRANS or 0.0
+extra_ali = 0.0
+extra_trans = 0.0
+if ali > 30000.0:
+    extra_ali = ali - 30000.0
+if trans > 30000.0:
+    extra_trans = trans - 30000.0
+extra_all = extra_ali + extra_trans
+result = extra_all
+            ]]>
+            </field>
+            <field name="category_id" ref="hr_salary_rule_category_abonossujeitosirt"/>
+            <field name="quantity">1.0</field>
+        </record>
+
+        <record id="hr_salary_rule_abonodefamlia" model="hr.salary.rule">
+            <field name="code">ABONO_FAMI</field>
+            <field eval="109" name="sequence"/>
+            <field eval="1" name="appears_on_payslip"/>
+            <field name="condition_range">contract.wage</field>
+            <field name="condition_select">python</field>
+            <field name="struct_id" ref="l10n_ao_hr_payroll.hr_salary_structure_base"/>
+            <field name="amount_select">code</field>
+            <field eval="1" name="active"/>
+            <field name="name">Abono de Família</field>
+            <field name="condition_python">
+                <![CDATA[
+res=False
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "ABONO_FAMI" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res=True
+result = res
+                ]]>
+            </field>
+            <field name="amount_python_compute">
+                <![CDATA[
+res=0.0
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "ABONO_FAMI" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res += rem.amount
+result = res
+                ]]>
+            </field>
+            <field name="category_id" ref="hr_salary_rule_category_abonos"/>
+            <field name="quantity">1.0</field>
+        </record>
+
+
+        <record id="hr_salary_rule_subsdiodealeitamento" model="hr.salary.rule">
+            <field name="code">SUB_ALEI</field>
+            <field eval="109" name="sequence"/>
+            <field eval="1" name="appears_on_payslip"/>
+            <field name="condition_range">contract.wage</field>
+            <field name="condition_select">python</field>
+            <field name="struct_id" ref="l10n_ao_hr_payroll.hr_salary_structure_base"/>
+            <field name="amount_select">code</field>
+            <field eval="1" name="active"/>
+            <field name="name">Subsídio de Aleitamento</field>
+            <field name="condition_python">
+                <![CDATA[
+res=False
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_ALEI" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res=True
+result = res
+                ]]>
+            </field>
+            <field name="amount_python_compute">
+                <![CDATA[
+res=0.0
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_ALEI" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res += rem.amount
+result = res
+                ]]>
+            </field>
+            <field name="category_id" ref="hr_salary_rule_category_abonos"/>
+            <field name="quantity">1.0</field>
+        </record>
+
+
+        <record id="hr_salary_rule_subsdiodechefia" model="hr.salary.rule">
+            <field name="code">SUB_CHEF</field>
+            <field eval="110" name="sequence"/>
+            <field eval="1" name="appears_on_payslip"/>
+            <field name="condition_range">contract.wage</field>
+            <field name="condition_select">python</field>
+            <field name="struct_id" ref="l10n_ao_hr_payroll.hr_salary_structure_base"/>
+            <field name="amount_select">code</field>
+            <field eval="1" name="active"/>
+            <field name="name">Subsídio de Chefia</field>
+            <field name="condition_python">
+                <![CDATA[
+res=False
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_CHEF" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res=True
+result = res
+                ]]>
+            </field>
+            <field name="amount_python_compute">
+                <![CDATA[
+res=0.0
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_CHEF" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res += rem.amount
+result = res
+                ]]>
+            </field>
+            <field name="category_id" ref="hr_salary_rule_category_abonos"/>
+            <field name="quantity">1.0</field>
+        </record>
+
+
+        <record id="hr_salary_rule_subsdiodecombustvel" model="hr.salary.rule">
+            <field name="code">SUB_COMB</field>
+            <field eval="109" name="sequence"/>
+            <field eval="1" name="appears_on_payslip"/>
+            <field name="condition_range">contract.wage</field>
+            <field name="condition_select">python</field>
+            <field name="struct_id" ref="l10n_ao_hr_payroll.hr_salary_structure_base"/>
+            <field name="amount_select">code</field>
+            <field eval="1" name="active"/>
+            <field name="name">Subsídio de Combustível</field>
+            <field name="condition_python">
+                <![CDATA[
+res=False
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_COMB" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res=True
+result = res
+                ]]>
+            </field>
+            <field name="amount_python_compute">
+                <![CDATA[
+res=0.0
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_COMB" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res += rem.amount
+result = res
+                ]]>
+            </field>
+            <field name="category_id" ref="hr_salary_rule_category_abonos"/>
+            <field name="quantity">1.0</field>
+        </record>
+
+
+        <record id="hr_salary_rule_subsdiodecomunicao" model="hr.salary.rule">
+            <field name="code">SUB_COMU</field>
+            <field eval="111" name="sequence"/>
+            <field eval="1" name="appears_on_payslip"/>
+            <field name="condition_range">contract.wage</field>
+            <field name="condition_select">python</field>
+            <field name="struct_id" ref="l10n_ao_hr_payroll.hr_salary_structure_base"/>
+            <field name="amount_select">code</field>
+            <field eval="1" name="active"/>
+            <field name="name">Subsídio de Comunicação</field>
+            <field name="condition_python">
+                <![CDATA[
+res=False
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_COMU" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res=True
+result = res
+                ]]>
+            </field>
+            <field name="amount_python_compute">
+                <![CDATA[
+res=0.0
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_COMU" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res += rem.amount
+result = res
+                ]]>
+            </field>
+            <field name="category_id" ref="hr_salary_rule_category_abonos"/>
+            <field name="quantity">1.0</field>
+        </record>
+
+
+        <record id="hr_salary_rule_subsdiodefalhas" model="hr.salary.rule">
+            <field name="code">SUB_FALH</field>
+            <field eval="112" name="sequence"/>
+            <field eval="1" name="appears_on_payslip"/>
+            <field name="condition_range">contract.wage</field>
+            <field name="condition_select">python</field>
+            <field name="struct_id" ref="l10n_ao_hr_payroll.hr_salary_structure_base"/>
+            <field name="amount_select">code</field>
+            <field eval="1" name="active"/>
+            <field name="name">Subsídio de Falhas</field>
+            <field name="condition_python">
+                <![CDATA[
+res=False
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_FALH" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res=True
+result = res
+                ]]>
+            </field>
+            <field name="amount_python_compute">
+                <![CDATA[
+res=0.0
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_FALH" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res += rem.amount
+result = res
+                ]]>
+            </field>
+            <field name="category_id" ref="hr_salary_rule_category_abonos"/>
+            <field name="quantity">1.0</field>
+        </record>
+
+        <record id="hr_salary_rule_subsdioderisco" model="hr.salary.rule">
+            <field name="code">SUB_RISC</field>
+            <field eval="113" name="sequence"/>
+            <field eval="1" name="appears_on_payslip"/>
+            <field name="condition_range">contract.wage</field>
+            <field name="condition_select">python</field>
+            <field name="struct_id" ref="l10n_ao_hr_payroll.hr_salary_structure_base"/>
+            <field name="amount_select">code</field>
+            <field eval="1" name="active"/>
+            <field name="name">Subsídio de Risco</field>
+            <field name="condition_python">
+                <![CDATA[
+res=False
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_RISC" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res=True
+result = res
+                ]]>
+            </field>
+            <field name="amount_python_compute">
+                <![CDATA[
+res=0.0
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_RISC" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res += rem.amount
+result = res
+                ]]>
+            </field>
+            <field name="category_id" ref="hr_salary_rule_category_abonos"/>
+            <field name="quantity">1.0</field>
+        </record>
+
+
+        <record id="hr_salary_rule_subsdiodesupervisao" model="hr.salary.rule">
+            <field name="code">SUB_SUPERVISAO</field>
+            <field eval="114" name="sequence"/>
+            <field eval="1" name="appears_on_payslip"/>
+            <field name="condition_range">contract.wage</field>
+            <field name="condition_select">python</field>
+            <field name="struct_id" ref="l10n_ao_hr_payroll.hr_salary_structure_base"/>
+            <field name="amount_select">code</field>
+            <field eval="1" name="active"/>
+            <field name="name">Subsídio de Supervisão</field>
+            <field name="condition_python">
+                <![CDATA[
+res=False
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_SUPERVISAO" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res=True
+result = res
+                ]]>
+            </field>
+            <field name="amount_python_compute">
+                <![CDATA[
+res=0.0
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_SUPERVISAO" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res += rem.amount
+result = res
+                ]]>
+            </field>
+            <field name="category_id" ref="hr_salary_rule_category_abonos"/>
+            <field name="quantity">1.0</field>
+        </record>
+
+        <record id="hr_salary_rule_subsidionoturno" model="hr.salary.rule">
+            <field name="code">SUB_NOCTURNO</field>
+            <field eval="116" name="sequence"/>
+            <field eval="1" name="appears_on_payslip"/>
+            <field name="condition_range">contract.wage</field>
+            <field eval="25.0" name="amount_percentage"/>
+            <field name="condition_select">python</field>
+            <field name="struct_id" ref="l10n_ao_hr_payroll.hr_salary_structure_base"/>
+            <field name="amount_percentage_base">contract.wage</field>
+            <field name="amount_select">percentage</field>
+            <field eval="1" name="active"/>
+            <field name="name">Subsídio Nocturno</field>
+            <field name="condition_python">
+                <![CDATA[
+res=False
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_NOCTURNO" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res=True
+result = res
+                ]]>
+            </field>
+            <field name="amount_python_compute">
+                <![CDATA[
+res=0.0
+for rem in contract.remuneration_ids:
+    if rem.remunerationcode_id.code == "SUB_NOCTURNO" and rem.date_start <= payslip.date_to:
+        if not rem.date_end or rem.date_end >= payslip.date_to:
+            res += rem.amount
+result = res
+                ]]>
+            </field>
+            <field name="category_id" ref="hr_salary_rule_category_abonos"/>
+            <field name="quantity">1.0</field>
+        </record>
+    </data>
+</odoo>

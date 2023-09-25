@@ -1,0 +1,225 @@
+{
+  'GeneralLedgerEntries': {
+    'NumberOfEntries': 8,
+    'TotalDebit': 4518.38,
+    'TotalCredit': 4518.38,
+    'Journal': [
+      {
+        'JournalID': 'BNC1',
+        'Description': 'Banco',
+        'Transaction': [
+          {
+            'TransactionID': 'BNC1/19/0001',
+            'Period': '04',
+            'TransactionDate': '04',
+            'SourceID': 2,
+            'Description': 'FAT/19/0002/02',
+            'DocArchivalNumber': 'FAT/19/0002/02',
+            'TransactionType': 'N',
+            'GLPostingDate': '2019-04-28',
+            'CustomerID': '',
+            'SupplierID': '',
+            'Lines': [
+              {
+                'DebitLine': {
+                  'RecordID': 13,
+                  'AccountID': '4313',
+                  'SourceDocumentID': 'FAT/19/0002/02',
+                  'SystemEntryDate': '2019-04-28 00:00:00',
+                  'Description': 'CUST.IN/2019/0001',
+                  'DebitAmount': 1935.0
+                }
+              },
+              {
+                'DebitLine': {
+                  'RecordID': 12,
+                  'AccountID': '317',
+                  'SourceDocumentID': 'FAT/19/0002',
+                  'SystemEntryDate': '2019-04-28 00:00:00',
+                  'Description': 'Retenção 6,5% Venda',
+                  'DebitAmount': 117.0
+                }
+              },
+              {
+                'CreditLine': {
+                  'RecordID': 11,
+                  'AccountID': '75311',
+                  'SourceDocumentID': 'FAT/19/0002',
+                  'SystemEntryDate': '2019-04-28 00:00:00',
+                  'Description': 'Imposto Selo 1%',
+                  'CreditAmount': 18.0
+                }
+              },
+              {
+                'DebitLine': {
+                  'RecordID': 10,
+                  'AccountID': '3471',
+                  'SourceDocumentID': 'FAT/19/0002',
+                  'SystemEntryDate': '2019-04-28 00:00:00',
+                  'Description': 'Imposto Selo 1%',
+                  'DebitAmount': 18.0
+                }
+              },
+              {
+                'CreditLine': {
+                  'RecordID': 9,
+                  'AccountID': '311211',
+                  'SourceDocumentID': 'FAT/19/0002/02',
+                  'SystemEntryDate': '2019-04-28 00:00:00',
+                  'Description': 'Pagamentos de Cliente: FAT/19/0002',
+                  'CreditAmount': 2052.0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        'JournalID': 'CX1',
+        'Description': 'Numerário',
+        'Transaction': [
+
+        ]
+      },
+      {
+        'JournalID': 'CAMB',
+        'Description': 'Diferença de Câmbio',
+        'Transaction': [
+
+        ]
+      },
+      {
+        'JournalID': 'DIV',
+        'Description': 'Operações Diversas',
+        'Transaction': [
+
+        ]
+      },
+      {
+        'JournalID': 'TAX',
+        'Description': 'Tax Cash Basis',
+        'Transaction': [
+
+        ]
+      },
+      {
+        'JournalID': 'WTH',
+        'Description': 'Withholding',
+        'Transaction': [
+
+        ]
+      },
+      {
+        'JournalID': 'FATF',
+        'Description': 'Faturas de Fornecedor',
+        'Transaction': [
+
+        ]
+      },
+      {
+        'JournalID': 'FAT',
+        'Description': 'Faturas de Cliente',
+        'Transaction': [
+          {
+            'TransactionID': 'FAT/19/0002',
+            'Period': '04',
+            'TransactionDate': '04',
+            'SourceID': 2,
+            'Description': 'FAT/19/0002/02',
+            'DocArchivalNumber': 'FAT/19/0002/02',
+            'TransactionType': 'N',
+            'GLPostingDate': '2019-04-28',
+            'CustomerID': 12,
+            'SupplierID': '',
+            'Lines': [
+              {
+                'DebitLine': {
+                  'RecordID': 7,
+                  'AccountID': '311211',
+                  'SourceDocumentID': 'FAT/19/0002',
+                  'SystemEntryDate': '2019-04-28 00:00:00',
+                  'Description': '',
+                  'DebitAmount': 2052.0
+                }
+              },
+              {
+                'CreditLine': {
+                  'RecordID': 6,
+                  'AccountID': '3453',
+                  'SourceDocumentID': 'FAT/19/0002/02',
+                  'SystemEntryDate': '2019-04-28 00:00:00',
+                  'Description': 'IVA 14%',
+                  'CreditAmount': 252.0
+                }
+              },
+              {
+                'CreditLine': {
+                  'RecordID': 5,
+                  'AccountID': '62111',
+                  'SourceDocumentID': 'FAT/19/0002',
+                  'SystemEntryDate': '2019-04-28 00:00:00',
+                  'Description': 'Service on demand',
+                  'CreditAmount': 1800.0
+                }
+              }
+            ]
+          },
+          {
+            'TransactionID': 'FAT/19/0001',
+            'Period': '04',
+            'TransactionDate': '04',
+            'SourceID': 2,
+            'Description': 'FAT/19/0001/01',
+            'DocArchivalNumber': 'FAT/19/0001/01',
+            'TransactionType': 'N',
+            'GLPostingDate': '2019-04-28',
+            'CustomerID': 12,
+            'SupplierID': '',
+            'Lines': [
+              {
+                'DebitLine': {
+                  'RecordID': 4,
+                  'AccountID': '311211',
+                  'SourceDocumentID': 'FAT/19/0001',
+                  'SystemEntryDate': '2019-04-28 00:00:00',
+                  'Description': '',
+                  'DebitAmount': 396.38
+                }
+              },
+              {
+                'CreditLine': {
+                  'RecordID': 3,
+                  'AccountID': '3421',
+                  'SourceDocumentID': 'FAT/19/0001/01',
+                  'SystemEntryDate': '2019-04-28 00:00:00',
+                  'Description': 'IPC 5%',
+                  'CreditAmount': 18.88
+                }
+              },
+              {
+                'CreditLine': {
+                  'RecordID': 2,
+                  'AccountID': '62111',
+                  'SourceDocumentID': 'FAT/19/0001',
+                  'SystemEntryDate': '2019-04-28 00:00:00',
+                  'Description': '[FURN_7777] Office Chair',
+                  'CreditAmount': 70.0
+                }
+              },
+              {
+                'CreditLine': {
+                  'RecordID': 1,
+                  'AccountID': '62111',
+                  'SourceDocumentID': 'FAT/19/0001',
+                  'SystemEntryDate': '2019-04-28 00:00:00',
+                  'Description': 'Virtual Interior Design',
+                  'CreditAmount': 307.5
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

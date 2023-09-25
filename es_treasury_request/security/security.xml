@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="category_treasury_request" model="ir.module.category">
+            <field eval="1" name="visible"/>
+            <field name="name">Pedido de Tesouraria</field>
+        </record>
+
+        <record id="group_user" model="res.groups">
+            <field name="name">Utilizador</field>
+            <field name="category_id" ref="category_treasury_request"/>
+        </record>
+
+        <record id="group_manager" model="res.groups">
+            <field name="name">Gestor</field>
+            <field name="category_id" ref="category_treasury_request"/>
+            <field name="implied_ids" eval="[(6, 0, [ref('group_user') ])]"/>
+            <field name="users" eval="[(6, 0, [ref('base.user_root') ])]"/>
+        </record>
+    </data>
+</odoo>

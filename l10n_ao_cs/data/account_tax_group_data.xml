@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Account  data for account tags -->
+    <data noupdate="1">
+        <!-- Account Tags -->
+        <record id="tag_iva7" model="account.account.tag">
+            <field name="name">IVA7</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ao"/>
+        </record>
+        <record id="tag_iva14" model="account.account.tag">
+            <field name="name">IVA14</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ao"/>
+        </record>
+        <record id="tag_iva3" model="account.account.tag">
+            <field name="name">IVA3</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ao"/>
+        </record>
+        <record id="tag_iva0" model="account.account.tag">
+            <field name="name">IVA0</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ao"/>
+        </record>
+        <record id="tag_compiva7" model="account.account.tag">
+            <field name="name">IVA7</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ao"/>
+        </record>
+        <record id="tag_compiva14" model="account.account.tag">
+            <field name="name">IVA14</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ao"/>
+        </record>
+        <record id="tag_compiva3" model="account.account.tag">
+            <field name="name">IVA3</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ao"/>
+        </record>
+        <record id="tag_compiva0" model="account.account.tag">
+            <field name="name">IVA0</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ao"/>
+        </record>
+    </data>
+
+    <!-- Account Tax Group -->
+    <data>
+        <record id="tax_group_total" model="account.tax.group">
+            <field name="name">Total Imposto</field>
+        </record>
+        <record id="tax_group_total_0" model="account.tax.group">
+            <field name="name">IVA</field>
+        </record>
+        <record id="tax_group_total_3" model="account.tax.group">
+            <field name="name">IVA 3%</field>
+        </record>
+        <record id="tax_group_total_14" model="account.tax.group">
+            <field name="name">IVA 14%</field>
+        </record>
+        <record id="tax_group_total_7" model="account.tax.group">
+            <field name="name">IVA 7%</field>
+        </record>
+
+    </data>
+
+
+</odoo>

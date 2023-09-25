@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="payment_provider_multicaixa" model="payment.provider">
+            <field name="name">Multicaixa</field>
+            <field name="code">multicaixa</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="redirect_form_view_id" ref="redirect_form"/>
+            <field name="state">test</field>
+            <field name="available_country_ids" eval="[(6,0,[ref('base.ao')])]"/>
+            <field name="image_128" type="base64" file="payment_multicaixa/static/src/img/multicaixa_icon.png"/>
+            <field name="pre_msg"><![CDATA[
+            <p> Payment information will be provided after choosing the payment mode.</p>]]></field>
+            <field name="auth_msg"><![CDATA[
+<p>To Pay your order, proceed to the nearest Multicaixa or Internet banking.</p><p>Thank you for shopping with us!</p>]]></field>
+            <field name="pending_msg"><![CDATA[<span><img src="/payment_multicaixa/static/description/icon.png" style="float:left;width:72px;height:72px; margin-right:5px;">
+                                        <small>Payment Network, use the information provided bellow for entity and reference and go to the closest <b>Multicaixa</b> or <b>Multicaixa</b> Express and follow the steps: &nbsp;</small>
+                                            <small><br></small>
+                                            <small>
+                                                Choose the options <b>"Payments -&gt; Reference Payment -&gt; Set Entity Code -&gt;&nbsp; Set your order Reference -&gt; Confirm Amount -&gt; Pay"</b>.&nbsp;&nbsp;</small>
+                                    </img></span>
+             ]]></field>
+            <field name="entity_reference">00000</field>
+<!--TO REMOVE            <field name="payment_flow">form</field>-->
+        </record>
+    </data>
+
+    <!--<record id="payment_icon_cc_multicaixa" model="payment.icon">
+        <field name="name">Multicaixa</field>
+        <field name="image" type="base64" file="payment_multicaixa/static/src/img/multicaixa.png"/>
+    </record>-->
+
+    <!--<record id="payment_method_multicaixa" model="account.payment.method">
+        <field name="name">Pagamento por Referência Multicaixa</field>
+        <field name="code">multicaixa</field>
+        <field name="payment_type">inbound</field>
+    </record>-->
+</odoo>

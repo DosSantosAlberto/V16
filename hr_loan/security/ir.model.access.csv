@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_loan_user,hr.loan.group_user,model_hr_loan,hr_loan.group_hr_loan_own_documents,1,1,1,0
+access_hr_jobuser,hr.job.group_user,hr.model_hr_job,hr_loan.group_hr_loan_own_documents,1,1,1,0
+access_hr_loan_line_user,hr.loan.line.group_user,model_hr_loan_line,hr_loan.group_hr_loan_own_documents,1,1,1,0
+access_hr_loan_payment_historic_user,hr.loan.payment.historic.group_user,model_hr_loan_payment_historic,hr_loan.group_hr_loan_own_documents,1,1,1,0
+access_hr_loan_appovers_user,hr.loan.approves.group_user,model_hr_loan_approves,hr_loan.group_hr_loan_own_documents,1,0,0,0
+access_hr_loan_appovers_line_user,hr.loan.approves.line.group_user,model_hr_loan_approves_line,hr_loan.group_hr_loan_own_documents,1,1,1,0
+access_hr_loan_amortization,hr.loan.amortization_group_hr_user,model_hr_loan_salary_amortization,hr_loan.group_hr_loan_own_documents,1,1,1,1
+access_hr_loan_amortization_line,hr.loan.salary.amortization.line_group_hr_user,model_loan_salary_amortization_line,hr_loan.group_hr_loan_own_documents,1,1,1,1
+access_hr_loan_manager,hr.loan,model_hr_loan,hr_loan.group_hr_loan_manager,1,1,1,1
+access_hr_loan_line_manager,hr.loan.line,model_hr_loan_line,hr_loan.group_hr_loan_manager,1,1,1,1
+access_hr_loan_payment_historic_manager,hr.loan.payment.historic,model_hr_loan_payment_historic,hr_loan.group_hr_loan_manager,1,1,1,1
+access_hr_loan_appovers_manager,hr.loan.approves,model_hr_loan_approves,hr_loan.group_hr_loan_manager,1,1,1,1
+access_hr_loan_appovers_line_manager,hr.loan.approves.line,model_hr_loan_approves_line,hr_loan.group_hr_loan_manager,1,1,1,1

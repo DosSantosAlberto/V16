@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_note_tree_view" model="ir.ui.view">
+            <field name="name">account.note.tree</field>
+            <field name="model">account.note</field>
+            <field name="arch" type="xml">
+                <tree string="Account Note" editable="bottom">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="account_note_search_view" model="ir.ui.view">
+            <field name="name">account.note.search</field>
+            <field name="model">account.note</field>
+            <field name="arch" type="xml">
+                <search string="Account Note Search">
+                    <field name="name"/>
+                    <field name="code"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="account_note_act_window" model="ir.actions.act_window">
+            <field name="name">Account Note</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.note</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Account Note" id="account_note_menu" parent="account.account_account_menu"
+                  sequence="2" action="account_note_act_window"/>
+
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="l10n_ao_cs.view_account_form_inherited" model="ir.ui.view">
+            <field name="name">account.account.form</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='account_type']" position="after">
+                    <field name="account_note" options="{'no_create_edit': True, 'no_create': True}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="l10n_ao_cs.view_account_tree_inherited" model="ir.ui.view">
+            <field name="name">account.account.tree</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_list"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='account_type']" position="after">
+                    <field name="account_note"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

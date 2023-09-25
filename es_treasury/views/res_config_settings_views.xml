@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_treasury_company_view" model="ir.ui.view">
+        <field name="name">treasury.company.form</field>
+        <field name="model">res.company</field>
+        <field name="priority" eval="1024"/>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <field name="favicon" position="after">
+                <field name="restrict_payment_without_balance" invisible="1"/>
+                <field name="treasury_prefix_account_employee" invisible="1"/>
+                <field name="treasury_prefix_account_social" invisible="1"/>
+                <field name="treasury_prefix_account_debtor" invisible="1"/>
+                <field name="treasury_prefix_account_creditor" invisible="1"/>
+                <field name="treasury_prefix_account_status" invisible="1"/>
+                <!-- <field name="transitional_unique" invisible="1"/>-->
+                <!-- <field name="transitional_code" invisible="1"/>-->
+            </field>
+        </field>
+    </record>
+
+    <record id="treasury_res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">treasury.res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="70"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Treasury" string="Treasury" data-key="es_treasury"
+                     groups="es_treasury.group_treasury_manager">
+                    <h2>Controllers</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="restrict_payment_without_balance"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="restrict_payment_without_balance"/>
+                                <div class="text-muted">
+                                   Restringir pagamento sem saldo
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="transitory_account"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="transitory_account"/>
+                                <div class="text-muted">
+                                    Permitir conta transitória
+                                    para os movimentos de entrada e saida de caixa ou banco.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <h2>Accounting</h2>
+                    <div name="treasury_account" class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="treasury_prefix_account_employee"
+                                       string="Funcionários – Conta fixa"/>
+                                <div class="text-muted">
+                                    <span class="o_form_label"> Custos com os funcionário</span>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="treasury_prefix_account_employee"
+                                               class="o_light_label"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="treasury_prefix_account_social"
+                                       string="Sócios – Conta fixa"/>
+                                <div class="text-muted">
+                                    <span class="o_form_label"> Custos com os sócios</span>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="treasury_prefix_account_social"
+                                               class="o_light_label" placeholder="35144"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="treasury_prefix_account_status"
+                                       string="Estado – Conta fixa"/>
+                                <div class="text-muted">
+                                    <span class="o_form_label">Custo com o estado</span>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="treasury_prefix_account_status"
+                                               class="o_light_label"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <label for="treasury_prefix_account_creditor" string="Outros Credores – Conta fixa"/>
+                                <div class="text-muted">
+                                    Conta para credores nacionais e internacionais
+                                </div>
+                                <div class="text-muted">
+                                    <field name="treasury_prefix_account_creditor" placeholder="3791"/>
+                                </div>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="treasury_prefix_account_debtor" string="Outros Devedores – Conta fixa"/>
+                                <div class="text-muted">
+                                    Conta para devedores nacionais e internacionais
+                                </div>
+                                <div class="text-primary">
+                                    <field name="treasury_prefix_account_debtor" placeholder="3791"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>Centro de Custo</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="treasury_cost_center"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label string="Gerir centro de custo"
+                                       for="treasury_cost_center"/>
+                                <div class="text-muted">
+                                    Faz a gerência dos centros de custos em todos os movimentos da tesouraria.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="open_treasury_config_settings_action" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'es_treasury'}</field>
+    </record>
+
+    <menuitem id="hs_treasury_menu_configuration"
+              name="Settings"
+              parent="treasury_config"
+              sequence="0"
+              action="open_treasury_config_settings_action"
+              groups="base.group_system"/>
+</odoo>

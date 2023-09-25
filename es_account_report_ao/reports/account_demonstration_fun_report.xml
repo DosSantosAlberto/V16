@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_account_demonstration_fun_report" model="ir.actions.report">
+            <field name="name">Demonstação por função</field>
+            <field name="model">account.demonstration</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">es_account_report_ao.demonstration_fun_report</field>
+            <field name="report_file">es_account_report_ao.demonstration_fun_report</field>
+        </record>
+        <template id="demonstration_fun_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="header" style="color: #0B74CE">
+                            <div class="row b_color">
+                                <div class="col-8">
+                                    <b>
+                                        <span class="text-left" t-field="o.company_id"/>
+                                    </b>
+                                </div>
+                                <div class="col-4" style="font-size:10px;">
+                                    <ul class="list-inline text-right">
+                                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime(&apos;%Y-%m-%d %H:%M&apos;)"/>
+                                        |
+                                        Pag.
+                                        <span class="page"/>
+                                        /
+                                        <span class="topage"/>
+                                    </ul>
+                                </div>
+                            </div>
+                            <br/>
+                            <hr style="display: block; height: 1px;
+                            border: 0; border-top: 3px solid #0B74CE;
+                            margin: 0; padding: 0;"/>
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <div align="left">
+                                        <b class="b_color">
+                                            Demonstração de resultados por função
+                                            (
+                                            <span t-field="o.date_from"/>
+                                            até
+                                            <span t-field="o.date_to"/>
+                                            )
+                                        </b>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div align="right">
+                                        <b class="b_color">
+                                            Valores em
+                                            <span t-esc="o.company_id.currency_id.symbol"/>
+                                        </b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page">
+                            <style>
+                                * {padding-bottom: 0 !important;
+                                padding-top: 0 !important;
+                                margin-bottom: 0 !important;margin-top:0 !important; }
+                                hr {
+                                display: block; height: 1px;
+                                border: 0; border-top: 1px solid #0B74CE;
+                                margin: 0; padding: 0;
+                                }
+                                .b_color{
+                                color: #0B74CE;
+                                }
+
+                                table {
+                                border-spacing: 3px;
+                                border-top: 3px solid black;
+                                border-collapse:collapse;
+                                }
+
+                                td {
+                                border-bottom:0 !important;
+                                border-top: 1px solid #B2BABB !important;
+                                }
+
+                                th {
+                                border-top:0 !important;
+                                border-bottom: 1px solid #B2BABB !important;
+                                }
+
+                                table, tr, th, td {
+                                border-collapse: separate;
+                                padding:0px !important;
+                                }
+
+                                .border_top_th{
+                                border-top: 1px solid black !important;
+                                }
+                            </style>
+                            <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().date_from"/>
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().date_to"/>
+                            </t>
+                            <table class="table table-condensed" style="border-color:black;font-size:12px;">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2" class="text-center" style="border-bottom:0 !important;">Designação</th>
+                                        <th rowspan="2" class="text-center" style="border-bottom:0 !important;">Notas</th>
+                                        <t t-if="o.enable_filter">
+                                            <th colspan="2" class="text-center">
+                                                Exercícios
+                                            </th>
+                                        </t>
+                                        <t t-else="">
+                                            <th class="text-center">
+                                                Exercício
+                                            </th>
+                                        </t>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center" style="border-bottom:0 !important;">
+                                            <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center" style="border-bottom:0 !important;">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+                                            </th>
+                                        </t>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr> </tr>
+                                    <t t-if="o.enable_filter">
+                                        <tr>
+                                            <td>
+                                                Vendas .
+
+
+                                            </td>
+                                            <td class="text-center">
+                                                22
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set="imo_c" t-value="o.get_account_balance([61],o.date_from,o.date_to)"/>
+                                                <span t-esc="abs(imo_c)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set="imo_c_past" t-value="o.get_account_balance([61],date_from_cmp,date_to_cmp)"/>
+                                                <span t-esc="abs(imo_c_past)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Prestações de Serviços
+                                            </td>
+                                            <td class="text-center">
+                                                23
+
+
+
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set="imo_ic" t-value="o.get_account_balance([62],o.date_from,o.date_to)"/>
+                                                <span t-esc="abs(imo_ic)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set="imo_ic_past" t-value="o.get_account_balance([62],date_from_cmp,date_to_cmp)"/>
+                                                <span t-esc="abs(imo_ic_past)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td class="text-center"> </td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <tr style="border-bottom:0 !important;">
+                                            <td>
+                                                <br></br>
+                                                <p>Custos das Vendas </p>
+                                            </td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td class="text-center"></td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold;">
+                                                <br></br>
+                                                <p> Margem Bruta : </p>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p> Outros proveitos operacionais </p>
+                                            </td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center">
+                                                <t t-set="invest_assoc" t-value="abs(o.get_account_balance([63],o.date_from,o.date_to))"/>
+                                                <span t-esc="abs(invest_assoc)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set="invest_assoc_past" t-value="abs(o.get_account_balance([63],date_from_cmp,date_to_cmp))"/>
+                                                <span t-esc="abs(invest_assoc_past)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Custos de distribuição
+                                            </td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Custos administrativos
+                                            </td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Outros custos e perdas  operacionais
+                                            </td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center">
+                                                <t t-set="invest_assoc_lost" t-value="abs(o.get_account_balance([75],o.date_from,o.date_to))"/>
+                                                <span t-esc="abs(invest_assoc)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set="invest_assoc_lost_past" t-value="abs(o.get_account_balance([75],date_from_cmp,date_to_cmp))"/>
+                                                <span t-esc="abs(invest_assoc_lost_past)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td class="text-center"></td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">
+                                                    <br></br>
+                                                    <p> Resultados operacionais</p>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Resultados financeiros
+                                                </td>
+                                                <td class="text-center">
+                                                    31
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-set="finance_result" t-value="abs(o.get_account_balance([83],o.date_from,o.date_to))"/>
+                                                    <span t-esc="abs(finance_result)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-set="finance_result_past" t-value="abs(o.get_account_balance([83],date_from_cmp,date_to_cmp))"/>
+                                                    <span t-esc="abs(finance_result_past)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Resultados de filiais e associados
+                                                </td>
+                                                <td class="text-center">
+                                                    32
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-set="assoc_result" t-value="abs(o.get_account_balance([84],o.date_from,o.date_to))"/>
+                                                    <span t-esc="abs(assoc_result)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-set="assoc_result_past" t-value="abs(o.get_account_balance([84],date_from_cmp,date_to_cmp))"/>
+                                                    <span t-esc="abs(assoc_result_past)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                                </td>
+                                            </tr>
+                                            <tr style="border-bottom:0 !important;">
+                                                <td>
+                                                    Resultados não operacionais
+                                                </td>
+                                                <td class="text-center" style="border-bottom:0 !important;">
+                                                    33
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-set="no_operational_result" t-value="abs(o.get_account_balance([85],o.date_from,o.date_to))"/>
+                                                    <span t-esc="abs(no_operational_result)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                                </td>
+
+                                                <td class="text-center">
+                                                    <t t-set="no_operational_result_past" t-value="abs(o.get_account_balance([85],date_from_cmp,date_to_cmp))"/>
+                                                    <span t-esc="abs(no_operational_result_past)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="text-center"></td>
+                                                <td>
+
+                                                </td>
+                                                <td>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">
+                                                    <br></br>
+                                                    <p> Resultados antes de imposto</p>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td> Imposto sobre rendimento
+
+
+                                                </td>
+                                                <td class="text-center">
+                                                    35
+
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-set="tax_yield_result" t-value="abs(o.get_account_balance([87],o.date_from,o.date_to))"/>
+                                                    <span t-esc="abs(tax_yield_result)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-set="tax_yield_result_past" t-value="abs(o.get_account_balance([87],date_from_cmp,date_to_cmp))"/>
+                                                    <span t-esc="abs(tax_yield_result_past)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="text-center"></td>
+                                                <td>
+
+                                                </td>
+                                                <td>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">
+                                                    <br></br>
+                                                    <p>Resultados líquidos das actividades correntes :</p>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Resultados de operacões em descontinuação ou descontinuada
+                                                </td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Efeitos das alterações de políticas contabilísticas
+                                                </td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Resultados Extraordinários
+                                                </td>
+                                                <td class="text-center">
+                                                    34
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-set="extraordinary_result" t-value="abs(o.get_account_balance([87],o.date_from,o.date_to))"/>
+                                                    <span t-esc="abs(extraordinary_result)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-set="extraordinary_result_past" t-value="abs(o.get_account_balance([87],date_from_cmp,date_to_cmp))"/>
+                                                    <span t-esc="abs(extraordinary_result_past)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Resultados de operacões em descontinuação ou descontinuada
+                                                </td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Imposto sobre o rendimento
+                                                </td>
+                                                <td class="text-center">
+                                                    35
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-set="tax_yield_result" t-value="abs(o.get_account_balance([87],o.date_from,o.date_to))"/>
+                                                    <span t-esc="abs(tax_yield_result)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-set="tax_yield_result_past" t-value="abs(o.get_account_balance([87],date_from_cmp,date_to_cmp))"/>
+                                                    <span t-esc="abs(tax_yield_result_past)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="text-center"></td>
+                                                <td>
+
+                                                </td>
+                                                <td>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; border-top:0 !important;">
+                                                    <br></br>
+                                                    <p> Resultados líquidos do exercício</p>
+                                                </td>
+                                                <td class="text-center" style="border-top:0 !important;"></td>
+                                                <td class="text-center" style="border-top:0 !important;">
+                                                    <t t-set="liquid_result" t-value="abs(o.get_account_balance([88],o.date_from,o.date_to))"/>
+                                                    <span t-esc="abs(liquid_result)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                                </td>
+                                                <td class="text-center" style="border-top:0 !important;">
+                                                    <t t-set="liquid_result_past" t-value="abs(o.get_account_balance([88],date_from_cmp,date_to_cmp))"/>
+                                                    <span t-esc="abs(liquid_result_past)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="text-center"></td>
+                                                <td>
+
+                                                </td>
+                                                <td>
+
+                                                </td>
+                                            </tr>
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr>
+                                            <td>
+                                                Vendas
+                                            </td>
+                                            <td class="text-center">
+                                                22
+
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set="imo_c" t-value="o.get_account_balance([61],o.date_from,o.date_to)"/>
+                                                <span t-esc="abs(imo_c)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Prestações de serviço
+                                            </td>
+                                            <td class="text-center">
+                                                23
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set="imo_ic" t-value="o.get_account_balance([62],o.date_from,o.date_to)"/>
+                                                <span t-esc="abs(imo_ic)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr style="border-bottom:0 !important;">
+                                            <td>
+                                                <p>Custos das vendas</p>
+                                            </td>
+                                            <td class="text-center"> </td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td> </td>
+                                            <td class="text-center"> </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold; border-top:0 !important;">
+                                                <br> </br>
+                                                <p>Margem Bruta:</p>
+                                            </td>
+                                            <td class="text-center" style="border-top:0 !important;"> </td>
+                                            <td style="border-top:0 !important;"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p>Outros proveitos operacionais </p>
+                                            </td>
+                                            <td class="text-center"> </td>
+                                            <td class="text-center">
+                                                <t t-set="invest_assoc" t-value="abs(o.get_account_balance([63],o.date_from,o.date_to))"/>
+                                                <span t-esc="abs(invest_assoc)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Outros custos de distribuição
+                                            </td>
+                                            <td class="text-center"> </td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Custos administrativos
+                                            </td>
+                                            <td class="text-center"> </td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Outros custos e perdas operacionais
+                                            </td>
+                                            <td class="text-center"> </td>
+                                            <td class="text-center">
+                                                <t t-set="invest_assoc_lost" t-value="abs(o.get_account_balance([75],o.date_from,o.date_to))"/>
+                                                <span t-esc="abs(invest_assoc)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> </td>
+                                            <td class="text-center"> </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold; border-top:0 !important;">
+                                                <br> </br>
+                                                <p>Resultados Operacionais:</p>
+                                            </td>
+                                            <td class="text-center" style="border-top:0 !important;"> </td>
+                                            <td style="border-top:0 !important;"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Resultados Financeiros
+                                            </td>
+                                            <td class="text-center">
+                                                31
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set="finance_result" t-value="abs(o.get_account_balance([83],o.date_from,o.date_to))"/>
+                                                <span t-esc="abs(finance_result)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Resultados de filiais e associados
+                                            </td>
+                                            <td class="text-center">
+                                                32
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set="assoc_result" t-value="abs(o.get_account_balance([84],o.date_from,o.date_to))"/>
+                                                <span t-esc="abs(assoc_result)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr style="border-bottom:0 !important;">
+                                            <td>
+                                                Resultados não operacionais
+                                            </td>
+                                            <td class="text-center">
+                                                33
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set="no_operational_result" t-value="abs(o.get_account_balance([85],o.date_from,o.date_to))"/>
+                                                <span t-esc="abs(no_operational_result)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> </td>
+                                            <td class="text-center"> </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold; border-top:0 !important;">
+                                                <br> </br>
+                                                <p>Resultados antes de impostos</p>
+                                            </td>
+                                            <td style="border-top:0 !important;" class="text-center"> </td>
+                                            <td style="border-top:0 !important;"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Imposto sobre o rendimento
+                                            </td>
+                                            <td class="text-center">
+                                                35
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set="tax_yield_result" t-value="abs(o.get_account_balance([87],o.date_from,o.date_to))"/>
+                                                <span t-esc="abs(tax_yield_result)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> </td>
+                                            <td class="text-center"> </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold; border-top:0 !important;">
+                                                <br> </br>
+                                                <p>Resultados líquidos das actividades correntes:</p>
+                                            </td>
+                                            <td style="border-top:0 !important;" class="text-center"> </td>
+                                            <td style="border-top:0 !important;"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Resultados de operações em descontinuação ou descontinuadas
+                                            </td>
+                                            <td class="text-center"> </td>
+                                            <td class="text-center"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Efeitos das alterações de políticas contabilísticas
+                                            </td>
+                                            <td class="text-center"> </td>
+                                            <td class="text-center"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Resultados extraordinários
+                                            </td>
+                                            <td class="text-center">
+                                                34
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set="extraordinary_result" t-value="abs(o.get_account_balance([87],o.date_from,o.date_to))"/>
+                                                <span t-esc="abs(extraordinary_result)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Imposto sobre o rendimento
+                                            </td>
+                                            <td class="text-center">
+                                                35
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set="tax_yield_result" t-value="abs(o.get_account_balance([87],o.date_from,o.date_to))"/>
+                                                <span t-esc="abs(tax_yield_result)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> </td>
+                                            <td class="text-center"> </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bold; border-top:0 !important;">
+                                                <br> </br>
+
+                                                <p>Resultados líquidos do exercício .</p>
+                                            </td>
+                                            <td class="text-center" style="border-top:0 !important;"> </td>
+                                            <td class="text-center" style="border-top:0 !important;">
+                                                <t t-set="liquid_result" t-value="abs(o.get_account_balance([88],o.date_from,o.date_to))"/>
+                                                <br> </br>
+                                                <span t-esc="abs(liquid_result)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> </td>
+                                            <td class="text-center"> </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

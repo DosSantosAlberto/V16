@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="iew_account_journal_search" model="ir.ui.view">
+            <field name="name">account.journal.search</field>
+            <field name="model">account.journal</field>
+            <field name="priority">1</field>
+            <field name="inherit_id" ref="account.view_account_journal_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <filter name="bank_and_cash" domain="['|', ('type', '=', 'cash'), ('type', '=', 'bank')]"
+                            string="Bank and Cash"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="open_account_journal_dashboard_kanban" model="ir.actions.act_window">
+            <field name="name">Accounting Dashboard</field>
+            <field name="res_model">account.journal</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="view_id" ref="account.account_journal_dashboard_kanban_view"/>
+            <field name="usage">menu</field>
+            <field name="context">{'search_default_dashboard': 1}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_neutral_face">
+                    This is the accounting dashboard
+                </p>
+                <p>
+                    If you have not installed a chart of account, please install one first.
+                    <br/>
+                    <a type="action" name="%(account.open_account_charts_modules)d" tabindex="-1">Browse available countries.
+                    </a>
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

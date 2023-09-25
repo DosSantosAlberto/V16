@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="l10n_ao_sale_assets_backend" name="account assets" inherit_id="web.report_assets_common">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/l10n_ao_sale/static/src/css/style.css" type="text/css"/>
+        </xpath>
+    </template>
+</odoo>

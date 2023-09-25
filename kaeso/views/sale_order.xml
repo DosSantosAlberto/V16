@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Form View  -->
+    <record id="sale_order_inherit_form" model="ir.ui.view">
+        <field name="name">sale.order.inherit.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!--<field name="partner_id" position="after">
+                <field name="forecast" widget="boolean_toggle"/>
+                <field name="proforma_waiting_for_e_s_j_p_c_p_o" widget="boolean_toggle"/>
+                <field name="proforma_waiting_for_validation" widget="boolean_toggle"/>
+            </field>-->
+            <xpath expr="//notebook/page[@name='order_lines']/field/tree/field[@name='price_unit']" position="before">
+                <field name="duration" readonly="1" class="oe_inline"
+                       attrs="{'invisible': [('is_rental', '=', False)]}"/>
+                <field name="duration_unit" readonly="1" class="oe_inline col-lg-4" string="Unit"
+                       attrs="{'invisible': [('is_rental', '=', False)]}"/>
+            </xpath>
+            <field name="origin" position="after">
+                <field name="po_file_attachment" domain="[('res_model','=', 'sale.order'), ('res_id','=',active_id)]"/>
+            </field>
+        </field>
+    </record>
+
+
+<!--    <record id="view_request_quotation_inherit_filter" model="ir.ui.view">
+        <field name="name">sale.order.search.inherit.quotation</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='filter_create_date']" position="after">
+                <separator/>
+                <filter name="forecast" string="Forecast" domain="[('forecast', '=', True)]"/>
+                <filter name="proforma_waiting_for_e_s_j_p_c_p_o" string="Proforma waiting for E.S / J.P.C / P.O"
+                        domain="[('proforma_waiting_for_e_s_j_p_c_p_o', '=', True)]"/>
+                <filter name="proforma_waiting_for_validation" string="Proforma waiting for validation"
+                        domain="[('proforma_waiting_for_validation', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>-->
+
+</odoo>

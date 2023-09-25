@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="ao_account_invoice_formview" model="ir.ui.view">
+            <field name="name">L10n AO Invoice View Inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+                <button name="button_cancel" position="attributes">
+                     <attribute name="invisible">1</attribute>
+                </button>
+                 <field name="partner_id" position="attributes">
+                    <attribute name="options">{'no_create': True, 'no_create_edit':True}</attribute>
+                </field>
+                <xpath expr="//group[@id='header_right_group']" position="inside">
+                    <field name="counter_currency_id" groups="base.group_multi_currency" attrs="{'readonly': [('state', '!=','draft')],
+                    'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund'))]}"/>
+                </xpath>
+                <!-- <field name="amount_total" position="after">
+                    <field name="counter_value" widget="monetary" options="{'currency_field': 'counter_currency_id'}"
+                           groups="base.group_multi_currency" attrs="{'invisible': ['|',('counter_currency_id','=', False), ('counter_value', '=', False)]}"/>
+                </field>-->
+
+          <!--      <field name="fiscal_position_id" position="after">
+                    <field name="exchange_rate" groups="base.group_multi_currency"
+                           attrs="{'invisible': ['|',('counter_currency_id','=', False), ('counter_value', '=', False)]}"/>
+                </field>
+-->
+                <field name="invoice_payments_widget" position="before">
+                    <field name="amount_total_wth" class="oe_subtotal_footer_separator"
+                           attrs="{'invisible': [('amount_total_wth','=', 0)]}"/>
+                </field>
+
+                <xpath expr="//button[@name='action_register_payment']" position="after">
+                    <button name="action_print_receipt" string="Print Receipt" type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice', 'out_refund')),
+                            ('payment_state', '=', 'not_paid')]}"
+                            groups="account.group_account_invoice"/>
+                </xpath>
+             <!--   <xpath expr="//field[@name='invoice_user_id']" position="after">
+                    <field name="has_payment" invisible="1"/>
+                </xpath>-->
+
+                <!--<field name="number" position='before'>
+                    <field name="total_invoiced" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="return_transfer_order"
+                                type="object" icon="fa-file-text"
+                                attrs="{'invisible': [('type', 'not in', ('in_invoice', 'in_refund')),('total_invoiced', '==', 0)]}">
+                            <field name="total_invoiced" widget="statinfo" string="Transfer order"/>
+                        </button>
+                    </div>
+                </field>-->
+            </field>
+        </record>
+
+        <record id="required_product_id_move" model="ir.ui.view">
+            <field name="name">Required account move View</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="attributes">
+                    <attribute name="attrs">{'required': [('parent.move_type', 'in', ('out_invoice','out_refund')),('display_type','not in',['line_section','line_note'])]}</attribute>
+                </field>
+            </field>
+        </record>
+
+        <!--<record id="saft_account_invoice_view" model="ir.ui.view">
+            <field name="name">Account invoice form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='other_info']//field[@name='partner_bank_id']" position="after">
+                <field name="refund_invoice_id" attrs="{'invisible':[('type','!=','out_refund')]}"/>
+                &lt;!&ndash;<field name="refund_invoice_ids" attrs="{'invisible':[('refund_invoice_ids','=', False)]}"/>&ndash;&gt;
+                </xpath>
+            </field>
+        </record>-->
+
+    </data>
+
+</odoo>

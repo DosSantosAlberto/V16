@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="report_invoice_validation_number" inherit_id="ht_account_ao.report_invoice_document">
+            <xpath expr="//div[@id='software_version']" position="replace">
+                <div id="software_version">
+                    <p style="margin-bottom: 5px !important;">
+                        <t t-foreach="docs" t-as="o">
+                            <t t-if="len(o.hash)>1">
+                                <span t-out="o.hash[1]+o.hash[11]+o.hash[21]+o.hash[31]"/>
+                            </t>
+                            -Processado por Programa Validado n.º
+                        </t>
+                        <span t-field="o.company_id.agt_cert_number"/>
+                        /
+                        <span t-field="o.company_id.agt_product_name"/>
+                        <span t-field="o.company_id.agt_product_version"/>
+                    </p>
+                </div>
+            </xpath>
+            <xpath expr="//tr[@name='exemption']" position="replace">
+                <tr name="exemption">
+                    <td>
+                        <span t-esc="tax_id.name or tax_id.name"/>
+                    </td>
+                    <td name="exemption_reason" colspan="3">
+                        <span t-esc="tax_id.exemption_reason"/>
+                    </td>
+                </tr>
+            </xpath>
+        </template>
+    </data>
+</odoo>

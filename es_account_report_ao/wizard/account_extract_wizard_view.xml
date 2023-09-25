@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_extract_wizard_view_form" model="ir.ui.view">
+            <field name="name">account.extract.wizard_view_form</field>
+            <field name="model">account.extract.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Account Extract">
+                    <div class="oe_title">
+                        <h1>
+                            Extracto de Movimento de Conta
+                        </h1>
+                    </div>
+                    <group col="2">
+                        <field name="company_id" required="1"
+                               options="{'no_create': True, 'no_open': True}"
+                               groups="base.group_multi_company"/>
+                        <field name="filter_by" required="1" default_focus="1" widget="radio"
+                               options="{'horizontal':True}" groups="base.group_multi_company"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="target_move" widget="radio"/>
+                            <field name="by_account" attrs="{'invisible':[('filter_by', '=', 'account')]}" groups="base.group_multi_company"/>
+                            <field name="specific_account" attrs="{'invisible':[('filter_by', '=', 'account')]}" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="date_from" required="1"/>
+                            <field name="date_to" required="1"/>
+                            <field name="cost_center" options="{'no_create': True, 'no_create_edit': True}"
+                                   attrs="{'invisible':['|',('filter_by', '!=', 'cost_center'), ('by_account', '!=', True)], 'required':[('filter_by', '=', 'cost_center'), ('by_account', '=', True)]}" groups="base.group_multi_company"/>
+
+                            <field name="cash_flow" options="{'no_create': True, 'no_create_edit': True}"
+                                   attrs="{'invisible':['|',('filter_by', '!=', 'cash_flow'), ('by_account', '!=', True)], 'required':[('filter_by', '=', 'cash_flow'),('by_account', '=', True)]}" groups="base.group_multi_company"/>
+
+                            <field name="iva_plan" options="{'no_create': True, 'no_create_edit': True}"
+                                   attrs="{'invisible':['|',('filter_by', '!=', 'iva_plan'), ('by_account', '!=', True)], 'required':[('filter_by', '=', 'iva_plan'),('by_account', '=', True)]}" groups="base.group_multi_company"/>
+
+                            <field name="fiscal_plan" options="{'no_create': True, 'no_create_edit': True}"
+                                   attrs="{'invisible':['|',('filter_by', '!=', 'fiscal_plan'), ('by_account', '!=', True)], 'required':[('filter_by', '=', 'fiscal_plan'),('by_account', '=', True)]}" groups="base.group_multi_company"/>
+                            <field name="account_id"
+                                   attrs="{'invisible':[('specific_account', '!=', True), ('filter_by', '!=', 'account')], 'required':['|',('filter_by', '=', 'account'), ('specific_account','!=',False)]}"
+                                   domain="[('company_id', '=', company_id), ('nature', '=', 'M')]" 
+                                   options="{'no_create': True, 'no_create_edit': True}" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button name="print_report" type="object"
+                                    string="Print" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="open_account_extract_action" model="ir.actions.act_window">
+            <field name="name">Account Extract</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.extract.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_account_extract_report"
+                  name="Account Extract"
+                  parent="account.account_reports_legal_statements_menu"
+                  sequence="5"
+                  action="open_account_extract_action"/>
+
+    </data>
+</odoo>

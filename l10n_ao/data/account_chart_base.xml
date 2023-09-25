@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Accounts Template -->
+    <data>
+        <record id="ao_chart_template" model="account.chart.template">
+            <field name="name">Plano de Contas Angola</field>
+            <field name="currency_id" ref="base.AOA"/>
+            <!--<field name="spoken_languages" eval="'pt_PT'"/>-->
+            <!--<field name="spoken_languages" eval="'pt_PT'"/>-->
+            <field name="cash_account_code_prefix">451</field>
+            <field name="bank_account_code_prefix">431</field>
+            <field name="transfer_account_code_prefix">4819</field>
+        </record>
+
+    </data>
+</odoo>

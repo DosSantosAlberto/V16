@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_report_trial_balance_ao" model="ir.actions.report">
+            <field name="name">Balancete Geral</field>
+            <field name="model">account.report.trial.balance</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">es_account_report_ao.report_trial_balance_ao</field>
+            <field name="report_file">es_account_report_ao.report_trial_balance_ao</field>
+            <field name="print_report_name">'Balancete - %s - %s' % (object.type,object.fiscal_year.name)</field>
+            <field name="paperformat_id" ref="base.paperformat_euro"/>
+            <!--  <field name="binding_model_id" ref="model_sale_summary_wizard"/>-->
+            <field name="binding_type">report</field>
+        </record>
+        <record id="action_report_account_extract_ao" model="ir.actions.report">
+            <field name="name">Extracto de conta</field>
+            <field name="model">account.extract.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">es_account_report_ao.report_account_extract_ao</field>
+            <field name="report_file">es_account_report_ao.report_account_extract_ao</field>
+            <field name="print_report_name">'Extracto de conta - %s' % (object.account_id.name or object.date_to)
+            </field>
+            <field name="paperformat_id" ref="base.paperformat_euro"/>
+            <!--  <field name="binding_model_id" ref="model_sale_summary_wizard"/>-->
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_model1_ao" model="ir.actions.report">
+            <field name="name">Modelo 1</field>
+            <field name="model">fiscal.reports.agt.model1</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">es_account_report_ao.fiscal_report_model1_ao</field>
+            <field name="report_file">es_account_report_ao.fiscal_report_model1_ao</field>
+            <field name="print_report_name">'Modelo-1-V2'</field>
+           <!-- <field name="paperformat_id" ref="base.paperformat_euro"/>-->
+            <!--  <field name="binding_model_id" ref="model_sale_summary_wizard"/>-->
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_model2_ao" model="ir.actions.report">
+            <field name="name">Modelo 2</field>
+            <field name="model">fiscal.reports.agt.model2</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">es_account_report_ao.fiscal_report_model2_ao</field>
+            <field name="report_file">es_account_report_ao.fiscal_report_model2_ao</field>
+            <field name="print_report_name">'Modelo-2-V2'</field>
+           <!-- <field name="paperformat_id" ref="base.paperformat_euro"/>-->
+            <!--  <field name="binding_model_id" ref="model_sale_summary_wizard"/>-->
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

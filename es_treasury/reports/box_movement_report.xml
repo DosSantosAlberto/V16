@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <report
+                id="report_box_movement"
+                model="hs_tresury.box.movement"
+                string="Movimento de Caixa"
+                name="hs_treasury.report_box_movement_pdf"
+                file="hs_treasury.report_box_movement_pdf"
+                report_type="qweb-pdf"/>
+
+        <template id="report_box_movement_pdf">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <b align="center">
+                                <h3>MOVIMENTO DE CAIXA</h3>
+                            </b>
+                            <br/>
+                            <div class="col-xs-12">
+                                <div class="col-xs-8"/>
+                                <div class="col-xs-4">
+                                    <div>
+                                        Caixa:
+                                        <span t-field="o.box"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="col-xs-12">
+                                <div>
+                                    Data de Inicio:
+                                    <span t-field="o.start_date"/>
+                                </div>
+                                <div>
+                                    Date de Fim:
+                                    <span t-field="o.end_date"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <br/>
+                                <table id="table" class="table table-condensed">
+                                    <tr>
+                                        <td colspan="4"
+                                            style="font-weight:bold; background-color:#337AB7; color:#ffffff;">
+                                            <center>RESUMO</center>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="row">
+                                                <div style="width:50%; float: right;">
+                                                    <div class="row">
+                                                        <div class="col-xs-6"/>
+                                                        <div class="col-xs-3" style="font-size:12px">
+                                                            <b>Saldo Inicial</b>
+                                                        </div>
+                                                        <div class="col-xs-3" style="font-size:12px">
+                                                            <b>Saldo Final</b>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xs-6"/>
+                                                        <div class="col-xs-3" style="font-size:12px">
+                                                            <span t-out="o.get_start_balance()"/>
+                                                        </div>
+                                                        <div class="col-xs-3" style="font-size:12px">
+                                                            <span t-out="o.get_end_balance()"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                                <table id="table" class="table table-condensed">
+                                    <tr>
+                                        <td colspan="7"
+                                            style="font-weight:bold; background-color:#337AB7; color:#ffffff;">
+                                            <center>DETALHES</center>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-size: 12px; font-weight:bold;">
+                                        <td>Doc</td>
+                                        <td>Cliente</td>
+                                        <td>Tipo Pag.</td>
+                                        <td>Diário</td>
+                                        <td>Data</td>
+                                        <td>Valor</td>
+                                        <td>Saldo Após Movimento</td>
+                                    </tr>
+                                    <t t-foreach="o.get_session_by_date_and_box()" t-as="session">
+                                        <tr style="font-size: 12px;">
+                                            <td>
+                                                <span t-field="session.payment"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="session.partner_id"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="session.payment_type"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="session.journal"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="session.date"/>
+                                            </td>
+                                            <td align="right">
+                                                <span t-out="session.amount"
+                                                      t-out-options='{"widget": "monetary","display_currency": "session.create_uid.company_id.currency_id"}'/>
+                                            </td>
+                                            <td align="right">
+                                                <span t-out="session.pos_balance"
+                                                      t-out-options='{"widget": "monetary","display_currency": "session.create_uid.company_id.currency_id"}'/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

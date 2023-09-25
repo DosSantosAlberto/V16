@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Salary Structure -->
+    <data>
+        <!-- Inherit Form View to Modify it -->
+         <record id="l10n_ao_hr_payroll.hr_salary_structure_base" model="hr.payroll.structure">
+            <field name="rule_ids"
+                   eval="[(4,ref('hr_salary_rule_overtime'),0)]"/>
+        </record>
+    </data>
+</odoo>

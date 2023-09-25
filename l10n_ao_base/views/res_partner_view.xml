@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="res_partner_county_view">
+        <field name="name">Partner County Form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="state_id" position="after">
+                <field name="county_id" placeholder="County"  class="o_address_city" options="{'no_open': True, 'no_create':True, 'no_edit':True}" context="{'state_id': state_id}"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="res_county_state_county_view">
+        <field name="name">State County</field>
+        <field name="model">res.country.state</field>
+        <field name="inherit_id" ref="base.view_country_state_form"/>
+        <field name="arch" type="xml">
+            <field name="country_id" position="after">
+                <field name="county_ids">
+                    <tree>
+                        <field name="code"/>
+                        <field name="name"/>
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+</odoo>

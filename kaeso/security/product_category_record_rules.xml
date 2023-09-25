@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--Record Rules -->
+        <record id="kaeso_product_category_rule" model="ir.rule">
+            <field name="name">Kaeso: Access Product Categories</field>
+            <field name="model_id" ref="model_product_category"/>
+            <field name="domain_force">['|',('company_id', '=', company_id),('company_id', '=', False)]</field>
+            <field name="global" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+    </data>
+</odoo>

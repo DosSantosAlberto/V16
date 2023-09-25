@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="loan_res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.loan</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="hr_payroll.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='hr_payroll_accountant']" position="after">
+                    <h2>Loan</h2>
+                    <div class="row mt16 o_settings_container" id="loan_setting">
+                        <div class="col-12 col-lg-6 o_setting_box" groups="base.group_no_one">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Loan/Year</span>
+                                <div class="mt16">
+                                    <label for="loan_per_year" class="o_light_label" string="Loan Per Year"/>
+                                    <field name="loan_per_year" class="oe_inline col-4 col-lg-2 mr-1"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" groups="base.group_no_one">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Installment Loan Limit</span>
+                                <div class="mt16">
+                                    <label for="installment_loan_limit" class="o_light_label" string="Loan Limit"/>
+                                    <field name="installment_loan_limit" class="oe_inline col-4 col-lg-2 mr-1"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Salary Advance</h2>
+                    <div class="row mt16 o_settings_container" id="salary_advance_setting">
+                        <div class="col-12 col-lg-6 o_setting_box" groups="base.group_no_one">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Salary Advance/Year</span>
+                                <div class="mt16">
+                                    <label for="salary_advance_per_year" class="o_light_label" string="Salary Advance Per Year"/>
+                                    <field name="salary_advance_per_year" class="oe_inline col-4 col-lg-2 mr-1"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

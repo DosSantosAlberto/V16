@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- modify payslip form view -->
+        <record id="ag_payslip_form_view" model="ir.ui.view">
+            <field name="name">AG - Inherited Payslip Form View</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="priority" eval="1024"/>
+            <field name="arch" type="xml">
+                <field name="note" position="replace"/>
+                <xpath expr="//notebook" position="after">
+                    <group>
+                        <field name="note" string="Observations" placeholder="Add an observation..."/>
+                    </group>
+                </xpath>
+                <field name="line_ids" position="before">
+                    <group>
+                        <group>
+                            <field name="total_remunerations" string="Remunerations"/>
+                            <field name="total_deductions" string="Deductions"/>
+                            <field name="total_paid"/>
+                            <field name="amount_base_irt" invisible="1"/>
+                            <field name="show_total_paid_usd" invisible="1"/>
+                        </group>
+                        <group attrs="{'invisible': [('show_total_paid_usd', '=', False)]}">
+                            <field name="currency_rate"/>
+                            <field name="total_paid_usd"/>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+                </field>
+                <xpath expr="//button[@name='compute_sheet']" position="after">
+                    <button name="action_send_email" type="object" string="Send by Email"
+                            attrs="{'invisible':[('state', '=', 'draft')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- modify payslip tree view -->
+        <record id="ag_payslip_tree_view" model="ir.ui.view">
+            <field name="name">AG - Inherited Payslip Tree View</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_tree"/>
+            <field name="arch" type="xml">
+                <field name="basic_wage" widget="monetary" options="{'currency_field': 'currency_id'}"
+                       position="replace">
+                    <field name="wage" string="Basic Wage"/>
+                </field>
+                <field name="wage" position="after">
+                    <field name="total_remunerations" string="Gross Wage" widget="monetary"/>
+                </field>
+                <field name="net_wage" widget="monetary" options="{'currency_field': 'currency_id'}" decoration-bf="1"
+                       position="replace">
+                    <field name="total_paid" string="Net Wage" widget="monetary"/>
+                </field>
+                <field name="number" position="after">
+                    <field name="credit_note"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

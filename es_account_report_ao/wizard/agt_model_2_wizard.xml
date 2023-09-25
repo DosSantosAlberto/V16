@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_agt_model_2_form" model="ir.ui.view">
+        <field name="name">Modelo 2 - Declaração Anual De Rendimento</field>
+        <field name="model">fiscal.reports.agt.model2</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            IMPOSTO INDUSTRIAL, DECLARAÇÃO MODELO 2
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="year_end"/>
+                            <field name="company_id" string="Empresa"/>
+                        </group>
+                        <group></group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="print_report" type="object" class="oe_highlight">
+                        Imprimir
+                    </button>
+                    <button special="cancel">
+                        Cancelar
+                    </button>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="open_action_agt_model_2" model="ir.actions.act_window">
+        <field name="name">Modelo 2 - Declaração Anual De Rendimento</field>
+        <field name="res_model">fiscal.reports.agt.model2</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="agt_model2"
+              name="Modelo 2"
+              parent="fiscal_report_menu"
+              action="open_action_agt_model_2"
+              sequence="3"/>
+</odoo>

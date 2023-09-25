@@ -1,0 +1,3585 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_ao
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e-20230101\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-19 11:01+0000\n"
+"PO-Revision-Date: 2023-01-19 13:14+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: l10n_ao
+#: model:mail.template,report_name:l10n_ao.mail_template_payment_receipt
+msgid ""
+"\n"
+"                Receipt_${object.name or '').replace('/','')}_${object.state == 'posted'}\n"
+"            "
+msgstr ""
+"\n"
+"                Recibo_${object.name or '').replace('/','')}_${object.state == 'posted'}\n"
+"            "
+
+#. module: l10n_ao
+#: model:mail.template,body_html:l10n_ao.mail_template_payment_receipt
+msgid ""
+"\n"
+"           <div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, "
+"34, 34); background-color: #FFF;\">\n"
+"    <p>Hello ${object.partner_id.name},</p>\n"
+"    <p>A new Payment Receipt is available for you: </p>\n"
+"\n"
+"    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"       <strong>REFERENCES</strong><br>\n"
+"       Payment number: <strong>${object.name}</strong><br>\n"
+"       Payment total: <strong>${object.amount} ${object.currency_id.name}</strong><br>\n"
+"       Payment date: ${object.payment_date}<br>\n"
+"       % if object.origin:\n"
+"       Order reference: ${object.origin}<br>\n"
+"       % endif\n"
+"       % if object.user_id:\n"
+"       Your contact: <a href=\"mailto:${object.user_id.email or ''}?subject=Payment%20${object.name}\">${object.user_id."
+"name}</a>\n"
+"       % endif\n"
+"    </p>\n"
+"\n"
+"    <br><p></p><p>\n"
+"    </p><p>If you have any question, do not hesitate to contact us.</p>\n"
+"    <p>Thank you for choosing ${object.company_id.name or 'us'}!</p>\n"
+"    <br><p></p><p>\n"
+"    <br></p><p>\n"
+"    </p><div style=\"width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; "
+"border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${object.company_id.name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"            ${object.company_id.partner_id.sudo().with_context(show_address=True, html_format=True).name_get()[0][1] | "
+"safe}\n"
+"        </span>\n"
+"        % if object.company_id.phone:\n"
+"            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; "
+"padding-right: 0px; padding-bottom: 0px; padding-left: 0px; \">\n"
+"                Phone: ${object.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if object.company_id.website:\n"
+"            <div>\n"
+"                Web :<a href=\"${object.company_id.website}\">${object.company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"\n"
+"    </div>\n"
+"</div>\n"
+"            "
+msgstr ""
+"\n"
+"           <div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, "
+"34, 34); background-color: #FFF;\">\n"
+"    <p>Hello ${object.partner_id.name},</p>\n"
+"    <p>Um novo recibo de pagamento está disponível.</p>\n"
+"\n"
+"    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"       <strong>REFERÊNCIAS</strong><br>\n"
+"       Nº Pagamento: <strong>${object.name}</strong><br>\n"
+"       Pagamento total: <strong>${object.amount} ${object.currency_id.name}</strong><br>\n"
+"       Data: ${object.payment_date}<br>\n"
+"       % if object.origin:\n"
+"       Ref. Ordem: ${object.origin}<br>\n"
+"       % endif\n"
+"       % if object.user_id:\n"
+"     Contactost: <a href=\"mailto:${object.user_id.email or ''}?subject=Payment%20${object.name}\">${object.user_id.name}"
+"</a>\n"
+"       % endif\n"
+"    </p>\n"
+"\n"
+"    <br><p></p><p>\n"
+"    </p><p>Se tiver qualquer questão não hesite em contactar.</p>\n"
+"    <p>Obrigado pela escolha ${object.company_id.name or 'us'}!</p>\n"
+"    <br><p></p><p>\n"
+"    <br></p><p>\n"
+"    </p><div style=\"width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; "
+"border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${object.company_id.name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"            ${object.company_id.partner_id.sudo().with_context(show_address=True, html_format=True).name_get()[0][1] | "
+"safe}\n"
+"        </span>\n"
+"        % if object.company_id.phone:\n"
+"            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; "
+"padding-right: 0px; padding-bottom: 0px; padding-left: 0px; \">\n"
+"                Phone: ${object.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if object.company_id.website:\n"
+"            <div>\n"
+"                Web :<a href=\"${object.company_id.website}\">${object.company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"\n"
+"    </div>\n"
+"</div>\n"
+"            "
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__date_end
+msgid " Date End"
+msgstr "Data de FIm"
+
+#. module: l10n_ao
+#: model:mail.template,subject:l10n_ao.mail_template_payment_receipt
+msgid ""
+"${object.company_id.name} Payment Receipt (Ref ${object.name or 'n/a'})\n"
+"            "
+msgstr ""
+"${object.company_id.name} Recibo de Pagamento (Ref ${object.name or 'n/a'})\n"
+"            "
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_journal.py:0
+#, python-format
+msgid "%s Sequence"
+msgstr "%s Sequência"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.ao_account_payment_register_view
+msgid ", the total amount with Withholding for this payment amount is"
+msgstr ", o montante total com Retenção para este pagamento é de"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.ao_account_payment_register_view
+msgid ""
+".\n"
+"                                         <br/>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid ""
+"2ª Via em conformidade com\n"
+"                                            original"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid ""
+"2ª Via em conformidade com\n"
+"                                original"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid ""
+":\n"
+"                                <span>Consumidor Final</span>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid ""
+":\n"
+"                            <span>Consumidor Final</span>"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_journal.py:0
+#, python-format
+msgid ": Refund"
+msgstr ":Nota de Crédito"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.external_agt_layout_striped
+msgid "<i class=\"fa fa-at\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.external_agt_layout_striped
+msgid "<i class=\"fa fa-globe\" role=\"img\" aria-label=\"Website\" title=\"Website\"/>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.external_agt_layout_striped
+msgid "<i class=\"fa fa-phone\" role=\"img\" aria-label=\"Phone\" title=\"Phone\"/>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid ""
+"<span>\n"
+"                            <strong>Customer Signature:</strong>\n"
+"                        </span>\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        <br/>"
+msgstr ""
+"<span>\n"
+"                        <strong>Customer Signature:</strong>\n"
+"                    </span>\n"
+"                    <br/>\n"
+"                    <br/>\n"
+"                    <br/>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<span>Balance</span>"
+msgstr "<span>Saldo </span>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<span>Data de Emissão</span>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<span>Description</span>"
+msgstr "<span>Descrição </span>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<span>Disc.%</span>"
+msgstr "<span>Desc.%</span>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<span>Número</span>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<span>Quantity</span>"
+msgstr "<span>Quantidade</span>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<span>Ret%</span>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<span>Total Price</span>"
+msgstr "<span>Preço Total</span>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<span>Total</span>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<span>Unit Price</span>"
+msgstr "<span>Preço Unit.</span>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<span>Vat</span>"
+msgstr "<span>NIF</span>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr "<strong class=\"mr16\">Subtotal </strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong class=\"text-nowrap\">Total w/ Withhold</strong>"
+msgstr "Total c/Retenção"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong style=\"white-space: nowrap;\">Counter Value</strong>"
+msgstr "<strong style=\"white-space: nowrap;\">Contra Valor</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong style=\"white-space: nowrap;\">IVA Regime:</strong>"
+msgstr "Regime do IVA"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid "<strong>Amount</strong>"
+msgstr "<strong>Montante</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid "<strong>Calculated Balance</strong>"
+msgstr "<strong>Saldo Calculado</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid ""
+"<strong>Closing Date</strong>:\n"
+"                                <br/>"
+msgstr ""
+"<strong>Data de Fecho</strong>:\n"
+"                                <br/>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid "<strong>Communication</strong>"
+msgstr "<strong>Comunicação</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid ""
+"<strong>Company</strong>:\n"
+"                                <br/>"
+msgstr ""
+"<strong>Empresa</strong>:\n"
+"                                <br/>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong>Customer Code:</strong>"
+msgstr "<strong>Cód. Cliente:</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<strong>Data do Pagamento:</strong>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid "<strong>Date</strong>"
+msgstr "<strong>Data</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong>Due Date:</strong>"
+msgstr "<strong>Vencimento:</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid ""
+"<strong>Ending Balance</strong>:\n"
+"                                <br/>"
+msgstr ""
+"<strong>Saldo Final</strong>:\n"
+"                                <br/>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong>IBAN:</strong>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong>Incoterm:</strong>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong>Issue Date:</strong>"
+msgstr "Data de emissão"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid "<strong>Item</strong>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid ""
+"<strong>Journal</strong>:\n"
+"                                <br/>"
+msgstr ""
+"<strong>Diário</strong>:\n"
+"                                <br/>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<strong>Memo:</strong>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<strong>Método de Pagamento:</strong>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid ""
+"<strong>Opening Date</strong>:\n"
+"                                <br/>"
+msgstr ""
+"<strong>Data de Abertura</strong>:\n"
+"                                <br/>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid "<strong>Partner</strong>"
+msgstr "<strong>Parceiro</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<strong>Recibo</strong>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong>Reference:</strong>"
+msgstr "<strong>Reference: </strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid "<strong>Reference</strong>"
+msgstr "<strong>Referência</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<strong>Regularized Amount</strong>"
+msgstr "<strong>Montante Regularizado</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong>Source Doc.:</strong>"
+msgstr "Origem do Doc.:"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid ""
+"<strong>Starting Balance</strong>:\n"
+"                                <br/>"
+msgstr ""
+"<strong>Saldo Inicial</strong>:\n"
+"                                <br/>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid ""
+"<strong>Statement Name</strong>:\n"
+"                                <br/>"
+msgstr ""
+"<strong>Nome da declaração</strong>:\n"
+"                                <br/>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid "<strong>Statement</strong>"
+msgstr "<strong>Decl</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong>Subtotal</strong>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong>Taxes Board</strong>"
+msgstr "<strong>Quadro de Impostos</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<strong>Taxes Resume:</strong>"
+msgstr "<strong>Resume de Impostos:</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<strong>Total Received in text:</strong>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<strong>Total Received</strong>"
+msgstr "<strong>Total Recebido</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong>Total</strong>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_ao_bank_statement_document
+msgid ""
+"<strong>User</strong>:\n"
+"                                <br/>"
+msgstr ""
+"<strong>Utilizador</strong>:\n"
+"                                <br/>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<strong>Valor Pago:</strong>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "<strong>Via:</strong>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "<strong>Withholding Board</strong>"
+msgstr "<strong>Tabela de Retenção</strong>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10n_ao_account_settings_formview
+msgid "AGT Certification Information"
+msgstr "Informação de Certificação AGT"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_tax_template
+msgid "AO Account Tax Template"
+msgstr "Modelos para Impostos"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_account
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_repartition_line__account_id
+msgid "Account"
+msgstr "Conta"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid "Account %s does not allow reconciliation. First change the configuration of this account to allow it."
+msgstr "A conta %s não permite reconciliação. Primeiro terá que alterar a configuração dessa conta para o permitir."
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_chart_template__tax_cash_basis_account_id
+#, python-format
+msgid "Account Id for Tax Cash Basis"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_tax_regime
+msgid "Account Tax Regime"
+msgstr "Regime de Imposto"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_account_tax_repartition_line__account_id
+msgid "Account on which to post the tax amount"
+msgstr "Conta na qual se deve colocar o valor do imposto"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__message_needaction
+msgid "Action Needed"
+msgstr "Ação Necessária"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_chart_template
+msgid "Add default prefix to company"
+msgstr "Modelo de Plano de Contas"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__module_l10n_ao_autoinvoice
+msgid "Add support for Auto Invoice"
+msgstr "Adiciona suporte para Auto-Facturação"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_move__transaction_type__j
+msgid "Ajustamentos"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10n_ao_account_settings_formview
+msgid "Alien Group Lda"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__saft_invoice_type__aa
+msgid "Alienação de Activos"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "Amount"
+msgstr "Montante"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_payment.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__amount_text
+#, python-format
+msgid "Amount in Words"
+msgstr "Montante por extenso"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__amount_pay
+msgid "Amount to Pay"
+msgstr "Montante a Pagar"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__amount_receive
+msgid "Amount to Receive"
+msgstr "Montante a Receber"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_payment.py:0 code:addons/l10n_ao/wizards/account_payment_register.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__amount_wth
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment_register__amount_wth
+#, python-format
+msgid "Amount w/ Withhold"
+msgstr "Valor com retenção"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10n_ao_account_settings_formview
+msgid "Angola Char of Account"
+msgstr "Plano de contas de Angola"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_payment.py:0 code:addons/l10n_ao/wizards/account_payment_register.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__current_wth
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment_register__current_wth
+#, python-format
+msgid "Applied Withhold"
+msgstr "Retenção a Aplicar"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__end_period__4
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__start_period__4
+msgid "Apr"
+msgstr "Abril"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_move__transaction_type__a
+msgid "Apur. Resultados"
+msgstr "Apuramento de resultados"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "Apuramento Period  %s-%s"
+msgstr "Apuramento Período %s-%s"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_file__tax_account_Basis__a
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_wizard__type__a
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Aquisição de bens e serviços"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_file__tax_account_Basis__q
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_wizard__type__q
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Aquisição de bens e serviços integrada com a facturação"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_account_journal__self_billing
+msgid ""
+"Assinale, se este diário se destina a registar Auto-facturação.\n"
+"              As facturas emitidas em substituição dos fornecedores, ao abrigo de acordos de auto-facturação,\n"
+"               são assinaladas como tal no SAFT"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__message_attachment_count
+msgid "Attachment Count"
+msgstr "Número de Anexos"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__audit_file_version
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__audit_file_version
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__audit_file_version
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10n_ao_account_settings_formview
+msgid "Audit File Version"
+msgstr "Versão do ficheiro de auditoria"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__end_period__8
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__start_period__8
+msgid "Aug"
+msgstr "Agosto"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_journal__self_billing
+msgid "Auto-Facturação"
+msgstr "Ago"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_file__tax_account_Basis__s
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Autofacturação"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid "Automatic Balancing Line"
+msgstr "Linha de Saldo Automática"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__state__refund_payment
+msgid "Awaiting Refund Payment"
+msgstr "Aguardando pagamento de reembolso"
+
+#. module: l10n_ao
+#: model:ir.actions.report,name:l10n_ao.action_report_bank_statement
+msgid "Bank Statement"
+msgstr "Extracto de Banco"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__refund_acceptance_payment__bank_cash
+msgid "Bank or Cash"
+msgstr "Banco e Caixa"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "Base"
+msgstr "Base Tributável"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#, python-format
+msgid "CAMB"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid "Can not create invoices, whose date is before date %s"
+msgstr "Não pode cria facturas cuja a data é antes da data %s"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_result_settlement__state__cancel
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_result_settlement_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10nao_saft_wizard_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__state__cancel
+msgid "Canceled"
+msgstr "Cancelado"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "Cancelled Invoice"
+msgstr "Fatura Cancelada"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/res_partner.py:0
+#, python-format
+msgid "Cannot Generate SAFT data without City. Partner %s"
+msgstr "Não é possível  gerar SAFT sem o campo Cidade. Parceiro %s"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/wizards/saft_ao_wizard.py:0
+#, python-format
+msgid "Cannot Generate SAFT data without Company NIF!"
+msgstr "Não é possível  gerar SAFT sem o NIF da empresa!"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/wizards/saft_ao_wizard.py:0
+#, python-format
+msgid "Cannot Generate SAFT data without Company Registry!"
+msgstr "Não é possível  gerar SAFT sem o Registo da Empresa!"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/res_partner.py:0
+#, python-format
+msgid "Cannot Generate SAFT data without Country. Partner %s"
+msgstr "Não é possível  gerar SAFT sem o campo País. Parceiro %s"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/saft.py:0
+#, python-format
+msgid ""
+"Cannot validate the Saft file because of this error \n"
+" %s"
+msgstr ""
+"Não é possível validar o arquivo Saft devido a este erro \n"
+" %s"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__payment_mechanism__cc
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_payment__payment_mechanism__cc
+msgid "Cartão crédito"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__payment_mechanism__cd
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_payment__payment_mechanism__cd
+msgid "Cartão débito"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_account_move__transaction_type
+#: model:ir.model.fields,help:l10n_ao.field_account_payment__transaction_type
+msgid "Categorias para classificar os movimentos contabilísticos ao exportar o SAFT"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_chart_template__property_account_expense_credit_id
+#, python-format
+msgid "Category of Expense Credit Account"
+msgstr "Categoria de Conta de Crédito de Despesa"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_chart_template__property_account_income_credit_id
+#, python-format
+msgid "Category of Income Credit Account"
+msgstr "Categoria de Conta de Crédito de Receita"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_account_journal__saft_invoice_type
+msgid "Category to classify document for SAFT-AO"
+msgstr "Categoria para classificar o documento SAFT-AO"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__check_draft_moves
+msgid "Check Draft Moves"
+msgstr "Verificar movimentos em rascunho"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__payment_mechanism__co
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_payment__payment_mechanism__co
+msgid "Cheque ou cartão oferta"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__partner_city
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__partner_city
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__partner_city
+msgid "City"
+msgstr "Cidade"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_exemption__code
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_l10nao_saft_file__header_comment
+msgid "Comentários Adicionais"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_wizard__comments
+msgid "Comment"
+msgstr "Comentário"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_result_settlement.py:0 code:addons/l10n_ao/models/account_tax_vat.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__communication
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__communication
+#, python-format
+msgid "Communication"
+msgstr "Comunicação"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_wizard__company_id
+msgid "Companhia"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_result_settlement.py:0 code:addons/l10n_ao/models/account_tax_vat.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__company_id
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__company_id
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__company_id
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+#, python-format
+msgid "Company"
+msgstr "Empresa"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__company_code
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__company_code
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__company_code
+msgid "Company Code"
+msgstr "Código da Empresa"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0 code:addons/l10n_ao/models/account_config_settings.py:0
+#: code:addons/l10n_ao/models/res_company.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_chart_template__company_inss_account_code
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__company_inss_account_code
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__company_inss_account_code
+#, python-format
+msgid "Company INSS account Code"
+msgstr "Código de conta INSS da empresa"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10n_ao_account_settings_formview
+msgid "Company Tax ID"
+msgstr "NIF da Empresa"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__payment_mechanism__cs
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_payment__payment_mechanism__cs
+msgid "Compensação de saldos em conta corrente"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Complain"
+msgstr "Reclamar"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__state__complain_accepted
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Complain Accepted"
+msgstr "Reclamação Aceite"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Complain Accepted Moves"
+msgstr "Mov. Reclamação Aceite"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__state__complain_rejected
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Complain Rejected"
+msgstr "Reclamação Aceite"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Complain Rejection Moves"
+msgstr "Mov.Reclamação Rejeitada"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "Complain accepted period %s-%s"
+msgstr "Período de reclamação aceite %s-%s"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "Complain rejected %s-%s"
+msgstr "Reclamação rejeitada %s-%s"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_payment.py:0
+#, python-format
+msgid "Compose Email"
+msgstr "Compor Email"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Compute"
+msgstr "Calcular"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_result_settlement_form_view
+msgid "Compute Result"
+msgstr "Compute Results"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_result_settlement__state__compute
+msgid "Computed"
+msgstr "Calculado"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_ir_actions_report__filter_domain
+msgid "Condition"
+msgstr "Condição"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_res_config_settings
+msgid "Config Settings"
+msgstr "Configurações"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_result_settlement_form_view
+msgid "Confirm and Post"
+msgstr "Confirmar e Publicar"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_wizard__type__c
+msgid "Contabilidade"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_file__tax_account_Basis__c
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Contablidade"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_wizard__type__i
+msgid "Contablidade integrada com a facturação"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_file__tax_account_Basis__i
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Contablidade integrada com facturação"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__print_counter
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__print_counter
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__print_counter
+msgid "Control Number of printing"
+msgstr "Número de controlo de impressão"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__counter_currency_id
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__counter_currency_id
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__counter_currency_id
+msgid "Counter currency"
+msgstr "Contra Moeda"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__counter_value
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__counter_value
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__counter_value
+msgid "Counter value"
+msgstr "Contra valor"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax__company_country_id
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__country_id
+msgid "Country"
+msgstr "País"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_config_settings.py:0 code:addons/l10n_ao/models/res_company.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__create_partner_account
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__create_partner_account
+#, python-format
+msgid "Create Chart Account for Partners"
+msgstr "Criar conta de no plano de contas para parceiros"
+
+#. module: l10n_ao
+#: model:ir.ui.menu,name:l10n_ao.menu_saft_wizard
+msgid "Create SAFT File"
+msgstr "Gerar Ficheiro  SAFT"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__create_uid
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_exemption__create_uid
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_regime__create_uid
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__create_uid
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__create_uid
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_wizard__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__create_date
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_exemption__create_date
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_regime__create_date
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__create_date
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__create_date
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_wizard__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "Credit Note"
+msgstr "Nota de Crédito"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__payment_mechanism__ci
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_payment__payment_mechanism__ci
+msgid "Crédito documentário internacional"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__currency_id
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__currency_id
+msgid "Currency"
+msgstr "Moeda"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid "Currency exchange rate difference"
+msgstr "Diferença na taxa de câmbio da moeda"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid "Currency exchange rate difference (cash basis)"
+msgstr "Currency exchange rate difference (Fundo de Caixa)"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#, python-format
+msgid "Customer Invoices"
+msgstr "Faturas de Cliente"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_payment.py:0
+#, python-format
+msgid "Customer Payment"
+msgstr "Pagamento de Cliente"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_payment.py:0
+#, python-format
+msgid "Customer Reimbursement"
+msgstr "Reembolso do Cliente"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_product_product__customs_details
+msgid "Customs Details"
+msgstr "Detalhes da Alfândega"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#, python-format
+msgid "DIV"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "DU {} Paid"
+msgstr "Documento de  Cobrança {} - Pago"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "DU {} Received"
+msgstr "Documento de  Cobrança {} - Recebido"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__date
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__date
+msgid "Date"
+msgstr "Data"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_wizard__date_end
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_result_settlement_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Date End"
+msgstr "Data de Fim"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__date_start
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_wizard__date_start
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_result_settlement_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Date Start"
+msgstr "Data de Início"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__end_period__12
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__start_period__12
+msgid "Dec"
+msgstr "Dezembro"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_exemption__description
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10nao_Tax_exemption_reason_form
+msgid "Description"
+msgstr "Descrição"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_l10nao_saft_file__Product_version
+msgid "Deve ser indicada a versão da aplicação produtora do ficheiro."
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__saft_invoice_type__da
+msgid "Devolução de Activos"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__payment_mechanism__de
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_payment__payment_mechanism__de
+msgid "Dinheiro electrónico,por exemplo residente em cartões de fidelidade ou de pontos"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "Discount"
+msgstr "Desconto"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__display_name
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_exemption__display_name
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_regime__display_name
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__display_name
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__display_name
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_wizard__display_name
+msgid "Display Name"
+msgstr "Nome"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_result_settlement.py:0 code:addons/l10n_ao/models/account_tax_vat.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__name
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__name
+#, python-format
+msgid "Document Ref"
+msgstr "Doc. Ref."
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_journal__document_type
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__tax_account_Basis
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Document Type"
+msgstr "Tipo de Documento"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_ir_actions_report__filter_domain
+msgid "Domain to define which condition the document can be printed"
+msgstr "Domínio para definir que condição o documento será imprimido"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax__invoice_not_affected
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_template__invoice_not_affected
+msgid "Don't Affect Invoice"
+msgstr "Não afecte a factura"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__state__done
+msgid "Done"
+msgstr "Concluído"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10nao_saft_file_view
+msgid "Download File"
+msgstr "Baixar Ficheiro"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_result_settlement__state__draft
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__state__draft
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_file__state__draft
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Draft"
+msgstr "Rascunho"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "Duplicado"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_chart_template__employee_inss_account_code
+#, python-format
+msgid "Employee INSS account Code"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0 code:addons/l10n_ao/models/account_config_settings.py:0
+#: code:addons/l10n_ao/models/res_company.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_chart_template__employee_payslip_code_prefix
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__employee_payslip_code_prefix
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__employee_payslip_code_prefix
+#, python-format
+msgid "Employee Payslip Account Code Prefix"
+msgstr "Prefixo do código de conta do salário do empregado"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0 code:addons/l10n_ao/models/account_config_settings.py:0
+#: code:addons/l10n_ao/models/res_company.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_chart_template__employee_advance_code_prefix
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__employee_advance_code_prefix
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__employee_advance_code_prefix
+#, python-format
+msgid "Employee Payslip Advance Account Code Prefix"
+msgstr "Prefixo do código da conta de adiantamento do salário do empregado"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__enable_post
+msgid "Enable post"
+msgstr "Habilitar lançamentos"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__end_period
+msgid "End Period"
+msgstr "Período Final"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid "Entries are not from the same account: %s != %s"
+msgstr "As entradas  não são da mesma conta: %s != %s"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid "Entries doesn't belong to the same company: %s != %s"
+msgstr "As entradas não pertencem a mesma empresa: %s != %s"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_config_settings.py:0
+#, python-format
+msgid "Error!"
+msgstr "Erro!"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax__country_region
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_template__country_region
+msgid "Espaço Fiscal"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_l10nao_saft_wizard
+msgid "Estes modelo representa o wizard de exportação do ficheiro SAFT_AO"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#, python-format
+msgid "Exchange Difference"
+msgstr "Diferença de Câmbio"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__exchange_rate
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__exchange_rate
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__exchange_rate
+msgid "Exchange Rate"
+msgstr "Taxa de Câmbio"
+
+#. module: l10n_ao
+#: model:account.tax.regime,name:l10n_ao.account_regime_exclusion
+msgid "Exclusion"
+msgstr "Exclusão"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax__expiration_date
+msgid "Expiration Date"
+msgstr "Data de Expiração"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#, python-format
+msgid "FT"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#, python-format
+msgid "FTF"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__document_type__ft
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__saft_invoice_type__ft
+msgid "Factura"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__document_type__fr
+msgid "Factura Recibo"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_file__tax_account_Basis__f
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_wizard__type__f
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Facturação"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Facturação parcial"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__end_period__2
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__start_period__2
+msgid "Feb"
+msgstr "Fevereiro"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_l10nao_saft_file__audit_file_version
+msgid "Ficheiro de auditoria informática"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__data
+msgid "File"
+msgstr "Ficheiro"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_wizard__type
+msgid "File Type"
+msgstr "Tipo de ficheiro"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__refund_acceptance_payment__certificate
+msgid "Fiscal Certificate"
+msgstr "Declaração Fiscal"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__fiscal_year
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__fiscal_year
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__fiscal_year
+msgid "Fiscal Year"
+msgstr "Ano fiscal"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Parceiros)"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__state__payment
+msgid "For Payment"
+msgstr "Para pagamento"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0 code:addons/l10n_ao/models/account_config_settings.py:0
+#: code:addons/l10n_ao/models/res_company.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_chart_template__fpartner_payable_code_prefix
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__fpartner_payable_code_prefix
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__fpartner_payable_code_prefix
+#, python-format
+msgid "Foreign Partner payable Account Code Prefix"
+msgstr "Prefixo do código da conta para pagamento de parceiro estrangeiro"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0 code:addons/l10n_ao/models/account_config_settings.py:0
+#: code:addons/l10n_ao/models/res_company.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_chart_template__fpartner_receivable_code_prefix
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__fpartner_receivable_code_prefix
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__fpartner_receivable_code_prefix
+#, python-format
+msgid "Foreign Partner receivable Account Code Prefix"
+msgstr "Prefixo do código da conta para recepção de parceiro estrangeiro"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__date_start
+msgid "From date"
+msgstr "Data Início"
+
+#. module: l10n_ao
+#: model:account.tax.regime,name:l10n_ao.account_regime_general
+msgid "General"
+msgstr "Geral"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10nao_saft_wizard_view
+msgid "Generate File"
+msgstr "Gerar Ficheiro"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Group Files for Company"
+msgstr "Agrupar Fichreiros por Empresa"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Group Files for Document Type"
+msgstr "Agrupar Ficheiros por Tipo de Documento"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Group Files for date end"
+msgstr "Agrupar Ficheiro por data de fim"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Group Files for state"
+msgstr "Agrupar Ficheiro por estado"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__has_message
+msgid "Has Message"
+msgstr "Há Mensagem"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__hash_to_sign
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__hash_to_sign
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__hash_to_sign
+msgid "Has to sign"
+msgstr "tem de assinar"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__hash
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__hash
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__hash
+msgid "Hash"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__hash_control
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__hash_control
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__hash_control
+msgid "Hash Control"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__header_comment
+msgid "Header Comment"
+msgstr "Comentário do cabeçalho"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax__hide_invoice
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_template__hide_invoice
+msgid "Hide in Invoice"
+msgstr "Esconder na factura"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__id
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_exemption__id
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_regime__id
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__id
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__id
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_wizard__id
+msgid "ID"
+msgstr "Id."
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__inss
+msgid "INSS"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax__saft_tax_type__iva
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_template__saft_tax_type__iva
+msgid "IVA"
+msgstr "Impostos"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "IVA Settlement: %s Period %s - %s"
+msgstr "Apuramento de IVA %s Período %s- %s"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_l10nao_saft_file__product_company_tax_id
+msgid "Identidade Fiscal da Empresa Produtora do Software"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_account_tax_vat__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Se selecionado, há novas mensagens que requerem a sua atenção."
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_account_tax_vat__message_has_error
+#: model:ir.model.fields,help:l10n_ao.field_account_tax_vat__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Se estiver marcado, algumas mensagens têm um erro de entrega."
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax__saft_tax_type__is
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_template__saft_tax_type__is
+msgid "Imp do Selo"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax__saft_wth_type__ii
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_template__saft_wth_type__ii
+msgid "Imposto Industrial"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax__saft_wth_type__is
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_template__saft_wth_type__is
+msgid "Imposto do Selo"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax__saft_wth_type__irt
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_template__saft_wth_type__irt
+msgid "Imposto sobre o rendimento de trabalho"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.ao_account_payment_register_view
+msgid ""
+"In case you are making a partial payment with withholding invoices, it will be automatically withholded for the same "
+"ratio of you payment."
+msgstr ""
+"Caso você esteja a fazer um pagamento parcial de facturas com retenção, ele será automaticamente retido na mesma "
+"proporção do seu pagamento. Significa que será creditado ao cliente o montante + retenção,"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax__saft_tax_code__int
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_template__saft_tax_code__int
+msgid "Intermédia"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_payment.py:0
+#, python-format
+msgid "Internal Transfer"
+msgstr "É uma transferência Interna"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "Invoice"
+msgstr "Fatura"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__invoice_printing
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__invoice_printing
+msgid "Invoice Printing"
+msgstr "Impressão da factura"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__payment_has_withholded
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__payment_has_withholded
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__payment_has_withholded
+#, python-format
+msgid "Invoice was withholded"
+msgstr "A Factura sofreu Retenção"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__have_invoices
+msgid "Invoices"
+msgstr "Faturas"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__message_is_follower
+msgid "Is Follower"
+msgstr "É Seguidor"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__is_valid
+msgid "Is Valid"
+msgstr "É válido"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax__is_withholding
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_template__is_withholding
+msgid "Is Withholding"
+msgstr "É Retenção"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax__saft_tax_code__ise
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_template__saft_tax_code__ise
+msgid "Isenta"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid "It is necessary to inform the VAT regime in which your company is in before being able to invoice any customer."
+msgstr "É necessario informar que Regime de IVA a sua empresa se encontra. antes de fazer factura para o cliente."
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/res_partner.py:0
+#, python-format
+msgid "It is not allowed to associate the vat with the customer, as it is not valid, VAT: %s"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid ""
+"It is not possible to generate a SAFT file because the invoices that follow have iva exemption but the motive was not "
+"added, please add:\n"
+" %s"
+msgstr ""
+"Não é possível gerar o ficheiro SAFT porque as seguintes facturas não têm definido o Tipo de Isenção definido. Por favor "
+"adicionado o Tipo de Isenção:\n"
+"%s"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__end_period__1
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__start_period__1
+msgid "Jan"
+msgstr "Janeiro"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_journal
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__journal_id
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__journal_id
+msgid "Journal"
+msgstr "Diário"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_move
+msgid "Journal Entry"
+msgstr "Lançamento de Diário"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_move_line
+msgid "Journal Item"
+msgstr "Item do Diário"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_balance_lines
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_netresult_lines
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_pl_lines
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_result_lines
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_tax_lines
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__complain_acceptance_move_lines
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__move_lines
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__payment_move_lines
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_acceptance_move_lines
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_complain_move_lines
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_move_lines
+msgid "Journal Items"
+msgstr "Itens do Diário"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__end_period__7
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__start_period__7
+msgid "Jul"
+msgstr "Julho"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__end_period__6
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__start_period__6
+msgid "Jun"
+msgstr "Junho"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement____last_update
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_exemption____last_update
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_regime____last_update
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat____last_update
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file____last_update
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__write_uid
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_exemption__write_uid
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_regime__write_uid
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__write_uid
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__write_uid
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última Atualização por"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__write_date
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_exemption__write_date
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_regime__write_date
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__write_date
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__write_date
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última Atualização em"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.external_agt_layout_bold
+#: model_terms:ir.ui.view,arch_db:l10n_ao.external_agt_layout_boxed
+#: model_terms:ir.ui.view,arch_db:l10n_ao.external_agt_layout_standard
+#: model_terms:ir.ui.view,arch_db:l10n_ao.external_agt_layout_striped
+msgid "Logo"
+msgstr "Logótipo"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Anexo Principal"
+
+#. module: l10n_ao
+#: model:ir.ui.menu,name:l10n_ao.menu_saft_ao
+msgid "Management"
+msgstr "Gestão"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__end_period__3
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__start_period__3
+msgid "Mar"
+msgstr "Março"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_account_tax_template__invoice_not_affected
+msgid "Mark if you don't want the tax amount to affect the invoice"
+msgstr "Maque caso não queria que o imposto afecte a factura"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_account_tax__invoice_not_affected
+msgid "Mark if you don't want the tax amount to affect the invoice total amount"
+msgstr "Marque se não quer o valor do imposto afectar o valor total da factura"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_account_tax__hide_invoice
+#: model:ir.model.fields,help:l10n_ao.field_account_tax_template__hide_invoice
+msgid "Mark if you don't want to show this in invoice report"
+msgstr "Marque se não quer mostrar isso no  relatório de factura"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__end_period__5
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__start_period__5
+msgid "May"
+msgstr "Maio"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_ir_actions_report__no_print_message
+msgid "Message"
+msgstr "Mensagem"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__message_has_error
+msgid "Message Delivery error"
+msgstr "Erro de Envio de Mensagem"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_ir_actions_report__no_print_message
+msgid "Message in case can't not be printed"
+msgstr "Mensagem no caso de não permitir imprimir"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__message_ids
+msgid "Messages"
+msgstr "Mensagens"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__amount_min
+msgid "Minimum Amount for Refund"
+msgstr "Montante mínimo para reembolso"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#, python-format
+msgid "Miscellaneous Operations"
+msgstr "Operações Diversas"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__close_move_id
+msgid "Move"
+msgstr "Movimento"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "Move refund rejected to expense rejected %s-%s"
+msgstr "Mover o reembolso rejeitado para despesa rejeitada %s-%s"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Move to Next Period"
+msgstr "Mover Próximo Período"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Move to Next period"
+msgstr "Mover próximo Período"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_next_period
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__state__move
+msgid "Move to next period"
+msgstr "Mover para próximo período"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "Move to next period %s-%s"
+msgstr "Mover para o próximo período %s-%s"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__partner_vat
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__partner_vat
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__partner_vat
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__product_company_tax_id
+msgid "NIF"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__partner_name
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__partner_name
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_exemption__name
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_regime__name
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_netresult_id
+msgid "Net Result Move"
+msgstr "Resultado Líquido"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_result_settlement_form_view
+msgid "Net Result Moves"
+msgstr "Resultados Líquidos"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "No account with code 34523 was found!"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "No account with code 34551 was found!"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "No account with code 34552 was found!"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "No account with code 34571 was found!"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "No account with code 34581 was found!"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "No account with code 34582 was found!"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "No account with code 34583 was found!"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "No account with code 34584 was found!"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "No account with code 346 was found!"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "No account with code 75312 was found!"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/res_partner.py:0
+#, python-format
+msgid ""
+"No country defined! To create automatically the account for the customer/supplier you have to define the country! Go to "
+"the customer/supplier form and set the country"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_l10nao_saft_file__product_id
+msgid "Nome da aplicação que gera o SAFT (AO)."
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_move__transaction_type__n
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax__saft_tax_code__nor
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_template__saft_tax_code__nor
+msgid "Normal"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_file__state__not_valid
+msgid "Not Valid"
+msgstr "Não válido"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__saft_invoice_type__nc
+msgid "Nota de Crédito"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__saft_invoice_type__nd
+msgid "Nota de débito"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__end_period__11
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__start_period__11
+msgid "Nov"
+msgstr "Novembro"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__payment_number
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "Number"
+msgstr "Número"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Ações"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de erros"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_account_tax_vat__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensagens que requerem uma ação"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_account_tax_vat__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensagens com um erro de entrega"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__payment_mechanism__nu
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_payment__payment_mechanism__nu
+msgid "Numerário"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax__saft_tax_code__ns
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_template__saft_tax_code__ns
+msgid "Não Sujeição"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid "Não pode criar facturas para uma data superior a data de hoje"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax__saft_tax_type__ns
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_template__saft_tax_type__ns
+msgid "Não sujeição a IVA ou IS"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_l10nao_saft_file__software_validation_number
+msgid "Número de validação.Atríbuido à entidade produtora do software"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_journal.py:0
+#, python-format
+msgid "O código curto não pode ter espaço. Por favor Retire qualquer espaço que tenha adicionado!"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_tax_vat
+msgid "Object for VAT management and processing"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__end_period__10
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__start_period__10
+msgid "Oct"
+msgstr "Outubro"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.ao_account_payment_register_view
+msgid "One or more invoices are subject to withholding of value of"
+msgstr "Uma ou mais facturas estão sujeitas a retenção no valor de"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "Original"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/res_company.py:0
+#, python-format
+msgid ""
+"Os campos NIF e País não podem ser alterados pois ja existem facturas emitidas no sistema com os mesmos dados, e a AGT "
+"proíbe que se alterem tais dados da empresa após terem sido emitidas facturas"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Other Information"
+msgstr "Outra informação"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax__saft_tax_code__out
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_template__saft_tax_code__out
+msgid "Outra"
+msgstr ""
+
+#. module: l10n_ao
+#: model:account.tax.group,name:l10n_ao.tax_group_others
+msgid "Outros"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__payment_mechanism__ou
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_payment__payment_mechanism__ou
+msgid "Outros meios aqui não assilados"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.external_agt_layout_standard
+msgid ""
+"Page:\n"
+"                            <span class=\"page\"/>\n"
+"                            /\n"
+"                            <span class=\"topage\"/>"
+msgstr ""
+"Page:\n"
+"                        <span class=\"page\"/>\n"
+"                        /\n"
+"                        <span class=\"topage\"/>"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.external_agt_layout_boxed
+msgid ""
+"Page:\n"
+"                        <span class=\"page\"/>\n"
+"                        /\n"
+"                        <span class=\"topage\"/>"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.external_agt_layout_striped
+msgid ""
+"Page:\n"
+"                        <span class=\"page\"/>\n"
+"                        of\n"
+"                        <span class=\"topage\"/>"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0 code:addons/l10n_ao/models/account_config_settings.py:0
+#: code:addons/l10n_ao/models/res_company.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_chart_template__partner_payable_code_prefix
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__partner_payable_code_prefix
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__partner_payable_code_prefix
+#, python-format
+msgid "Partner payable Account Code Prefix"
+msgstr "Prefixo da conta de pagamento de parceiro"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0 code:addons/l10n_ao/models/account_config_settings.py:0
+#: code:addons/l10n_ao/models/res_company.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_chart_template__partner_receivable_code_prefix
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__partner_receivable_code_prefix
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__partner_receivable_code_prefix
+#, python-format
+msgid "Partner receivable Account Code Prefix"
+msgstr "Prefixo da conta de recepção de parceiro"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Pay Refund"
+msgstr "Pagar Reembolso"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Pay VAT"
+msgstr "Pagar IVA"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__journal_payment_id
+msgid "Payment Journal"
+msgstr "Diário do Pagamento"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_journal__payment_mechanism
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__payment_mechanism
+msgid "Payment Mechanism"
+msgstr "Mecânismo de pagamento"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.ao_view_account_payment_search
+msgid "Payment Number"
+msgstr "Pagamento Número"
+
+#. module: l10n_ao
+#: model:mail.template,name:l10n_ao.mail_template_payment_receipt
+msgid "Payment Receipt - Send by Email"
+msgstr "Recibo Pagamentno - Enviar por Email"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "Payment VAT for %s-%s"
+msgstr "Pagamento IVA %s-%s"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_payment
+msgid "Payments"
+msgstr "Pagamentos"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__payment_mechanism__pr
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_payment__payment_mechanism__pr
+msgid "Permuta de bens"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "Please use the following communication for your payment :"
+msgstr "Por favor, utilize a seguinte referência no seu pagamento:"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Post"
+msgstr "Publicar"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_result_settlement__state__posted
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__state__posted
+msgid "Posted"
+msgstr "Publicada"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_product_product__unnumber
+msgid "Preencher com o nª ONU para produtos perigosos"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_ir_actions_report__print_control
+msgid "Print Control"
+msgstr "Controlo de Impressão"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__res_company__invoice_printing__2
+msgid "Print Duplicate"
+msgstr "Imprimir Duplicado"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.ao_account_invoice_formview
+msgid "Print Receipt"
+msgstr "Imprimir Recibo"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__res_company__invoice_printing__3
+msgid "Print Triplicated"
+msgstr "Imprimir Triplicado"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_product_template
+msgid "Product"
+msgstr "Produto"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__product_company_name
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__product_company_name
+msgid "Product Company Name"
+msgstr "Empresa"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__product_company_tax_id
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__product_company_tax_id
+msgid "Product Company Tax ID"
+msgstr "NIF"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__product_company_website
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__product_company_website
+msgid "Product Company Website"
+msgstr "Website"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__product_id
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__product_id
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__product_id
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10n_ao_account_settings_formview
+msgid "Product ID"
+msgstr "Produto ID"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10nao_saft_file_view
+msgid "Product Info"
+msgstr "Informações do Produto"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10n_ao_account_settings_formview
+msgid "Product Owner"
+msgstr "Dono"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_product_product
+msgid "Product Variant"
+msgstr "Variante de Artigo"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__Product_version
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__product_version
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__product_version
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10n_ao_account_settings_formview
+msgid "Product Version"
+msgstr "Versão"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_pl_id
+msgid "Profit & Loss Balance Move"
+msgstr "Balanço de Perdas e Ganhos"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_result_settlement_form_view
+msgid "Profit and Loss Balance Move"
+msgstr "Balanço de  Perdas e Ganhos"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_file__tax_account_Basis__r
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_wizard__type__r
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Recibos"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_result_settlement_form_view
+msgid "Recompute Result"
+msgstr "Recalcular Apuramento"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax__saft_tax_code__red
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_template__saft_tax_code__red
+msgid "Reduzida"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__payment_mechanism__mb
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_payment__payment_mechanism__mb
+msgid "Referências de pagamento para Multicaixa"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__type__refund
+msgid "Refund"
+msgstr "Notas de Crédito"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__state__accepted
+msgid "Refund Accepted"
+msgstr "Reembolso Aceitado"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Refund Approved Move"
+msgstr "Reembolso Aprovado"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_complain
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__state__complain
+msgid "Refund Complain"
+msgstr "Reclamação de Reembolso"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__complain_accepted
+msgid "Refund Complain Accepted"
+msgstr "Reclamação Aceite"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Refund Complain Move"
+msgstr "Mov. Reclamação"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__complain_rejected
+msgid "Refund Complain Rejected"
+msgstr "Reclamação Rejeitada"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_expense
+msgid "Refund Expense"
+msgstr "Despesa"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Refund Expense Move"
+msgstr "Mov. Despesa"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_acceptance_payment
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Refund Payment"
+msgstr "Pagamento de Reembolso"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Refund Payment Moves"
+msgstr "Mov. Pagamento de Reembolso"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__state__rejected
+msgid "Refund Rejected"
+msgstr "Reembolso rejeitado"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Refund Rejected Move"
+msgstr "Mov. Reembolso Rejeitado"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_accepted
+msgid "Refund Request Accepted"
+msgstr "Pedido de Reembolso Aceite"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_rejected
+msgid "Refund Request Rejected"
+msgstr "Pedido de Reembolso  Rejeitado"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_requested
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__state__refund
+msgid "Refund Requested"
+msgstr "Reembolso Pedido"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "Refund complain period %s-%s"
+msgstr "Período de reclamação de reembolso %s-%s"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Refund moved to next period"
+msgstr "Reembolso para próximo período"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "Refund request accepted period %s-%s"
+msgstr "Aceitação do pedido de reembolso %s-%s"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "Refund request period %s-%s"
+msgstr "Pedido de reembolso Período %s-%s"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "Refund request rejected %s-%s"
+msgstr "Pedido de reembolso recusado  %s-%s"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_acceptance_percentage
+msgid "Refunded %"
+msgstr "Reembolsado %"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__regime
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__regime
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__regime
+msgid "Regime"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Register Expense"
+msgstr "Registar Despesa"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_payment_register
+msgid "Register Payment"
+msgstr "Registar Pagamento"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__state__expense
+msgid "Register as Expense"
+msgstr "Registar uma despesa"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_move__transaction_type__r
+msgid "Regularizações"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_resequence_wizard
+msgid "Remake the sequence of Journal Entries."
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_ir_actions_report
+msgid "Report Action"
+msgstr "Acção de Relatório"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Request Accepted"
+msgstr "Pedido Aceite"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Request Refund"
+msgstr "Pedir Reembolso"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Request Refund Moves"
+msgstr "Mov. Pedido de Reembolso"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Request Rejected"
+msgstr "Pedido Rejitado"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_result_settlement_form_view
+msgid "Result Balance Move"
+msgstr "Balanço do Resultado"
+
+#. module: l10n_ao
+#: model:ir.actions.act_window,name:l10n_ao.action_result_settlement
+#: model:ir.ui.menu,name:l10n_ao.account_result_settlement_menu
+msgid "Result Settlement"
+msgstr "Apuramento de Resultados"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_result_id
+msgid "Results Balance Move"
+msgstr "Balanço dos Resultados"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "Ret"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_result_settlement_form_view
+msgid "Revenue and Expenses Aggregation Move"
+msgstr "Agregado de Receitas e Despesas"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_balance_id
+msgid "Revenue and Expenses Move"
+msgstr "Receitas e Despesas"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.ao_account_tax_formview
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10nao_product_product_view
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_account_journal_formview
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_account_move_formview
+msgid "SAFT"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.actions.act_window,name:l10n_ao.l10n_saft_wizard_action
+msgid "SAFT AO Files"
+msgstr "Ficheiros SAFT AO"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10nao_saft_file_view
+msgid "SAFT FILE"
+msgstr "Ficheiro SAFT"
+
+#. module: l10n_ao
+#: model:ir.ui.menu,name:l10n_ao.saft_file
+msgid "SAFT Files"
+msgstr "Ficheiros SAFT"
+
+#. module: l10n_ao
+#: model:ir.ui.menu,name:l10n_ao.menu_saft_ao_file
+msgid "SAFT Management"
+msgstr "Gestão do SAFT"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__saft_status_date
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__saft_status_date
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__saft_status_date
+msgid "SAFT Status Date"
+msgstr "Data do estado do SAFT"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "SAFT file"
+msgstr "Ficheiro SAFT"
+
+#. module: l10n_ao
+#: model:ir.actions.act_window,name:l10n_ao.l10n_saft_file_action
+msgid "SAFT-AO Files"
+msgstr "Ficheiros SAFT-AO"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Erro de Envio de SMS"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_journal__saft_invoice_type
+msgid "Saft Invoice Type"
+msgstr "Tipo de fatura Saft"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_l10nao_saft_file
+msgid "Saft file model"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_res_partner__self_billing_s
+#: model:ir.model.fields,field_description:l10n_ao.field_res_users__self_billing_s
+msgid "Self Billing Supplier"
+msgstr "Fornecedor de faturamento automático"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10nao_saft_file_view
+msgid "Send To AGT"
+msgstr "Enviar para AGT"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "Sent"
+msgstr "Enviado"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_file__state__sented
+msgid "Sented"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__end_period__9
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__start_period__9
+msgid "Sep"
+msgstr "Setembro"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_result_settlement_form_view
+msgid "Set to Draft"
+msgstr "Marcar como Rascunho"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_account_tax__is_withholding
+#: model:ir.model.fields,help:l10n_ao.field_account_tax_template__is_withholding
+msgid "Sets if this tax in due on payment as a withholding tax"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Settlement Moves"
+msgstr "Mov. de Apuramento"
+
+#. module: l10n_ao
+#: model:ir.ui.menu,name:l10n_ao.account_result_settlement_wizard_menu
+msgid "Settlements Result"
+msgstr "Apuramento de Resultados"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__system_entry_date
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__system_entry_date
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__system_entry_date
+msgid "Signature Datetime"
+msgstr ""
+
+#. module: l10n_ao
+#: model:account.tax.regime,name:l10n_ao.account_regime_simplified
+msgid "Simplified"
+msgstr "Simplificado"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__software_validation_number
+msgid "Software Number"
+msgstr "Número da Aplicação"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__software_validation_number
+#: model:ir.model.fields,field_description:l10n_ao.field_res_config_settings__software_validation_number
+msgid "Software Validation Number"
+msgstr "Número de validação do software"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__start_period
+msgid "Start Period"
+msgstr "Período de Início"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_account.py:0 code:addons/l10n_ao/models/account_journal.py:0
+#, python-format
+msgid "Start date or end period date are not defined!"
+msgstr "A data de início ou de término do período não está definida!"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__partner_state
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__partner_state
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__partner_state
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__state
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__state
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__state
+#: model_terms:ir.ui.view,arch_db:l10n_ao.saft_file_search_view
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_balance_state
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_netresult_state
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_pl_state
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_result_state
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_tax_state
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__complain_acceptance_move_state
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__move_state
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__payment_move_state
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_acceptance_move_state
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_complain_move_state
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_move_state
+msgid "Status"
+msgstr "Estado"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__partner_street
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__partner_street
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__partner_street
+msgid "Street"
+msgstr "Rua"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__partner_street2
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__partner_street2
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__partner_street2
+msgid "Street2"
+msgstr "Rua 2"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#, python-format
+msgid "TAX"
+msgstr "Imposto"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax__saft_tax_type
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_template__saft_tax_type
+msgid "TAX Type"
+msgstr "Tipo de Imposto"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/res_partner.py:0 model:ir.model.fields,field_description:l10n_ao.field_res_partner__vat_valid
+#: model:ir.model.fields,field_description:l10n_ao.field_res_users__vat_valid
+#, python-format
+msgid "TIN Valid"
+msgstr "NIF Válido"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_tax
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__tax_id
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10nao_Tax_exemption_reason_form
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "Tax"
+msgstr "Imposto"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#, python-format
+msgid "Tax Cash Basis"
+msgstr "Baseado no Caixa"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax__saft_tax_code
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_template__saft_tax_code
+msgid "Tax Code"
+msgstr "Código de Imposto"
+
+#. module: l10n_ao
+#: model:ir.actions.act_window,name:l10n_ao.l10n_tax_exemption_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax__tax_exemption_reason_id
+#: model:ir.ui.menu,name:l10n_ao.menu_tax_exemption_ao model:ir.ui.menu,name:l10n_ao.menu_tax_reason
+msgid "Tax Exemption Reason"
+msgstr "Motivo de Isenção"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.external_agt_layout_bold
+#: model_terms:ir.ui.view,arch_db:l10n_ao.external_agt_layout_boxed
+#: model_terms:ir.ui.view,arch_db:l10n_ao.external_agt_layout_standard
+#: model_terms:ir.ui.view,arch_db:l10n_ao.external_agt_layout_striped
+msgid "Tax ID:"
+msgstr "NIF:"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax__tax_regime_ids
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_template__tax_regime_ids
+#: model:ir.model.fields,field_description:l10n_ao.field_res_company__tax_regime_id
+msgid "Tax Regime"
+msgstr "Regime de Imposto"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_tax_repartition_line
+msgid "Tax Repartition Line"
+msgstr "Linha de Divisão de Imposto"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__tax_result
+msgid "Tax Result"
+msgstr "Resultado de Imposto"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__tax_result_signed
+msgid "Tax Result Signed"
+msgstr "Resultado do Imposto"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__move_tax_id
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_result_settlement_form_view
+msgid "Tax Settlement Move"
+msgstr "Apuramento do Imposto"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_chart_template__tax_withhold_journal_id
+#, python-format
+msgid "Tax Withhold Journal"
+msgstr "Diário de imposto de retenção"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_tax_exemption
+msgid "Tax exemption reason"
+msgstr "Motivo de isenção de imposto"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__text
+msgid "Text"
+msgstr "Texto"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/res_partner.py:0
+#, python-format
+msgid "The NIF can´t be changed, because there are already invoices associated with it!"
+msgstr "O NIF não pode ser alterado, porque já existem faturas associadas a ele!"
+
+#. module: l10n_ao
+#: model:ir.model.constraint,message:l10n_ao.constraint_account_journal_code_company_uniq
+msgid "The code and name of the journal must be unique per company !"
+msgstr "O código e nome do diário deve ser exclusivo para cada empresa !"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid ""
+"The lines in these invoices do not have products inserted, you must add the corresponding products for each line that is "
+"missing:\n"
+" %s"
+msgstr ""
+"As linhas na factura não têm produtos inseridos, é necessário adicionar o produto correspondente para cada linha que está "
+"em falta:\n"
+"%s"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/res_partner.py:0
+#, python-format
+msgid ""
+"The name of this entity cannot be changed, because there are associated invoices and the VAT is not defined. After "
+"defining the VAT you can change the name of the Entity"
+msgstr ""
+"O nome da entidade não pode ser alterado, porque já possui facturas associadas e o NIF não está definido. Depois de "
+"definir o NIF já poderá alterar o nome da entidade "
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/wizards/account_payment_register.py:0
+#, python-format
+msgid "The register payment wizard should only be called on account.move or account.move.line records."
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid ""
+"There are lines of invoices without VAT taxes!\n"
+" If the product in the line is exempt please add the tax Exemption VAT and in the tax define the reason for Exemption!"
+msgstr ""
+"Existem linhas de facturas sem impostos IVA\n"
+" Se o produto na linha tiver isenção, por favor adicione o imposto IVA de Isenção e no imposto defina o motivo de Isenção!"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid ""
+"There is a mismatch of the time of your computer and the last invoice created.\n"
+" Check if you system date it's correct!"
+msgstr ""
+"Existe uma diferença entre data do computador e a última factura criada. Verifique por favor se a data do sistema está "
+"correct!"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid ""
+"This button will cancel all movements associated to the VAT Settlement and delete this moves. Are you sure to proceed?"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0 code:addons/l10n_ao/models/account_config_settings.py:0
+#: code:addons/l10n_ao/models/res_company.py:0
+#: model:ir.model.fields,help:l10n_ao.field_account_chart_template__employee_advance_code_prefix
+#: model:ir.model.fields,help:l10n_ao.field_res_company__employee_advance_code_prefix
+#: model:ir.model.fields,help:l10n_ao.field_res_config_settings__employee_advance_code_prefix
+#, python-format
+msgid "This prefix will allow to automatically create the Employee Advance chart account"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0 code:addons/l10n_ao/models/account_config_settings.py:0
+#: code:addons/l10n_ao/models/res_company.py:0
+#: model:ir.model.fields,help:l10n_ao.field_account_chart_template__employee_payslip_code_prefix
+#: model:ir.model.fields,help:l10n_ao.field_res_company__employee_payslip_code_prefix
+#: model:ir.model.fields,help:l10n_ao.field_res_config_settings__employee_payslip_code_prefix
+#, python-format
+msgid "This prefix will allow to automatically create the Employee PaySlip chart account"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0 code:addons/l10n_ao/models/account_config_settings.py:0
+#: code:addons/l10n_ao/models/res_company.py:0
+#: model:ir.model.fields,help:l10n_ao.field_account_chart_template__fpartner_receivable_code_prefix
+#: model:ir.model.fields,help:l10n_ao.field_account_chart_template__partner_receivable_code_prefix
+#: model:ir.model.fields,help:l10n_ao.field_res_company__fpartner_receivable_code_prefix
+#: model:ir.model.fields,help:l10n_ao.field_res_company__partner_receivable_code_prefix
+#: model:ir.model.fields,help:l10n_ao.field_res_config_settings__fpartner_receivable_code_prefix
+#: model:ir.model.fields,help:l10n_ao.field_res_config_settings__partner_receivable_code_prefix
+#, python-format
+msgid "This prefix will allow to automatically create the client chart account"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0 code:addons/l10n_ao/models/account_config_settings.py:0
+#: code:addons/l10n_ao/models/res_company.py:0
+#: model:ir.model.fields,help:l10n_ao.field_account_chart_template__fpartner_payable_code_prefix
+#: model:ir.model.fields,help:l10n_ao.field_account_chart_template__partner_payable_code_prefix
+#: model:ir.model.fields,help:l10n_ao.field_res_company__fpartner_payable_code_prefix
+#: model:ir.model.fields,help:l10n_ao.field_res_company__partner_payable_code_prefix
+#: model:ir.model.fields,help:l10n_ao.field_res_config_settings__fpartner_payable_code_prefix
+#: model:ir.model.fields,help:l10n_ao.field_res_config_settings__partner_payable_code_prefix
+#, python-format
+msgid "This prefix will allow to automatically create the supplier chart account"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#: model:ir.model.fields,help:l10n_ao.field_account_chart_template__employee_inss_account_code
+#, python-format
+msgid "This will add to the account the Employee INSS Number"
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0 code:addons/l10n_ao/models/account_config_settings.py:0
+#: code:addons/l10n_ao/models/res_company.py:0
+#: model:ir.model.fields,help:l10n_ao.field_account_chart_template__company_inss_account_code
+#: model:ir.model.fields,help:l10n_ao.field_res_company__company_inss_account_code
+#: model:ir.model.fields,help:l10n_ao.field_res_config_settings__company_inss_account_code
+#, python-format
+msgid "This will add to the account the company INSS Number"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10n_ao_account_settings_formview
+msgid ""
+"This will create a Chart of account for client if client bit is marked and/or\n"
+"                                    for supplier"
+msgstr ""
+"This will create a Chart of account for client if client bit is marked and/or\n"
+"                                    for supplier"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_config_settings.py:0 code:addons/l10n_ao/models/res_company.py:0
+#: model:ir.model.fields,help:l10n_ao.field_res_company__create_partner_account
+#: model:ir.model.fields,help:l10n_ao.field_res_config_settings__create_partner_account
+#, python-format
+msgid "This will create a Chart of account for client if client bit is marked and/or for supplier"
+msgstr "Marcar para permitir criar uma conta do plano de contas para cliente e/ou fornecedor"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10n_ao_account_settings_formview
+msgid "This will enable to create auto-invoice in accounting."
+msgstr "Habilita o suporte de auto-facturação."
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax__threshold_wht
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_template__threshold_wht
+#, python-format
+msgid "Threshold Amount"
+msgstr "Montante Limite"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__transaction_type
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__transaction_type
+msgid "Tipo de Lançamento"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_l10nao_saft_wizard__type
+msgid "Tipo de ficheiro"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_l10nao_saft_file__tax_account_Basis
+msgid "Tipos de Documentos, na exportação do SAFT"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_tax_vat__type__pay
+msgid "To Pay"
+msgstr "Para pagar"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__date_end
+msgid "To date"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_result_settlement_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Total Credit"
+msgstr "Crédito Total"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_result_settlement_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "Total Debit"
+msgstr "Débito Total"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__amount_discount
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__amount_discount
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__amount_discount
+#, python-format
+msgid "Total Discounts"
+msgstr "Total de discontos"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__amount_total_wth
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__amount_total_wth
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__amount_total_wth
+#, python-format
+msgid "Total w/ Withhold"
+msgstr "Total c/ Retenção"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_payment.py:0
+#, python-format
+msgid "Transfer from %s"
+msgstr "Transferências de %s"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_payment.py:0
+#, python-format
+msgid "Transfer to %s"
+msgstr "Transferências para %s"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__payment_mechanism__tb
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_payment__payment_mechanism__tb
+msgid "Transferência bancária"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "Triplicado"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_product_product__unnumber
+msgid "UNNumber"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "Unpaid"
+msgstr "Por pagar"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__user_id
+msgid "User"
+msgstr "Utilizador"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__complain_acceptance_move_id
+msgid "VAT Complain Acceptance"
+msgstr "IVA Reclamado Aceite"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "VAT Complain Accepted"
+msgstr "Reclamação Aceite"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "VAT Complain Expense"
+msgstr "Reclamação > Despesa"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "VAT Expense"
+msgstr "IVA Despesa"
+
+#. module: l10n_ao
+#: model:ir.ui.menu,name:l10n_ao.account_tax_vat_menu
+msgid "VAT Management"
+msgstr "Gestão do IVA"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__payment_move_id
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "VAT Payment"
+msgstr "Pagamento do IVA"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "VAT Payment Moves"
+msgstr "Mov. Pagamento de IVA"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_acceptance_move_id
+msgid "VAT Refund Acceptance"
+msgstr "Reembolso do IVA Aceite"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "VAT Refund Accepted"
+msgstr "Reembolso IVA Aceite"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_complain_move_id
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "VAT Refund Complain"
+msgstr "IVA Reclamado"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "VAT Refund Rejected"
+msgstr "Reembolso IVA Rejeitado"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__refund_move_id
+#: model_terms:ir.ui.view,arch_db:l10n_ao.account_vat_form_view
+msgid "VAT Refund Request"
+msgstr "Reembolso de IVA Pedido"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_tax_vat.py:0
+#, python-format
+msgid "VAT Refund payment for period %s-%s"
+msgstr "Pagamento de reembolso de IVA perído %s-%s"
+
+#. module: l10n_ao
+#: model:ir.actions.act_window,name:l10n_ao.action_vat_tree_view
+msgid "VAT Settlement"
+msgstr "Apuramento do IVA"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__move_id
+msgid "VAT Settlement Move"
+msgstr "Movimento de apuramento de IVA"
+
+#. module: l10n_ao
+#: model:ir.ui.menu,name:l10n_ao.account_vat_management_menu
+msgid "VAT Settlements"
+msgstr "Apuramentos do IVA"
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__l10nao_saft_file__state__valid
+msgid "Valid"
+msgstr "Validado"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10nao_saft_file_view
+msgid "Validate"
+msgstr "Validar"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10n_ao_account_settings_formview
+msgid "Validation Number"
+msgstr "Número de Validação"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_payment_receipt_document_agt
+msgid "Valor Pago"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__document_type__vd
+#: model:ir.model.fields.selection,name:l10n_ao.selection__account_journal__saft_invoice_type__vd
+msgid "Venda a Dinheiro"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "Vendor Bill"
+msgstr "Fatura de Fornecedor"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#, python-format
+msgid "Vendor Bills"
+msgstr "Faturas de Fornecedor"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "Vendor Credit Note"
+msgstr "Nota de Crédito de Fornecedor"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_payment.py:0
+#, python-format
+msgid "Vendor Payment"
+msgstr "Pagamento de Fornecedor"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_payment.py:0
+#, python-format
+msgid "Vendor Reimbursement"
+msgstr "Reembolso de Fornecedor"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.ao_account_payment_register_view
+msgid "Warning!"
+msgstr "Aviso!"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_l10nao_saft_file__warnings
+msgid "Warnings"
+msgstr "Avisos"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10n_ao_account_settings_formview
+msgid "Website"
+msgstr "Site da Web"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_vat__website_message_ids
+msgid "Website Messages"
+msgstr "Mensagens do Website"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_account_tax_vat__website_message_ids
+msgid "Website communication history"
+msgstr "Histórico de comunicação do Website"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_payment.py:0 code:addons/l10n_ao/wizards/account_payment_register.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__wth_amount
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment_register__wth_amount
+#, python-format
+msgid "Withhold Amount"
+msgstr "Montante retido"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_chart_template__tax_withhold_received_account_id
+#, python-format
+msgid "Withhold DAR Received Account"
+msgstr "Conta de recepção das retenções DAR"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_chart_template.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_chart_template__tax_withhold_sent_account_id
+#, python-format
+msgid "Withhold DAR Sent Account"
+msgstr "Conta de envio de retenções DAR"
+
+#. module: l10n_ao
+#: model:ir.model.fields,help:l10n_ao.field_account_tax__threshold_wht
+#: model:ir.model.fields,help:l10n_ao.field_account_tax_template__threshold_wht
+msgid "Withholding Tax will be applied only if base amount more or equal to threshold amount"
+msgstr "A retenção será aplicada some"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax__saft_wth_type
+#: model:ir.model.fields,field_description:l10n_ao.field_account_tax_template__saft_wth_type
+msgid "Withholding Type"
+msgstr "Tipo de Retenção"
+
+#. module: l10n_ao
+#: model:ir.model,name:l10n_ao.model_account_result_settlement
+msgid "Wizard to compute the result settlement"
+msgstr "Assistente para calcular o apuramento de resultados"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__net_result
+msgid "Year Net Result"
+msgstr "Resultado Líquido do Exercício"
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_result_settlement__net_result_signed
+msgid "Year Net Result Signed"
+msgstr "Resultado Líquido do Exercício"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid "You are trying to reconcile some entries that are already reconciled."
+msgstr "Está a tentar reconciliar algumas entradas já reconciliadas!"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid "You can only reconcile posted entries."
+msgstr "Só pode reconciliar entradas publicadas."
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/wizards/account_payment_register.py:0
+#, python-format
+msgid "You can only register payment for posted journal entries."
+msgstr "Só pode registar pagamento para entradas publicadas no diário."
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_payment.py:0
+#, python-format
+msgid ""
+"You can't create a new payment without an outstanding payments/receipts account set either on the company or the %s "
+"payment method in the %s journal."
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_payment.py:0
+#, python-format
+msgid "You can't create a new payment without an outstanding payments/receipts account set on the %s journal."
+msgstr "Não pode criar pagamento sem uma conta de Pagamento/Recebimentos Pendentes definidos no Diário %s."
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/wizards/account_payment_register.py:0
+#, python-format
+msgid "You can't create payments for entries belonging to different companies."
+msgstr "Não pode criar pagamentos para entradas pertencentes a empresas diferentes."
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/wizards/account_payment_register.py:0
+#, python-format
+msgid "You can't register a payment because there is nothing left to pay on the selected journal items."
+msgstr "Não pode registar pagamento porque não existe nada para ser pago no diário seleccionado."
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/wizards/account_payment_register.py:0
+#, python-format
+msgid "You can't register payments for journal items being either all inbound, either all outbound."
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_config_settings.py:0
+#, python-format
+msgid ""
+"You cannot disable this setting because some of your taxes are cash basis. Modify your taxes first before disabling this "
+"setting."
+msgstr ""
+"Não pode desativar esta definição porque alguns dos seus impostos são de fundos de caixa. Modifique os seus impostos "
+"primeiro antes de desativar a definição."
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid ""
+"You should configure the 'Exchange Gain or Loss Journal' in your company settings, to manage automatically the booking of "
+"accounting entries related to differences between exchange rates."
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid ""
+"You should configure the 'Gain Exchange Rate Account' in your company settings, to manage automatically the booking of "
+"accounting entries related to differences between exchange rates."
+msgstr ""
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid ""
+"You should configure the 'Loss Exchange Rate Account' in your company settings, to manage automatically the booking of "
+"accounting entries related to differences between exchange rates."
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.report_invoice_document_agt
+msgid "_________________________________________"
+msgstr ""
+
+#. module: l10n_ao
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__approved
+msgid "approved"
+msgstr "Aprovado"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid ""
+"it's not possible to generate SAFT file because the following invoices don't have taxes:\n"
+" %s"
+msgstr ""
+"Não é possível gerar o ficheiro SAFT porque as seguintes facturas não têm impostos:\n"
+"%s"
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10nao_Tax_exemption_reason_tree
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10nao_saft_file_tree_view
+msgid "menu"
+msgstr ""
+
+#. module: l10n_ao
+#: model_terms:ir.ui.view,arch_db:l10n_ao.l10nao_saft_wizard_view
+msgid "or"
+msgstr "ou"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid "the Unit Price must be greater than 0"
+msgstr "O  Preço Unitário deve ser maior que ZERO"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid "the discount must be between 0 and 100 %."
+msgstr "O desconto deve estar entre 0 e 100%"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#, python-format
+msgid "the quantity value must not be negative"
+msgstr "O valor da quantidade não pode ser negativo"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/account_invoice.py:0
+#: model:ir.model.fields,field_description:l10n_ao.field_account_bank_statement_line__total_invoiced
+#: model:ir.model.fields,field_description:l10n_ao.field_account_move__total_invoiced
+#: model:ir.model.fields,field_description:l10n_ao.field_account_payment__total_invoiced
+#, python-format
+msgid "total invoiced"
+msgstr "Total Facturado"
+
+#. module: l10n_ao
+#. odoo-python
+#: code:addons/l10n_ao/models/saft.py:0
+#, python-format
+msgid "you cannot validate the Saft file because of this error %s"
+msgstr "Não é possível validar o ficheiro SAFT-AO pelo seguinte erro %s"

@@ -1,0 +1,2723 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_demon_notes_report" model="ir.actions.report">
+            <field name="name">Notas a Demonstração dos Resultados</field>
+            <field name="model">balance.notes.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">es_account_report_ao.demon_notes_report</field>
+            <field name="report_file">es_account_report_ao.demon_notes_report</field>
+        </record>
+        <template id="demon_notes_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="header" style="color: #0B74CE">
+                            <div class="row b_color">
+                                <div class="col-8">
+                                    <b>
+                                        <span class="text-left" t-field="o.company_id"/>
+                                    </b>
+                                </div>
+                                <div class="col-4" style="font-size:10px;">
+                                    <ul class="list-inline text-right">
+                                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime(&apos;%Y-%m-%d %H:%M&apos;)"/>
+                                        |
+                                        Pag.
+                                        <span class="page"/>
+                                        /
+                                        <span class="topage"/>
+                                    </ul>
+                                </div>
+                            </div>
+                            <br/>
+                            <hr style="display: block; height: 1px;
+                            border: 0; border-top: 3px solid #0B74CE;
+                            margin: 0; padding: 0;"/>
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <div align="left">
+                                        <b class="b_color">
+                                            Notas a Demontração de Resultados
+                                            (
+                                            <span t-field="o.date_from"/>
+                                            até
+                                            <span t-field="o.date_to"/>
+                                            )
+                                        </b>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div align="right">
+                                        <b class="b_color">
+                                            Valores em
+                                            <span t-esc="o.company_id.currency_id.symbol"/>
+                                        </b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page">
+                             <style>
+                            * {padding-bottom: 0 !important;
+                            padding-top: 0 !important;
+                            margin-bottom: 0 !important;margin-top:0 !important; }
+                            hr {
+                            display: block; height: 1px;
+                            border: 0; border-top: 1px solid #0B74CE;
+                            margin: 0; padding: 0;
+                            }
+                            .b_color{
+                            color: #0B74CE;
+                            }
+
+
+                            .table-bordered thead  th {
+                            border: 1px solid black !important;
+                            border-collapse: collapse;
+                            }
+
+                            .table-bordered tbody  td th{
+                            border-left: 1px solid black !important;
+                            border-right: 1px solid black !important;
+                            border-top:1px solid black !important;
+                            border-bottom: 1px solid black !important;
+                            border-collapse: collapse;
+                            }
+
+                            .border_top_th{
+                            border-top: 1px solid black !important;
+                            }
+                        </style>
+                            <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().date_from"/>
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().date_to"/>
+                            </t>
+                            <br></br>
+                            <br></br><br></br>
+                             <div>
+                                <b>22 - Vendas</b><br> </br>
+                                22.1 - Composição das vendas por mercado
+
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Mercado Interno</td>
+                                        <td> <t t-set ="Market" t-value="o.get_account_balance([6111],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(Market)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="Market" t-value="o.get_account_balance([6111],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(Market)"  t-options='{"widget": "float", "precision": 2}'/>
+
+                                        </td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Vendas</td>
+                                        <td  class="text-center"> <t t-set ="sell" t-value="o.get_account_balance([61],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(sell)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="sell" t-value="o.get_account_balance([61],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(sell)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Subsídios a preços</td>
+                                        <td class="text-center">
+                                        <t t-set ="price" t-value="o.get_account_balance([615],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(price)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="sell" t-value="o.get_account_balance([6111],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(price)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Mercado externo</td>
+                                        <td class="text-center"> <t t-set ="prop_co" t-value="o.get_account_balance([6122],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(prop_co)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="prop_co" t-value="o.get_account_balance([6122],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(prop_co)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+
+                                </tbody>
+                        </table>
+
+
+                              <br> </br>
+
+                             <div>
+                                22.2 - Composição das vendas por actividade
+
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Resumir as vendas por tipo de actividade</td>
+                                        <td class="text-center">
+                                            <span t-esc="o.company_id.agt_product_name "/></td>
+                                            <t t-if="o.enable_filter">
+                                        <td> </td>
+                                            </t>
+                                      </tr>
+                                </tbody>
+                        </table>
+
+                              <br> </br>
+
+                             <div>
+                                <b>23 - Prestação de Serviço</b><br> </br>
+                                23.1 - Composição das prestações de serviços por mercados
+
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Mercado interno</td>
+                                        <td class="text-center"> <t t-set ="market" t-value="o.get_account_balance([6211],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(market)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="markets" t-value="o.get_account_balance([6211],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(markets)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                         </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Mercado externo</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([6282],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="market" t-value="o.get_account_balance([6211],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(market)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                         </t>
+                                      </tr>
+                                </tbody>
+                        </table>
+
+                             <br> </br>
+
+                             <div>
+                                23.2 - Composição das prestações de serviços por actividades
+
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Serviços principais</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([621],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                            <t t-if="o.enable_filter">
+                                        <td class="text-center">
+                                        <t t-set ="marketing" t-value="o.get_account_balance([621],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Enumerar por tipo de actividade</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([621],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([621],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Serviços secundários</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([622],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center">
+                                            <t t-set ="marketing" t-value="o.get_account_balance([622],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Enumerar por tipo de actividade</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([621],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="marketing_past" t-value="o.get_account_balance([621],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(marketing_past)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                </tbody>
+                        </table>
+                                <br> </br>
+
+                             <div>
+                                <b>24 - Outros proveitos operacionais</b><br> </br>
+                                24.1 - Composição
+
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Serviços suplementares</td>
+                                        <td class="text-center">  <t t-set ="marketing" t-value="o.get_account_balance([631],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([631],date_from_cmp,date_to_cmp) "/>
+
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Royalties</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([631],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([631],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Subsídios à exploração(a)</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([632],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                         <t t-if="o.enable_filter">
+
+                                        <td> <t t-set ="marketing" t-value="o.get_account_balance([632],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Subsídios a investimento (b)</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([634],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([634],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outros proveitos e ganhos operacionais</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([638],o.date_from,o.date_to)
+                                               "/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td> <t t-set ="marketing" t-value="o.get_account_balance([638],date_from_cmp,date_to_cmp)
+                                               "/></td>
+                                        </t>
+                                      </tr>
+                                </tbody>
+                        </table>
+                            <div>
+                                <br> </br>
+                                (a) Subsídios à exploração :<br> </br>
+                                Indicar:<br> </br>
+                                Natureza do Subsídio<br></br>
+                                condições não satisfeitas.<br> </br>
+                                Contigências decorrentes de condições não satisfeitas.
+                                <br></br> <br></br>
+
+                                 (b) Subsídios e investimentos :<br> </br>
+                                Indicar:<br> </br>
+                                Natureza do Subsídio<br></br>
+                                condições não satisfeitas.<br> </br>
+                                Contigências decorrentes de condições não satisfeitas.
+                            </div>
+                             <br> </br>
+                             <br> </br>
+                             <br> </br>
+                             <br> </br>
+                             <br> </br>
+                            <br> </br>
+                             <br> </br>
+                             <div>
+                                 <b>25 - Variações nos productos acabados e em vias de fabrico</b><br> </br>
+                                <br> </br>
+                            </div>
+
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                              <tr>
+                                <th style="border-color:black;" class="black_border text-center">Rubricas</th>
+                                <th class="black_border text-center" >Existências iniciais </th>
+                                <th class="text-center" >ofertas e perdas ou ganhos </th>
+                                <th class="text-center">Existências finais</th>
+                                <th class="text-center">Variação no ano </th>
+                                  </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                         <td>Productos e trabalhos em curso</td>
+                                        <td class="text-center">  <span t-esc="0.0"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <td class="text-center">  <span t-esc="0.0"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <td class="text-center">  <span t-esc="0.0"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <td class="text-center">  <span t-esc="0.0"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                      </tr>
+                                     <tr>
+                                         <td>Productos acabados e intermédios</td>
+                                         <td class="text-center">  <span t-esc="0.0"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <td class="text-center">  <span t-esc="0.0"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <td class="text-center">  <span t-esc="0.0"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <td class="text-center">  <span t-esc="0.0"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                      </tr>
+                                  <tr>
+                                    <td>Subprodutos, disperdícios, residuos e refugos</td>
+                                     <td class="text-center">  <span t-esc="0.0"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <td class="text-center">  <span t-esc="0.0"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <td class="text-center">  <span t-esc="0.0"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <td class="text-center">  <span t-esc="0.0"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                  </tr>
+                                </tbody>
+                        </table>
+
+                              <br> </br>
+
+                             <div>
+                                <b>26 - Trabalhos para própria empresa</b>
+
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Trabalhos para imobilizados</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([65],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([65],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Corpóreo</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([6511],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([6511],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+
+                                      </tr>
+                                    <tr>
+                                        <td>Incorpóreo</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([6512],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([6512],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Incorpóreo</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([6512],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([6512],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Investimentos financeiros</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([6513],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                          <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="marketing" t-value="o.get_account_balance([6513],date_from_cmp,date_to_cmp)
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/>
+
+                                        </td>
+                                          </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Trabalhos para existências</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="0.0
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                          <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="marketing" t-value="0.0
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                          </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Trabalhos para encargos a repartir por exercício futuros</td>
+                                        <td class="text-center"> <t t-set ="marketing" t-value="0.0
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="marketing" t-value="0.0
+                                               "/>
+                                            <span t-esc="abs(marketing)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                         </t>
+                                      </tr>
+                                </tbody>
+                        </table>
+                             <br> </br>
+
+                             <div>
+                                 <b>27 - Custos das existências vendidas e das matérias-primas e subsídiarias consumidas</b><br> </br>
+                                <br> </br>
+                                <br> </br>
+                            </div>
+
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                              <tr>
+                                <th style="border-color:black;" class="black_border text-center">Rubricas</th>
+                                <th class="black_border text-center" >Existências iniciais </th>
+                                <th class="black_border text-center" >Compras </th>
+                                <th class="text-center" >ofertas e perdas ou ganhos </th>
+                                <th class="text-center">Existências finais</th>
+                                <th class="text-center">Custo no ano </th>
+                                  </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                         <td>Matérias-primas, subsídiarias e de consumo</td>
+                                        <td class="text-center"> <t t-set ="consuming" t-value="o.get_account_balance([211],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(consuming)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                        <td class="text-center"> <t t-set ="consuming_1" t-value="o.get_account_balance([21],o.date_from,o.date_to)
+                                               "/>
+                                            <span t-esc="abs(consuming_1)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <td class="text-center"> <t t-set ="consuming_2" t-value="0.0
+                                               "/>
+                                            <span t-esc="abs(consuming_2)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <td class="text-center"> <t t-set ="consuming_3" t-value="o.get_account_balance([32],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(consuming_3)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <td class="text-center"> <t t-set ="consuming_4" t-value=" (consuming + consuming_1)-consuming_3 "/>
+                                             <span t-esc="abs(consuming_4)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                      </tr>
+                                     <tr>
+                                         <td>Mercadorias</td>
+                                        <td class="text-center"><t t-set ="march" t-value="o.get_account_balance([26],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        <td class="text-center"> <t t-set ="march_1" t-value="o.get_account_balance([212],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march_1)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                         <td class="text-center"> <t t-set ="march_2" t-value="0.0"/>
+                                            <span t-esc="abs(march_2)"  t-options='{"widget": "float", "precision": 2}'/>
+                                         </td>
+                                         <td class="text-center"> <t t-set ="march_3" t-value="o.get_account_balance([211],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march_3)"  t-options='{"widget": "float", "precision": 2}'/>
+                                         </td>
+                                         <td class="text-center"> <t t-set ="march_4" t-value="(march+march_1)-march_3"/>
+                                            <span t-esc="abs(march_4)"  t-options='{"widget": "float", "precision": 2}'/>
+                                         </td>
+                                      </tr>
+                                </tbody>
+                        </table>
+
+                             <br> </br>
+
+                             <div>
+                                <b>28 - Custo com o pessoal</b>
+
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Remunerações dos corpos sociais</td>
+                                        <td class="text-center"> <t t-set ="marchs" t-value="o.get_account_balance([721],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(marchs)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                         <t t-if="o.enable_filter">
+                                        <td>
+                                            <t t-set ="marcher" t-value="o.get_account_balance([721],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(marcher)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Pensões</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([723],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([723],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Prémios para pensões</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([724],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([724],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outras remunerações</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([728],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([728],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                </tbody>
+                                <tr>
+                                    <td>Número de encarregados ao serviço da empresa</td>
+                                    <td class="text-center">Indicar</td>
+                                     <t t-if="o.enable_filter">
+                                    <td class="text-center">Indicar</td>
+                                     </t>
+                                </tr>
+                        </table>
+
+                              <br> </br>
+
+                             <div>
+                                <b>29 - Amortizações</b>
+
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Imobilizações corpóreas (Nota 4)</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([731],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([731],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Pensões</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Imobilizações incorpóreas (Nota 5)</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([732],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([732],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                </tbody>
+                        </table>
+
+                             <br> </br>
+                             <div>
+                                <b>30 - Outros custos e perdas operacionais</b>
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Subcontractos</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([751],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([751],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Fornecimentos e serviços de terceiros</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([752],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([752],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Despesas de investigação</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Despesas de desenvolvimento</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Conservação e reparação</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([75226],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([75226],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Royalties</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([75235],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([75235],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outras</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([75239],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([75239],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Impostos</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([753],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([753],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr><tr>
+                                        <td>Despesas confidencias</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([754],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                     <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([754],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                     </t>
+                                      </tr><tr>
+                                        <td>Quotizações</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([755],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                     <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([755],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                     </t>
+                                      </tr><tr>
+                                        <td>Ofertas e amostras de existências</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([756],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                     <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([756],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                     </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Custos operacionais</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([758],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([758],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          </t>
+                                      </tr>
+                                </tbody>
+                        </table>
+
+                             <br> </br>
+                            <br> </br>
+                            <br> </br>
+                            <br> </br>
+                            <br> </br>
+                             <div>
+                                <b>31 - Resultados Financeiros</b>
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Proveitos e ganhos financeiros</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Juros</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([761],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([761],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Investimentos financeiros</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([7651],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([7651],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outros</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([76529],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([76529],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Rendimentos de investimentos em imóveis</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([764],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([764],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Investimentos financeiros</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([7661],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([7661],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outros</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([76529],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([76529],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Impostos Rendimentos de participações de capital</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr><tr>
+                                        <td>Investimentos financeiros</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([7651],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                     <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([7651],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                     </t>
+                                      </tr><tr>
+                                        <td>Outros</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([76529],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                     <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([76529],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                     </t>
+                                      </tr><tr>
+                                        <td>Ganhos na alienação de participações financeiras</td>
+                                         <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                     <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                     </t>
+                                </tr>
+                                     <tr>
+                                        <td>Investimentos financeiros</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([7661],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([7661],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outros</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([76529],o.date_from,o.date_to)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="o.get_account_balance([76529],date_from_cmp,date_to_cmp)"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Reposição de provisões (a)</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Investimentos em filiais e associadas (Nata 6)</td>
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          <t t-if="o.enable_filter">
+                                        <td class="text-center"> <t t-set ="march" t-value="0.0"/>
+                                            <span t-esc="abs(march)"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Outros activos financeiros (Nota 7)</td>
+                                          <t t-set ="invest" t-value="o.get_account_balance([133],o.date_from,o.date_to)"/>
+                                         <t t-set ="invests" t-value="0.0"/>
+                                         <t t-set ="investss" t-value="0.0"/>
+                                          <t t-set ="invest_imo" t-value="o.get_account_balance([1341],o.date_from,o.date_to)"/>
+                                         <t t-set ="invest_imos" t-value="0.0"/>
+                                         <t t-set ="invest_imoss" t-value="0.0"/>
+                                         <t t-set ="dipper" t-value="o.get_account_balance([1351],o.date_from,o.date_to)"/>
+                                         <t t-set ="dippers" t-value="0.0"/>
+                                         <t t-set ="dipperss" t-value="0.0"/>
+                                         <t t-set ="other_invest" t-value="o.get_account_balance([139],o.date_from,o.date_to)"/>
+                                         <t t-set ="other_invests" t-value="0.0"/>
+                                         <t t-set ="other_investss" t-value="0.0"/>
+                                         <t t-set ="total_invest_imo" t-value="invest_imo - invest_imos - invest_imoss"/>
+                                         <t t-set ="total_invest" t-value="invest - invests - investss"/>
+                                         <t t-set ="total_dipper" t-value="dipper - dippers - dipperss"/>
+                                         <t t-set ="total_other_invest" t-value="other_invest - other_invests - other_investss"/>
+                                        <td class="text-center"> <t t-set ="notes_sev" t-value="total_invest_imo + total_invest + total_other_invest"/>
+                                             <span t-esc="notes_sev"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+
+                                        <td class="text-center"> <t t-set ="notes_sev_total" t-value="total_invest_imo + total_invest + total_other_invest"/>
+                                             <span t-esc="notes_sev_total"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td >Disponibilidades (Nota 10)</td>
+                                        <t t-set ="balance" t-value="o.get_account_balance([42],o.date_from,o.date_to)"/>
+                                        <t t-set ="other_deb" t-value="o.get_account_balance([41],o.date_from,o.date_to)"/>
+                                        <t t-set ="box" t-value="o.get_account_balance([45],o.date_from,o.date_to)"/>
+                                        <t t-set ="prov" t-value="o.get_account_balance([49],o.date_from,o.date_to)"/>
+                                        <td class="text-center"> <t t-set ="notes_ten" t-value="balance + other_deb + box+prov"/>
+                                             <span t-esc="notes_ten"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+
+                                        <td>
+                                             <t t-set ="balance_past"   t-value="o.get_account_balance([42],date_from_cmp,date_to_cmp)"/>
+                                             <t t-set ="other_deb_past"   t-value="o.get_account_balance([41],date_from_cmp,date_to_cmp)"/>
+                                             <t t-set ="box_past"  t-value="o.get_account_balance([45],date_from_cmp,date_to_cmp)"/>
+                                             <t t-set ="prov_past"   t-value="o.get_account_balance([49],date_from_cmp,date_to_cmp)"/>
+                                             <t t-set ="notes_ten_past" t-value="(balance_past + other_deb_past) + (box_past +prov_past)"/>
+                                             <span t-esc="notes_ten_past"   t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                        </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Diferenças de câmbio favoráveis</td>
+                                         <t t-set ="invest" t-value="o.get_account_balance([762],o.date_from,o.date_to)"/>
+                                         <t t-set ="invest_past"  t-value="o.get_account_balance([762],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"><span t-esc="invest"   t-options='{"widget": "float", "precision": 2}'/> </td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"><span t-esc="invest_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Não realizadas</td>
+                                        <t t-set ="realize" t-value="o.get_account_balance([7622],o.date_from,o.date_to)"/>
+                                         <t t-set ="realize_past"  t-value="o.get_account_balance([7622],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="realize"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="realize_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Descontos de pronto pagamento obtidos</td>
+                                         <t t-set ="payment" t-value="o.get_account_balance([7631],o.date_from,o.date_to)"/>
+                                         <t t-set ="payment_past"  t-value="o.get_account_balance([7631],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="payment"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="payment_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outros</td>
+                                        <t t-set ="other_p" t-value="o.get_account_balance([76529],o.date_from,o.date_to)"/>
+                                         <t t-set ="other_past"  t-value="o.get_account_balance([76529],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="other_p"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="other_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Custos e perdas financeiros</td>
+                                        <t t-set ="cost" t-value="o.get_account_balance([76],o.date_from,o.date_to)"/>
+                                         <t t-set ="cost_past"  t-value="o.get_account_balance([76],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center">  <span t-esc="cost"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="cost_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Juros</td>
+                                        <t t-set ="jur" t-value="o.get_account_balance([761],o.date_from,o.date_to)"/>
+                                         <t t-set ="jur_past"  t-value="o.get_account_balance([761],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="jur"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="jur_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Amortizações de investimentos em imóveis</td>
+                                        <t t-set ="amortization" t-value="o.get_account_balance([764],o.date_from,o.date_to)"/>
+                                         <t t-set ="amortization_past"  t-value="o.get_account_balance([764],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="amortization"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="amortization_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Provisões para aplicações financeiras</td>
+                                        <t t-set ="provision" t-value="o.get_account_balance([765],o.date_from,o.date_to)"/>
+                                         <t t-set ="provision_past"  t-value="o.get_account_balance([765],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="provision"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="provision_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Investimentos em filiais e associadas (Nota 6)</td>
+                                        <t t-set ="investing" t-value="0.0"/>
+                                         <t t-set ="investing_past"  t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="investing"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="investing_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outros activos financeiros (Nota 7)</td>
+                                         <t t-set ="invest" t-value="o.get_account_balance([133],o.date_from,o.date_to)"/>
+                                         <t t-set ="invests" t-value="0.0"/>
+                                         <t t-set ="investss" t-value="0.0"/>
+                                          <t t-set ="invest_imo" t-value="o.get_account_balance([1341],o.date_from,o.date_to)"/>
+                                         <t t-set ="invest_imos" t-value="0.0"/>
+                                         <t t-set ="invest_imoss" t-value="0.0"/>
+                                         <t t-set ="dipper" t-value="o.get_account_balance([1351],o.date_from,o.date_to)"/>
+                                         <t t-set ="dippers" t-value="0.0"/>
+                                         <t t-set ="dipperss" t-value="0.0"/>
+                                         <t t-set ="other_invest" t-value="o.get_account_balance([139],o.date_from,o.date_to)"/>
+                                         <t t-set ="other_invests" t-value="0.0"/>
+                                         <t t-set ="other_investss" t-value="0.0"/>
+                                         <t t-set ="total_invest_imo" t-value="invest_imo - invest_imos - invest_imoss"/>
+                                         <t t-set ="total_invest" t-value="invest - invests - investss"/>
+                                         <t t-set ="total_dipper" t-value="dipper - dippers - dipperss"/>
+                                         <t t-set ="total_other_invest" t-value="other_invest - other_invests - other_investss"/>
+                                        <td class="text-center"> <t t-set ="notes_sev" t-value="total_invest_imo + total_invest + total_other_invest"/>
+                                             <span t-esc="notes_sev"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                          <t t-if="o.enable_filter">
+
+                                        <td class="text-center"> <t t-set ="notes_sev_p" t-value="total_invest_imo + total_invest + total_other_invest"/>
+                                             <span t-esc="notes_sev_p"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                          </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Disponibilidades (Nota 10)</td>
+                                        <t t-set ="balance" t-value="o.get_account_balance([42],o.date_from,o.date_to)"/>
+                                        <t t-set ="other_deb" t-value="o.get_account_balance([41],o.date_from,o.date_to)"/>
+                                        <t t-set ="box" t-value="o.get_account_balance([45],o.date_from,o.date_to)"/>
+                                        <t t-set ="prov" t-value="o.get_account_balance([49],o.date_from,o.date_to)"/>
+                                        <td class="text-center"> <t t-set ="notes_ten" t-value="balance + other_deb + box+prov"/>
+                                             <span t-esc="notes_ten"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center">
+                                             <t t-set ="balance_past"  t-value="o.get_account_balance([42],date_from_cmp,date_to_cmp)"/>
+                                             <t t-set ="other_deb_past"  t-value="o.get_account_balance([41],date_from_cmp,date_to_cmp)"/>
+                                             <t t-set ="box_past"   t-value="o.get_account_balance([45],date_from_cmp,date_to_cmp)"/>
+                                             <t t-set ="prov_past"   t-value="o.get_account_balance([49],date_from_cmp,date_to_cmp)"/>
+                                             <t t-set ="notes_ten_past" t-value="balance + other_deb + box+prov"/>
+                                             <span t-esc="notes_ten_past"   t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                        </t>
+                                      </tr> <tr>
+                                        <td>Perdas na alienação de aplicações financeiras Investimentos financeiros</td>
+                                     <t t-set ="lost" t-value="o.get_account_balance([766],o.date_from,o.date_to)"/>
+                                     <t t-set ="lost_past"   t-value="o.get_account_balance([766],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center">  <span t-esc="lost"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                    <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="lost_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                    </t>
+                                      </tr> <tr>
+                                        <td>Outros</td>
+                                    <t t-set ="other_pres" t-value="o.get_account_balance([76529],o.date_from,o.date_to)"/>
+                                     <t t-set ="other_pres_past"   t-value="o.get_account_balance([76529],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="other_pres"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                    <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="other_pres_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                    </t>
+                                      </tr> <tr>
+                                        <td>Diferenças de câmbio desfavoráveis</td>
+                                    <t t-set ="differ" t-value="o.get_account_balance([762],o.date_from,o.date_to)"/>
+                                     <t t-set ="differ_past"  t-value="o.get_account_balance([762],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="differ"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                    <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="differ_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                    </t>
+                                      </tr> <tr>
+                                        <td>Realizadas</td>
+                                    <t t-set ="real" t-value="o.get_account_balance([762],o.date_from,o.date_to)"/>
+                                     <t t-set ="real_past"  t-value="o.get_account_balance([762],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="real"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                    <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="real_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                    </t>
+                                      </tr> <tr>
+                                        <td>Não realizadas</td>
+                                    <t t-set ="no_real" t-value="o.get_account_balance([762],o.date_from,o.date_to)"/>
+                                     <t t-set ="no_real_past"  t-value="o.get_account_balance([762],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="no_real"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                    <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="no_real_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                    </t>
+                                      </tr> <tr>
+                                        <td>Descontos de pronto pagamento concedidos Outros</td>
+                                    <t t-set ="desc" t-value="o.get_account_balance([763],o.date_from,o.date_to)"/>
+                                     <t t-set ="desc_past"   t-value="o.get_account_balance([763],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="desc"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                    <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="desc_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                    </t>
+                                      </tr>
+                                </tbody>
+                        </table>
+
+
+                             <br> </br>
+
+                             <div>
+                                <b>32 - Resultados de filias e associadas</b>
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Subsidiárias</td>
+                                     <t t-set ="differ" t-value="0.0"/>
+                                     <t t-set ="differ_past"   t-value="0.0"/>
+
+                                        <td class="text-center"> <span t-esc="differ"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td> <span t-esc="differ_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Dividendos</td>
+                                        <t t-set ="div" t-value="0.0"/>
+                                     <t t-set ="div_past"  t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="div"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="div_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Lucros</td>
+                                        <t t-set ="profit" t-value="o.get_account_balance([841],o.date_from,o.date_to)"/>
+                                     <t t-set ="profit_past"  t-value="o.get_account_balance([841],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="profit"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="profit_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outros</td>
+                                        <t t-set ="oth" t-value="0.0"/>
+                                        <t t-set ="oth_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="oth"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="oth_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Associadas</td>
+                                        <t t-set ="oth" t-value="0.0"/>
+                                        <t t-set ="oth_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="oth"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="oth_past"   t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Dividendos</td>
+                                        <t t-set ="div" t-value="0.0"/>
+                                        <t t-set ="div_past"  t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="div"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="div"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Lucros</td>
+                                         <t t-set ="profits" t-value="o.get_account_balance([841],o.date_from,o.date_to)"/>
+                                     <t t-set ="profits_past"  t-value="o.get_account_balance([841],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="profits"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="profits_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                </tbody>
+                        </table>
+
+                              <br> </br>
+                             <div>
+                                <b>33 - Resultados não operacional</b>
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Proveitos e ganhos financeiros</td>
+                                          <t t-set ="profits" t-value="o.get_account_balance([851],o.date_from,o.date_to)"/>
+                                     <t t-set ="profit_pasts"  t-value="o.get_account_balance([851],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"><span t-esc="profits"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="profit_pasts"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Reposição de provisões</td>
+                                     <t t-set ="prov"  t-value="0.0"/>
+                                     <t t-set ="prov_pasts"  t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="prov"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="prov_pasts"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                          </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Existências (Nota 8)</td>
+                                        <t t-set ="material" t-value="o.get_account_balance([211],o.date_from,o.date_to)"/>
+                                        <t t-set ="prod" t-value="o.get_account_balance([23],o.date_from,o.date_to)"/>
+                                        <t t-set ="prods" t-value="0.0"/>
+                                         <t t-set ="prod_final" t-value="o.get_account_balance([24],o.date_from,o.date_to)"/>
+                                         <t t-set ="sub_prod" t-value="o.get_account_balance([25],o.date_from,o.date_to)"/>
+                                        <t t-set ="march" t-value="o.get_account_balance([26],o.date_from,o.date_to)"/>
+                                        <t t-set ="material_rust" t-value="o.get_account_balance([27],o.date_from,o.date_to)"/>
+                                        <t t-set ="materials" t-value="0.0"/>
+                                        <t t-set ="material_total" t-value="material - materials "/>
+                                        <t t-set ="prod_total" t-value="prod - prods "/>
+                                        <t t-set ="prod_finals" t-value="0.0"/>
+                                        <t t-set ="prods_total" t-value="prod_final - prod_finals "/>
+                                        <t t-set ="sub_prods" t-value="0.0"/>
+                                        <t t-set ="sub_prod_total" t-value="sub_prod - sub_prods "/>
+                                        <t t-set ="marchs" t-value="0.0"/>
+                                        <t t-set ="marchs_total" t-value="march - marchs "/>
+                                        <t t-set ="material_rusts" t-value="0.0"/>
+                                        <t t-set ="material_rust_total" t-value="material_rust - material_rusts "/>
+                                        <t t-set ="totals" t-value="material_rust_total + marchs_total + sub_prod_total
++prods_total + prod_total +material_total"/>
+                                        <td class="text-center"> <span t-esc="totals"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-set ="material" t-value="o.get_account_balance([211],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="prod" t-value="o.get_account_balance([23],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="prods" t-value="0.0"/>
+                                         <t t-set ="prod_final" t-value="o.get_account_balance([24],date_from_cmp,date_to_cmp)"/>
+                                         <t t-set ="sub_prod" t-value="o.get_account_balance([25],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="march" t-value="o.get_account_balance([26],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="material_rust" t-value="o.get_account_balance([27],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="materials" t-value="0.0"/>
+                                        <t t-set ="material_total" t-value="material - materials "/>
+                                        <t t-set ="prod_total" t-value="prod - prods "/>
+                                        <t t-set ="prod_finals" t-value="0.0"/>
+                                        <t t-set ="prods_total" t-value="prod_final - prod_finals "/>
+                                        <t t-set ="sub_prods" t-value="0.0"/>
+                                        <t t-set ="sub_prod_total" t-value="sub_prod - sub_prods "/>
+                                        <t t-set ="marchs" t-value="0.0"/>
+                                        <t t-set ="marchs_total" t-value="march - marchs "/>
+                                        <t t-set ="material_rusts" t-value="0.0"/>
+                                        <t t-set ="material_rust_total" t-value="material_rust - material_rusts "/>
+                                        <t t-set ="totals_past" t-value="material_rust_total + marchs_total + sub_prod_total
++prods_total + prod_total +material_total"/>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="totals_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outros</td>
+                                        <t t-set ="others" t-value="0.0"/>
+                                        <t t-set ="others_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="others"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="others_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Cobranças duvidosas (Nota 9)</td>
+                                        <t t-set ="rust" t-value="o.get_account_balance([311],o.date_from,o.date_to)"/>
+                                        <t t-set ="rust_1" t-value="o.get_account_balance([311],o.date_from,o.date_to)"/>
+                                        <t t-set ="rust_2" t-value="0.0"/>
+                                        <t t-set ="total_rust" t-value="rust+rust_1+rust_2"/>
+                                        <t t-set ="clients" t-value="o.get_account_balance([312],o.date_from,o.date_to)"/>
+                                        <t t-set ="clients_1" t-value="0.0"/>
+                                        <t t-set ="clients_2" t-value="0.0"/>
+                                        <t t-set ="total_clients" t-value="clients+clients_1+clients_2"/>
+                                         <t t-set ="customer" t-value="o.get_account_balance([318],o.date_from,o.date_to)"/>
+                                        <t t-set ="customer_1" t-value="0.0"/>
+                                        <t t-set ="customer_2" t-value="0.0"/>
+                                        <t t-set ="suppliers" t-value="o.get_account_balance([329],o.date_from,o.date_to)"/>
+                                        <t t-set ="suppliers_1" t-value="0.0"/>
+                                        <t t-set ="suppliers_2" t-value="0.0"/>
+                                        <t t-set ="states" t-value="o.get_account_balance([34],o.date_from,o.date_to)"/>
+                                        <t t-set ="states_1" t-value="0.0"/>
+                                        <t t-set ="states_2" t-value="0.0"/>
+                                        <t t-set ="participant" t-value="o.get_account_balance([35],o.date_from,o.date_to)"/>
+                                        <t t-set ="participant_1" t-value="0.0"/>
+                                        <t t-set ="participant_2" t-value="0.0"/>
+                                         <t t-set ="people" t-value="o.get_account_balance([35],o.date_from,o.date_to)"/>
+                                        <t t-set ="people_1" t-value="0.0"/>
+                                        <t t-set ="people_2" t-value="0.0"/>
+                                        <t t-set ="debtor" t-value="o.get_account_balance([372],o.date_from,o.date_to)"/>
+                                        <t t-set ="debtor_1" t-value="0.0"/>
+                                        <t t-set ="debtor_2" t-value="0.0"/>
+                                        <t t-set ="other_debtor" t-value="o.get_account_balance([372],o.date_from,o.date_to)"/>
+                                        <t t-set ="other_debtor_1" t-value="0.0"/>
+                                        <t t-set ="other_debtor_2" t-value="0.0"/>
+                                        <t t-set ="provisions" t-value="o.get_account_balance([38],o.date_from,o.date_to)"/>
+                                        <t t-set ="provisions_1" t-value="0.0"/>
+                                        <t t-set ="provisions_2" t-value="0.0"/>
+                                        <t t-set ="total_provisions" t-value="provisions+provisions_1+provisions_2"/>
+                                        <t t-set ="total_other_debtor" t-value="other_debtor+other_debtor_1+other_debtor_2"/>
+                                        <t t-set ="total_debtor" t-value="debtor+debtor_1+debtor_2"/>
+                                        <t t-set ="total_people" t-value="people+people_1+people_2"/>
+                                        <t t-set ="total_participant" t-value="participant+participant_1+participant_2"/>
+                                        <t t-set ="total_states" t-value="states+states_1+states_2"/>
+                                        <t t-set ="total_suppliers" t-value="suppliers+suppliers_1+suppliers_2"/>
+                                        <t t-set ="total_customer" t-value="customer+customer_1+customer_2"/>
+                                        <t t-set ="total_customer_new" t-value="total_customer+total_suppliers+total_states + total_participant +total_people
++total_debtor+total_other_debtor+total_provisions"/>
+
+                                        <td class="text-center"> <span t-esc="total_customer_new"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                              <t t-set ="rust" t-value="o.get_account_balance([311],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="rust_1" t-value="o.get_account_balance([311],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="rust_2" t-value="0.0"/>
+                                        <t t-set ="total_rust" t-value="rust+rust_1+rust_2"/>
+                                        <t t-set ="clients" t-value="o.get_account_balance([312],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="clients_1" t-value="0.0"/>
+                                        <t t-set ="clients_2" t-value="0.0"/>
+                                        <t t-set ="total_clients" t-value="clients+clients_1+clients_2"/>
+                                         <t t-set ="customer" t-value="o.get_account_balance([318],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="customer_1" t-value="0.0"/>
+                                        <t t-set ="customer_2" t-value="0.0"/>
+                                        <t t-set ="suppliers" t-value="o.get_account_balance([329],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="suppliers_1" t-value="0.0"/>
+                                        <t t-set ="suppliers_2" t-value="0.0"/>
+                                        <t t-set ="states" t-value="o.get_account_balance([34],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="states_1" t-value="0.0"/>
+                                        <t t-set ="states_2" t-value="0.0"/>
+                                        <t t-set ="participant" t-value="o.get_account_balance([35],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="participant_1" t-value="0.0"/>
+                                        <t t-set ="participant_2" t-value="0.0"/>
+                                         <t t-set ="people" t-value="o.get_account_balance([35],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="people_1" t-value="0.0"/>
+                                        <t t-set ="people_2" t-value="0.0"/>
+                                        <t t-set ="debtor" t-value="o.get_account_balance([372],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="debtor_1" t-value="0.0"/>
+                                        <t t-set ="debtor_2" t-value="0.0"/>
+                                        <t t-set ="other_debtor" t-value="o.get_account_balance([372],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="other_debtor_1" t-value="0.0"/>
+                                        <t t-set ="other_debtor_2" t-value="0.0"/>
+                                        <t t-set ="provisions" t-value="o.get_account_balance([38],date_from_cmp,date_to_cmp)"/>
+                                        <t t-set ="provisions_1" t-value="0.0"/>
+                                        <t t-set ="provisions_2" t-value="0.0"/>
+                                        <t t-set ="total_provisions" t-value="provisions+provisions_1+provisions_2"/>
+                                        <t t-set ="total_other_debtor" t-value="other_debtor+other_debtor_1+other_debtor_2"/>
+                                        <t t-set ="total_debtor" t-value="debtor+debtor_1+debtor_2"/>
+                                        <t t-set ="total_people" t-value="people+people_1+people_2"/>
+                                        <t t-set ="total_participant" t-value="participant+participant_1+participant_2"/>
+                                        <t t-set ="total_states" t-value="states+states_1+states_2"/>
+                                        <t t-set ="total_suppliers" t-value="suppliers+suppliers_1+suppliers_2"/>
+                                        <t t-set ="total_customer" t-value="customer+customer_1+customer_2"/>
+                                        <t t-set ="total_customer_new_past" t-value="total_customer+total_suppliers+total_states + total_participant +total_people
++total_debtor+total_other_debtor+total_provisions"/>
+                                        <td class="text-center"> <span t-esc="total_customer_new_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outros riscos e encargos (Nota 18)</td>
+                                        <t t-set ="note_eight" t-value="0.0"/>
+                                        <t t-set ="note_eight_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_eight"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_eight_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outros</td>
+                                         <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Anulação de amortizações extraordinárias</td>
+                                        <t t-set ="cancel" t-value="0.0"/>
+                                        <t t-set ="cancel_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="cancel"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="cancel_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr><tr>
+                                        <td>Ganhos em existências</td>
+                                         <t t-set ="gain" t-value="0.0"/>
+                                        <t t-set ="gain_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="gain"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="gain_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr><tr>
+                                        <td>Outros</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr><tr>
+                                        <td>Recuperação de dívidas</td>
+                                       <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Benefícios de penalidades contratuais</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Descontinuidade de operações</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Alterações de políticas contabilísticas</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Correcções relativas a exercícios anteriores</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Outros proveitos e ganhos não operacionais</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Custos e perdas não operacionais</td>
+                                        <t t-set ="operation" t-value="o.get_account_balance([852],o.date_from,o.date_to)"/>
+                                        <t t-set ="operation_past" t-value="o.get_account_balance([852],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="operation"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="operation_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Provisões</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Existências (Nota 8)</td>
+                                        <td class="text-center"> <span t-esc="totals"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="totals_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                     <tr>
+                                        <td>Cobranças duvidosas (Nota 9)</td>
+                                         <td class="text-center"> <span t-esc="total_customer_new"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="total_customer_new_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outros riscos e encargos (Nota 18)</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Amortizações extraordinárias</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Perdas em imobilizações</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Perdas em existências</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Dívidas incobráveis</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Multas e penalidades contratuais</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Descontinuidade de operações</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Alterações de políticas contabilísticas</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Correcções relativas a exercícios anteriores</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                    </tr>
+                                    <tr>
+                                        <td>Outros</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outros custos e perdas não operacionais</td>
+                                        <t t-set ="note_other" t-value="0.0"/>
+                                        <t t-set ="note_other_past" t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="note_other"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="note_other_past"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                </tbody>
+                        </table>
+
+                            <br> </br>
+                             <div>
+                                <b>34 - Resultados extraordinários</b>
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Proveitos e ganhos extraordinários</td>
+                                         <t t-set ="extract" t-value="o.get_account_balance([861],o.date_from,o.date_to)"/>
+                                     <t t-set ="extract_past"   t-value="o.get_account_balance([861],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="extract"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="extract_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Catástrofes naturais</td>
+                                        <t t-set ="nature" t-value="0.0"/>
+                                        <t t-set ="nature_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="nature"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="nature_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Convulsões políticas</td>
+                                        <t t-set ="politic" t-value="0.0"/>
+                                        <t t-set ="politic_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="politic"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="politic_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Expropriações</td>
+                                        <t t-set ="expr" t-value="0.0"/>
+                                        <t t-set ="expr_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="expr"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="expr_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Sinistros</td>
+                                        <t t-set ="sini" t-value="0.0"/>
+                                        <t t-set ="sini_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="sini"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="sini_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Subsídios (a)</td>
+                                        <t t-set ="sin" t-value="0.0"/>
+                                        <t t-set ="sin_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="sin"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="sin_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Anulação de passivos não exigíveis</td>
+                                        <t t-set ="cancel" t-value="0.0"/>
+                                        <t t-set ="cancel_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="cancel"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="cancel_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Custos e perdas extraordinários</td>
+                                        <t t-set ="loses" t-value="o.get_account_balance([862],o.date_from,o.date_to)"/>
+                                        <t t-set ="loses_past"  t-value="o.get_account_balance([862],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="loses"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="loses_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Catástrofes naturais</td>
+                                        <t t-set ="nat" t-value="0.0"/>
+                                        <t t-set ="nat_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="nat"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="nat_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Convulsões políticas</td>
+                                       <t t-set ="pol" t-value="0.0"/>
+                                        <t t-set ="pol_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="pol"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="pol_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Expropriações</td>
+                                        <t t-set ="exp" t-value="0.0"/>
+                                        <t t-set ="exp_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="exp"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="exp_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td><tr>
+                                        <td>Expropriações</td>
+                                        <t t-set ="exp" t-value="0.0"/>
+                                        <t t-set ="exp_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="exp"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                            <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="exp_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                            </t>
+                                      </tr></td>
+                                        <td> </td>
+                                        <td> </td>
+                                      </tr>
+                                    <tr>
+                                        <td>Outros</td>
+                                        <t t-set ="others" t-value="0.0"/>
+                                        <t t-set ="others_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="others"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="others_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                </tbody>
+                        </table>
+                             <br> </br>
+
+
+                             <div>
+                                <b>35 - Imposto sobre rendimento</b>
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Resultado contabilístico</td>
+                                         <t t-set ="accounting" t-value="o.get_account_balance([341],o.date_from,o.date_to)"/>
+                                        <t t-set ="accounting_past"   t-value="o.get_account_balance([341],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="accounting"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="accounting_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Correcções para efeitos fiscais:</td>
+                                        <t t-set ="correct" t-value="0.0"/>
+                                        <t t-set ="correct_past"  t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="correct"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center">  <span t-esc="correct_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>A somar: Variações patrimoniais positivas</td>
+                                        <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td> Custos e perdas não aceites para efeitos fiscais</td>
+                                         <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Discriminar</td>
+                                         <t t-set ="desc" t-value="0.0"/>
+                                        <t t-set ="desc_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="desc"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="desc_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>A deduzir: Variações patrimoniais negativas</td>
+                                        <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"  t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td> Proveitos e ganhos não tributáveis </td>
+                                         <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Discriminar</td>
+                                         <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Prejuízos fiscais de anos anteriores</td>
+                                         <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Lucros levados a reservas e reinvestidos</td>
+                                         <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Lucro tributável (prejuízo fiscal)</td>
+                                         <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"  t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Taxa nominal de imposto</td>
+                                         <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"   t-value="0.0"/>
+                                        <td class="text-center">
+                                            <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                            <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                            </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Imposto sobre os lucros (a)</td>
+                                        <t t-set ="upon" t-value="o.get_account_balance([341],o.date_from,o.date_to)"/>
+                                        <t t-set ="upon_past"   t-value="o.get_account_balance([341],date_from_cmp,date_to_cmp)"/>
+                                        <td class="text-center"> <span t-esc="upon"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="upon_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                </tbody>
+                        </table>
+                            <br> </br>
+                            <div>
+                                (a) Estes impostos decompõem-se da seguinte forma:
+                            </div>
+
+
+
+                             <br> </br>
+
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Imposto sobre erros fundamentais e
+                                            sobre as alterações das políticas contabilísticas
+                                            reconhecido
+em resultados transitados (Nota 14)</td>
+                                        <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Imposto sobre os resultados correntes</td>
+                                        <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Imposto sobre os resultados extraordinários</td>
+                                        <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+
+                                </tbody>
+                        </table>
+                            <br></br>
+                             <br></br>
+                               <br></br>
+                               <br></br>
+                               <br></br>
+                             <br></br>
+                               <br></br>  <br></br>
+                               <br></br>
+
+                            <div>
+                                <p>OUTRAS NOTAS RELACIONADAS COM A POSIÇÃO
+FINANCEIRA E OS RESULTADOS DAS OPERAÇÕES</p>
+                            </div>
+                            <br></br>
+
+                            <div>
+                                <b>36 - Responsabilidades assumidas
+                                e não refletidas no balanço</b>
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                             <br> </br>
+
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+        <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Garantias</td>
+                                        <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         <t t-if="o.enable_filter">
+                                        <td> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                         </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Avales</td>
+                                        <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Letras descontadas</td>
+                                        <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Outras</td>
+                                        <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"   t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+                                    <tr>
+                                        <td>Discriminar o tipo de garantias prestadas</td>
+                                        <t t-set ="corrects" t-value="0.0"/>
+                                        <t t-set ="corrects_past"  t-value="0.0"/>
+                                        <td class="text-center"> <span t-esc="corrects"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <t t-if="o.enable_filter">
+                                        <td class="text-center"> <span t-esc="corrects_past"   t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </t>
+                                      </tr>
+
+                                </tbody>
+                        </table>
+                            <br> </br>
+                            <div>
+                                <b>37 - Contigências</b>
+                                <br> </br>
+                                Indicar:
+                                <br> </br>
+                                A natureza das contingências.<br> </br>
+                                Os factores incertos que possam afectar o desfecho futuro.<br> </br>
+                                Estimativa do efeito financeiro, ou uma declaração de que<br> </br>
+                                tal estimativa não pode ser feita.
+                            </div>
+
+                             <br> </br>
+                            <div>
+                                <b>38 - Acontecimentos ocorridos após a data de balanço</b>
+                                <br> </br>
+                                Indicar:
+                                <br> </br>
+                                A natureza dos eventos.<br> </br>
+                                Estimativa do efeito financeiro, ou uma declaração de que<br> </br>
+                                tal estimativa não pode ser feita.
+                            </div>
+
+                            <br> </br>
+                            <div>
+                                <b>39 - Auxílio do governo e outras entidades</b>
+                                <br> </br>
+                                Indicar:
+                                <br> </br>
+                                Natureza do auxílio de que a empresa tenha beneficiado<br> </br>directamente
+                            </div>
+
+                            <br> </br>
+
+                            <div>
+                                <b>40 - Transações com entidades relacionadas</b>
+                                <br> </br>
+                                Indicar:
+                                <br> </br>
+                                Relacionamentos em que exista controlo,
+                                independentemente de ter havido ou não transacções.<br> </br>
+                                Se tiver havido transacções:<br> </br>
+                                > Natureza do relacionamento existente.<br> </br>
+                                > Tipos de transacções realizadas.<br> </br>
+                                > Políticas de determinação dos preços.<br> </br>
+                                > Quantia das transacções realizadas
+                            </div>
+
+                             <br> </br>
+                            <div>
+                                <b>41 - Informações exigidas por diplomas legais</b>
+                                <br> </br>
+                                Indicar informações exigidas por diplomas legais.
+                            </div>
+
+                             <br> </br>
+                            <div>
+                                <b>42 - Outras informações</b>
+                                <br> </br>
+                                Indicar outras informações consideradas necessárias
+                                para cumprir com as características qualitativas de
+                                relevância e fiabilidade que a informação financeira
+                                deve ter.
+                            </div>
+                            <br></br>
+
+
+                            <!--<div>
+                                <p style="text-align:center">NOTAS À DEMONSTRAÇÃO DE FLUXOS DE CAIXA</p>
+                            </div>
+
+
+                            <br> </br>
+                            <div>
+                                <b>43 - Políticas adoptadas</b>
+                                <br> </br>
+                                Indicar:<br> </br>
+                                A política adoptada na determinação dos componentes
+                                de caixa e seus equivalentes.
+                            </div>
+
+
+                            <br> </br>
+                            <div>
+                                <b>44 - Alterações políticas </b>
+                                <br> </br>
+                                Indicar se as políticas adoptadas para a determinação dos
+                                componentes de caixa e seus equivalentes foram alteradas em
+                                relação às que haviam sido seguidas em relação ao exercício
+                                precedente.
+                                Razões que determinaram a alteração<br> </br>
+                                Natureza das alterações que deveriam ser efectuadas nos
+                                componentes do período precedente para que os fluxos
+                                fossem comparáveis.
+                            </div>
+
+
+
+                             <br> </br>
+                            <br> </br>
+
+                             <div>
+                                 <b>45 - Alienação de filias e associadas </b><br> </br>
+                                <br> </br>
+                                <br> </br>
+                            </div>
+
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                              <tr>
+                                <th style="border-color:black;" class="black_border text-center">Indicar o nome da filial associada</th>
+                                <th class="black_border text-center" > </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                         <td>Discriminar o justo valor dos activos (incluindo
+                                             caixa e equivalentes de caixa) alienados</td>
+                                        <td> </td>
+
+                                      </tr>
+                                    <tr>
+                                         <td>Discriminar o justo valor dos passivos alienados</td>
+                                        <td> </td>
+
+                                      </tr>
+                                    <tr>
+                                         <td>Total do preço de venda</td>
+                                        <td> </td>
+
+                                      </tr>
+                                    <tr>
+                                         <td>Caixa e equivalentes de caixa cedidos</td>
+                                        <td> </td>
+
+                                      </tr>
+                                    <tr>
+                                         <td><b>Fluxo de caixa da venda líquida de caixa
+                                             e equivalentes de caixa cedidos</b></td>
+                                        <td> </td>
+
+                                      </tr>
+                                </tbody>
+                        </table>
+
+                             <br> </br>
+
+                             <div>
+                                 <b>46 - Aquisição de filias e associadas </b><br> </br>
+                                <br> </br>
+                                <br> </br>
+                            </div>
+
+                            <table class="table table-condensed table-bordered" style="border-color:black;font-size:14px;">
+                                <thead>
+                              <tr>
+                                <th style="border-color:black;" class="black_border text-center">Indicar o nome da filial associada</th>
+                                <th class="black_border text-center" > </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                         <td>Discriminar o justo valor dos activos (incluindo
+                                             caixa e equivalentes de caixa) adquiridos</td>
+                                        <td> </td>
+
+                                      </tr>
+                                    <tr>
+                                         <td>Discriminar o justo valor dos passivos adquiridos</td>
+                                        <td> </td>
+
+                                      </tr>
+                                    <tr>
+                                         <td>Total do preço de compra</td>
+                                        <td> </td>
+
+                                      </tr>
+                                    <tr>
+                                         <td>Caixa e equivalentes de caixa  adquiridos</td>
+                                        <td> </td>
+
+                                      </tr>
+                                    <tr>
+                                         <td><b>Fluxo de caixa da venda líquida de caixa
+                                             e equivalentes de caixa adquiridos</b></td>
+                                        <td> </td>
+
+                                      </tr>
+                                </tbody>
+                        </table>
+
+                                <br> </br>
+
+                             <div>
+                                <b>47 - Caixa e equivalentes de caixa</b><br> </br>
+
+                                <br> </br>
+                                <br> </br>
+                            </div>
+                                  <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().start_date" />
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().end_date" />
+                            </t>
+                           <table class="table table-condensed table-bordered" style="font-size:10px;">
+
+
+                                <thead>
+                                     <tr>
+                                <th  class="text-center">Rubricas</th>
+
+                                        <th class="text-center">
+                                                    <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+
+
+                                            </th>
+                                        </t>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>Caixa</td>
+                                        <td> </td>
+                                        <td> </td>
+                                      </tr>
+                                    <tr>
+                                        <td>Numerário</td>
+                                        <td> </td>
+                                        <td> </td>
+                                      </tr>
+                                     <tr>
+                                        <td>Saldos em bancos, imediatamente mobilizávei</td>
+                                        <td> </td>
+                                        <td> </td>
+                                      </tr>
+                                    <tr>
+                                        <td>Equivalentes de caixa</td>
+                                        <td> </td>
+                                        <td> </td>
+                                      </tr>
+                                    <tr>
+                                        <td>Discriminar</td>
+                                        <td> </td>
+                                        <td> </td>
+                                      </tr>
+                                    <tr>
+                                        <td><b>Caixa e equivalentes de caixa (excluindo diferenças de câmbio)</b></td>
+                                        <td> </td>
+                                        <td> </td>
+                                      </tr>
+                                    <tr>
+                                        <td>Diferenças de câmbio de caixa e equivalentes de caixa</td>
+                                        <td> </td>
+                                        <td> </td>
+                                      </tr>
+                                    <tr>
+                                        <td><b>Caixa e equivalentes de caixa (actualizados cambialmente)</b></td>
+                                        <td> </td>
+                                        <td> </td>
+                                      </tr>
+                                    <tr>
+                                        <td>Outras disponibilidades</td>
+                                        <td> </td>
+                                        <td> </td>
+                                      </tr>
+                                    <tr>
+                                        <td>Discriminar</td>
+                                        <td> </td>
+                                        <td> </td>
+                                      </tr>
+                                    <tr>
+                                        <td><b>Disponibilidades constantes do Balanço</b></td>
+                                        <td> </td>
+                                        <td> </td>
+                                      </tr>
+                                </tbody>
+                        </table>
+
+                            <br> </br>
+                            <div>
+                                <b>48 - Operações não efectuada por caixa e Seus Equivalentes:</b>
+                                <br> </br>
+                                Indicar:
+                                <br> </br>
+                                Divulgar, no mínimo, informações relativas a: <br> </br>
+                                Compra de uma empresa por meio de emissão de acções.<br> </br>
+                                Conversão de dívidas em capital.<br> </br>
+
+                            </div>
+
+                            <br> </br>
+                            <div>
+                                <b>49 - Outras informações necessárias á compreensão
+                                da demonstração dos fluxos de caixa</b>
+                                <br> </br>
+                                Indicar:
+                                <br> </br>
+                                <p style="text-align:justify;font-size:14px;">Reflectir a substância económica das operações e outros
+                                acontecimentos e não meramente a sua forma legal: <br> </br>
+                                Ser neutra, isto é, não influenciar uma tomada de decisão
+                                ou o exercício de um juízo a fim de atingir um resultado ou efeito pré-determinado;<br> </br>
+                                    Conversão de dívidas em capital.</p><br> </br>
+
+                                Ser prudente, isto é, resultar do uso de um determinado
+                                grau de precaução no exercício dos juízos necessários para
+                                fazer estimativas requeridas em condições de incerteza e os
+                                activos e proveitos não serem sobreavaliados e os passivos
+                                e custos não serem sub-avaliados;
+
+                                Ser completa em todos os aspectos materiais. Para o efeito, entende-se por materialidade o montante a partir do
+qual uma omissão ou inexactidão de uma informação
+quantitativa influencia as decisões económicas dos utentes
+tomadas na base das demonstrações financeiras. <br> </br>
+
+
+                            </div>   -->
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

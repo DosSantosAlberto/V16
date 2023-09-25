@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="na_account_tax_vat_sale_15" model="account.tax.template">
+        <field name="description">15%</field>
+        <field name="chart_template_id" ref="na_chart_template"/>
+        <field name="type_tax_use">sale</field>
+        <field name="name">VAT 15%</field>
+        <field name="amount_type">percent</field>
+        <field name="amount">15</field>
+        <field name="tax_group_id" ref="tax_group_1"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('na_account_account_3431'),
+            }),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('na_account_account_3431'),
+            }),
+        ]"/>
+    </record>
+
+    <record id="na_account_tax_vat_sale_0" model="account.tax.template">
+        <field name="description">0%</field>
+        <field name="chart_template_id" ref="na_chart_template"/>
+        <field name="type_tax_use">sale</field>
+        <field name="name">VAT 0%</field>
+        <field name="amount_type">percent</field>
+        <field name="amount">0</field>
+        <field name="tax_group_id" ref="tax_group_1"/>
+       <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('na_account_account_3431'),
+            }),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('na_account_account_3431'),
+            }),
+        ]"/>
+    </record>
+
+    <record id="na_account_tax_wht_sale_10" model="account.tax.template">
+        <field name="description">10%</field>
+        <field name="chart_template_id" ref="na_chart_template"/>
+        <field name="type_tax_use">sale</field>
+        <field name="name">WHT 10%</field>
+        <field name="amount_type">percent</field>
+        <field name="amount">10</field>
+        <field name="tax_group_id" ref="tax_group_1"/>
+       <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('na_account_account_3431'),
+            }),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('na_account_account_3431'),
+            }),
+        ]"/>
+    </record>
+
+    <record id="na_account_tax_vat_purchase_15" model="account.tax.template">
+        <field name="description">15%</field>
+        <field name="chart_template_id" ref="na_chart_template"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="name">VAT 15%</field>
+        <field name="amount_type">percent</field>
+        <field name="amount">15</field>
+        <field name="tax_group_id" ref="tax_group_1"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('na_account_account_343461'),
+            }),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('na_account_account_343461'),
+            }),
+        ]"/>
+    </record>
+
+    <record id="na_account_tax_vat_purchase_0" model="account.tax.template">
+        <field name="description">0%</field>
+        <field name="chart_template_id" ref="na_chart_template"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="name">VAT 0%</field>
+        <field name="amount_type">percent</field>
+        <field name="amount">0</field>
+        <field name="tax_group_id" ref="tax_group_1"/>
+       <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('na_account_account_343461'),
+            }),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('na_account_account_343461'),
+            }),
+        ]"/>
+    </record>
+
+    <record id="na_account_tax_wht_purchase_10" model="account.tax.template">
+        <field name="description">10%</field>
+        <field name="chart_template_id" ref="na_chart_template"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="name">WHT 10%</field>
+        <field name="amount_type">percent</field>
+        <field name="amount">10</field>
+        <field name="tax_group_id" ref="tax_group_1"/>
+       <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('na_account_account_3431'),
+            }),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('na_account_account_3431'),
+            }),
+        ]"/>
+    </record>
+</odoo>

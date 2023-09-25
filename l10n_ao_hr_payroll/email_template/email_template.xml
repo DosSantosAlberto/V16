@@ -1,0 +1,45 @@
+<!-- Mail template are declared in a NOUPDATE block
+       so users can freely customize/delete them -->
+<data>
+    <!--Email template -->
+    <record id="email_template_payslip_send_email" model="mail.template">
+        <field name="name">Payslip Sending Template</field>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="email_from">${object.user_id.partner_id.email}</field>
+        <field name="partner_to">${object.employee_id.id}</field>
+        <field name="subject">${object.company_id.name} - Payslip [${object.number}]</field>
+        <field name="lang">${object.user_id.lang}</field>
+        <field name="auto_delete" eval="False"/>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Saudações ${object.employee_id.name}
+                </p>
+                <p></p>
+                <p>
+                    Segue anexo o seu Recibo de vencimento referente a
+                    ${'%s/%s' % (str(object.date_to)[0:4], str(object.date_to)[5:7], )}.
+                </p>
+                <p></p>
+                <p>
+                    Cumprimentos
+                </p>
+            </div>
+        </field>
+        <field name="report_template" ref="action_report_simple_payslip"/>
+        <field name="report_name">AG - Payslip ${object.number}</field>
+    </record>
+
+    <record id="hr_payslip_run_form_inherit" model="ir.ui.view">
+        <field name="name">hr.Payslip.run.Form View.Inherited</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+        <field name="arch" type="xml">
+            <button name="action_draft" position="after">
+                <button name="action_send_email" type="object" string="Send by Email"
+                        attrs="{'invisible':[('state', '=', 'draft')]}"/>
+            </button>
+        </field>
+    </record>
+
+</data>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Remuneratio Codes -->
+    <data noupdate="1">
+        <record id="hr_remuneration_code_descontopordanos" model="hr.remuneration.code">
+            <field name="code">des_danos</field>
+            <field name="name">Desconto por Danos</field>
+            <field name="type">deduction</field>
+        </record>
+
+        <record id="hr_remuneration_code_descontoadiantamentosalarial"
+                model="hr.remuneration.code">
+            <field name="code">des_adiantamento_salarial</field>
+            <field name="name">Desconto Adiantamento Salarial</field>
+            <field name="type">deduction</field>
+        </record>
+    </data>
+</odoo>

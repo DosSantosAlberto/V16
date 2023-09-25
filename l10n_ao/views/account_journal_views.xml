@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="saft_account_journal_formview" model="ir.ui.view">
+            <field name="name">SAFT account Journal View</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="document_type" attrs="{'required': [('type','in', ['sale'])],'invisible': [('type', 'not in', ['sale'])]}"/>
+                </field>
+                <page name="advanced_settings" position="after">
+                    <page string="SAFT">
+                        <group>
+                            <group>
+                                <field name="self_billing"/>
+                                <field name="payment_mechanism"/>
+                                <field name="saft_invoice_type" attrs="{'invisible': [('type','not in',['sale','purchase'])],
+                                 'required': [('type','in',['sale','purchase'])]}"/>
+                            </group>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <record id="saft_account_move_formview" model="ir.ui.view">
+            <field name="name">SAFT account move View</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="SAFT">
+                        <group>
+                            <group>
+                                <field name="transaction_type"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</odoo>

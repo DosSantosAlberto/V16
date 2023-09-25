@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="purchase_inherit_form_view" model="ir.ui.view">
+            <field name="name">purchase.order.inherit.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="has_cost_center" invisible="1"/>
+                    <field name="cost_center"
+                           attrs="{'required':[('has_cost_center','!=',False)], 'invisible':[('has_cost_center','==',False)]}"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+
+</odoo>

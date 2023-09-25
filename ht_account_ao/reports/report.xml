@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- <report id="action_report_invoice_by_date" model="invoice.by.date.wizard" report_type="qweb-pdf" string="Facturação por datas" name="ht_account_ao.report_invoice_by_date_pdf" file="ht_account_ao.report_invoice_by_date_pdf" /> -->
+        <record id="action_report_invoice_by_date_html" model="ir.actions.report">
+            <field name="name">Faturação por datas</field>
+            <field name="model">invoice.by.date.wizard</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">ht_account_ao.report_invoice_by_date_pdf</field>
+        </record>
+
+        <record id="action_report_invoice_by_date_pdf" model="ir.actions.report">
+            <field name="name">Faturação por datas</field>
+            <field name="model">invoice.by.date.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ht_account_ao.report_invoice_by_date_pdf</field>
+        </record>
+
+
+        <record id="action_report_payment_by_date_pdf" model="ir.actions.report">
+            <field name="name">Pagamentos Por Datas</field>
+            <field name="model">payment.by.date.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ht_account_ao.report_payment_by_date_pdf</field>
+        </record>
+
+        <record id="action_report_payment_by_date_html" model="ir.actions.report">
+            <field name="name">Pagamentos Por Datas</field>
+            <field name="model">payment.by.date.wizard</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">ht_account_ao.report_payment_by_date_pdf</field>
+        </record>
+
+        <record id="action_report_supplier_map_pdf" model="ir.actions.report">
+            <field name="name">Mapa de Fornecedor</field>
+            <field name="model">supplier.map.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ht_account_ao.report_supplier_map_pdf</field>
+            <field name="report_file">ht_account_ao.report_supplier_map_pdf</field>
+            <field name="paperformat_id" ref="ht_account_ao.paper_account_landscape"/>
+        </record>
+
+        <!-- <report
+                 id="action_report_transfer_order"
+                 model="account.transfer.order"
+                 report_type="qweb-pdf"
+                 string="Transfer Order"
+                 name="ht_account_ao.report_transferorder"
+                 file="ht_account_ao.report_transferorder"
+                 attachment="(object.state in ('confirm','approved')) and
+                 
+                 ('TRF'+(object.name or '').replace('/','') + '.pdf')"
+         />
+
+         <report
+                 id="action_report_bank_statement"
+                 model="account.bank.statement"
+                 report_type="qweb-pdf"
+                 string="Bank Statement"
+                 name="ht_account_ao.report_bank_statement"
+                 file="ht_account_ao.report_bank_statement"
+                 attachment="((object.journal_id.name) + '_'+ (object.date).replace('/','') +'.pdf')"
+         />         
+
+         <report
+                 id="action_report_partner_due_invoices"
+                 model="ht_account_ao.partner.due.invoices.wizard"
+                 report_type="qweb-pdf"
+                 string="Facturas vencidas"
+                 name="ht_account_ao.report_due_invoice_pdf"
+                 file="ht_account_ao.report_due_invoice_pdf"
+                 attachment="('Facturas_vencidas' +'.pdf')"
+         />
+
+         <report
+                 id="action_report_account_extract"
+                 model="account.extract.wizard"
+                 string="Account Extract"
+                 paperformat="ht_account_ao.paperformat_trial_balance"
+                 name="ht_account_ao.report_account_extract_pdf"
+                 file="ht_account_ao.report_account_extract_pdf"
+                 report_type="qweb-pdf"/>-->
+        <!-- QWeb Reports -->
+
+        <record id="account.account_invoices" model="ir.actions.report">
+            <field name="report_name">ht_account_ao.report_invoice_ao</field>
+            <field name="report_file">ht_account_ao.report_invoice_ao</field>
+            <field name="print_report_name">(object._get_report_base_filename())</field>
+        </record>
+        <record id="account.action_report_payment_receipt" model="ir.actions.report">
+            <field name="report_name">ht_account_ao.report_payment_receipt_ao</field>
+            <field name="report_file">ht_account_ao.report_payment_receipt_ao</field>
+        </record>
+
+        <record id="account.action_account_original_vendor_bill" model="ir.actions.report">
+            <field name="binding_model_id" eval="False"/>
+        </record>
+
+        <record id="account.account_invoices_without_payment" model="ir.actions.report">
+            <field name="binding_model_id" eval="False"/>
+        </record>
+
+
+        <record id="action_report_sale_map_tax" model="ir.actions.report">
+            <field name="name">Sales per Taxes - IVA</field>
+            <field name="model">sale.summary.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ht_account_ao.report_sale_map_tax_pdf</field>
+            <field name="report_file">ht_account_ao.report_sale_map_tax_pdf</field>
+            <field name="print_report_name">'VENDAS POR - %s - %s' % (object.filter,object.date_from)</field>
+            <field name="paperformat_id" ref="ht_account_ao.paper_account_landscape"/>
+            <!--  <field name="binding_model_id" ref="model_sale_summary_wizard"/>-->
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_captive_vat" model="ir.actions.report">
+            <field name="name">Map Captive Vat</field>
+            <field name="model">captive.vat.map</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ht_account_ao.report_captive_iva_map_pdf</field>
+            <field name="report_file">ht_account_ao.report_captive_iva_map_pdf</field>
+            <field name="print_report_name">'Mapa de iva cativo - %s' % (object.date_from)</field>
+            <field name="paperformat_id" ref="ht_account_ao.paper_account_landscape"/>
+            <!--  <field name="binding_model_id" ref="model_sale_summary_wizard"/>-->
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_credit_note_map" model="ir.actions.report">
+            <field name="name">Mapa de Notas de Crédito</field>
+            <field name="model">credit.note.map</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ht_account_ao.report_credit_note_map_pdf</field>
+            <field name="report_file">ht_account_ao.report_credit_note_map_pdf</field>
+            <field name="print_report_name">'Mapa de nota de crédito - %s - %s' % (object.filter,object.date_from)
+            </field>
+            <field name="paperformat_id" ref="ht_account_ao.paper_account_landscape"/>
+            <!--  <field name="binding_model_id" ref="model_sale_summary_wizard"/>-->
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

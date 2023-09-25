@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_article_extract_report" model="ir.actions.report">
+            <field name="name">extrato do artigo</field>
+            <field name="model">article.extract.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ht_stock_ao.article_extract_report</field>
+            <field name="report_file">ht_stock_ao.article_extract_report</field>
+        </record>
+      
+      <template id="article_extract_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="header" style="color: #0B74CE">
+                        <div class="row b_color">
+                            <div class="col-8">
+                                <b><span class="text-left" t-field="o.company_id"/></b>
+                            </div>
+                            <div class="col-4" style="font-size:10px;">
+                                <ul class="list-inline text-right">
+                                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                                    |
+                                    Pag. <span class="page"/>/<span class="topage"/>
+                                </ul>
+                            </div>
+                        </div>
+                        <br/>
+                        <hr style="display: block; height: 1px;
+                        border: 0; border-top: 3px solid #0B74CE;
+                        margin: 0; padding: 0;"/>
+                        <div class="row mt16">
+                            <div class="col-6">
+                                <div align="left">
+                                    <b class="b_color">
+                                        Extracto do Artigo
+                                        (<span t-field="o.start_date"/> até <span t-field="o.end_date"/>)
+                                    </b>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div align="right"><b class="b_color">Valores em <span
+                                        t-esc="o.company_id.currency_id.symbol"/></b></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="page">
+                        <style type="text/css">
+                            * {
+                            padding-bottom: 0 !important; padding-top: 0 !important;
+                            margin-bottom: 0 !important; margin-top:0 !important;
+                            font-size: 12px !important;
+                            }
+                            hr {
+                            display: block; height: 1px;
+                            border: 0; border-top: 3px solid black;
+                            margin: 0; padding: 0;
+                            }
+                            .b_color{
+                            color: #0B74CE;
+                            }
+
+                            table {
+                            border-spacing: 3px;
+                            border-top: 3px solid black;
+                            border-collapse:collapse;
+                            }
+
+                            td {
+                            border-bottom:0 !important;
+                            border-top: 1px solid #B2BABB !important;
+                            }
+
+                            th {
+                            border-top:0 !important;
+                            border-bottom: 1px solid #B2BABB !important;
+                            }
+
+                            table, tr, th, td {
+                            border-collapse: separate;
+                            padding:0px !important;
+                            }
+
+                            .border_top_th{
+                            border-top: 1px solid black !important;
+                            }
+                        </style>
+                    <div >
+
+                       <!--  <table class="table table-condensed table-bordered">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Armazém</th>
+                                <th class="text-center">Data</th>
+                                <th class="text-center">Documento</th>
+                                <th class="text-center">Q</th>
+                                <th class="text-center">PC </th>
+                                <th class="text-center">VALOR</th>
+                                <th class="text-center">PCM</th>
+                                <th class="text-center">STOCK ACTUAL</th>
+                                <th class="text-center">VALOR STOCK</th>
+                               
+                              </tr>
+                            </thead>
+                            <tr>
+                                <td class="text-center">1</td>
+                                <td class="text-center">2</td>
+                                <td class="text-center">3</td>
+                                <td class="text-center">4</td>
+                                <td class="text-center">5 </td>
+                                <td class="text-center">6=4x5</td>
+                                <td class="text-center">7</td>
+                                <td class="text-center">8</td>
+                                <td class="text-center">9 = 7x8</td>
+                               
+                              </tr>
+                            <tbody>
+                              <tr t-foreach="o.get_movement_article()" t-as="line">
+                                <td class="text-center" >
+                                    <span>
+                                     <t t-esc="line.location_id.name"/>
+                                    </span> 
+                                </td>
+                                <td>
+                                    <span>
+                                        <t t-esc="line.date"/>
+                                    </span> 
+                                    </td>
+                                <td class="text-center" >
+                                    <span>
+                                        <t t-esc="line.reference"/>
+                                    </span> 
+                                </td>
+                                <td>
+                                    <span>
+                                        <t t-esc="line.product_id.qty_available"/>
+                                    </span> 
+                                </td>
+                                <td class="text-center" >
+                                    <span>
+                                        <t t-esc="line.product_id.list_price" t-options='{"widget": "float", "precision": 2}'/>
+
+                                    </span>
+                                </td>
+                                <td class="text-center" >
+                                    <span>
+                                        <t t-set="product" t-value="(line.product_id.qty_available) * (line.product_id.list_price)"/>
+                                        <t t-esc="product" t-options='{"widget": "float", "precision": 2}'/>
+                                    </span> 
+                                </td>
+                                <td class="text-center" >
+                                    <span>
+                                        <t t-esc="line.product_id.standard_price" t-options='{"widget": "float", "precision": 2}'/>
+                                    </span> 
+                                </td>
+                                <td class="text-center" >
+                                    <span>
+                                        <t t-esc="line.product_id.qty_available"/>
+                                    </span> 
+                                </td>
+                                <td class="text-center" >
+                                    <span>
+                                        <t t-set="product_stock" t-value="(line.product_id.qty_available) * (line.product_id.standard_price)"/>
+                                        <t t-esc="product_stock"/>
+                                    </span> 
+                                </td>
+                                <td>
+                                         t t-esc="line.product_id.create_date"/>
+                                </td>
+                              </tr>
+
+                            </tbody>
+                          </table> -->
+                          <table class="table table-condensed" style="font-size:10px;">
+                                <thead>
+
+
+                                    <tr style="font-weight:bold; color: black;">
+                                        <th class="text-center"
+                                            colspan="1">Armazém</th><th class="text-center"
+                                            colspan="1">Data</th><th class="text-center"
+                                            colspan="1">Documento</th>
+                                        <th class="text-center"
+                                            colspan="1">Q</th>
+                                        <th class="text-center"
+                                            colspan="1">PC</th>
+                                        <th class="text-center"
+                                            colspan="1">Valor</th>
+                                        <th class="text-center"
+                                            colspan="1">PCM</th>
+                                        <th class="text-center"
+                                            colspan="1">Stock Actual</th>
+                                        <th class="text-center"
+                                            colspan="1">Valor Stock</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr t-foreach="o.get_movement_article()" t-as="line">
+                                <td class="text-center" >
+                                    <span>
+                                     <t t-esc="line.location_id.name"/>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span>
+                                        <t t-esc="line.date"/>
+                                    </span>
+                                    </td>
+                                <td class="text-center" >
+                                    <span>
+                                        <t t-esc="line.reference"/>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span>
+                                        <t t-esc="line.product_id.qty_available"/>
+                                    </span>
+                                </td>
+                                <td class="text-center" >
+                                    <span>
+                                        <t t-esc="line.product_id.list_price" t-options='{"widget": "float", "precision": 2}'/>
+
+                                    </span>
+                                </td>
+                                <td class="text-center" >
+                                    <span>
+                                        <t t-set="product" t-value="(line.product_id.qty_available) * (line.product_id.list_price)"/>
+                                        <t t-esc="product" t-options='{"widget": "float", "precision": 2}'/>
+                                    </span>
+                                </td>
+                                <td class="text-center" >
+                                    <span>
+                                        <t t-esc="line.product_id.standard_price" t-options='{"widget": "float", "precision": 2}'/>
+                                    </span>
+                                </td>
+                                <td class="text-center" >
+                                    <span>
+                                        <t t-esc="line.product_id.qty_available"/>
+                                    </span>
+                                </td>
+                                <td class="text-center" >
+                                    <span>
+                                        <t t-set="product_stock" t-value="(line.product_id.qty_available) * (line.product_id.standard_price)"/>
+                                        <t t-esc="product_stock"/>
+                                    </span>
+                                </td>
+                              </tr>
+                                </tbody>
+                            </table>
+
+                        
+                    </div>
+                        
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+  
+      
+
+    </data>
+
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Overtime -->
+    <data noupdate="1">
+        <record id="hr_salary_rule_overtime" model="hr.salary.rule">
+            <field name="code">HE</field>
+            <field eval="122" name="sequence"/>
+            <field eval="1" name="appears_on_payslip"/>
+            <field name="condition_select">python</field>
+            <field name="amount_select">code</field>
+            <field eval="1" name="active"/>
+            <field name="name">Hora Extra</field>
+            <field name="condition_python">
+result = employee.has_overtime(payslip.date_from, payslip.date_to)
+            </field>
+            <field name="amount_python_compute">
+rate_exceed = rate_normal = 0.0
+number_of_overtime = employee.has_overtime(payslip.date_from, payslip.date_to)
+wage_hour = contract.wage_hour
+if number_of_overtime > 30:
+    rate_exceed = (contract.company_id.rate_overtime_exceed / 100)
+else:
+    rate_normal = (contract.company_id.rate_overtime_normal / 100)
+result = (wage_hour * number_of_overtime) + ((wage_hour * number_of_overtime) * rate_normal or rate_exceed)
+            </field>
+            <field name="struct_id" ref="l10n_ao_hr_payroll.hr_salary_structure_base"/>
+            <field name="category_id" ref="l10n_ao_hr_payroll.hr_salary_rule_category_horas_extras"/>
+        </record>
+    </data>
+</odoo>

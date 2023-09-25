@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="paper_format_landscape" model="report.paperformat">
+            <field name="name">Paper Format Landscape</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">4</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+        </record>
+        <report
+                id="action_amortization_map_report"
+                model="amortization.map.wizard"
+                string="Mapa de Amortização"
+                menu="False"
+                name="es_account_report_ao.amortization_map_pdf"
+                file="es_account_report_ao.amortization_map_pdf"
+                report_type="qweb-pdf"/>
+        <template id="es_account_report_ao.amortization_map_pdf">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="header" style="color: #0B74CE">
+                        </div>
+                        <div class="page">
+                            <style>
+                                    .table-bordered tbody  td th{
+                                    border-left: 1px solid black !important;
+                                    border-right: 1px solid black !important;
+                                    border-top:1px solid black !important;
+                                    border-bottom: 1px solid black !important;
+                                    border-collapse: collapse;
+                                    }
+
+                                    .border_top_th{
+                                    border-top: 1px solid black !important;
+                                    }
+                                </style>
+                           <div style="height:10%;width:101%;border:1px solid black;">
+                                <div style="height:120px;width:17%;border:3px solid #1065B0 ;">
+                                    <img t-attf-src="data:image/png;base64,{{res_company.logo }}"
+                                     style="height:110pxpx;width:240px;"/>
+                                    <!--<img t-att-src="'data:image/png;base64,%s' % to_text(res_company.logo)"
+                                         style="height:110px;width:240px"/> -->
+                                </div>
+                                <div style="height:120px;width:101;border:3px solid #4f81bd ;margin-top:-120px;margin-left:0px">
+                                    <p style="text-align:center;font-size:15px;text-transform:uppercase;font-weight:bold;margin-top:10px;">
+                                        MAPA DE REINTEGRAÇÕES E AMORTIZAÇÕES
+                                    </p>
+                                    <p style="text-align:center;font-size:13px;text-transform:;font-weight:bold;">
+                                        Elementos do activo imobilizado corpóreo e incorpóreo
+                                    </p>
+                                    <p style="text-align:center;font-size:13px;text-transform:;font-weight:bold;">
+                                        (Incluindo os adquiridos em estado de uso)
+                                    </p>
+                                </div>
+                                <br/>
+                                <div style="border:1px solid #4f81bd;width:17%;height:22px;background-color:#1065B0;margin-top:-4px;">
+                                    <p style="font-size:10px;margin-top:1px;color:white;margin-left:4px;">Nome da entidade
+                                    </p>
+                                    <div style="width:150%;margin-top:-33px; margin-left:140px;height:22px;border:1px solid #4f81bd;background-color:#f1f4ff;">
+                                        <p style="font-size:10px;margin-top:1px;color:black;margin-left:1px;">
+                                            <span t-field="o.company_id"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div style="border:1px solid #4f81bd;width:17%;height:22px;background-color:#1065B0;margin-top:3px;">
+                                    <p style="font-size:10px;margin-top:1px;color:white;margin-left:4px;">Nº de Identificação Fiscal
+                                    </p>
+                                    <div style="width:150%;margin-top:-33px; margin-left:140px;height:22px;border:1px solid #4f81bd;background-color:#f1f4ff;">
+                                        <p style="font-size:10px;margin-top:1px;color:black;margin-left:10px;">
+                                            <span t-field="o.company_id.vat"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div style="border:1px solid #4f81bd;width:17%;height:22px;background-color:#1065B0;margin-top:3px;">
+                                    <p style="font-size:10px;margin-top:1px;color:white;margin-left:4px;">Exercício de
+                                    </p>
+                                    <div style="width:150%;margin-top:-33px; margin-left:140px;height:22px;border:1px solid #4f81bd;background-color:#f1f4ff;">
+                                        <p style="font-size:10px;margin-top:1px;color:black;margin-left:10px;">
+                                            <span t-field="o.accounting_year.name"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div style="border:1px solid #4f81bd;width:5%;height:45px;background-color:#1065B0;margin-top:3px;">
+                                    <p style="font-size:10px;margin-top:7px;color:white;margin-left:4px;">Método
+                                        <br>Utilizado</br>
+                                    </p>
+                                </div>
+                                <div style="border:1px solid #4f81bd;width:10%;height:22px;background-color:#1065B0;margin-top:-45px;margin-left:100px;">
+                                    <p style="font-size:10px;margin-top:1px;color:white;margin-left:4px;">Quotas constantes
+                                    </p>
+                                    <div style="width:199%;margin-top:-33px; margin-left:123px;height:22px;border:1px solid #4f81bd;background-color:#f1f4ff;">
+                                        <p style="font-size:10px;margin-top:1px;color:black;margin-left:10px;">
+                                            <t t-if="o.other_constants != 'other'">
+                                                X
+                                            </t>
+                                        </p>
+                                    </div>
+                                </div>
+                                <t t-if="o.other_constants == 'other'">
+                                    <div style="border:1px solid #4f81bd;width:5%;height:22px;background-color:#1065B0;margin-top:2px;margin-left:64px;">
+                                        <p style="font-size:10px;margin-top:1px;color:white;margin-left:4px;">Outro
+                                        </p>
+                                        <div style="width:160%;margin-top:-30px; margin-left:60px;height:22px;border:1px solid #4f81bd;background-color:#f1f4ff;">
+                                            <p style="font-size:10px;margin-top:1px;color:black;margin-left:50px;">
+
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div style="border:1px solid #4f81bd;width:7%;height:22px;background-color:#1065B0;margin-top:-22px;margin-left:220px;">
+                                        <p style="font-size:10px;margin-top:1px;color:white;margin-left:4px;">Indicar Qual
+                                        </p>
+                                        <div style="width:92%;margin-top:-30px; margin-left:80px;height:22px;border:1px solid #4f81bd;background-color:#f1f4ff;">
+                                            <p style="font-size:10px;margin-top:1px;color:black;text-align:center;">
+                                                <span style="margin-left:4px;" t-field="o.other_nature_assets"/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </t>
+                                <div>
+                                    <div style="border:1px solid #4f81bd;width:5%;height:120px;background-color:#1065B0;margin-top:-98px;margin-left:700px;">
+                                        <p style="font-size:10px;margin-top:7px;color:white;" class="text-center">Natureza
+                                            <br>do Activo</br>
+                                        </p>
+                                    </div>
+                                    <!-- Outro Grupo -->
+                                    <div style="border:1px solid #4f81bd;width:17%;height:22px;background-color:#1065B0;margin-top:-120px;margin-left:804px;">
+                                        <p style="font-size:10px;margin-top:1px;color:white;margin-left:4px;">Activos Fixos
+                                            Tangíveis
+                                        </p>
+                                        <div style="width:115.5%;margin-top:-33px; margin-left:210px;height:22px;border:1px solid #4f81bd;background-color:#f1f4ff;">
+                                            <p style="font-size:10px;margin-top:1px;color:black;margin-left:10px;">
+                                                <t t-if="o.nature_assets == 'tangible'">
+                                                    X
+                                                </t>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="border:1px solid #4f81bd;width:17%;height:22px;background-color:#1065B0;margin-top:3px;margin-left:804px;">
+                                    <p style="font-size:10px;margin-top:1px;color:white;margin-left:4px;">Activos Fixos
+                                        Intangíveis
+                                    </p>
+                                    <div style="width:115.5%;margin-top:-33px; margin-left:210px;height:22px;border:1px solid #4f81bd;background-color:#f1f4ff;">
+                                        <p style="font-size:10px;margin-top:1px;color:black;margin-left:10px;">
+                                            <t t-if="o.nature_assets == 'Intangibles'">
+                                                X
+                                            </t>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div style="border:1px solid #4f81bd;width:17%;height:22px;background-color:#1065B0;margin-top:3px;margin-left:804px;">
+                                    <p style="font-size:10px;margin-top:1px;color:white;margin-left:4px;">Activos Biológicos Não
+                                    </p>
+                                    <div style="width:115.5%;margin-top:-33px; margin-left:210px;height:22px;border:1px solid #4f81bd;background-color:#f1f4ff;">
+                                        <p style="font-size:10px;margin-top:1px;color:black;margin-left:70px;">
+                                            <t t-if="o.nature_assets == 'biological'">
+                                                X
+                                            </t>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div style="border:1px solid #4f81bd;width:17%;height:22px;background-color:#1065B0;margin-top:3px;margin-left:804px;">
+                                    <p style="font-size:10px;margin-top:1px;color:white;margin-left:4px;">Propriedade de
+                                        Investimento
+                                    </p>
+                                    <div style="width:115.5%;margin-top:-33px; margin-left:210px;height:22px;border:1px solid #4f81bd;background-color:#f1f4ff;">
+                                        <p style="font-size:10px;margin-top:1px;color:black;margin-left:70px;">
+                                            <t t-if="o.nature_assets == 'investment'">
+                                                X
+                                            </t>
+                                        </p>
+                                    </div>
+                                </div>
+                                <t t-if="o.nature_assets == 'other'">
+                                    <div style="border:1px solid #4f81bd;width:17%;height:22px;background-color:#f1f4ff;margin-top:3px;margin-left:804px;">
+                                        <p style="font-size:10px;margin-top:1px;color:white;margin-left:4px;">Outros
+                                        </p>
+                                        <div style="width:115.5%;margin-top:-30px; margin-left:180px;height:22px;border:1px solid #4f81bd;background-color:#f1f4ff;">
+                                            <p style="font-size:10px;margin-top:1px;color:black;margin-left:10px;">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div style="border:1px solid #4f81bd;width:7%;height:22px;background-color:#1065B0;margin-top:-22px;margin-left:900px;">
+                                        <p style="font-size:10px;margin-top:1px;color:white;margin-left:4px;">Indicar Qual
+                                        </p>
+                                        <div style="width:335%;margin-top:-30px; margin-left:80px;height:22px;border:1px solid #4f81bd;background-color:#f1f4ff;">
+                                            <p style="font-size:10px;margin-top:1px;color:black;text-align:center;">
+                                                <span style="margin-left:4px;" t-field="o.other_description_constants"/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </t>
+                                <br/>
+                                <br/>
+                            </div>
+                             <table class="table table-condensed table-bordered" style="border-color:#1065b0;">
+                                        <tr>
+                                            <th rowspan="3" class="text-center"
+                                                style="border-color:#1065b0;font-size:15px;">N
+                                            </th>
+                                            <th rowspan="3" class="text-center"
+                                                style="border-color:#1065b0;font-size:15px;">CPGC
+                                            </th>
+                                            <th rowspan="3" class="text-center"
+                                                style="border-color:#1065b0;font-size:15px;">Descrição do Activo
+                                                Imobilizado
+                                            </th>
+                                            <th colspan="4" style="border-color:#1065b0;font-size:15px;">Data</th>
+                                            <th class="text-center" rowspan="3"
+                                                style="border-color:#1065b0;font-size:15px;">isenção no código
+                                                Aduaneiro (Activo importado)(Sim ou Nao)
+                                            </th>
+                                            <th class="text-center" rowspan="3"
+                                                style="border-color:#1065b0;font-size:15px;">Aquisição/
+                                                construção/fabrico/doação/<br></br>reparação ou benfeitoria
+                                            </th>
+                                            <th class="text-center" rowspan="3"
+                                                style="border-color:#1065b0;font-size:15px;">Número de Anos de
+                                                utilidade esperada
+                                            </th>
+                                            <th class="text-center" rowspan="3"
+                                                style="border-color:#1065b0;font-size:15px;">Ano de reavalição
+                                            </th>
+                                            <th class="text-center" rowspan="3"
+                                                style="border-color:#1065b0;font-size:15px;">Valor acréscimo da
+                                                reavaliação
+                                            </th>
+                                            <th class="text-center" rowspan="3"
+                                                style="border-color:#1065b0;font-size:15px;">Valor total
+                                                reavaliado
+                                            </th>
+                                            <th class="text-center" colspan="5"
+                                                style="border-color:#1065b0;font-size:15px;">Reintegrações e
+                                                amortizações
+                                            </th>
+                                            <th class="text-center" style="border-color:#1065b0;font-size:15px;">Valor
+                                                contabilístico (residual)
+                                            </th>
+                                        </tr>
+                                        <tr style="border-color:#1065b0;">
+
+                                            <td colspan="2" style="border-color:#1065b0;font-size:15px;">
+                                                Aquisição/construção
+                                                <br>Fabrico/Benfeitoria</br>
+                                            </td>
+                                            <td colspan="2" style="border-color:#1065b0;font-size:15px;">Entrada em
+                                                Funcionamento
+                                                <br>Inicio de Utilização</br>
+                                            </td>
+                                            <td style="border-color:#1065b0;font-size:15px;">Valores Exercícios
+                                                Anteriores
+                                            </td>
+                                            <td colspan="3" style="border-color:#1065b0;font-size:15px;">Do Exercicio
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;">Valores
+                                                depreciações/
+                                                <br></br>
+                                                Amortizações
+                                                Acumuladas
+                                            </td>
+                                            <td style="border-color:#1065b0;font-size:15px;">13=9+12</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;">Mês</td>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;">Ano</td>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;">Mês</td>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;">Ano</td>
+
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;">14</td>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;">Taxa</td>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;">Taxa
+                                                corrigida
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;">Valores</td>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;"></td>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-color:#1065b0;" align="center">1</td>
+                                            <td style="border-color:#1065b0;" align="center">2</td>
+                                            <td style="border-color:#1065b0;" align="center">3</td>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;" align="center">
+                                                4
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;" align="center">
+                                                5
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;" align="center">
+                                                6
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;" align="center">
+                                                7
+                                            </td>
+                                            <td style="border-color:#1065b0;" align="center">8</td>
+                                            <td style="border-color:#1065b0;" align="center">9</td>
+                                            <td style="border-color:#1065b0;" align="center">10</td>
+                                            <td style="border-color:#1065b0;" align="center">11</td>
+                                            <td colspan="1" style="border-color:#1065b0;font-size:15px;" align="center">
+                                                12
+                                            </td>
+                                            <td style="border-color:#1065b0;font-size:15px;">(13) = (9+12)</td>
+                                            <td style="border-color:#1065b0;font-size:15px;" align="center">14</td>
+                                            <td style="border-color:#1065b0;font-size:15px;" align="center">15</td>
+                                            <td style="border-color:#1065b0;font-size:15px;" align="center">16</td>
+                                            <td style="border-color:#1065b0;font-size:15px;" align="center">17</td>
+                                            <td style="border-color:#1065b0;font-size:15px;" align="center">18=14+17
+                                            </td>
+                                            <td style="border-color:#1065b0;font-size:15px;" align="center">19=13-18
+                                            </td>
+                                        </tr>
+                                    <tbody>
+                                        <t t-set="total_acquisition" t-value="0"/>
+                                        <t t-set="total_reavalition" t-value="0"/>
+                                        <t t-set="total_exer_before" t-value="0"/>
+                                        <t t-set="value" t-value="0"/>
+                                        <t t-set="total_exer_depre" t-value="0"/>
+                                        <t t-set="value_account" t-value="0"/>
+                                        <t t-set="i" t-value="1"/>
+                                        <t t-foreach="o.get_account_mother()" t-as="a">
+                                            <tr>
+                                                <td style="border-color:#1065b0;">
+                                                </td>
+                                                <td style="border-color:#1065b0;">
+                                                    <b>
+
+
+                                                        <b t-esc="a['code']"/>
+
+
+                                                    </b>
+                                                </td>
+                                                <td style="border-color:#1065b0;">
+
+                                                    <b style="margin-left:4px;" t-esc="a['name']"/>
+
+                                                </td>
+                                                <td colspan="1" style="border-color:#1065b0;">
+
+                                                </td>
+                                                <td colspan="1" style="border-color:#1065b0;">
+
+                                                </td>
+                                                <td colspan="1" style="border-color:#1065b0;">
+
+
+                                                </td>
+                                                <td colspan="1" style="border-color:#1065b0;">
+
+                                                </td>
+                                                <td style="border-color:#1065b0;" align="center">
+                                                </td>
+                                                <td style="border-color:#1065b0;" align="center">
+                                                    <b style="margin-left:4px;"
+                                                       t-esc="o.get_amortization_all(a)['total_original']"
+                                                       t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <td style="border-color:#1065b0;" align="center">
+                                                </td>
+                                                <td style="border-color:#1065b0">
+                                                </td>
+                                                <td colspan="1" style="border-color:#1065b0;">
+                                                </td>
+                                                <td style="border-color:#1065b0;">
+                                                    <b style="margin-left:4px;"
+                                                       t-esc="o.get_amortization_all(a)['valor_total_revaluation']"
+                                                       t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <td style="border-color:#1065b0;">
+                                                    <b style="margin-left:4px;"
+                                                       t-esc="o.get_amortization_all(a)['valor_before']"
+                                                       t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <td style="border-color:#1065b0;">
+                                                </td>
+                                                <td style="border-color:#1065b0;">
+                                                </td>
+                                                <td style="border-color:#1065b0;">
+                                                    <b style="margin-left:4px;"
+                                                       t-esc="o.get_amortization_all(a)['values']"
+                                                       t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <td style="border-color:#1065b0;" align="center">
+                                                    <b style="margin-left:4px;"
+                                                       t-esc="o.get_amortization_all(a)['value_depreciation']"
+                                                       t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <td style="border-color:#1065b0;" align="center">
+                                                    <b style="margin-left:4px;"
+                                                       t-esc="o.get_amortization_all(a)['value_accounting']"
+                                                       t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                            </tr>
+                                            <tr t-foreach="o.get_amortization_all(a)['data']" t-as="r">
+                                                <td style="border-color:#1065b0;">
+                                                    <span t-esc="i"/>
+
+                                                </td>
+                                                <td style="border-color:#1065b0;">
+                                                    <b t-esc="r['code']"/>
+                                                </td>
+                                                <td style="border-color:#1065b0;">
+                                                    <span style="margin-left:4px;" t-esc="r['name']"/>
+                                                </td>
+                                                <td colspan="1" style="border-color:#1065b0;">
+                                                    <span style="margin-left:4px;" t-esc="r['acq_month']"/>
+                                                </td>
+                                                <td colspan="1" style="border-color:#1065b0;">
+                                                    <span style="margin-left:4px;" t-esc="r['acq_year']"/>
+                                                </td>
+
+                                                <td colspan="1" style="border-color:#1065b0;">
+                                                    <span style="margin-left:4px;" t-esc="r['opera_m']"/>
+
+                                                </td>
+                                                <td colspan="1" style="border-color:#1065b0;">
+                                                    <span style="margin-left:4px;" t-esc="r['opera_y']"/>
+
+                                                </td>
+                                                <td style="border-color:#1065b0;" align="center">
+                                                    <span style="margin-left:4px;" t-esc="r['is_import']"/>
+                                                </td>
+                                                <td style="border-color:#1065b0;" align="center">
+                                                    <span style="margin-left:4px;" t-esc="r['acquisition_value']"
+                                                          t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <td style="border-color:#1065b0">
+                                                    <span style="margin-left:4px;" t-esc="r['duration']"/>
+                                                </td>
+
+                                                <td colspan="1" style="border-color:#1065b0;;text-align:center">
+                                                    <b>-</b>
+                                                </td>
+                                                <td colspan="1" style="border-color:#1065b0;text-align:center">
+                                                    0
+                                                </td>
+                                                <td style="border-color:#1065b0;">
+
+                                                    <span style="margin-left:4px;" t-esc="r['valor_total_revaluation']"
+                                                          t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <td style="border-color:#1065b0;">
+                                                    <span style="margin-left:4px;" t-esc="r['valor_before']"
+                                                          t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <td style="border-color:#1065b0;">
+                                                    <span style="margin-left:4px;"
+                                                          t-esc="r['tax']"/>%
+                                                </td>
+                                                <td style="border-color:#1065b0;">
+                                                    <span style="margin-left:4px;"
+                                                          t-esc="r['tax_corrected']"/>%
+                                                </td>
+                                                <td style="border-color:#1065b0;">
+                                                    <span style="margin-left:4px;" t-esc="r['values']"
+                                                          t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <td style="border-color:#1065b0;" align="center">
+                                                    <span style="margin-left:4px;" t-esc="r['value_depreciation']"
+                                                          t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <td style="border-color:#1065b0;" align="center">
+                                                    <span style="margin-left:4px;" t-esc="r['value_accounting']"
+                                                          t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <t t-set="i" t-value="i+1"/>
+                                            </tr>
+                                            <t t-set="total_acquisition"
+                                               t-value="total_acquisition+o.get_amortization_all(a)['total_original']"/>
+                                            <t t-set="total_reavalition"
+                                               t-value="total_reavalition+o.get_amortization_all(a)['valor_total_revaluation']"/>
+                                            <t t-set="total_exer_before"
+                                               t-value="total_exer_before+o.get_amortization_all(a)['valor_before']"/>
+                                            <t t-set="value"
+                                               t-value="value+o.get_amortization_all(a)['values']"/>
+                                            <t t-set="total_exer_depre"
+                                               t-value="total_exer_depre+o.get_amortization_all(a)['value_depreciation']"/>
+                                            <t t-set="value_account"
+                                               t-value="value_account+o.get_amortization_all(a)['value_accounting']"/>
+                                        </t>
+                                        <tr>
+                                            <td colspan="2" style="border-color:#1065b0;">
+                                                <b>Subtotais</b>
+                                            </td>
+                                            <td style="border-color:#1065b0;">
+
+                                                <b>Total-Imobilização Corpóreas</b>
+
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;">
+
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;">
+
+                                            </td>
+
+                                            <td colspan="1" style="border-color:#1065b0;">
+
+
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;">
+
+                                            </td>
+                                            <td style="border-color:#1065b0;" align="center">
+                                            </td>
+                                            <td style="border-color:#1065b0;" align="center">
+
+                                                <b style="margin-left:4px;"
+                                                   t-esc="total_acquisition"
+                                                   t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                            <td style="border-color:#1065b0;" align="center">
+                                            </td>
+                                            <td style="border-color:#1065b0">
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;">
+                                            </td>
+                                            <td style="border-color:#1065b0;">
+
+
+                                                <b style="margin-left:4px;"
+                                                   t-esc="total_reavalition"
+                                                   t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                            <td style="border-color:#1065b0;">
+
+                                                <b style="margin-left:4px;"
+                                                   t-esc="total_exer_before"
+                                                   t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td style="border-color:#1065b0;">
+                                            </td>
+                                            <td style="border-color:#1065b0;">
+                                            </td>
+                                            <td style="border-color:#1065b0;">
+                                                <b style="margin-left:4px;"
+                                                   t-esc="value"
+                                                   t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td style="border-color:#1065b0;" align="center">
+                                                <b style="margin-left:4px;"
+                                                   t-esc="total_exer_depre"
+                                                   t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td style="border-color:#1065b0;" align="center">
+                                                <b style="margin-left:4px;"
+                                                   t-esc="value_account"
+                                                   t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr t-foreach="o.amortization_account_move_line()" t-as="r">
+                                            <td style="border-color:#1065b0;">
+                                            </td>
+                                            <td style="border-color:#1065b0;">
+                                                <b t-esc="r['account_id']['code']"/>
+                                            </td>
+                                            <td style="border-color:#1065b0;">
+                                                <span style="margin-left:4px;" t-esc="r['account_id']['name']"/>
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;">
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;">
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;">
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;">
+                                            </td>
+                                            <td style="border-color:#1065b0;" align="center">
+                                            </td>
+                                            <td style="border-color:#1065b0;" align="center">
+                                                <span style="margin-left:4px;" t-esc="r['credit']"
+                                                      t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td style="border-color:#1065b0">
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;;text-align:center">
+                                                <b>-</b>
+                                            </td>
+                                            <td colspan="1" style="border-color:#1065b0;text-align:center">
+                                                0
+                                            </td>
+                                            <td style="border-color:#1065b0;">
+                                                <span style="margin-left:4px;" t-esc="r['credit']"
+                                                      t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td style="border-color:#1065b0;">
+                                            </td>
+                                            <td style="border-color:#1065b0;">
+                                                <b style="margin-left:4px;"
+                                                   t-esc="r['tax']">33,3%
+                                                </b>
+                                            </td>
+                                            <td style="border-color:#1065b0;">
+                                            </td>
+                                            <td style="border-color:#1065b0;">
+                                            </td>
+                                            <td style="border-color:#1065b0;" align="center">
+                                            </td>
+                                            <td style="border-color:#1065b0;" align="center">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                        <div class="footer">
+                            <div class="text-right" style="font-size:10px">
+                                <b>© COMPLLEXUS</b>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

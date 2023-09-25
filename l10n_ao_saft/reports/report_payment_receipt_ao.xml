@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_receipt_ao" inherit_id="ht_account_ao.report_payment_receipt_document">
+            <xpath expr="//div[@id='software_version']" position="replace">
+                <div id="software_version">
+                    <p style="margin-bottom: 5px !important;">
+                        Processado por Programa Validado n.º
+                        <span t-field="o.company_id.agt_cert_number"/>
+                        /
+                        <span t-field="o.company_id.agt_product_name"/>
+                        <span t-field="o.company_id.agt_product_version"/>
+                    </p>
+                </div>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

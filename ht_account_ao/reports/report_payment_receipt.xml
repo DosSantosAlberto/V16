@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="report_payment_receipt_document">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout" t-foreach="2" t-as="number_print">
+                    <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                    <t t-set="forced_vat"
+                       t-value="o.fiscal_position_id.foreign_vat"/> <!-- So that it appears in the footer of the report instead of the company VAT if it's set -->
+                    <t t-set="address">
+                        <strong>Exmo.(s) Sr.(s)</strong>
+                        <address t-field="o.partner_id"
+                                 t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                        <div t-if="o.partner_id.vat" class="mt16">
+                            <t t-if="o.company_id.account_fiscal_country_id.vat_label"
+                               t-out="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                            <t t-else="">NIF</t>: <span t-field="o.partner_id.vat"/></div>
+                    </t>
+                    <div class="page">
+                        <style type="text/css">
+                            * {
+                            padding-bottom: 0 !important; padding-top: 0 !important;
+                            margin-bottom: 0 !important; margin-top:0 !important;
+                            font-size: 12px !important;
+                            }
+                            hr {
+                            display: block; height: 1px;
+                            border: 0; border-top: 3px solid black;
+                            margin: 0; padding: 0;
+                            }
+                            .b_color{
+                            color: #0B74CE;
+                            }
+
+                            table {
+                            border-spacing: 3px;
+                            border-top: 3px solid black;
+                            border-collapse:collapse;
+                            }
+
+                            td {
+                            border-bottom:0 !important;
+                            border-top: 1px solid #B2BABB !important;
+                            }
+
+                            th {
+                            border-top:0 !important;
+                            border-bottom: 1px solid #B2BABB !important;
+                            }
+
+                            table, tr, th, td {
+                            border-collapse: separate;
+                            padding:0px !important;
+                            }
+
+                            .border_top_th{
+                            border-top: 1px solid black !important;
+                            }
+                        </style>
+                        <div id="payment_info" class="row">
+                            <div id="invoice_ref" class="col-8">
+                                <strong>
+                                    <span t-if="o.state == 'posted'" style="font-size: 18px !important;">Recibo</span>
+                                    <span class="text-left" t-field="o.receipt_no"
+                                          style="font-size: 18px !important;"/>
+                                </strong>
+                            </div>
+                            <div id="print" class="col-4 text-right">
+                                <strong t-if="number_print == 0"><span style="color:green">Original</span></strong>
+                                <strong t-if="number_print == 1"><span>Duplicado</span></strong>
+                                <p>Este documento não serve de factura</p>
+                            </div>
+                        </div>
+                        <table class="table table-sm o_main_table" name="payment_info_table">
+                            <thead>
+                                <tr>
+                                    <th name="method_pay">Método de pagamento</th>
+                                    <th name="date_create">Data de Emissão</th>
+                                    <th name="date_pay">Data de Pagamento</th>
+                                    <th name="currency" class="text-left"><span>Moeda</span></th>
+                                    <th name="change" class="text-right"><span>Câmbio</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td name="method_pay"><span t-field="o.journal_id.name"/></td>
+                                    <td name="date_create"><span t-field="o.create_date"/></td>
+                                    <td name="date_pay"><span t-field="o.date"/></td>
+                                    <td name="currency" class="text-left"><span t-out="o.currency_id.symbol"/></td>
+                                    <td name="change" class="text-right"><span t-field="o.currency_id.amount_tax" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <p class="p-0">
+                            <span>Através do(s) seguinte(s) meio(s), no valor total de </span>
+                            <span t-out="o.amount_format(o.amount)"/>
+                            (<span t-out="o.amount_text"/>).
+                        </p>
+                        <p t-if="o.reconciled_invoice_ids">
+                            <span>Recebemos de V. Exas. para pagamento da(s) seguinte(s) factura(s).</span>
+                        </p>
+                        <p t-if="o.is_advanced and not o.reconciled_invoice_ids">
+                            Recebemos de V. Exas. de forma adiantado para regularizações futura de documento(s).
+                        </p>
+                        <br/>
+                        <table t-if="o.reconciled_invoice_ids" class="table table-sm o_main_table"
+                               name="inv_line_table">
+                            <thead>
+                                <tr>
+                                    <th name="th_ref" class="text-left"><span>Ref.</span></th>
+                                    <th name="th_date" class="text-left"><span>Data Fatura</span></th>
+                                    <th name="th_total_ft" class="text-right"><span>Total da Factura</span></th>
+                                    <th name="th_tax" class="text-right"><span>Imposto</span></th>
+                                    <th name="th_withheld" class="text-right"><span>Retenção</span></th>
+                                    <th name="th_pendent" class="text-right"><span>Pendente</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.reconciled_invoice_ids" t-as="inv">
+                                    <td class="text-left" name="col_ref"><span t-out="inv.name"/></td>
+                                    <td class="text-left" name="col_date"><span t-out="inv.invoice_date"/></td>
+                                    <td class="text-right" name="col_total_fat"><span
+                                            t-out="o.amount_format(inv.amount_total)"/></td>
+                                    <td class="text-right" name="col_tax"><span
+                                            t-out="o.amount_format(inv.amount_tax)"/></td>
+                                    <td class="text-right" name="col_withheld"><span>0,00</span></td>
+                                    <td class="text-right" name="col_ref"><span
+                                            t-out="o.amount_format(inv.amount_residual)"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="text-right"><b><span>Totais</span></b></td>
+                                    <td class="text-right">
+                                        <b>
+                                            <span t-out="o.amount_format(sum([inv.amount_total for inv in o.reconciled_invoice_ids]))"/>
+                                        </b>
+                                    </td>
+                                    <td class="text-right">
+                                        <b>
+                                            <span t-out="o.amount_format(sum([inv.amount_tax for inv in o.reconciled_invoice_ids]))"/>
+                                        </b>
+                                    </td>
+                                    <td name="col_withheld_total" class="text-right">
+                                        <b><span>0,00</span></b>
+                                    </td>
+                                    <td class="text-right">
+                                        <b>
+                                            <span t-out="o.amount_format(sum([inv.amount_residual for inv in o.reconciled_invoice_ids]))"/>
+                                        </b>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <table class="table table-sm" style="page-break-inside: avoid; border-top: 0">
+                            <tr style="border-style:hidden" t-foreach="range(max(15-len(o.line_ids),0))" t-as="l">
+                                <td style="border-style:hidden; border: none !important;" t-translation="off">&amp;nbsp;</td>
+                                <td style="border-style:hidden; border: none !important;" class="hidden"/>
+                                <td style="border-style:hidden; border: none !important;"/>
+                                <td style="border-style:hidden; border: none !important;"/>
+                                <td style="border-style:hidden; border: none !important;" t-if="display_discount"/>
+                                <td style="border-style:hidden; border: none !important;"/>
+                                <td style="border-style:hidden; border: none !important;"/>
+                                <td style="border-style:hidden; border: none !important;"/>
+                            </tr>
+                        </table>
+                        <div id="payment">
+                            <div id="software_version">
+                                <p style="margin-bottom: 5px !important;">
+                                    Processado por programa validado Nº 000/AGT/2022 Odoo Compllexus v15.0
+                                </p>
+                            </div>
+                            <hr/>
+                            <div id="amount_receipt" class="row">
+                                <div id="board_left" class="col-6">
+                                    <table class="table table-sm" style="page-break-inside: avoid; border-top: 0">
+                                        <tr>
+                                            <th class="text-left" style="border-bottom: 0 !important;">
+                                                <span style="font-size: 18px !important;">Total Recebido (AKZ)</span>
+                                            </th>
+                                            <th class="text-right" style="border-bottom: 0 !important;">
+                                                <span style="font-size: 18px !important;"
+                                                      t-out="o.amount_format(o.amount)"/>
+                                            </th>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-2"></div>
+                                <div id="board_right" class="col-4 text-right">
+                                    <table class="table table-sm" style="page-break-inside: avoid; border-top: 0">
+                                        <tr>
+                                            <th class="text-left" style="border-bottom: 0 !important;">
+                                                <br/>
+                                                <span>O Cliente</span>
+                                            </th>
+                                            <th class="text-right" style="border-bottom: 0 !important;">
+                                                <br/>
+                                                <span>
+                                                    ................................................................
+                                                </span>
+                                            </th>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+
+    <template id="report_payment_receipt_ao">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.partner_id.lang or o.company_id.partner_id.lang"/>
+                <t t-call="ht_account_ao.report_payment_receipt_document" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

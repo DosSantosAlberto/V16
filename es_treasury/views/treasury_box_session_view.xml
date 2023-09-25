@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hs_treasury_box_session_session_kanban_view" model="ir.ui.view">
+            <field name="name">treasury.box.session.kanban</field>
+            <field name="model">treasury.box.session</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile" create="0">
+                    <field name="box"/>
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="state"/>
+                    <field name="create_uid"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <span>
+                                                <field name="box"/>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <field name="state" widget="label_selection" options="{'classes': {
+                                        'opened': 'success',  'closed': 'warning'}}"/>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <field name="name"/>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                        <span>
+                                            <field name="start_date"/>
+                                        </span>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <img t-att-src="kanban_image('res.users', 'image_small', record.create_uid.raw_value)"
+                                             t-att-title="record.create_uid.value" width="24" height="24"
+                                             class="oe_kanban_avatar pull-right" alt="Utilizador"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="hs_treasury_box_session_form_view" model="ir.ui.view">
+            <field name="name">treasury.box.session.form</field>
+            <field name="model">treasury.box.session</field>
+            <field name="arch" type="xml">
+                <form string="Box Close" create="0" edit="0">
+                    <header>
+                        <button class="btn btn-primary" name="close" attrs="{'invisible':[('state','=','closed')]}"
+                                string="Close" groups="es_treasury.group_treasury_manager" type="object"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Reference" attrs="{'readonly':[('state','!=','x')]}"/>
+                            </h1>
+                        </div>
+                        <div>
+                            <group col="4">
+                                <field name="start_date" attrs="{'readonly':[('state','!=','x')]}"/>
+                                <field name="start_balance" attrs="{'readonly':[('state','!=','x')]}"/>
+                                <field name="end_date" attrs="{'readonly':[('state','!=','x')]}"/>
+                                <field name="end_balance" attrs="{'readonly':[('state','!=','x')]}"/>
+                            </group>
+                        </div>
+                        <notebook>
+                            <page string="Transactions" name="statement_line_ids">
+                                <field name="session_lines" attrs="{'readonly':[('state','!=','x')]}">
+                                    <tree decoration-info="payment_type=='inbound'"
+                                          decoration-danger="payment_type=='outbound'">
+                                        <field name="move_id"/>
+                                        <field name="partner_id"/>
+                                        <field name="creditor" invisible=""/>
+                                        <field name="debtor" invisible="1"/>
+                                        <field name="status" invisible="1"/>
+                                        <field name="employee_id" invisible="1"/>
+                                        <field name="payment_type"/>
+                                        <field name="journal"/>
+                                        <field name="release_date"/>
+                                        <field name="amount"/>
+                                        <field name="balance"/>
+                                        <field name="currency_id" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hs_treasury_box_session_tree_view" model="ir.ui.view">
+            <field name="name">treasury.box.session.tree</field>
+            <field name="model">treasury.box.session</field>
+            <field name="arch" type="xml">
+                <tree string="Session" create="0">
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="create_uid"/>
+                    <field name="start_balance"/>
+                    <field name="end_balance"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hs_treasury_box_session_act_window" model="ir.actions.act_window">
+            <field name="name">Session</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">treasury.box.session</field>
+
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Clique para criar sessão
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Session" id="hs_treasury_box_session_menu"
+                  parent="treasury_box_main"
+                  sequence="2"
+                  action="hs_treasury_box_session_act_window"/>
+
+    </data>
+</odoo>

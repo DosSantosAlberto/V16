@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="clearance_wizard_action" model="ir.actions.act_window">
+            <field name="name">Apuramento De Resultados</field>
+            <field name="res_model">clearance.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="clearance_result_wizard_view_form" model="ir.ui.view">
+            <field name="name">clearance.wizard.view.form</field>
+            <field name="model">clearance.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Apuramento De Resultados">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="year" string="Ano Fiscal"/>
+                                <field name="date_start" string="Data Inicial"/>
+                            </group>
+                            <group>
+                                <field name="date_end" string="Data Final"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="make_clearance" type="object" string="Apurar Resultados" class="oe_highlight"/>
+                        <button string="Cancelar" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <menuitem id="clearance_menu" name="Apuramento De Resultados" action="clearance_wizard_action"
+                  parent="account.menu_finance_entries_actions" sequence="60"/>
+
+    </data>
+
+
+</odoo>

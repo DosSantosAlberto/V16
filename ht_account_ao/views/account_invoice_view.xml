@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_account_invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+
+                <field name="number" position="before">
+                    <field name="inv_no" nolabel="1"/>
+                </field>
+                <field name="partner_id" position="before">
+                    <field name="year" readonly="1" groups="account.group_account_user"/>
+                    <field name="mode_refund"
+                           attrs="{'invisible':[('type','!=','out_refund')],'required':[('type','==','out_refund')]}"/>
+                </field>
+                <field name="partner_id" position="after">
+                    <field name="has_cost_center" invisible="1"/>
+                    <field name="cost_center"
+                           attrs="{'required':[('has_cost_center','!=',False)], 'invisible':[('has_cost_center','==',False)]}"/>
+                </field>
+
+                <xpath expr="//form//field[@name='number']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']//field[@name='product_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']//field[@name='quantity']" position="attributes">
+                    <attribute name="string">Qtd</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']//field[@name='price_unit']" position="attributes">
+                    <attribute name="string">P.Unit</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']//field[@name='discount']" position="attributes">
+                    <attribute name="string">Desc(%)</attribute>
+                </xpath>
+                <xpath expr="//form//field[@name='number']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <field name="amount_total_wth" class="oe_subtotal_footer_separator"
+                           attrs="{'invisible': [('amount_total_wth','=', 0)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='action_invoice_open']" position="after">
+                    <field name="payment_ids" invisible="1"/>
+                    <button name="action_print_receipt" string="Print Receipt" type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible':[('has_payment','=',False)]}"
+                            groups="base.group_user"/>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="has_payment" invisible="1"/>
+                </xpath>
+                <xpath expr="//form//field[@name='user_id']" position="after">
+                    <field name="note_info" placeholder="Describe any observation"/>
+                </xpath>
+                <xpath expr="//form//h1" position="after">
+                    <div attrs="{'invisible': [('state','in',['open','paid','cancel'])]}" class="col-md-4 pull-right">
+                        <i>"A Factura em estado <b style="color:blue">RASCUNHO</b>,
+                            <b>não tem número</b>
+                            e pode ser
+                            totalmente alterada ou seja todos os campos estarão
+                            disponível para uma possível alteração."
+                        </i>
+                    </div>
+                    <div attrs="{'invisible': [('state','in',['draft','paid','cancel'])]}" class="col-md-4 pull-right">
+                        <i>"A Factura
+                            em estado <b style="color:blue">ABERTO</b>,
+                            <b>Já Foi Validada (Assinada)</b>
+                            e não pode mais ser alterada. <b>AGT decreto nº 74-19</b>"Documentos Assinados
+                            não podem ser modificados."
+                        </i>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_tree" model="ir.ui.view">
+            <field name="name">account.invoice.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <!-- Add new fields here -->
+                    <field name="partner_vat"/>
+                </xpath>
+
+                <xpath expr="//field[@name='amount_total_signed']" position="after">
+                    <!-- Add new fields here -->
+                    <field name="amount_paid" string="Total Paid" sum="Total Paid"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='amount_total_signed']" position="before">
+					<field name="amount_tax" string="Total Tax" sum="Total Tax"/>
+					<field name="amount_total_wth" string="Total w/ Withhold " sum="Total w/ Withhold"/>
+					<field name="amount_untaxed" string="Total Untaxed " sum="Total Untaxed"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_invoice_supplier_tree" model="ir.ui.view">
+            <field name="name">account.invoice.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <!-- Add new fields here -->
+                    <field name="partner_vat"/>
+                </xpath>
+
+                <xpath expr="//field[@name='amount_total_signed']" position="after">
+                    <!-- Add new fields here -->
+                    <field name="amount_paid" string="Total Paid" sum="Total Paid"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='amount_total_signed']" position="before">
+					<field name="amount_tax" string="Total Tax" sum="Total Tax"/>
+					<field name="amount_total_wth" string="Total w/ Withhold " sum="Total w/ Withhold"/>
+					<field name="amount_untaxed" string="Total Untaxed " sum="Total Untaxed"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="hs_account_cancel_invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account_cancel.invoice_form_cancel_inherit"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_invoice_cancel']" position="replace">
+                    <button name="action_invoice_cancel" type="object" states="draft,open" string="Cancel Invoice"
+                            groups="l10n_ao.res_groups_cancel_invoice"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_invoice_supplier_form" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="number" position="before">
+                    <field name="inv_no" nolabel="1"/>
+                </field>
+                <xpath expr="//form//field[@name='number']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']//field[@name='quantity']" position="attributes">
+                    <attribute name="string">Qtd</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']//field[@name='price_unit']" position="attributes">
+                    <attribute name="string">P.Unit</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']//field[@name='discount']" position="attributes">
+                    <attribute name="string">Disc(%)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']//field[@name='product_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']//field[@name='invoice_line_tax_ids']"
+                       position="attributes">
+                    <!-- <attribute name="attrs">{'required':[('type','in',['out_invoice','in_invoice','out_refund'])]}</attribute>-->
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_invoice_open']" position="after">
+                    <field name="payment_ids" invisible="1"/>
+                    <button name="invoice_print" string="Print Invoice" type="object"
+                            attrs="{'invisible':[('state', 'not in', ('open','paid'))]}"
+                            groups="base.group_user"/>
+                    <button name="action_create_transfer" string="Payment Transfer Order" type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible':[('state', '!=', 'open')]}"
+                            groups="base.group_user"/>
+                </xpath>
+                <field name="number" position='before'>
+                    <field name="total_invoiced" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="return_transfer_order"
+                                type="object" icon="fa-file-text"
+                                attrs="{'invisible': [('total_invoiced', '==', 0)]}">
+                            <field name="total_invoiced" widget="statinfo" string="Transfer order"/>
+                        </button>
+                    </div>
+                </field>
+                <xpath expr="//form//h1" position="after">
+                    <div attrs="{'invisible': [('state','in',['open','paid','cancel'])]}" class="col-md-4 pull-right">
+                        <i>"A Factura em estado <b style="color:blue">RASCUNHO</b>,
+                            <b>não tem número</b>
+                            e pode ser
+                            totalmente alterada ou seja todos os campos estarão
+                            disponível para uma possível alteração."
+                        </i>
+                    </div>
+                    <div attrs="{'invisible': [('state','in',['draft','paid','cancel'])]}" class="col-md-4 pull-right">
+                        <i>"A Factura em estado <b style="color:blue">ABERTO</b>,
+                            <b>Já Foi Validada (Documento Assinado)</b>
+                            e não pode mais ser alterada. <b>AGT decreto nº xxxx</b>"Documentos Assinados
+                            não podem ser modificados."
+                        </i>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+</odoo>

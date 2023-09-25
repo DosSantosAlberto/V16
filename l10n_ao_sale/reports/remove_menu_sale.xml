@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <delete id="sale.action_report_saleorder" model="ir.actions.report"/>
+    </data>
+</odoo>

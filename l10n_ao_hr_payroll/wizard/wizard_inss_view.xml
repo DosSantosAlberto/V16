@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_inss_view" model="ir.ui.view">
+            <field name="name">AG - INSS MAP View</field>
+            <field name="model">wizard.inss</field>
+            <field name="arch" type="xml">
+                <form>
+                    <h3>This Wizard will generate the INSS Report for selected
+                        Payslips. You can filter Payslips by Payslip Batch or by Date.
+                        Select a Payslip Batch to generate the Report for all Paylip in
+                        the Batch. Select a date range to capture all Payslip with Date
+                        End within that range. Those marked as cancelled or credit note
+                        will be ignored.
+                    </h3>
+                    <br/>
+                    <group>
+                        <field name="slip_filter_by"/>
+                    </group>
+                    <group attrs="{'invisible':[('slip_filter_by', '!=', 'payslip_batch')]}">
+                        <field name="hr_payslip_run_id" options="{'no_quick_create': True, 'no_create_edit': True}"
+                               attrs="{'required':[('slip_filter_by', '=', 'payslip_batch')]}" widget="many2one_tags"/>
+                    </group>
+                    <group attrs="{'invisible':[('slip_filter_by', '!=', 'payslip_date')]}">
+                        <field name="start_date"
+                               attrs="{'required':[('slip_filter_by', '=', 'payslip_date')]}"/>
+                        <field name="end_date"
+                               attrs="{'required':[('slip_filter_by', '=', 'payslip_date')]}"/>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Print INSS Map"
+                                type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel Wizard" special="cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_inss" model="ir.actions.act_window">
+            <field name="name">INSS Map Wizard</field>
+            <field name="res_model">wizard.inss</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_hr_inss_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_hr_reporting_inss" name="INSS Map"
+                  parent="hr_payroll.menu_hr_payroll_report"
+                  action="action_hr_inss"
+                  sequence="200"
+                  groups="hr_payroll.group_hr_payroll_user"/>
+    </data>
+</odoo>

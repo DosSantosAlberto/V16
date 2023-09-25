@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Cron for checking subscription that need to set as to renew -->
+        <record id="multicaixa_get_payments_cron" model="ir.cron">
+            <field name="active" eval="False"/>
+            <field name="name">Multicaixa: Get Payments Events</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field name="model_id" ref="model_payment_provider"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_get_payments()</field>
+        </record>
+
+        <record id="multicaixa_create_test_payments_cron" model="ir.cron">
+            <field name="active" eval="False"/>
+            <field name="name">Multicaixa: Create Payment Transaction Test Events</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field name="model_id" ref="model_payment_transaction"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_create_payment_test()</field>
+        </record>
+    </data>
+</odoo>

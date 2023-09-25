@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_salary_form" model="ir.ui.view">
+            <field name="name">account_payment_view_form</field>
+            <field name="model">account.payment.salary</field>
+            <field name="arch" type="xml">
+                <form string="Payment">
+                    <header>
+                        <button name="hr_payment_post" class="oe_highlight" states="draft" string="Confirm"
+                                type="object"/>
+                        <button name="action_draft" string="Reset To Draft" type="object" class="btn btn-secondary"
+                                attrs="{'invisible': [('state', 'not in', ('posted', 'cancel'))]}"
+                                groups="account.group_account_invoice" data-hotkey="w"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,posted"/>
+                    </header>
+                    <sheet>
+                        <!-- Invisible fields -->
+                        <field name="id" invisible="1"/>
+                        <div class="oe_title" attrs="{'invisible': [('state', '=', 'draft')]}">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="payment_type" widget="radio" options="{'horizontal': True}" readonly="1"
+                                       force_save="1"/>
+                                <label for="amount" string="Valor a pagar"/>
+                                <div name="amount_div" class="o_row">
+                                    <field name="amount" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                           groups="base.group_multi_currency"
+                                           attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+
+                                </div>
+                                <label for="slip_amount" string="Total Salário"/>
+                                <div name="slip_amount" class="o_row">
+                                    <field name="slip_amount" readonly="1"/>
+                                    <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                           groups="base.group_multi_currency"
+                                           attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                </div>
+                                <label for="hr_irt_amount"/>
+                                <div name="hr_irt_amount" class="o_row">
+                                    <field name="hr_irt_amount" readonly="1"/>
+                                    <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                           groups="base.group_multi_currency"
+                                           attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                </div>
+                                <label for="hr_ss_amount"/>
+                                <div name="hr_ss_amount" class="o_row">
+                                    <field name="hr_ss_amount" readonly="1"/>
+                                    <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                           groups="base.group_multi_currency"
+                                           attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+
+                                </div>
+                                <field name="journal_id" domain="[('type', 'in', ('bank', 'cash'))]"
+                                       options="{'no_create': True, 'no_open': True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="payment_method" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="ref"
+                                       attrs="{'invisible': [('state', '!=', 'draft'), ('ref', '=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="hr_payment" required="1" string="Payroll Reference"
+                                       domain="[('state','=','treasury')]"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="move_id" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                       options="{'no_create': True, 'no_open': True}"/>
+                                <field name="payment_split" widget="radio"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="cost_center" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                       options="{'no_create': True, 'no_open': True}"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="lines" string="Payment Lines"  >
+                                <field name="lines" attrs="{'readonly':[('state','!=', 'draft')]}">
+                                    <tree editable="bottom" string="Payment Items">
+                                        <field name="name" readonly="1" required="1" force_save="1"/>
+                                        <field name="amount" string="Salary" readonly="1" sum="Total Salary"
+                                               required="1"/>
+                                        <field name="irt_amount" invisible="1"/>
+                                        <field name="ss_amount" invisible="1"/>
+                                        <field name="amount_paid"
+                                               attrs="{'readonly':[('payment_split','!=', 'manual')]}"
+                                               sum="Total Paid"/>
+                                        <field name="balance" string="Saldo" sum="Total Balance"
+                                               attrs="{'readonly':[('payment_split','!=', 'manual')]}"/>
+                                         <field name="obs" string="Observação"
+                                              />
+                                        <field name="amount_debt" sum="Total Debt" readonly="1"/>
+                                        <field name="payment_split" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="view_account_payment_salary_view_tree" model="ir.ui.view">
+            <field name="name">account_payment_salary_view_tree</field>
+            <field name="model">account.payment.salary</field>
+            <field name="arch" type="xml">
+                <tree string="account_payment_tree">
+                    <field name="name"/>
+                    <field name="amount" string="Amount Paid" sum="Total Paid"/>
+                    <field name="slip_amount" sum="Total Salary"/>
+                    <field name="hr_ss_amount" sum="Total INSS"/>
+                    <field name="hr_irt_amount" sum="Total IRT"/>
+                    <field name="journal_id"/>
+                    <field name="hr_payment"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="open_account_payment_salary_action" model="ir.actions.act_window">
+            <field name="name">Payment salary</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.payment.salary</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="account_payment_salary_menu" name="Salários"
+                  parent="es_treasury.treasury_purchases_documents"
+                  action="hr_payment.open_account_payment_salary_action"
+                  sequence="5"/>
+    </data>
+</odoo>

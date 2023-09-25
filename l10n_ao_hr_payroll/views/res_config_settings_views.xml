@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.ag.hr</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr_payroll.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <div id="hr_payroll_accountant" position="after">
+                <h2>Miscellaneous</h2>
+                <div class="row mt16 o_settings_container" id="hr_payroll_accountant">
+                    <div class="col-lg-6 col-12 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="show_paid_usd" readonly="0" widget="boolean_toggle"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="show_paid_usd" string="Show paid amount in USD in the Payslip"/>
+                            <div class="text-muted">
+                                Will allow to manage currency rate and display a counter currency amount int he Payslip
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box" id="rate_date_at" title="How the exchange rate is calculated."  attrs="{'invisible': [('show_paid_usd', '=', False)]}">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Rate Date At</span>
+                            <span class="fa fa-lg fa-building-o" title="valor do cambio do dia." aria-label="Cabio do fecho da folha." groups="base.group_multi_company" role="img"/>
+                            <div class="text-muted">
+                                How the exchange rate is calculated
+                            </div>
+                            <div class="content-group">
+                                <field name="rate_date_at" class="o_light_label mt16" widget="radio" readonly="0"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </field>
+    </record>
+</odoo>

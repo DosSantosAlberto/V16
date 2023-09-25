@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_saf_ao_wizard,access.saft.ao.wizard,model_saft_ao_wizard,account.group_account_invoice,1,1,1,1
+access_saft_file,l10nao.saft.file,model_l10nao_saft_file,account.group_account_invoice,1,1,1,1

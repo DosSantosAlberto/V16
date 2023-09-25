@@ -1,0 +1,975 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="account_financial_report_fluxocaixa" model="account.financial.html.report">
+            <field name="name">Fluxo de Caixa (Directo)</field>
+            <field name="root_report_id" ref="account_reports.account_reports.cash_flow_report"/>
+            <field name="date_range" eval="True"/>
+            <field eval="1" name="comparison"/>
+            <field eval="0" name="analytic"/>
+            <field eval="1" name="show_journal_filter"/>
+            <field eval="1" name="unfold_all_filter"/>
+            <field name="analytic" eval="True"/>
+            <field name="unfold_all_filter" eval="True"/>
+            <field name="country_id" ref="base.ao"/>
+            <field name="filter_multi_company">selector</field>
+            <field name="availability_condition">country</field>
+            <field name="column_ids">
+                <record id="account_financial_report_ao_column" model="account.report.column">
+                    <field name="name">Balance</field>
+                    <field name="expression_label">balance</field>
+                </record>
+            </field>
+        </record>
+
+        <record id="account_financial_report_caixa_operacionais" model="account.financial.html.report.line">
+            <field name="name">Fluxo de caixa das actividades operacionais:</field>
+            <field name="code">CX_OPER</field>
+            <field name="financial_report_id" ref="account_financial_report_fluxocaixa"/>
+            <field eval="1" name="sequence"/>
+            <field name="formulas">CX_RECEBI + CX_FORNECEDORES + CX_PESSOAL + CX_IMP + CX_OOPER</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="0" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+
+        <record id="account_financial_report_caixa_clientes" model="account.financial.html.report.line">
+            <field name="name">Recebimentos de clientes:</field>
+            <field name="code">CX_RECEBI</field>
+            <field name="parent_id" ref="account_financial_report_caixa_operacionais"/>
+            <field eval="1" name="sequence"/>
+            <field name="formulas">CX_VENDAS + CX_PSERV + CX_CLIENTES + CX_ADI_CLIENTES + DES_PPAGAMENTO</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="2" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_vendas" model="account.financial.html.report.line">
+            <field name="name">Vendas</field>
+            <field name="code">CX_VENDAS</field>
+            <field name="parent_id" ref="account_financial_report_caixa_clientes"/>
+            <field eval="1" name="sequence"/>
+            <field name="domain" eval=" [('account_id.code', '=ilike', '61%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_pserv" model="account.financial.html.report.line">
+            <field name="name">Prestação de Serviços</field>
+            <field name="code">CX_PSERV</field>
+            <field name="parent_id" ref="account_financial_report_caixa_clientes"/>
+            <field eval="2" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '62%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_var_clientes" model="account.financial.html.report.line">
+            <field name="name">Clientes Contas Correntes</field>
+            <field name="code">CX_CLIENTES</field>
+            <field name="parent_id" ref="account_financial_report_caixa_clientes"/>
+            <field eval="3" name="sequence"/>
+            <field name="domain"
+                   eval="[('account_id.code', '=ilike', '31%'),('account_id.code', 'not ilike', '319%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_var_adia_clientes" model="account.financial.html.report.line">
+            <field name="name">Adiantamentos de Clientes</field>
+            <field name="code">CX_ADI_CLIENTES</field>
+            <field name="parent_id" ref="account_financial_report_caixa_clientes"/>
+            <field eval="4" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '319%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_desc_pagamento" model="account.financial.html.report.line">
+            <field name="name">Descontos de Pronto Pagamento</field>
+            <field name="code">DES_PPAGAMENTO</field>
+            <field name="parent_id" ref="account_financial_report_caixa_clientes"/>
+            <field eval="5" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '763%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_div_incobraveis" model="account.financial.html.report.line">
+            <field name="name">Dívidas Incobráveis</field>
+            <field name="code">DIV_INC</field>
+            <field name="parent_id" ref="account_financial_report_caixa_clientes"/>
+            <field eval="6" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '785%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fornecedores" model="account.financial.html.report.line">
+            <field name="name">Pagamentos a fornecedores:</field>
+            <field name="code">CX_FORNECEDORES</field>
+            <field name="parent_id" ref="account_financial_report_caixa_operacionais"/>
+            <field eval="2" name="sequence"/>
+            <field name="formulas">CX_COMPRAS + CX_INVENTARIO + CX_FSERV + FORNECEDORES + ADI_FORNECEDORES + ADI_CONTA_FORNECEDORES + ENC_COM + ENC_RENDAS + CX_FDESC</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="2" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_compras" model="account.financial.html.report.line">
+            <field name="name">Compras</field>
+            <field name="code">CX_COMPRAS</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fornecedores"/>
+            <field eval="1" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '71%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_inventário" model="account.financial.html.report.line">
+            <field name="name">Inventário</field>
+            <field name="code">CX_INVENTARIO</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fornecedores"/>
+            <field eval="2" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '26%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fserv" model="account.financial.html.report.line">
+            <field name="name">Fornecimentos e Serviços Externos</field>
+            <field name="code">CX_FSERV</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fornecedores"/>
+            <field eval="3" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '752%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+
+        <record id="account_financial_report_fornecedores" model="account.financial.html.report.line">
+            <field name="name">Fornecedores Conta Corrente</field>
+            <field name="code">FORNECEDORES</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fornecedores"/>
+            <field eval="4" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '32%'),('account_id.code', 'not ilike','329%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_adi_fornecedores" model="account.financial.html.report.line">
+            <field name="name">Adiantamento a Fornecedores</field>
+            <field name="code">ADI_FORNECEDORES</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fornecedores"/>
+            <field eval="5" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '329%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_adi_compras" model="account.financial.html.report.line">
+            <field name="name">Adiantamento por Conta de Compras</field>
+            <field name="code">ADI_CONTA_FORNECEDORES</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fornecedores"/>
+            <field eval="6" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '329%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_comunicacao" model="account.financial.html.report.line">
+            <field name="name">Encargos a Pagar Comunicações</field>
+            <field name="code">ENC_COM</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fornecedores"/>
+            <field eval="7" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '3752%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_rendas" model="account.financial.html.report.line">
+            <field name="name">Encargos a Repartir por Períodos Futuros Rendas</field>
+            <field name="code">ENC_RENDAS</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fornecedores"/>
+            <field eval="7" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '3741%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fdescontos" model="account.financial.html.report.line">
+            <field name="name">Descontos de pronto pagamento obtidos</field>
+            <field name="code">CX_FDESC</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fornecedores"/>
+            <field eval="8" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '663%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_pessoal" model="account.financial.html.report.line">
+            <field name="name">Pagamentos ao Pessoal</field>
+            <field name="code">CX_PESSOAL</field>
+            <field name="parent_id" ref="account_financial_report_caixa_operacionais"/>
+            <field eval="3" name="sequence"/>
+            <field name="domain" eval="['|',('account_id.code', '=ilike', '72%'),'|',('account_id.code', '=ilike','361%'),
+                '|',('account_id.code', '=ilike', '343%'),'|',('account_id.code', '=ilike',
+                '346%'),'|',('account_id.code', '=ilike', '363%'),
+                '|',('account_id.code', '=ilike', '3751%'),('account_id.code', '=ilike', '3742%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="2" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_gerada_operacoes" model="account.financial.html.report.line">
+            <field name="name">Caixa gerada pelas operações:</field>
+            <field name="code">CX_GER_OPER</field>
+            <field name="parent_id" ref="account_financial_report_caixa_operacionais"/>
+            <field eval="3" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_juros_pagos" model="account.financial.html.report.line">
+            <field name="name">Juros Pagos:</field>
+            <field name="code">CX_JUROS</field>
+            <field name="parent_id" ref="account_financial_report_caixa_gerada_operacoes"/>
+            <field eval="4" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_impostos_pagos" model="account.financial.html.report.line">
+            <field name="name">Impostos s/os lucros pagos</field>
+            <field name="code">CX_IMP</field>
+            <field name="parent_id" ref="account_financial_report_caixa_operacionais"/>
+            <field eval="5" name="sequence"/>
+            <field name="domain" eval="['|',('account_id.code', '=ilike', '871%'),'|',('account_id.code', '=ilike','3411%'),
+                ('account_id.code', '=ilike', '3412%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="2" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_outra_operacional" model="account.financial.html.report.line">
+            <field name="name">Outros Recebimentos/Pagamentos de Actividade Operacional</field>
+            <field name="code">CX_OOPER</field>
+            <field name="parent_id" ref="account_financial_report_caixa_operacionais"/>
+            <field eval="6" name="sequence"/>
+            <field name="domain" eval="['|',('account_id.code', '=ilike', '7810%'),'|',('account_id.code', '=ilike','68%'),
+                '|',('account_id.code', '=ilike', '3792%'),'|',('account_id.code',
+                '=ilike','3791%'),'|',('account_id.code',
+                '=ilike','343%'),'|',('account_id.code', '=ilike','346%'),('account_id.code', '=ilike','349%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="2" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_operacionais_extra" model="account.financial.html.report.line">
+            <field name="name">Fluxos de caixa antes da rúbrica extraordinária:</field>
+            <field name="code">CX_OPER_EXTRA</field>
+            <field name="parent_id" ref="account_financial_report_caixa_operacionais"/>
+            <field eval="6" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="1" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_liquida_oper" model="account.financial.html.report.line">
+            <field name="name">Caixa líquida proveniente das actividades operacionais</field>
+            <field name="code">CX_LIQ_OPER</field>
+            <field name="parent_id" ref="account_financial_report_caixa_operacionais"/>
+            <field eval="7" name="sequence"/>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="1" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+
+        <!--FLUXO DE CAIXA DAS ACTIVIDADES DE INVESTIMENTO-->
+
+        <record id="account_financial_report_caixa_investimento" model="account.financial.html.report.line">
+            <field name="name">Fluxo de caixa das actividades de investimento:</field>
+            <field name="code">CX_INV</field>
+            <field name="financial_report_id" ref="account_financial_report_fluxocaixa"/>
+            <field eval="3" name="sequence"/>
+            <field name="formulas">CX_INV_RP - CX_INV_PR</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="0" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+
+        <record id="account_financial_report_caixa_inv_rp" model="account.financial.html.report.line">
+            <field name="name">Recebimentos provenientes de:</field>
+            <field name="code">CX_INV_RP</field>
+            <field name="parent_id" ref="account_financial_report_caixa_investimento"/>
+            <field eval="1" name="sequence"/>
+            <field name="formulas">CX_INV_CORP + CX_INV_INCORP + CX_INV_FIN + CX_INV_SUB + CX_JUROS_PROV + CX_DIV_LUC</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="2" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_inv_corp" model="account.financial.html.report.line">
+            <field name="name">Imobilizações corpóreas</field>
+            <field name="code">CX_INV_CORP</field>
+            <field name="parent_id" ref="account_financial_report_caixa_inv_rp"/>
+            <field eval="1" name="sequence"/>
+            <field name="domain"
+                   eval="['|',('account_id.code', '=ilike', '3721%'),('account_id.code', '=ilike', '373%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_inv_invcorp" model="account.financial.html.report.line">
+            <field name="name">Imobilizações incorpóreas</field>
+            <field name="code">CX_INV_INCORP</field>
+            <field name="parent_id" ref="account_financial_report_caixa_inv_rp"/>
+            <field eval="3" name="sequence"/>
+            <field name="domain"
+                   eval="['|',('account_id.code', '=ilike', '3722%'),('account_id.code', '=ilike', '375%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_inv_fin" model="account.financial.html.report.line">
+            <field name="name">Investimentos financeiros</field>
+            <field name="code">CX_INV_FIN</field>
+            <field name="parent_id" ref="account_financial_report_caixa_inv_rp"/>
+            <field eval="3" name="sequence"/>
+            <field name="domain"
+                   eval="['|',('account_id.code', '=ilike', '13%'),'|',('account_id.code', '=ilike', '3723%'),('account_id.code', '=ilike', '376%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note">45</field>
+        </record>
+
+        <record id="account_financial_report_caixa_inv_sub" model="account.financial.html.report.line">
+            <field name="name">Subsídios a investimento</field>
+            <field name="code">CX_INV_SUB</field>
+            <field name="parent_id" ref="account_financial_report_caixa_inv_rp"/>
+            <field eval="4" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_juros_prov" model="account.financial.html.report.line">
+            <field name="name">Juros e proveitos similares</field>
+            <field name="code">CX_JUROS_PROV</field>
+            <field name="parent_id" ref="account_financial_report_caixa_inv_rp"/>
+            <field eval="5" name="sequence"/>
+            <field name="domain"
+                   eval="['|',('account_id.code', '=ilike', '661%'),('account_id.code', '=ilike', '3733%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_div_luc" model="account.financial.html.report.line">
+            <field name="name">Dividendos e lucros recebidos</field>
+            <field name="code">CX_DIV_LUC</field>
+            <field name="parent_id" ref="account_financial_report_caixa_inv_rp"/>
+            <field eval="6" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '376%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+
+        <record id="account_financial_report_caixa_inv_pr" model="account.financial.html.report.line">
+            <field name="name">Pagamentos respeitantes a:</field>
+            <field name="code">CX_INV_PR</field>
+            <field name="parent_id" ref="account_financial_report_caixa_investimento"/>
+            <field eval="3" name="sequence"/>
+            <field name="formulas">CX_INVP_CORP + CX_INVP_INCORP + CX_INVP_FIN + CX_INV_EXTRA + CX_LIQ_INV</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="2" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_invp_corp" model="account.financial.html.report.line">
+            <field name="name">Imobilizações corpóreas</field>
+            <field name="code">CX_INVP_CORP</field>
+            <field name="parent_id" ref="account_financial_report_caixa_inv_pr"/>
+            <field eval="1" name="sequence"/>
+            <field name="domain" eval="['|',('account_id.code', '=ilike', '11%'),'|',('account_id.code', '=ilike',
+                '147%'),('account_id.code', '=ilike', '3711%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_invp_incorp" model="account.financial.html.report.line">
+            <field name="name">Imobilizações incorpóreas</field>
+            <field name="code">CX_INVP_INCORP</field>
+            <field name="parent_id" ref="account_financial_report_caixa_inv_pr"/>
+            <field eval="3" name="sequence"/>
+            <field name="domain" eval="['|',('account_id.code', '=ilike', '12%'),'|',('account_id.code', '=ilike',
+                '148%'),('account_id.code', '=ilike', '3712%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_invp_fin" model="account.financial.html.report.line">
+            <field name="name">Investimentos financeiros</field>
+            <field name="code">CX_INVP_FIN</field>
+            <field name="parent_id" ref="account_financial_report_caixa_inv_pr"/>
+            <field eval="3" name="sequence"/>
+            <field name="domain"
+                   eval="['|',('account_id.code', '=ilike', '13%'),'|',('account_id.code', '=ilike', '149%'),('account_id.code', '=ilike', '3713%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note">46</field>
+        </record>
+
+        <record id="account_financial_report_caixa_inv_extra" model="account.financial.html.report.line">
+            <field name="name">Fluxos de caixa antes da rúbrica extraordinária:</field>
+            <field name="code">CX_INV_EXTRA</field>
+            <field name="parent_id" ref="account_financial_report_caixa_investimento"/>
+            <field eval="6" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="1" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_inv_oper" model="account.financial.html.report.line">
+            <field name="name">Caixa líquida proveniente das actividades investimento</field>
+            <field name="code">CX_LIQ_INV</field>
+            <field name="parent_id" ref="account_financial_report_caixa_investimento"/>
+            <field eval="7" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="1" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+
+        <!--FLUXO DE CAIXA DAS ACTIVIDADES DE FINANCIAMENTO-->
+
+        <record id="account_financial_report_caixa_financiamento" model="account.financial.html.report.line">
+            <field name="name">Fluxo de caixa das actividades de financiamento:</field>
+            <field name="code">CXFIN</field>
+            <field name="financial_report_id" ref="account_financial_report_fluxocaixa"/>
+            <field eval="3" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="0" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_rp" model="account.financial.html.report.line">
+            <field name="name">Recebimentos provenientes de:</field>
+            <field name="code">CX_FIN_RP</field>
+            <field name="parent_id" ref="account_financial_report_caixa_financiamento"/>
+            <field eval="1" name="sequence"/>
+            <field name="formulas">CX_FIN_ACAPITAL + CX_FIN_PREJUIZOS + CX_FIN_EMPRESTIMOS + CX_FIN_SUB</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="2" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_acapital" model="account.financial.html.report.line">
+            <field name="name">Aumentos de capital, prestações suplementares e vendas de acções ou quotas próprias
+            </field>
+            <field name="code">CX_FIN_ACAPITAL</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fin_rp"/>
+            <field eval="1" name="sequence"/>
+            <field name="domain"
+                   eval="['|',('account_id.code', '=ilike', '51%'),('account_id.code', '=ilike', '53%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_prejuizos" model="account.financial.html.report.line">
+            <field name="name">Cobertura de Prejuízos</field>
+            <field name="code">CX_FIN_PREJUIZOS</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fin_rp"/>
+            <field eval="3" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_emprestimos" model="account.financial.html.report.line">
+            <field name="name">Empréstimos obtidos</field>
+            <field name="code">CX_FIN_EMPRESTIMOS</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fin_rp"/>
+            <field eval="3" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '331%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_sub" model="account.financial.html.report.line">
+            <field name="name">Subsídios à exploração e doações</field>
+            <field name="code">CX_FIN_SUB</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fin_rp"/>
+            <field eval="4" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_pr" model="account.financial.html.report.line">
+            <field name="name">Pagamentos respeitantes a:</field>
+            <field name="code">CX_FIN_PR</field>
+            <field name="parent_id" ref="account_financial_report_caixa_financiamento"/>
+            <field eval="3" name="sequence"/>
+            <field name="formulas">CX_FIN_RCAPITAL + CX_FIN_COMPRAS + CX_FIN_LPAGOS + CX_FIN_EMPRESTIMOS + CX_FIN_AMORTIZACAO + CX_FIN_JUROS</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="2" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_rcapital" model="account.financial.html.report.line">
+            <field name="name">Reduções de capita e prest. suplemento</field>
+            <field name="code">CX_FIN_RCAPITAL</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fin_pr"/>
+            <field eval="1" name="sequence"/>
+            <field name="domain"
+                   eval="['|',('account_id.code', '=ilike', '13%'),'|',('account_id.code', '=ilike', '149%'),('account_id.code', '=ilike', '3713%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_COMPRAS" model="account.financial.html.report.line">
+            <field name="name">Compras de accções ou quotas próprias</field>
+            <field name="code">CX_FIN_COMPRAS</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fin_pr"/>
+            <field eval="3" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_lpagos" model="account.financial.html.report.line">
+            <field name="name">Dividendos ou lucros pagos</field>
+            <field name="code">CX_FIN_LPAGOS</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fin_pr"/>
+            <field eval="3" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_emprestimos" model="account.financial.html.report.line">
+            <field name="name">Empréstimos obtidos</field>
+            <field name="code">CX_FIN_EMPRESTIMOS</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fin_pr"/>
+            <field eval="3" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_amortizacao" model="account.financial.html.report.line">
+            <field name="name">Amortização de contractos de locação financeira</field>
+            <field name="code">CX_FIN_AMORTIZACAO</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fin_pr"/>
+            <field eval="3" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_juropagos" model="account.financial.html.report.line">
+            <field name="name">Juros e custos similares pagos</field>
+            <field name="code">CX_FIN_JUROS</field>
+            <field name="parent_id" ref="account_financial_report_caixa_fin_pr"/>
+            <field eval="3" name="sequence"/>
+            <field name="domain" eval="[('account_id.code', '=ilike', '761%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="3" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_extra" model="account.financial.html.report.line">
+            <field name="name">Fluxos de caixa antes da rúbrica extraordinária:</field>
+            <field name="code">CX_FIN_EXTRA</field>
+            <field name="parent_id" ref="account_financial_report_caixa_financiamento"/>
+            <field eval="6" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="1" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_liq" model="account.financial.html.report.line">
+            <field name="name">Caixa líquida proveniente das actividades financiamento</field>
+            <field name="code">CX_LIQ_FIN</field>
+            <field name="parent_id" ref="account_financial_report_caixa_financiamento"/>
+            <field eval="7" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="1" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_aumento_liq" model="account.financial.html.report.line">
+            <field name="name">Aumento líquido de caixa e seus equivalentes</field>
+            <field name="code">CX_FIN_ALIQ</field>
+            <field name="financial_report_id" ref="account_financial_report_fluxocaixa"/>
+            <field eval="6" name="sequence"/>
+            <field name="formulas"></field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="0" name="level"/>
+            <field name="special_date_changer">strict_range</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note"></field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_inicio" model="account.financial.html.report.line">
+            <field name="name">Caixa e seus equivalentes no início do período</field>
+            <field name="code">CX_FIN_INI</field>
+            <field name="financial_report_id" ref="account_financial_report_fluxocaixa"/>
+            <field eval="7" name="sequence"/>
+            <field name="domain"
+                   eval="['|',('account_id.code', '=ilike', '41%'),'|',('account_id.code', '=ilike', '42%'),'|',('account_id.code', '=ilike', '43%'),('account_id.code', '=ilike', '45%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="0" name="level"/>
+            <field name="special_date_changer">from_beginning</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note">43.47</field>
+        </record>
+
+        <record id="account_financial_report_caixa_fin_fim" model="account.financial.html.report.line">
+            <field name="name">Caixa e seus equivalentes no fim do período</field>
+            <field name="code">CX_FIN_FIM</field>
+            <field name="financial_report_id" ref="account_financial_report_fluxocaixa"/>
+            <field eval="8" name="sequence"/>
+            <field name="domain" eval="['|',('account_id.code', '=ilike', '41%'),'|',('account_id.code', '=ilike',
+                '42%'),'|',('account_id.code', '=ilike', '43%'),('account_id.code', '=ilike', '45%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="figure_type">float</field>
+            <field eval="1" name="green_on_positive"/>
+            <field eval="0" name="level"/>
+            <field name="special_date_changer">normal</field>
+            <field name="show_domain">foldable</field>
+            <field eval="0" name="hide_if_zero"/>
+            <field name="note">43.47</field>
+        </record>
+
+    </data>
+</odoo>

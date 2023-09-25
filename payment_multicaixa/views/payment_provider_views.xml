@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="payment_provider_multicaixa_form" model="ir.ui.view">
+            <field name="name">Payment Provider Multicaixa</field>
+            <field name="model">payment.provider</field>
+            <field name="inherit_id" ref="payment.payment_provider_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//group[@name="provider_credentials"]' position='inside'>
+                    <group attrs="{'invisible': [('code', '!=', 'multicaixa')]}">
+                        <field name="entity_reference"
+                               attrs="{'required': [('code', '=', 'multicaixa')]}"/>
+                        <field name="max_expiry_days"
+                               attrs="{'required': [('code', '=', 'multicaixa')]}"/>
+                        <field name="multicaixa_api_key"
+                               attrs="{'required': [('code', '=', 'multicaixa')]}"/>
+                    </group>
+                </xpath>
+                <group name="provider_credentials" position="after">
+                    <button name="get_payment_events" type="object" attrs="{'invisible': [('code', '!=','multicaixa')]}"
+                            string="Get Payment Events" nolabel="1"
+                            help="Get all payments and synchronize with existing transactions."/>
+                </group>
+            </field>
+        </record>
+
+        <record id="transaction_multicaixa_form" model="ir.ui.view">
+            <field name="name">Acquirer transaction form Multicaixa</field>
+            <field name="model">payment.transaction</field>
+            <field name="inherit_id" ref="payment.payment_transaction_form"/>
+            <field name="arch" type="xml">
+                <field name="create_date" position='before'>
+                    <field name="entity_reference" readonly="1"
+                           attrs="{'invisible': [('provider_code','!=','multicaixa')]}"/>
+                    <field name="expiry_date" readonly="1" attrs="{'invisible': [('provider_code','!=','multicaixa')]}"/>
+                </field>
+                <xpath expr="//sheet/group" postion="inside">
+                    <group attrs="{'invisible': [('provider_code', '!=','multicaixa')]}">
+                        <field name="tx_id" readonly="1"/>
+                        <field name="reference_id" readonly="1"/>
+                        <field name="terminal_id" readonly="1"/>
+                        <field name="terminal_transaction_id" readonly="1"/>
+                        <field name="terminal_type" readonly="1"/>
+                        <field name="terminal_location" readonly="1"/>
+                        <field name="payment_date" readonly="1"/>
+                        <button name="test_payment_events" type="object" string="Test Payment Event"
+                                help="This test if the connection for pushing the payment events is working."
+                                attrs="{'invisible':[('provider_code','!=','multicaixa')]}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

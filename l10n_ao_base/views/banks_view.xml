@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="res_partner_bank_iban_view" model="ir.ui.view">
+            <field name="name">AO Res partner bank inherit</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_form"/>
+            <field name="arch" type="xml">
+             <!--   <field name="acc_number" position="after">
+                    <field name="iban"/>
+                </field>-->
+                <field name="currency_id" position="after">
+                    <field name="show_doc"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="res_bank_iban_view" model="ir.ui.view">
+            <field name="name">AO Res bank inherit</field>
+            <field name="model">res.bank</field>
+            <field name="inherit_id" ref="base.view_res_bank_form"/>
+            <field name="arch" type="xml">
+                <field name="bic" position="after">
+                    <field name="code"/>
+                </field>
+            </field>
+        </record>
+
+        <!--<record id="account_journal_bank_iban_view" model="ir.ui.view">
+            <field name="name">AG Res partner bank inherit</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.bank.journal.form"/>
+            <field name="arch" type="xml">
+                <field name="bank_acc_number" position="after">
+                    <label for="iban" class="oe_edit_only"/>
+                    <h1><field name="iban"/></h1>
+                </field>
+            </field>
+        </record>-->
+
+
+    </data>
+
+</odoo>

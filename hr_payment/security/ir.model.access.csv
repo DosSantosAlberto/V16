@@ -1,0 +1,12 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_hr_payment_manager","hr.payment_manager","model_hr_payment",es_treasury.group_treasury_manager,1,1,1,1
+"access_hr_payment_treasurer","hr.payment_treasurer","model_hr_payment",es_treasury.group_treasury_treasurer,1,1,1,0
+
+"access_hr_payment_line_manager","hr.payment_line_manager","model_hr_payment_line",es_treasury.group_treasury_manager,1,1,1,1
+"access_hr_payment_line_treasurer","hr.payment_line_treasurer","model_hr_payment_line",es_treasury.group_treasury_treasurer,1,1,1,1
+
+"access_account_payment_hr_manager","account.payment.hr.manager","model_account_payment_hr",es_treasury.group_treasury_manager,1,1,1,1
+"access_account_payment_hr_treasurer","account.payment.hr.treasurer","model_account_payment_hr",es_treasury.group_treasury_treasurer,1,1,1,0
+
+"access_account_payment_salary_manager","account.payment.salary.manager","model_account_payment_salary",es_treasury.group_treasury_manager,1,1,1,1
+"access_account_payment_salary_treasurer","account.payment.salary.treasurer","model_account_payment_salary",es_treasury.group_treasury_treasurer,1,1,1,0

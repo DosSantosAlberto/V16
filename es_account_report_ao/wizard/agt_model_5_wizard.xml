@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_agt_model5_form" model="ir.ui.view">
+        <field name="name">Modelo 5 - Declaração Anual De Rendimento</field>
+        <field name="model">fiscal.reports.agt.model5</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            IMPOSTO INDUSTRIAL, DECLARAÇÃO MODELO 5
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id"/>
+                        </group>
+                        <group>
+                            <field name="year_start"/>
+                            <field name="year_end"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="print_report" type="object" class="oe_highlight" string="Print"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="open_action_agt_model_5" model="ir.actions.act_window">
+        <field name="name">Modelo 5 - Declaração Anual De Rendimento</field>
+        <field name="res_model">fiscal.reports.agt.model5</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="agt_model5_menu"
+              name="Modelo 5"
+              parent="fiscal_report_menu"
+              action="open_action_agt_model_5"
+              sequence="3"/>
+</odoo>

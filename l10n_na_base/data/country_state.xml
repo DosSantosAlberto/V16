@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="base.na" model="res.country">
+            <field name="vat_label">VAT</field>
+            <field name="address_format">
+                %(street)s
+                %(street2)s
+                %(city)s %(state_code)s,  %(zip)s
+                %(country_name)s
+            </field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="state_na_1" model="res.country.state">
+            <field name="country_id" ref="base.na"/>
+            <field name="code">CPV</field>
+            <field name="name">Caprivi</field>
+        </record>
+        <record id="state_na_2" model="res.country.state">
+            <field name="country_id" ref="base.na"/>
+            <field name="code">ERG</field>
+            <field name="name">Erongo</field>
+        </record>
+        <record id="state_na_3" model="res.country.state">
+            <field name="country_id" ref="base.na"/>
+            <field name="code">HRP</field>
+            <field name="name">Hardap</field>
+        </record>
+        <record id="state_na_4" model="res.country.state">
+            <field name="country_id" ref="base.na"/>
+            <field name="code">KRS</field>
+            <field name="name">Karas</field>
+        </record>
+        <record id="state_na_5" model="res.country.state">
+            <field name="country_id" ref="base.na"/>
+            <field name="code">KGO</field>
+            <field name="name">Kavango</field>
+        </record>
+        <record id="state_na_6" model="res.country.state">
+            <field name="country_id" ref="base.na"/>
+            <field name="code">CUN</field>
+            <field name="name">Komas</field>
+        </record>
+        <record id="state_na_7" model="res.country.state">
+            <field name="country_id" ref="base.na"/>
+            <field name="code">KUN</field>
+            <field name="name">Kunene</field>
+        </record>
+        <record id="state_na_8" model="res.country.state">
+            <field name="country_id" ref="base.na"/>
+            <field name="code">OGN</field>
+            <field name="name">Ohangwena</field>
+        </record>
+        <record id="state_na_9" model="res.country.state">
+            <field name="country_id" ref="base.na"/>
+            <field name="code">OHE</field>
+            <field name="name">Omaheke</field>
+        </record>
+        <record id="state_na_10" model="res.country.state">
+            <field name="country_id" ref="base.na"/>
+            <field name="code">OST</field>
+            <field name="name">Omusati</field>
+        </record>
+        <record id="state_na_11" model="res.country.state">
+            <field name="country_id" ref="base.na"/>
+            <field name="code">OHA</field>
+            <field name="name">Oshana</field>
+        </record>
+        <record id="state_na_12" model="res.country.state">
+            <field name="country_id" ref="base.na"/>
+            <field name="code">OKT</field>
+            <field name="name">Oshikoto</field>
+        </record>
+        <record id="state_na_13" model="res.country.state">
+            <field name="country_id" ref="base.na"/>
+            <field name="code">OZP</field>
+            <field name="name">Otjozondjupa</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- modify contract form view -->
+    <record id="ag_contract_form_view" model="ir.ui.view">
+        <field name="name">AG - Inherited Contract Form View</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="priority" eval="100"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[last()]" position="after">
+                <page string="Remunerations and Deductions">
+                    <field name="remuneration_ids">
+                        <tree name="Remunaration" editable="bottom" decoration-danger="rem_type == 'deduction'"
+                              decoration-success="rem_type == 'remuneration'">
+                            <field name="remunerationcode_id" options="{'no_create_edit': True}"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="amount"/>
+                            <field name="is_daily"/>
+                            <field name="name"/>
+                            <field name="rem_type" readonly="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <!-- modify contract tree view -->
+    <record id="ag_contract_tree_view" model="ir.ui.view">
+        <field name="name">AG - Inherited Contract Tree View</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="job_id" position="after">
+                <field name="wage_final"/>
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="open_action_annexe_wizard" model="ir.actions.act_window">
+        <field name="name">Anexo A - Resultados, Existências E Terceiros</field>
+        <field name="res_model">fiscal.reports.annexe</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_annexe_form" model="ir.ui.view">
+        <field name="name">Anexo A - Resultados, Existências E Terceiros</field>
+        <field name="model">fiscal.reports.annexe</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            IMPOSTO INDUSTRIAL ANEXOS A
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id" string="Company"/>
+                        </group>
+                        <group>
+                            <field name="year_start"/>
+                            <field name="year_end"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="print_report" type="object" class="oe_highlight" string="Print"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

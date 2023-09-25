@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hs_treasury_box_close_form_view" model="ir.ui.view">
+            <field name="name">treasury.box.close.form</field>
+            <field name="model">treasury.box.close</field>
+            <field name="arch" type="xml">
+                <form string="Box Close">
+                    <header>
+                        <button name="close_box" string="Fechar Caixa" type="object" class="oe_highlight"
+                                attrs="{'invisible':[('state', '!=', 'new')]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="new,closed"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Reference"/>
+                            </h1>
+                        </div>
+                        <div>
+                            <group col="4">
+                                <field name="journal_id" domain="[('type', 'in', ['bank', 'cash'])]"
+                                       widget="selection"/>
+                                <field name="start_balance" readonly="1"/>
+                                <field name="date"/>
+                                <field name="end_balance"/>
+                            </group>
+                        </div>
+                        <notebook>
+                            <page string="Transactions" name="statement_line_ids">
+                                <field name="line_ids" context="{'date':date}">
+                                    <tree editable="bottom" string="Statement lines"
+                                          decoration-muted="journal_entry_ids">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="journal_entry_ids" invisible="1"/>
+                                        <field name="date" attrs="{'readonly' : [('journal_entry_ids', '!=', [])] }"/>
+                                        <field name="name" attrs="{'readonly' : [('journal_entry_ids', '!=', [])] }"/>
+                                        <field name="partner_id"
+                                               domain="['|',('parent_id','=',False),('is_company','=',True)]"
+                                               context="{'default_supplier': 1}"
+                                               attrs="{'readonly' : [('journal_entry_ids', '!=', [])] }"/>
+                                        <field name="ref" attrs="{'readonly' : [('journal_entry_ids', '!=', [])] }"
+                                               groups="base.group_no_one"/>
+                                        <field name="amount" attrs="{'readonly' : [('journal_entry_ids', '!=', [])] }"/>
+                                        <field name="journal_currency_id" invisible="1"/>
+                                        <field name="amount_currency" invisible="1"
+                                               attrs="{'readonly' : [('journal_entry_ids', '!=', [])] }"/>
+                                        <field name="currency_id" options="{'no_create': True}" invisible="1"
+                                               attrs="{'readonly' : [('journal_entry_ids', '!=', [])] }"/>
+                                        <field name="bank_account_id" invisible="1"
+                                               attrs="{'readonly' : [('journal_entry_ids', '!=', [])] }"
+                                               domain="['|', ('partner_id', '=', partner_id), ('partner_id', '=', False)]"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hs_treasury_box_close_tree_view" model="ir.ui.view">
+            <field name="name">treasury.box.close.tree</field>
+            <field name="model">treasury.box.close</field>
+            <field name="arch" type="xml">
+                <tree string="Box Close">
+                    <field name="name"/>
+                    <field name="journal_id"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hs_treasury_box_close_act_window" model="ir.actions.act_window">
+            <field name="name">Box Close</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">treasury.box.close</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Clique para fechar o caixa
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Fecho de Caixa" id="hs_treasury_box_close_menu"
+                  parent="hs_treasury_operations"
+                  action="hs_treasury_box_close_act_window"/>
+
+    </data>
+</odoo>

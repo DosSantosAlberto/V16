@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="_paper_format_landscape" model="report.paperformat">
+            <field name="name">- Paper Format Landscape</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">4</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+        </record>
+        <report
+                id="action_supplier_map_report"
+                model="supplier.map.wizard"
+                string="Mapa de  Fornecedores"
+                menu="False"
+                name="ht_account_ao.supplier_map_report"
+                file="ht_account_ao.supplier_map_report"
+                paperformat="ht_account_ao.paper_account_landscape"
+                report_type="qweb-pdf"/>
+
+
+        <template id="supplier_map_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.basic_layout">
+                        <div class="header" style="color: #0B74CE">
+
+                            <div >
+                                <img t-attf-src="data:image/png;base64,{{res_company.logo }}"
+                                     style="height:80px;width:200px;"/>
+                                <!--<img t-att-src="'data:image/png;base64,%s' % to_text(res_company.logo)"
+                                    style="height:80px;width:200px;;"/>-->
+                            </div>
+                            <div style="margin-left:950px;margin-top:-40px;font-size:10px;color:black;">
+                                <p style="margin-top:-20px;"> <span t-esc="doc.company_id.name"/></p>
+                                <p style="margin-top:-20px;"> <span t-esc="doc.company_id.street"/></p>
+                                <p style="margin-top:-20px;"> <span t-esc="doc.company_id.city"/></p>
+                                <p style="margin-top:-20px;"><b>Contribuinte Nº:</b><span t-esc="doc.company_id.vat"/></p>
+                                <p style="margin-top:-20px;"><b>Tel:</b><span t-esc="doc.company_id.phone"/></p>
+                                <p style="margin-top:-20px;"><b>Email:</b><span t-esc="doc.company_id.email"/></p>
+                            </div>
+                            <hr style="display: block; height: 1px;
+                             border: 0; border-top: 3px solid #0B74CE;
+                             margin: 0; padding: 0;"/>
+
+                        </div>
+                        <div class="page">
+                            <style>
+                                hr {
+                                display: block; height: 1px;
+                                border: 0; border-top: 1px solid #0B74CE;
+                                margin: 0; padding: 0;
+                                }
+                                .b_color{
+                                color: #0B74CE;
+                                }
+                                .table-bordered thead tr th {
+                                border: 1px solid black !important;
+                                }
+
+                                .table-bordered tbody tr td {
+                                border-left: 1px solid black !important;
+                                border-right: 1px solid black !important;
+                                border-top: hidden;
+                                border-bottom: 1px solid black !important;
+                                width:80%;
+                                }
+                                .b_color{
+                                color: #0B74CE;
+                                }
+
+                                .border_top_th{
+                                border-top: 1px solid black !important;
+                                }
+                            </style>
+                            <br></br>
+                            <h3>MAPA DE FORNECEDORES</h3>
+                            <p t-esc="doc.company_id.name"/>
+                            <p><span t-out="context_timestamp(datetime.datetime.now()).strftime('%Y-%m')"/></p>
+
+                            <table class="table table-condensed" style="font-size:10px;">
+                                <thead>
+                                    <tr style="font-weight:bold; color: black;">
+                                        <th class="text-centser" style="border-bottom:0 !important;"
+                                            rowspan="1">Nº ORDEM</th>
+
+                                        <th class="text-center"
+                                            rowspan="1"><b>Nº DE IDENTIFICAÇÃO FISCAL</b></th>
+                                        <th class="text-center"
+                                            colspan="1">NOME/FIRMA</th>
+                                        <th class="text-center"
+                                            colspan="1">TIPO DE DOCUMENTO</th>
+                                        <th class="text-center"
+                                            colspan="1">DATA DO DOCUMENTO</th>
+                                        <th class="text-center"
+                                            colspan="1">NÚMERO DO DOCUMENTO</th>
+                                        <th class="text-center"
+                                            colspan="1">VALOR DA FACTURA</th>
+                                        <th class="text-center"
+                                            colspan="1">VALOR TRIBUTÁVEL</th>
+                                        <th class="text-center"
+                                            colspan="1">IVA SUPORTADO</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr t-foreach="doc.get_supplier()" t-as="res">
+                                        <td class="text-center"> <span t-esc="res['number']"/></td>
+                                        <td class="text-center"><span t-esc="res['vat']"/></td>
+                                        <td class="text-center"><span t-esc="res['name']"/></td>
+                                        <td class="text-center"> <span t-esc="res['type']"/></td>
+                                        <td class="text-center"> <span t-esc="res['date']"/></td>
+                                        <td class="text-center"> <span t-esc="res['order_number']"/></td>
+                                        <td class="text-center"> <span t-esc="res['amount_total']" t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <td class="text-center">  <span t-esc="res['amount_untaxed']" t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <td class="text-center"><span t-esc="res['amount_tax']" t-options='{"widget": "float", "precision": 2}'/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="footer">
+
+                                <div class="text-right" style="font-size:10px">
+                                    <b>© COMPLLEXUS</b>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

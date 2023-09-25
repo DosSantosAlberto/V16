@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <template id="report_account_extract_pdf">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.basic_layout">
+                        <div class="header" style="color: #0B74CE">
+                            <div class="row b_color">
+                                <div class="col-xs-8 text-left">
+                                    <b><span t-field="doc.company_id.name"/></b>
+                                </div>
+                                <div class="col-xs-4 text-right">
+                                    <ul class="list-inline">
+                                        <span t-out="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                                        |
+                                        Pag. <span class="page"/>/<span class="topage"/>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr style="display: block; height: 1px;
+                            border: 0; border-top: 3px solid #0B74CE;
+                            margin: 0; padding: 0;"/>
+                            <div class="row mt16">
+                                <div class="col-xs-6">
+                                    <div align="left">
+                                        <b class="b_color">
+                                            Extracto de Conta
+                                            <t t-if="doc.filter_by == 'account'">
+                                                <span t-field="doc.account_id.code"/>
+                                            </t>
+                                            (<span t-field="doc.date_from"/> até <span t-field="doc.date_to"/>)
+                                        </b>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div align="right"><b class="b_color">Valores Expresso em <span
+                                            t-out="doc.company_id.currency_id.symbol"/></b></div>
+                                </div>
+
+                                <div class="col-xs-12" align="left"
+                                     style="margin-left:15px; border-top: 1px solid #0B74CE;">
+                                    <div class="row">
+                                        <p style="text-transform:capitalize; font-size:10px;">
+                                            <b>
+                                                Data Contab.:<span t-field="doc.date_to"/>
+                                            </b>
+                                        </p>
+                                        <p>
+                                            <b>
+                                                <t t-if="doc.filter_by == 'cost_center'">
+                                                    Centro de Custo:
+                                                    <t t-if="not doc.by_account">
+                                                        Todos
+                                                        <t t-if="doc.display_account=='movement'">Com Movimentos</t>
+                                                    </t>
+                                                    <t t-if="doc.by_account">
+                                                        <span t-field="doc.cost_center"/>
+                                                    </t>
+                                                </t>
+                                                <t t-if="doc.filter_by == 'cash_flow'">
+                                                    Fluxo de Caixa:
+                                                    <t t-if="not doc.by_account">
+                                                        Todos
+                                                        <t t-if="doc.display_account=='movement'">Com Movimentos</t>
+                                                    </t>
+                                                    <t t-if="doc.by_account">
+                                                        <span t-field="doc.cash_flow"/>
+                                                    </t>
+                                                </t>
+                                                <t t-if="doc.filter_by == 'fiscal_plan'">
+                                                    Plano Fiscal:
+                                                    <t t-if="not doc.by_account">
+                                                        Todos
+                                                        <t t-if="doc.display_account=='movement'">Com Movimentos</t>
+                                                    </t>
+                                                    <t t-if="doc.by_account">
+                                                        <span t-field="doc.fiscal_plan"/>
+                                                    </t>
+                                                </t>
+                                                <t t-if="doc.filter_by == 'iva_plan'">
+                                                    Plano IVA:
+                                                    <t t-if="not doc.by_account">
+                                                        Todos
+                                                        <t t-if="doc.display_account=='movement'">Com Movimentos</t>
+                                                    </t>
+                                                    <t t-if="doc.by_account">
+                                                        <span t-field="doc.iva_plan"/>
+                                                    </t>
+                                                </t>
+                                            </b>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page">
+                            <style>
+                                * {padding-bottom: 0 !important;
+                                padding-top: 0 !important;
+                                margin-bottom: 0 !important;margin-top:0 !important; }
+                                hr {
+                                display: block; height: 1px;
+                                border: 0; border-top: 1px solid #0B74CE;
+                                margin: 0; padding: 0;
+                                }
+                                .b_color{
+                                color: #0B74CE;
+                                }
+
+                                table {
+                                border-top: 3px solid black;
+                                border-collapse:collapse;
+                                }
+
+                                table, tr, td {
+                                padding: 10px 0px 0px 0px;
+                                border-collapse: separate;
+                                border-top: 1x solid black;
+                                padding:1px;
+                                }
+
+                                .border_top_th{
+                                border-top: 1px solid black !important;
+                                }
+                            </style>
+                            <table class="table table-condensed" style="font-size:10px;">
+                                <thead>
+                                    <tr class="border_top_th">
+                                        <th style="border-bottom:1px solid black !important;">Data</th>
+                                        <th style="border-bottom:1px solid black !important;">Diário</th>
+                                        <th style="border-bottom:1px solid black !important;">Nº Diario</th>
+                                        <th style="border-bottom:1px solid black !important;">Descrição</th>
+                                        <th style="border-bottom:1px solid black !important;" class="text-right">
+                                            Débito</th>
+                                        <th style="border-bottom:1px solid black !important;" class="text-right">
+                                            Crédito</th>
+                                        <th style="border-bottom:1px solid black !important;" class="text-right">
+                                            Saldo</th>
+                                        <th style="border-bottom:1px solid black !important;">Doc.</th>
+                                        <th style="border-bottom:1px solid black !important;" class="text-right">
+                                            IVA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="font-weight:bold;">
+                                        <td colspan="4" class="text-right">Saldos Anteriores (Débito, Crédito e
+                                            Saldo)</td>
+                                        <td class="text-right">0,00</td>
+                                        <td class="text-right">0,00</td>
+                                        <td class="text-right">0,00</td>
+                                        <td colspan="2"></td>
+                                    </tr>
+
+                                    <t t-value="doc.get_account_movements()" t-set="movements_total"/>
+                                    <t t-foreach="movements_total['final_result']" t-as="moves">
+                                        <t t-if="doc.filter_by == 'account'">
+                                            <tr>
+                                                <td>
+                                                    <span t-out="moves['date']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-out="moves['journal']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-out="moves['journal_number']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-out="moves['description']"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-out="doc.format_value(moves['debit'])"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-out="doc.format_value(moves['credit'])"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-out="doc.format_value(moves['accumulated_balance'])"/>
+                                                    <span t-out="moves['balance_type']"/>
+                                                </td>
+                                                <td class="text-left">
+                                                    <span t-out="moves['doc']"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-out="moves['iva_plan']"/>
+                                                </td>
+                                            </tr>
+                                            <t>
+
+                                                <tr>
+                                                    <th style="border-color:black;" colspan="3"
+                                                        class="black_border text-left">
+                                                        <t t-if="doc.filter_by == 'account'">
+                                                            <span t-field="doc.account_id.name"/>
+                                                        </t>
+                                                    </th>
+                                                    <th style="border-color:black;" class="text-right">
+                                                        Total Periodo
+                                                    </th>
+                                                    <th style="border-color:black;" class="text-right">
+                                                        <span t-out="moves['total_period_debit']"/>
+                                                    </th>
+                                                    <th style="border-color:black;" class="text-right">
+                                                        <span t-out="moves['total_period_credit']"/>
+                                                    </th>
+                                                    <th style="border-color:black;" class="text-right">
+                                                        <span t-out="moves['total_period_balance']"/>
+                                                        <span t-out="moves['var']"/>
+                                                    </th>
+                                                    <th colspan="2" style="border-color:black;">
+
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th style="border:none;" colspan="3" class="text-left">
+
+                                                    </th>
+                                                    <th style="border:none;" class="text-right">
+                                                        Total Acumulado
+                                                    </th>
+                                                    <th style="border:none;" class="text-right">
+                                                        <span t-out="moves['total_accumulated_debit']"/>
+                                                    </th>
+                                                    <th style="border:none;" class="text-right">
+                                                        <span t-out="moves['total_accumulated_credit']"/>
+                                                    </th>
+                                                    <th style="border:none;" class="text-right">
+                                                        <span t-out="moves['total_accumulated_balance']"/>
+                                                        <span t-out="moves['var']"/>
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="9">
+                                                        <br/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                        <tr>
+                                            <td colspan="9">
+
+                                            </td>
+                                        </tr>
+                                        <t t-if="not doc.filter_by == 'account'">
+                                            <tr>
+                                                <td colspan="9">
+                                                    <b style="color:#0B74CE"><span t-out="moves['name']"/></b>
+                                                </td>
+                                            </tr>
+                                            <t t-foreach="moves['movements']" t-as="items">
+                                                <tr>
+                                                    <td colspan="9">
+                                                        <b><span t-out="items['account_code']"/> - <span
+                                                                t-out="items['account']"/></b>
+                                                    </td>
+                                                </tr>
+                                                <t t-foreach="items['moves_list']" t-as="element">
+                                                    <tr>
+                                                        <td>
+                                                            <span t-out="element['date']"/>
+                                                        </td>
+                                                        <td>
+                                                            <span t-out="element['journal']"/>
+                                                        </td>
+                                                        <td>
+                                                            <span t-out="element['journal_number']"/>
+                                                        </td>
+                                                        <td>
+                                                            <span t-out="element['description']"/>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-out="doc.format_value(element['debit'])"/>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-out="doc.format_value(element['credit'])"/>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-out="doc.format_value(element['accumulated_balance'])"/>
+                                                            <span t-out="element['balance_type']"/>
+                                                        </td>
+                                                        <td class="text-left">
+                                                            <span t-out="element['doc']"/>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-out="element['iva_plan']"/>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                            <t>
+                                                <tr>
+                                                    <td colspan="9">
+                                                        <br/>
+                                                        <br/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="border-color:black;" colspan="3"
+                                                        class="black_border text-left">
+                                                        <t t-if="doc.filter_by == 'account'">
+                                                            <span t-field="doc.account_id.name"/>
+                                                        </t>
+                                                    </th>
+                                                    <th style="border-color:black;" class="text-right">
+                                                        Total Periodo
+                                                    </th>
+                                                    <th style="border-color:black;" class="text-right">
+                                                       <span t-out="moves['total_period_debit']"/>
+                                                    </th>
+                                                    <th style="border-color:black;" class="text-right">
+                                                        <span t-out="moves['total_period_credit']"/>
+                                                    </th>
+                                                    <th style="border-color:black;" class="text-right">
+                                                        <span t-out="moves['total_period_balance']"/>
+                                                        <span t-out="moves['var']"/>
+                                                    </th>
+                                                    <th colspan="2" style="border-color:black;">
+
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th style="border:none;" colspan="3" class="text-left">
+
+                                                    </th>
+                                                    <th style="border:none;" class="text-right">
+                                                        Total Acumulado
+                                                    </th>
+                                                    <th style="border:none;" class="text-right">
+                                                        <span t-out="moves['total_accumulated_debit']"/>
+                                                    </th>
+                                                    <th style="border:none;" class="text-right">
+                                                        <span t-out="moves['total_accumulated_credit']"/>
+                                                    </th>
+                                                    <th style="border:none;" class="text-right">
+                                                        <span t-out="moves['total_accumulated_balance']"/>
+                                                        <span t-out="moves['var']"/>
+                                                    </th>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </t>
+                                    <t t-if="not doc.filter_by == 'account'">
+                                        <t>
+                                            <tr>
+                                                <td colspan="9">
+                                                    <br/>
+                                                    <br/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th style="border-color:black;" colspan="3"
+                                                    class="black_border text-left">
+                                                    <t t-if="doc.filter_by == 'account'">
+                                                        <span t-field="doc.account_id.name"/>
+                                                    </t>
+                                                </th>
+                                                <th style="border-color:black;" class="text-right">
+                                                    Total Geral Periodo
+                                                </th>
+                                                <th style="border-color:black;" class="text-right">
+                                                    <span t-out="movements_total['total_period_debit']"/>
+                                                </th>
+                                                <th style="border-color:black;" class="text-right">
+                                                    <span t-out="movements_total['total_period_credit']"/>
+                                                </th>
+                                                <th style="border-color:black;" class="text-right">
+                                                    <span t-out="movements_total['total_period_balance']"/>
+                                                    <span t-out="movements_total['var']"/>
+                                                </th>
+                                                <th colspan="2" style="border-color:black;">
+
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th style="border:none;" colspan="3" class="text-left">
+
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    Total Geral Acumulado
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    <span t-out="movements_total['total_accumulated_debit']"/>
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    <span t-out="movements_total['total_accumulated_credit']"/>
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    <span t-out="movements_total['total_accumulated_balance']"/>
+                                                    <span t-out="movements_total['var']"/>
+                                                </th>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <div class="footer">
+                            <div class="text-right" style="font-size:10px">
+                                <b>© COMPLLEXUS</b>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,168 @@
+<odoo>
+    <data>
+
+        <!-- Inherit Action quotations by Salesteams -->
+        <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+            <field name="name">Quotations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_id" ref="sale.view_quotation_tree_with_onboarding"/>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+            <field name="context">{'search_default_my_quotation': 1, 'default_document_type_id': 1}</field>
+            <field name="domain">[('document_type_id', '=', 1)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new quotation, the first step of a new sale!
+                </p>
+                <p>
+                    Once the quotation is confirmed by the customer, it becomes a sales order.
+                    <br/>
+                    You will be able to create an invoice and collect the payment.
+                </p>
+            </field>
+        </record>
+
+        <record id="sale.sale_order_view_search_inherit_quotation" model="ir.ui.view">
+            <field name="name">sale.order.search.inherit.quotation</field>
+            <field name="model">sale.order</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='my_sale_orders_filter']" position="replace">
+                    <field name="campaign_id"/>
+                    <separator/>
+                    <filter string="My Quotations" name="my_quotation" domain="[('user_id', '=', uid)]"/>
+                    <separator/>
+                    <filter string="Quotations" name="draft" domain="[('state','in',('draft', 'sent'))]"/>
+                    <filter string="Valid" name="valid" domain="[('state','=', 'valid')]"/>
+                    <filter string="Sales Orders" name="sales" domain="[('state','in',('sale','done'))]"/>
+                    <separator/>
+                    <filter string="Create Date" name="filter_create_date" date="create_date"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit search sale_order view by Salesteams -->
+        <record id="sale_order_view_search_inherit_sale" model="ir.ui.view">
+            <field name="name">sale.order.search.inherit.sale</field>
+            <field name="model">sale.order</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                    <separator/>
+                    <filter string="To Invoice" name="to_invoice" domain="[('invoice_status','=','to invoice')]"/>
+                    <filter string="To Upsell" name="upselling" domain="[('invoice_status','=','upselling')]"/>
+                    <separator/>
+                    <filter string="Quotation" name="document_type_id"
+                            domain="[('document_type_id.code','=','OU')]"/>
+                    <filter string="Proposal" name="document_type_id"
+                            domain="[('document_type_id.code','=','OR')]"/>
+                    <filter string="Pro Forma" name="document_type_id"
+                            domain="[('document_type_id.code','=','PP')]"/>
+                    <separator/>
+                    <filter string="Order Date" name="order_date" date="date_order"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Document Type" name="document_type_id"
+                                context="{'group_by':'document_type_id'}"
+                                domain="[('document_type_id','ilike','document_type_id')]"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="order_view_search_inherit_proposal" model="ir.ui.view">
+            <field name="name">sale.order.search.inherit.proposal</field>
+            <field name="model">sale.order</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='my_sale_orders_filter']" position="replace">
+                    <field name="campaign_id"/>
+                    <separator/>
+                    <filter string="My Proposal" name="document_type_id" domain="[('user_id', '=', uid)]"/>
+                    <separator/>
+                    <filter string="Valid" name="valid" domain="[('state','=', 'valid')]"/>
+                    <separator/>
+                    <filter string="Create Date" name="filter_create_date" date="create_date"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ACTION ONBOARDING PROPOSAL -->
+        <record id="action_l10n_ao_sale_or_with_onboarding" model="ir.actions.act_window">
+            <field name="name">Proposal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_id" ref="sale.view_quotation_tree_with_onboarding"/>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+            <field name="search_view_id" ref="order_view_search_inherit_proposal"/>
+            <field name="context">{'default_document_type_id': 2}</field>
+            <field name="domain">[('document_type_id', '=', 2)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new proposal, the first step of a new sale!
+                </p>
+                <p>
+                    Once the proposal is confirmed by the customer, it becomes a sales order.
+                    <br/>
+                    You will be able to create an invoice and collect the payment.
+                </p>
+            </field>
+        </record>
+
+        <record id="order_view_search_inherit_pro_forma" model="ir.ui.view">
+            <field name="name">sale.order.search.inherit.proposal</field>
+            <field name="model">sale.order</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='my_sale_orders_filter']" position="replace">
+                    <field name="campaign_id"/>
+                    <separator/>
+                    <filter string="My Pro Forma" name="document_type_id" domain="[('user_id', '=', uid)]"/>
+                    <separator/>
+                    <filter string="Valid" name="valid" domain="[('state','=', 'valid')]"/>
+                    <separator/>
+                    <filter string="Create Date" name="filter_create_date" date="create_date"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ACTION ONBOARDING Pro FORMA -->
+        <record id="action_l10n_ao_sale_pp_with_onboarding" model="ir.actions.act_window">
+            <field name="name">Pro Forma</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_id" ref="sale.view_quotation_tree_with_onboarding"/>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+            <field name="search_view_id" ref="order_view_search_inherit_pro_forma"/>
+            <field name="context">{'default_document_type_id': 3}</field>
+            <field name="domain">[('document_type_id', '=', 3)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new pro forma, the first step of a new sale!
+                </p>
+                <p>
+                    Once the pro forma is confirmed by the customer, it becomes a sales order.
+                    <br/>
+                    You will be able to create an invoice and collect the payment.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="l10n_ao_sale_menu_or"
+                  name="Proposal"
+                  action="action_l10n_ao_sale_or_with_onboarding"
+                  parent="sale.sale_order_menu"
+                  sequence="1" groups="sales_team.group_sale_salesman"/>
+
+        <menuitem id="l10n_ao_sale_menu_pp"
+                  name="Pro Forma"
+                  action="action_l10n_ao_sale_pp_with_onboarding"
+                  parent="sale.sale_order_menu"
+                  sequence="1" groups="sales_team.group_sale_salesman"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="l10n_ao_partner_due_invoices_wizard_form">
+            <field name="name">l10n_ao.partner.due.invoices.wizard.form</field>
+            <field name="model">l10n_ao.partner.due.invoices.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Invoice">
+                    <div style="background-color:#337AB7; color:#ffffff; font-size:14px; margin:0px;">
+                        Com este agente podes obter relatórios de facturas de clientes e fornecedores, que se encontram
+                        com seu prazo vencido.
+                        Vai facilitar na tomada de decisão e saberá o quanto ja devia ter recebido ou entregue até o dia
+                        de ontem.
+                    </div>
+                    <group col="2" string="Filtros">
+                        <group>
+                            <field name="type" string="Facturas"  widget="radio" options="{'horizontal':True}"/>
+                        </group>
+                        <group>
+                            <field name="partner" options="{'no_create':True,'no_create_edit':True}"
+                                   domain="[('customer','=',True)]" attrs="{'required':[('type','=','customer')],'invisible':[('type','=','supplier')]}"/>
+                            <field name="supplier" options="{'no_create':True,'no_create_edit':True}"
+                                   domain="[('supplier','=',True)]" attrs="{'required':[('type','=','supplier')],'invisible':[('type','=','customer')]}"/>
+                        </group>
+                    </group>
+                    <group string="Empresas">
+                        <field name="companies" widget="many2many_checkboxes" nolabel="1"/>
+                    </group>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button name="print" type="object"
+                                    string="Print" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_l10n_ao_partner_due_invoice_wizard">
+            <field name="name">Partner Due invoices</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">l10n_ao.partner.due.invoices.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <menuitem id="menu_partner_due_invoice_report"
+                  name="Due Invoices"
+                  parent="account.menu_finance_legal_statement"
+                  sequence="3"
+                  action="act_l10n_ao_partner_due_invoice_wizard"/>
+
+    </data>
+</odoo>

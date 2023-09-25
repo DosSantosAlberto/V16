@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="na_chart_template" model="account.chart.template">
+        <field name="name">Namibia Chart Of Account</field>
+        <field name="bank_account_code_prefix">16412</field>
+        <field name="cash_account_code_prefix">16411</field>
+        <field name="transfer_account_code_prefix">164225</field>
+        <field name="code_digits">6</field>
+        <field name="currency_id" ref="base.NAD"/>
+        <field name="country_id" ref="base.na"/>
+    </record>
+
+</odoo>

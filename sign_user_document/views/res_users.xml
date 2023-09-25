@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="ao_res_users_sign" model="ir.ui.view">
+            <field name="name">Users View Inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[1]" position="after">
+                    <page string="Signature">
+                        <field name="signature_ids">
+                            <tree>
+                                <field name="company_id"/>
+                            <field name="signature_image" widget="image" style="width:180px;height:90px;"/></tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

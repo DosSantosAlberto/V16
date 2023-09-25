@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_article_resume_report" model="ir.actions.report">
+            <field name="name">resumo do artigo</field>
+            <field name="model">article.resume.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ht_stock_ao.article_resume_report</field>
+            <field name="report_file">ht_stock_ao.article_resume_report</field>
+        </record>
+      
+      <template id="article_resume_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="header" style="color: #0B74CE">
+                        <div class="row b_color">
+                            <div class="col-8">
+                                <b><span class="text-left" t-field="o.company_id"/></b>
+                            </div>
+                            <div class="col-4" style="font-size:10px;">
+                                <ul class="list-inline text-right">
+                                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                                    |
+                                    Pag. <span class="page"/>/<span class="topage"/>
+                                </ul>
+                            </div>
+                        </div>
+                        <br/>
+                        <hr style="display: block; height: 1px;
+                        border: 0; border-top: 3px solid #0B74CE;
+                        margin: 0; padding: 0;"/>
+                        <div class="row mt16">
+                            <div class="col-6">
+                                <div align="left">
+                                    <b class="b_color">
+                                        Resumo do Artigo
+                                        (<span t-field="o.start_date"/> até <span t-field="o.end_date"/>)
+                                    </b>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div align="right"><b class="b_color">Valores em <span
+                                        t-esc="o.company_id.currency_id.symbol"/></b></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="page">
+                        <style type="text/css">
+                            * {
+                            padding-bottom: 0 !important; padding-top: 0 !important;
+                            margin-bottom: 0 !important; margin-top:0 !important;
+                            font-size: 12px !important;
+                            }
+                            hr {
+                            display: block; height: 1px;
+                            border: 0; border-top: 3px solid black;
+                            margin: 0; padding: 0;
+                            }
+                            .b_color{
+                            color: #0B74CE;
+                            }
+
+                            table {
+                            border-spacing: 3px;
+                            border-top: 3px solid black;
+                            border-collapse:collapse;
+                            }
+
+                            td {
+                            border-bottom:0 !important;
+                            border-top: 1px solid #B2BABB !important;
+                            }
+
+                            th {
+                            border-top:0 !important;
+                            border-bottom: 1px solid #B2BABB !important;
+                            }
+
+                            table, tr, th, td {
+                            border-collapse: separate;
+                            padding:0px !important;
+                            }
+
+                            .border_top_th{
+                            border-top: 1px solid black !important;
+                            }
+                        </style>
+
+                         <table class="table table-condensed" style="font-size:10px;">
+                                <thead>
+
+
+                                    <tr style="font-weight:bold; color: black;">
+                                        <th class="text-center"
+                                            colspan="1">Referência do artigo</th><th class="text-center"
+                                            colspan="1">Descrição do artigo</th><th class="text-center"
+                                            colspan="3">Vendas</th>
+                                        <th class="text-center"
+                                            colspan="3">Compra</th>
+                                        <th class="text-center"
+                                            colspan="1">Margem Bruta de Crédito</th>
+                                    </tr>
+                                    <tr style="font-weight:bold;">
+                                        <th style="border-bottom:0 !important;" class="text-center"> </th>
+                                        <th style="border-bottom:0 !important;" class="text-center"> </th>
+                                        <th style="border-bottom:0 !important;" class="text-center">Q</th>
+                                        <th style="border-bottom:0 !important;" class="text-center">PVU</th>
+                                        <th class="text-center" style="border-bottom:0 !important;">
+                                            Valor</th>
+                                        <th class="text-center" style="border-bottom:0 !important;">
+                                            Q</th>
+                                        <th class="text-center" style="border-bottom:0 !important;">
+                                            PCM</th>
+                                        <th style="border-bottom:0 !important;">VALOR</th>
+                                        <th style="border-bottom:0 !important;"></th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <td class="text-center" style="border:1px black;">
+                                            <span t-field="o.product_id.default_code"/>
+                                    </td>
+                                    <td class="text-center" style="border:1px black;">
+                                        <span t-field="o.product_id.name"/>
+
+                                    </td>
+                                    <td class="text-center" style="border:1px black;">
+                                        <span t-field="o.product_id.qty_available" t-options='{"widget": "float", "precision": 2}'/>
+
+
+                                    </td>
+                                    <td class="text-center" style="border:1px black;">
+                                        <span t-field="o.product_id.list_price" t-options='{"widget": "float", "precision": 2}'/>
+
+                                    </td>
+                                    <t t-set="product" t-value="(o.product_id.qty_available) * (o.product_id.list_price)"/>
+                                    <td class="text-center" style="border:1px black;">
+                                        <span t-esc="product " t-options='{"widget": "float", "precision": 2}'/>
+
+                                    </td>
+                                    <td class="text-center" style="border:1px black;">
+                                       <span t-field="o.product_id.purchased_product_qty"/>
+                                    </td>
+                                    <td class="text-center" style="border:1px black;">
+                                       <span t-field="o.product_id.price" t-options='{"widget": "float", "precision": 2}'/>
+
+                                    </td>
+                                    <t t-set="products" t-value="(o.product_id.purchased_product_qty) * (o.product_id.price)"/>
+                                    <td class="text-center" style="border:1px black;">
+                                        <span t-esc="products " t-options='{"widget": "float", "precision": 2}'/>
+
+                                    </td>
+                                    <t t-set="values" t-value="product-products"/>
+
+                                    <td class="text-center" style="border:1px black;">
+                                        <span t-esc="values" t-options='{"widget": "float", "precision": 2}'/>
+
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+  
+      
+
+    </data>
+
+</odoo>

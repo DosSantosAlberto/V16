@@ -1,0 +1,21 @@
+{
+    'name': 'Angola - Purchase',
+    'version': '1.1',
+    'summary': 'Purchase Manager',
+    'description': 'Purchase Manager Angola',
+    'category': 'Inventory/Purchase',
+    'author': 'Ticblac Solution Lda',
+    'website': 'http://www.ticblac.com',
+    'depends': ['purchase', 'purchase_stock', 'ht_account_ao'],
+    'data': [
+        'views/purchase_view.xml',
+        'views/res_company_view.xml',
+        'views/res_config_view.xml',
+        'views/menus.xml',
+    ],
+    'installable': True,
+    'auto_install': False,
+    'price': 150000,
+    'license': 'OPL-1',
+    'currency': 'AOA',
+}

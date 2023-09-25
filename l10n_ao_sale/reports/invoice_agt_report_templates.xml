@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_agt_document_inherit_sale" inherit_id="l10n_ao.report_invoice_document_agt">
+<!--<xpath expr="//address" position="attributes">
+            <attribute name="groups">!sale.group_delivery_invoice_address</attribute>
+        </xpath>-->
+        <xpath expr="//div[@id='address_first']" position="inside">
+                        <div t-if="o.partner_shipping_id and (o.partner_shipping_id != o.partner_id)" groups="sale.group_delivery_invoice_address">
+                            <strong t-if="o.partner_shipping_id" >Shipping address:<br/></strong>
+                             <t t-if="o.partner_shipping_id.display_name"><span t-esc="o.partner_shipping_id.display_name"/><br/></t>
+                                <t t-if="o.partner_shipping_id.street"><span t-esc="o.partner_shipping_id.street"/><br/></t>
+                                <t t-if="o.partner_shipping_id.street2"><span t-esc="o.partner_shipping_id.street2"/><br/></t>
+                                <t t-if="o.partner_shipping_id.city"><span t-esc="o.partner_shipping_id.city"/> -</t>
+                                <t t-if="o.partner_shipping_id.country_id.name"><span t-esc="o.partner_shipping_id.country_id.name"/><br/></t>
+                                <t t-if="o.partner_shipping_id.phone"><span t-esc="o.partner_shipping_id.phone"/><br/></t>
+                        </div>
+<!--            <div class="col-4">
+                <div t-field="o.partner_id"
+                     t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'
+                     groups="sale.group_delivery_invoice_address"/>
+            </div>-->
+        </xpath>
+    </template>
+</odoo>

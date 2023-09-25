@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="res_partner_form_inherit_view" model="ir.ui.view">
+            <field name="name">res_partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_title')]//h1" position="before">
+                    <br/>
+                    <field name="sector"
+                           widget="radio" class="oe_edit_only"
+                           attrs="{'invisible':[('company_type','=','person')]}"
+                           options="{'horizontal': true}"/>
+                </xpath>
+              <!--  <xpath expr="//field[@name='user_id']" position="replace">
+                    <field name="user_id" string="Customer manager"/>
+                </xpath>-->
+            </field>
+        </record>
+        <record id="res_partner_tree_inherit_view" model="ir.ui.view">
+            <field name="name">res_partner.tree</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='active']" position="after">
+                    <field name="credit" sum="Total"/>
+                </xpath>
+                <xpath expr="//field[@name='display_name']" position="after">
+                    <field name="vat"/>
+                </xpath>
+                <xpath expr="//field[@name='email']" position="after">
+                    <field name="user_id" string="Customer manager"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

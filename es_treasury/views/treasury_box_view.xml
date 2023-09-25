@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hs_treasury_box_kanban_view" model="ir.ui.view">
+            <field name="name">treasury.box.kanban</field>
+            <field name="model">treasury.box</field>
+            <field name="arch" type="xml">
+                <kanban create="false" class="o_kanban_dashboard o_account_kanban">
+                    <field name="current_user_id" invisible="1"/>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="start_balance"/>
+                    <field name="end_balance"/>
+                    <field name="session_user"/>
+                    <field name="state"/>
+                    <field name="current_session_user"/>
+                    <field name="session_user_name"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="card shadow" style="width: 40em;border-radius: 10px;">
+                                <div class="p-2">
+                                    <h2 class="card-title">
+                                        <span t-out="record.name.value"/>
+                                    </h2>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <t t-if="record.state.raw_value === 'closed'">
+                                                <h6 class="badge badge-danger" style="color: white">
+                                                    <span t-out="record.state.value"/>
+                                                </h6>
+                                            </t>
+                                            <t t-else="">
+                                                <h6 class="badge" style="background-color: #76bc79; color: white">
+                                                    <span t-out="record.state.value"/>
+                                                </h6>
+                                            </t>
+
+                                            <t t-set="unused_message">Não Utilizado</t>
+
+                                            <p class="mt-2">
+                                                <t t-out="record.session_user_name.value || unused_message"/>
+                                            </p>
+
+                                            <button t-if="record.state.raw_value === 'closed'" class="btn"
+                                                    style="background-color: #76bc79; border-radius: 5px; color: white;"
+                                                    name="button_open_box" type="object">
+                                                Abrir caixa
+                                            </button>
+                                            <t t-if="record.current_session_user.raw_value == record.session_user.raw_value">
+                                                <button t-if="record.state.raw_value === 'opened'"
+                                                        class="btn btn-danger" name="button_close_box" type="object"
+                                                        style="border-radius: 5px;">
+                                                    Fechar caixa
+                                                </button>
+                                            </t>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="card shadow p-4"
+                                                         style="border-radius: 10px; background-color: white;">
+                                                        <p>Saldo Anterior</p>
+                                                        <h6>
+                                                            <t t-out="record.start_balance.value"
+                                                               t-out-options='{"widget": "monetary","display_currency": record.company_id.currency_id}'></t>
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card shadow p-4"
+                                                         style="background-color: #76bc79; color: white;border-radius: 10px;">
+                                                        <p>Saldo Posterior</p>
+                                                        <h6 style="color: white;">
+                                                            <t t-out="record.end_balance.value"
+                                                               t-out-options='{"widget": "monetary","display_currency": record.company_id.currency_id}'></t>
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="mt-3 mb-2">
+                                                Última data fecho:
+                                                <t t-out="record.date.value"/>
+                                            </p>
+
+                                            <p>
+                                                Saldo disponível:
+                                                <b>
+                                                    <span style="color: #76bc79">
+                                                        +
+                                                        <t t-out="record.end_balance.value"></t>
+                                                    </span>
+                                                </b>
+                                            </p>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div style="border-bottom: 2px solid green; border-top: 2px solid green;">
+                                <div class="o_kanban_card_header">
+                                    <div class="o_kanban_card_header_title mb16">
+                                        <div class="o_primary">
+                                            <b>
+                                                <span t-out="record.name.value" />
+                                            </b>
+                                        </div>
+                                        <field name="state" widget="label_selection" options="
+                                        {'classes': {
+                                            'opened': 'success',  'closed': 'warning'}
+                                        }" />
+                                        <t t-set="unused_message">Não Utilizado</t>
+                                        <div class="o_secondary mt16">
+                                            <t t-out="record.session_user_name.value || unused_message" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container o_kanban_card_content">
+                                    <div class="row">
+                                        <div class="col-6 o_kanban_primary_left">
+                                            <button t-if="record.state.raw_value === 'closed'" class="btn btn-primary" name="button_open_box" type="object">
+                                                Abrir caixa
+                                            </button>
+                                            <t t-if="record.current_session_user.raw_value == record.session_user.raw_value">
+                                                <button t-if="record.state.raw_value === 'opened'" class="btn btn-primary" name="button_close_box" type="object">
+                                                    Fechar caixa
+                                                </button>
+                                            </t>
+                                        </div>
+                                        <div class="col-6 o_kanban_primary_right">
+                                            <div t-if="record.date.value" class="row">
+                                                <div class="col-6">
+                                                    <span>Ultima data fecho</span>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <span>
+                                                        <t t-out="record.date.value" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <b>
+                                                        <span>Saldo de caixa</span>
+                                                    </b>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span>
+                                                        <b>
+                                                            <field name="start_balance" widget="monetary" />
+                                                        </b>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align:right;" t-if="record.session_user_name.value">
+                                        <field name="current_user_id" widget="many2one_avatar_user" />
+                                    </div>
+                                </div>
+
+                            </div> -->
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="hs_treasury_box_form_view" model="ir.ui.view">
+            <field name="name">treasury.box.form</field>
+            <field name="model">treasury.box</field>
+            <field name="arch" type="xml">
+                <form string="Box Close">
+                    <header>
+                        <button name="button_close_box" type="object" class="oe_highlight"
+                                attrs="{'invisible':[('state', '!=', 'new')]}">
+                            <i class="fa fa-times-circle" aria-hidden="true">Fechar Caixa</i>
+                        </button>
+                        <field name="state" widget="statusbar" statusbar_visible="new,closed"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Reference"/>
+                            </h1>
+                        </div>
+                        <div>
+                            <group col="4">
+                                <field name="journals" domain="[('type', 'in', ['bank', 'cash'])]"
+                                       widget="many2many_tags"/>
+                                <field name="start_balance" readonly="0"/>
+                                <field name="date" readonly="1"/>
+                                <field name="end_balance" attrs="{'readonly':[('state','=','x')]}"/>
+                                <field name="show_on_panel"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hs_treasury_box_tree_view" model="ir.ui.view">
+            <field name="name">treasury.box.tree</field>
+            <field name="model">treasury.box</field>
+            <field name="arch" type="xml">
+                <tree string="Box Close">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="start_balance" sum="Total Balance"/>
+                    <field name="state"/>
+                    <field name="show_on_panel"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hs_treasury_box_act_window" model="ir.actions.act_window">
+            <field name="name">Box</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">treasury.box</field>
+
+            <field name="view_mode">kanban</field>
+            <field name="context">{}</field>
+            <field name="domain">[('show_on_panel', '!=', False)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Clique para configurar o caixa
+                </p>
+            </field>
+        </record>
+
+        <record id="hs_treasury_box_config_act_window" model="ir.actions.act_window">
+            <field name="name">Box config</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">treasury.box</field>
+
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Clique para configurar o caixa
+                </p>
+            </field>
+        </record>
+
+        <record id="hs_treasury_box_reinforcement_action" model="ir.actions.act_window">
+            <field name="name">Box Reinforcement</field>
+            <field name="res_model">account.move</field>
+
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="view_id" ref="account.view_move_tree"/>
+            <field name="search_view_id" ref="account.view_account_move_filter"/>
+            <field name="context">{'search_default_misc_filter': 1, 'view_no_maturity': True}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a box reinforcement.
+                </p>
+                <p>
+                    A journal entry consists of several journal items, each of
+                    which is either a debit or a credit transaction.
+                </p>
+                <p>
+                    Odoo automatically creates one journal entry per accounting
+                    document: invoice, refund, vendor payment, bank statements,
+                    etc. So, you should record journal entries manually only/mainly
+                    for miscellaneous operations.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="treasury_box_config" name="Caixa" sequence="1" action="hs_treasury_box_config_act_window"
+                  parent="treasury_config"/>
+
+        <menuitem name="Caixa" id="treasury_box_sub_menu" parent="treasury_box_main" action="hs_treasury_box_act_window"
+                  sequence="1"/>
+
+        <menuitem name="Reforço de Caixa e Banco" id="treasury_box_reinforcement_menu" sequence="3"
+                  parent="treasury_box_main"/>
+
+
+    </data>
+</odoo>

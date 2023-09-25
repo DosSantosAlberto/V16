@@ -1,0 +1,431 @@
+id,name,code_prefix_start,chart_template_id/id
+na_account_group_1,Assets,1,l10n_na.na_chart_template
+na_account_group_11,"Property, Plant And Equipment",11,l10n_na.na_chart_template
+na_account_group_111,Land And Land Improvements,111,l10n_na.na_chart_template
+na_account_group_1111,Land,1111,l10n_na.na_chart_template
+na_account_group_11115,Land With Limited Life,11115,l10n_na.na_chart_template
+na_account_group_11116,Land Subject To Depletion,11116,l10n_na.na_chart_template
+na_account_group_1112,Land Improvements,1112,l10n_na.na_chart_template
+na_account_group_112,"Buildings, Structures And Improvements",112,l10n_na.na_chart_template
+na_account_group_113,Machinery And Equipment,113,l10n_na.na_chart_template
+na_account_group_11311,Industrial Machinery,11311,l10n_na.na_chart_template
+na_account_group_11312,Agricultural Machinery And Other Assets,11312,l10n_na.na_chart_template
+na_account_group_11313,Other Machinery,11313,l10n_na.na_chart_template
+na_account_group_1132,Equipment,1132,l10n_na.na_chart_template
+na_account_group_11321,Transportation Equipment,11321,l10n_na.na_chart_template
+na_account_group_113211,Vehicles,113211,l10n_na.na_chart_template
+na_account_group_1132111,Trucks,1132111,l10n_na.na_chart_template
+na_account_group_1132112,Automobiles,1132112,l10n_na.na_chart_template
+na_account_group_1132113,Maritime ,1132113,l10n_na.na_chart_template
+na_account_group_1132114,Railroad,1132114,l10n_na.na_chart_template
+na_account_group_1132115,Air Transportation ,1132115,l10n_na.na_chart_template
+na_account_group_1132116,Construction ,1132116,l10n_na.na_chart_template
+na_account_group_1132117,Other Transportation Equipment,1132117,l10n_na.na_chart_template
+na_account_group_11322,Technology Equipment,11322,l10n_na.na_chart_template
+na_account_group_113224,Computer Software (Classified As PP&E),113224,l10n_na.na_chart_template
+na_account_group_11323,Office And Sales Equipment,11323,l10n_na.na_chart_template
+na_account_group_11324,Energy Related Equipment,11324,l10n_na.na_chart_template
+na_account_group_113247,"Electric Generation, Transmission And Distribution Equipment",113247,l10n_na.na_chart_template
+na_account_group_11325,Other Equipment,11325,l10n_na.na_chart_template
+na_account_group_114,Furniture And Fixtures,114,l10n_na.na_chart_template
+na_account_group_115,"Additional Property, Plant And Equipment",115,l10n_na.na_chart_template
+na_account_group_1154,Leased Assets (Right To Use Assets Classified By Type),1154,l10n_na.na_chart_template
+na_account_group_116,Construction In Progress,116,l10n_na.na_chart_template
+na_account_group_1163,Investment Property,1163,l10n_na.na_chart_template
+na_account_group_12,Goodwill,12,l10n_na.na_chart_template
+na_account_group_13,Intangible Assets (Excluding Goodwill),13,l10n_na.na_chart_template
+na_account_group_131,Intellectual Property,131,l10n_na.na_chart_template
+na_account_group_1311,Patented Intellectual Property,1311,l10n_na.na_chart_template
+na_account_group_1312,Unpatented Intellectual Property,1312,l10n_na.na_chart_template
+na_account_group_13121,Unpatented Technology,13121,l10n_na.na_chart_template
+na_account_group_131211,Recipes Formulae Models Designs And Prototypes,131211,l10n_na.na_chart_template
+na_account_group_1313,In Process Research And Development,1313,l10n_na.na_chart_template
+na_account_group_1314,Copyrighted Intellectual Property,1314,l10n_na.na_chart_template
+na_account_group_132,Computer Software,132,l10n_na.na_chart_template
+na_account_group_133,Trade And Distribution Assets,133,l10n_na.na_chart_template
+na_account_group_1331,Marks And Names,1331,l10n_na.na_chart_template
+na_account_group_13311,Trademarks And Trade Names,13311,l10n_na.na_chart_template
+na_account_group_1332,Customer-Related Intangible Assets,1332,l10n_na.na_chart_template
+na_account_group_134,Contracts And Rights,134,l10n_na.na_chart_template
+na_account_group_13411,Licenses And Franchises,13411,l10n_na.na_chart_template
+na_account_group_135,Right To Use Assets (Classified By Type),135,l10n_na.na_chart_template
+na_account_group_136,Other Intangible Assets,136,l10n_na.na_chart_template
+na_account_group_137,Acquisition In Progress,137,l10n_na.na_chart_template
+na_account_group_138,Financial Assets (Investments),138,l10n_na.na_chart_template
+na_account_group_1381,Non-Derivative Financial Assets,1381,l10n_na.na_chart_template
+na_account_group_1382,Derivative Financial Assets,1382,l10n_na.na_chart_template
+na_account_group_13821,Options (Purchased And Written),13821,l10n_na.na_chart_template
+na_account_group_13822,Futures And Forwards (Assets),13822,l10n_na.na_chart_template
+na_account_group_13823,Swaps (Assets),13823,l10n_na.na_chart_template
+na_account_group_13824,Other Derivatives (Assets),13824,l10n_na.na_chart_template
+na_account_group_139,Restricted Cash And Financial Assets,139,l10n_na.na_chart_template
+na_account_group_1391,Restricted Cash And Cash Equivalents,1391,l10n_na.na_chart_template
+na_account_group_1392,Restricted Investments,1392,l10n_na.na_chart_template
+na_account_group_1393,Other Restricted Assets,1393,l10n_na.na_chart_template
+na_account_group_1310,Additional Financial Assets And Investments,1310,l10n_na.na_chart_template
+na_account_group_13101,Agricultural (Biological) Assets,13101,l10n_na.na_chart_template
+na_account_group_14,Inventory,14,l10n_na.na_chart_template
+na_account_group_141,Merchandise,141,l10n_na.na_chart_template
+na_account_group_1411,Merchandise Held For Sale,1411,l10n_na.na_chart_template
+na_account_group_1412,Merchandise Expected To Be Returned,1412,l10n_na.na_chart_template
+na_account_group_1413,Merchandise Held For Lease,1413,l10n_na.na_chart_template
+na_account_group_142,"Raw Material, Parts And Supplies",142,l10n_na.na_chart_template
+na_account_group_1421,Raw Material,1421,l10n_na.na_chart_template
+na_account_group_1422,"Parts, Supplies And Consumables",1422,l10n_na.na_chart_template
+na_account_group_14221,Production Supplies And Consumables,14221,l10n_na.na_chart_template
+na_account_group_142211,Production Supplies,142211,l10n_na.na_chart_template
+na_account_group_14222,Non-Production Supplies And Consumables,14222,l10n_na.na_chart_template
+na_account_group_142225,Marketing Sales Supplies,142225,l10n_na.na_chart_template
+na_account_group_1423,Utilities In Stock And Prepaid Utilities Classified As Inventory,1423,l10n_na.na_chart_template
+na_account_group_14231,Fuel And Gas (In Stock),14231,l10n_na.na_chart_template
+na_account_group_14232,Energy,14232,l10n_na.na_chart_template
+na_account_group_143,Work In Process,143,l10n_na.na_chart_template
+na_account_group_1431,Unallocated Capitalized Production Costs,1431,l10n_na.na_chart_template
+na_account_group_1432,Capitalized Contract Costs,1432,l10n_na.na_chart_template
+na_account_group_144,Finished Goods,144,l10n_na.na_chart_template
+na_account_group_145,Other Inventory,145,l10n_na.na_chart_template
+na_account_group_15,Accruals And Additional Assets,15,l10n_na.na_chart_template
+na_account_group_151,Prepaid Expense,151,l10n_na.na_chart_template
+na_account_group_1515,Prepaid Royalties,1515,l10n_na.na_chart_template
+na_account_group_1518,Prepaid Taxes And Fees,1518,l10n_na.na_chart_template
+na_account_group_1519,Prepaid Utilities,1519,l10n_na.na_chart_template
+na_account_group_15191,Prepaid Fuel And Energy,15191,l10n_na.na_chart_template
+na_account_group_151911,Prepaid Fuel And Gas,151911,l10n_na.na_chart_template
+na_account_group_151912,Prepaid Energy,151912,l10n_na.na_chart_template
+na_account_group_15110,Service Providers,15110,l10n_na.na_chart_template
+na_account_group_15111,Prepaid Consideration,15111,l10n_na.na_chart_template
+na_account_group_152,Accrued Income,152,l10n_na.na_chart_template
+na_account_group_1521,Accrued Revenue (Not Classified As Receivables),1521,l10n_na.na_chart_template
+na_account_group_1522,Dividends And Interest (Not Classified As Receivables),1522,l10n_na.na_chart_template
+na_account_group_153,Additional Assets,153,l10n_na.na_chart_template
+na_account_group_1531,Deposit Assets,1531,l10n_na.na_chart_template
+na_account_group_1532,Deferred Costs,1532,l10n_na.na_chart_template
+na_account_group_15322,Deferred Fuel Cost,15322,l10n_na.na_chart_template
+na_account_group_1533,Income Tax Assets,1533,l10n_na.na_chart_template
+na_account_group_1534,Assets Held For Disposal,1534,l10n_na.na_chart_template
+na_account_group_1535,Other Assets,1535,l10n_na.na_chart_template
+na_account_group_16,Receivables And Contracts,16,l10n_na.na_chart_template
+na_account_group_161,"Accounts, Notes And Loans Receivable",161,l10n_na.na_chart_template
+na_account_group_1612,Notes And Loans Receivable,1612,l10n_na.na_chart_template
+na_account_group_1613,Unbilled Amounts,1613,l10n_na.na_chart_template
+na_account_group_16131,Unbilled Receivables,16131,l10n_na.na_chart_template
+na_account_group_16132,Estimated Billings,16132,l10n_na.na_chart_template
+na_account_group_162,Contracts,162,l10n_na.na_chart_template
+na_account_group_1621,Contracts With Customers,1621,l10n_na.na_chart_template
+na_account_group_1622,Percentage Of Completion Asset Accounts,1622,l10n_na.na_chart_template
+na_account_group_16221,Contract In Progress,16221,l10n_na.na_chart_template
+na_account_group_163,Nontrade And Other Receivables,163,l10n_na.na_chart_template
+na_account_group_1635,Other Receivables,1635,l10n_na.na_chart_template
+na_account_group_16351,Value Added (Goods And Services) Tax Assets,16351,l10n_na.na_chart_template
+na_account_group_164,Cash And Cash Equivalents,164,l10n_na.na_chart_template
+na_account_group_1641,Cash,1641,l10n_na.na_chart_template
+na_account_group_16411,Currency On Hand,16411,l10n_na.na_chart_template
+na_account_group_16412,Cash In Bank,16412,l10n_na.na_chart_template
+na_account_group_1642,Cash Equivalents,1642,l10n_na.na_chart_template
+na_account_group_16421,Deposits And Securities,16421,l10n_na.na_chart_template
+na_account_group_16422,Other Cash Equivalents,16422,l10n_na.na_chart_template
+na_account_group_164225,Cash In Transit,164225,l10n_na.na_chart_template
+na_account_group_2,Equity,2,l10n_na.na_chart_template
+na_account_group_21,Owners Equity (Attributable To Owners Of Parent),21,l10n_na.na_chart_template
+na_account_group_211,Equity At Par (Issued Capital),211,l10n_na.na_chart_template
+na_account_group_22,Retained Earnings,22,l10n_na.na_chart_template
+na_account_group_225,Additional Paid-In Capital,225,l10n_na.na_chart_template
+na_account_group_226,Treasury Stock,226,l10n_na.na_chart_template
+na_account_group_23,Accumulated OCI,23,l10n_na.na_chart_template
+na_account_group_24,Other Equity Items,24,l10n_na.na_chart_template
+na_account_group_241,ESOP Related Items,241,l10n_na.na_chart_template
+na_account_group_242,Subscribed Stock Receivables,242,l10n_na.na_chart_template
+na_account_group_243,Miscellaneous Equity,243,l10n_na.na_chart_template
+na_account_group_25,Non-controlling (Minority) Interest,25,l10n_na.na_chart_template
+na_account_group_3,Liabilities,3,l10n_na.na_chart_template
+na_account_group_31,Payables,31,l10n_na.na_chart_template
+na_account_group_311,Trade Payables,311,l10n_na.na_chart_template
+na_account_group_312,Dividends Payable,312,l10n_na.na_chart_template
+na_account_group_313,Interest Payable,313,l10n_na.na_chart_template
+na_account_group_314,Other Payables,314,l10n_na.na_chart_template
+na_account_group_32,Provisions (Contingencies),32,l10n_na.na_chart_template
+na_account_group_321,Customer Related Provisions,321,l10n_na.na_chart_template
+na_account_group_322,Litigation And Regulatory,322,l10n_na.na_chart_template
+na_account_group_323,Additional Provisions,323,l10n_na.na_chart_template
+na_account_group_3235,Other Provisions,3235,l10n_na.na_chart_template
+na_account_group_33,Financial Labilities,33,l10n_na.na_chart_template
+na_account_group_331,Notes Payable,331,l10n_na.na_chart_template
+na_account_group_332,Loans Payable,332,l10n_na.na_chart_template
+na_account_group_3321,Bank Loans,3321,l10n_na.na_chart_template
+na_account_group_3322,Bank Overdrafts,3322,l10n_na.na_chart_template
+na_account_group_3323,Line Of Credit,3323,l10n_na.na_chart_template
+na_account_group_3324,Other Loans ,3324,l10n_na.na_chart_template
+na_account_group_333,Bonds (Debentures),333,l10n_na.na_chart_template
+na_account_group_3331,Bonds ,3331,l10n_na.na_chart_template
+na_account_group_3332,Debentures,3332,l10n_na.na_chart_template
+na_account_group_334,Other Debts And Borrowings,334,l10n_na.na_chart_template
+na_account_group_335,Lease Obligations,335,l10n_na.na_chart_template
+na_account_group_336,Derivative Financial Liabilities,336,l10n_na.na_chart_template
+na_account_group_3361,Options (Written),3361,l10n_na.na_chart_template
+na_account_group_3362,Futures And Forwards (Liabilities),3362,l10n_na.na_chart_template
+na_account_group_3363,Swaps (Liabilities),3363,l10n_na.na_chart_template
+na_account_group_3364,Other Derivatives (Liabilities),3364,l10n_na.na_chart_template
+na_account_group_34,Accruals And Other Liabilities,34,l10n_na.na_chart_template
+na_account_group_341,Accrued Expenses,341,l10n_na.na_chart_template
+na_account_group_3411,Accrued Employee Benefits,3411,l10n_na.na_chart_template
+na_account_group_34111,"Wages, Salaries And Commissions",34111,l10n_na.na_chart_template
+na_account_group_34112,Compensated Absences,34112,l10n_na.na_chart_template
+na_account_group_34113,Bonuses And Benefits (Excluding Postemployment Benefits),34113,l10n_na.na_chart_template
+na_account_group_341131,Bonuses And Premiums,341131,l10n_na.na_chart_template
+na_account_group_341132,Perquisites And Social Benefits,341132,l10n_na.na_chart_template
+na_account_group_34114,Payroll Taxes And Fees,34114,l10n_na.na_chart_template
+na_account_group_34115,Postemployment Benefits ,34115,l10n_na.na_chart_template
+na_account_group_341151,Pension Plans,341151,l10n_na.na_chart_template
+na_account_group_34116,Deferred Compensation ,34116,l10n_na.na_chart_template
+na_account_group_34117,Other Non-Pension Employee Related Expense Accruals,34117,l10n_na.na_chart_template
+na_account_group_3412,Accrued Utilities,3412,l10n_na.na_chart_template
+na_account_group_34121,Accrued Fuel And Energy ,34121,l10n_na.na_chart_template
+na_account_group_341211,Accrued Fuel And Gas,341211,l10n_na.na_chart_template
+na_account_group_341212,Accrued Energy,341212,l10n_na.na_chart_template
+na_account_group_34122,Accrued Water And Sewage,34122,l10n_na.na_chart_template
+na_account_group_34123,Accrued Waste Removal,34123,l10n_na.na_chart_template
+na_account_group_34124,Other Accrued Utilities,34124,l10n_na.na_chart_template
+na_account_group_342,Deferred Income And Refund Liabilities,342,l10n_na.na_chart_template
+na_account_group_3421,Deferred (Unearned) Revenue,3421,l10n_na.na_chart_template
+na_account_group_3422,Refund (rebate) Liabilities,3422,l10n_na.na_chart_template
+na_account_group_3423,Percentage Of Completion Liability Accounts,3423,l10n_na.na_chart_template
+na_account_group_34231,Contract Billings ,34231,l10n_na.na_chart_template
+na_account_group_34232,Recognized Income,34232,l10n_na.na_chart_template
+na_account_group_343,Accrued Taxes (Other Than Payroll),343,l10n_na.na_chart_template
+na_account_group_3434,Accrued Taxes (Other Than Income) Payable,3434,l10n_na.na_chart_template
+na_account_group_34346,Value Added (Goods And Services) Tax Liabilities,34346,l10n_na.na_chart_template
+na_account_group_34347,Accrued Miscellaneous Taxes,34347,l10n_na.na_chart_template
+na_account_group_344,Other Liabilities,344,l10n_na.na_chart_template
+na_account_group_4,Revenue,4,l10n_na.na_chart_template
+na_account_group_41,Recognized Point Of Time,41,l10n_na.na_chart_template
+na_account_group_411,Goods,411,l10n_na.na_chart_template
+na_account_group_412,Services,412,l10n_na.na_chart_template
+na_account_group_42,Recognized Over Time,42,l10n_na.na_chart_template
+na_account_group_421,Products,421,l10n_na.na_chart_template
+na_account_group_422,Services,422,l10n_na.na_chart_template
+na_account_group_43,Adjustments,43,l10n_na.na_chart_template
+na_account_group_431,Variable Consideration,431,l10n_na.na_chart_template
+na_account_group_432,Consideration Paid (Payable) To Customers,432,l10n_na.na_chart_template
+na_account_group_433,Other Adjustments,433,l10n_na.na_chart_template
+na_account_group_5,Expenses,5,l10n_na.na_chart_template
+na_account_group_51,Expenses Classified By Nature,51,l10n_na.na_chart_template
+na_account_group_511,Material And Merchandise,511,l10n_na.na_chart_template
+na_account_group_5113,"Supplies, Parts, Consumables And Other Items",5113,l10n_na.na_chart_template
+na_account_group_51131,Production Supplies,51131,l10n_na.na_chart_template
+na_account_group_51134,Utilities,51134,l10n_na.na_chart_template
+na_account_group_511341,Fuel And Energy ,511341,l10n_na.na_chart_template
+na_account_group_5113411,Fuel,5113411,l10n_na.na_chart_template
+na_account_group_5113412,Energy,5113412,l10n_na.na_chart_template
+na_account_group_51135,Other Consumable Items,51135,l10n_na.na_chart_template
+na_account_group_51136,Shipping And Handling Costs,51136,l10n_na.na_chart_template
+na_account_group_5114,Material Costs Expensed As Incurred,5114,l10n_na.na_chart_template
+na_account_group_5115,"Sales Of Excess Material, Parts And Supplies",5115,l10n_na.na_chart_template
+na_account_group_512,Employee Benefits,512,l10n_na.na_chart_template
+na_account_group_5121,Employee Benefits (Excusing Key Management),5121,l10n_na.na_chart_template
+na_account_group_51211,"Wages, Salaries And Commissions",51211,l10n_na.na_chart_template
+na_account_group_51212,Compensated Absences,51212,l10n_na.na_chart_template
+na_account_group_51213,Bonuses And Benefits (Excluding Postemployment Benefits),51213,l10n_na.na_chart_template
+na_account_group_512131,Bonuses And Premiums,512131,l10n_na.na_chart_template
+na_account_group_512132,Perquisites And Social Benefits,512132,l10n_na.na_chart_template
+na_account_group_51214,Payroll Taxes And Fees,51214,l10n_na.na_chart_template
+na_account_group_51215,Post-Employment Benefit ,51215,l10n_na.na_chart_template
+na_account_group_512151,Pension Plans,512151,l10n_na.na_chart_template
+na_account_group_51216,Deferred Compensation ,51216,l10n_na.na_chart_template
+na_account_group_51217,Other Non-Pension Employee Related Expenses,51217,l10n_na.na_chart_template
+na_account_group_5122,Key Management Compensation,5122,l10n_na.na_chart_template
+na_account_group_51221,Officer Compensation,51221,l10n_na.na_chart_template
+na_account_group_51222,Directors Remuneration,51222,l10n_na.na_chart_template
+na_account_group_513,Services,513,l10n_na.na_chart_template
+na_account_group_5131,"Transportation, Shipping, Storage",5131,l10n_na.na_chart_template
+na_account_group_51311,Transportation And Shipping,51311,l10n_na.na_chart_template
+na_account_group_51312,Energy Transmission Charges,51312,l10n_na.na_chart_template
+na_account_group_51313,"Postage, Messengers, couriers",51313,l10n_na.na_chart_template
+na_account_group_51314,Other Transportation Services,51314,l10n_na.na_chart_template
+na_account_group_5132,Marketing And Advertising,5132,l10n_na.na_chart_template
+na_account_group_51321,Advertising,51321,l10n_na.na_chart_template
+na_account_group_513211,Media Production Costs,513211,l10n_na.na_chart_template
+na_account_group_513212,Media Procurement Costs,513212,l10n_na.na_chart_template
+na_account_group_51322,Marketing,51322,l10n_na.na_chart_template
+na_account_group_5133,Communication And Computer,5133,l10n_na.na_chart_template
+na_account_group_51331,Communication ,51331,l10n_na.na_chart_template
+na_account_group_513313,Internet,513313,l10n_na.na_chart_template
+na_account_group_513314,Computer,513314,l10n_na.na_chart_template
+na_account_group_5134,"Agents, Brokers And Franchisors",5134,l10n_na.na_chart_template
+na_account_group_5135,Service Fees,5135,l10n_na.na_chart_template
+na_account_group_51351,Professional Fees,51351,l10n_na.na_chart_template
+na_account_group_51357,Insurance,51357,l10n_na.na_chart_template
+na_account_group_5136,"Travel, Training And Entertainment ",5136,l10n_na.na_chart_template
+na_account_group_51361,Travel,51361,l10n_na.na_chart_template
+na_account_group_513611,Accommodations,513611,l10n_na.na_chart_template
+na_account_group_51362,Entertainment,51362,l10n_na.na_chart_template
+na_account_group_5137,Repair And Maintenance Services,5137,l10n_na.na_chart_template
+na_account_group_514,"Rent, Depreciation, Amortization And Depletion",514,l10n_na.na_chart_template
+na_account_group_5141,Rent (Right To Use Assets Not Capitalized),5141,l10n_na.na_chart_template
+na_account_group_5142,Depreciation,5142,l10n_na.na_chart_template
+na_account_group_51421,Depreciable Land And Land Improvements,51421,l10n_na.na_chart_template
+na_account_group_514211,Land With Limited Life,514211,l10n_na.na_chart_template
+na_account_group_514213,Agricultural (Biological) Assets,514213,l10n_na.na_chart_template
+na_account_group_51422,"Buildings, Structures And Improvements",51422,l10n_na.na_chart_template
+na_account_group_514228,Investment Property,514228,l10n_na.na_chart_template
+na_account_group_51423,Machinery And Equipment,51423,l10n_na.na_chart_template
+na_account_group_514231,Machinery,514231,l10n_na.na_chart_template
+na_account_group_5142311,Industrial Machinery,5142311,l10n_na.na_chart_template
+na_account_group_5142312,Agricultural Machinery And Other Assets,5142312,l10n_na.na_chart_template
+na_account_group_514232,Equipment,514232,l10n_na.na_chart_template
+na_account_group_5142321,Transportation Equipment,5142321,l10n_na.na_chart_template
+na_account_group_51423211,Vehicles,51423211,l10n_na.na_chart_template
+na_account_group_514232111,Trucks,514232111,l10n_na.na_chart_template
+na_account_group_514232112,Automobiles,514232112,l10n_na.na_chart_template
+na_account_group_514232113,Maritime ,514232113,l10n_na.na_chart_template
+na_account_group_514232114,Railroad,514232114,l10n_na.na_chart_template
+na_account_group_514232115,Air Transportation ,514232115,l10n_na.na_chart_template
+na_account_group_51423212,Construction Equipment,51423212,l10n_na.na_chart_template
+na_account_group_51423213,Other Transportation Equipment,51423213,l10n_na.na_chart_template
+na_account_group_5142322,Technology Equipment,5142322,l10n_na.na_chart_template
+na_account_group_5142323,Office And Sales Equipment,5142323,l10n_na.na_chart_template
+na_account_group_5142324,Energy Related Equipment,5142324,l10n_na.na_chart_template
+na_account_group_51423247,"Electric Generation, Transmission And Distribution Equipment",51423247,l10n_na.na_chart_template
+na_account_group_51424,Furniture And Fixtures,51424,l10n_na.na_chart_template
+na_account_group_51425,"Additional Property, Plant And Equipment",51425,l10n_na.na_chart_template
+na_account_group_514254,Right To Use Assets (Classified As PP&E),514254,l10n_na.na_chart_template
+na_account_group_5143,Amortization,5143,l10n_na.na_chart_template
+na_account_group_51431,Intellectual Property,51431,l10n_na.na_chart_template
+na_account_group_514311,Patented Intellectual Property,514311,l10n_na.na_chart_template
+na_account_group_514312,Unpatented Intellectual Property,514312,l10n_na.na_chart_template
+na_account_group_5143121,Unpatented Technology,5143121,l10n_na.na_chart_template
+na_account_group_51431211,Recipes Formulae Models Designs And Prototypes,51431211,l10n_na.na_chart_template
+na_account_group_514313,In Process Research And Development,514313,l10n_na.na_chart_template
+na_account_group_514314,Copyrighted Intellectual Property,514314,l10n_na.na_chart_template
+na_account_group_51432,Computer Software,51432,l10n_na.na_chart_template
+na_account_group_51433,Trade And Distribution Assets,51433,l10n_na.na_chart_template
+na_account_group_514331,Marks And Names,514331,l10n_na.na_chart_template
+na_account_group_5143311,Trademarks And Trade Names,5143311,l10n_na.na_chart_template
+na_account_group_5143312,Certification Marks,5143312,l10n_na.na_chart_template
+na_account_group_514332,Customer-Related Intangible Assets,514332,l10n_na.na_chart_template
+na_account_group_51434,Contracts And Rights,51434,l10n_na.na_chart_template
+na_account_group_5143411,Licenses And Franchises,5143411,l10n_na.na_chart_template
+na_account_group_51435,Right To Use Assets (Classified As Intangible),51435,l10n_na.na_chart_template
+na_account_group_51436,Other Intangible Assets,51436,l10n_na.na_chart_template
+na_account_group_5144,Land Subject To Depletion,5144,l10n_na.na_chart_template
+na_account_group_515,Increase (Decrease) In Inventories Of Finished Goods And Work In Progress (IFRS only),515,l10n_na.na_chart_template
+na_account_group_516,Other Work Performed By Entity And Capitalized (IFRS only),516,l10n_na.na_chart_template
+na_account_group_52,Expenses Classified By Function,52,l10n_na.na_chart_template
+na_account_group_521,Cost Of Sales,521,l10n_na.na_chart_template
+na_account_group_5211,Cost Of Sales Excluding Depreciation Amortization And Depletion,5211,l10n_na.na_chart_template
+na_account_group_52112,"Cost Of Products Sold, Services Rendered",52112,l10n_na.na_chart_template
+na_account_group_521121,Direct Material,521121,l10n_na.na_chart_template
+na_account_group_521122,Direct Labor,521122,l10n_na.na_chart_template
+na_account_group_521123,Variable Overhead,521123,l10n_na.na_chart_template
+na_account_group_5211233,Repairs And Maintenance,5211233,l10n_na.na_chart_template
+na_account_group_5211236,Communications And Utilities,5211236,l10n_na.na_chart_template
+na_account_group_5212,"Rent, Depreciation, Amortization And Depletion",5212,l10n_na.na_chart_template
+na_account_group_52121,Rent ,52121,l10n_na.na_chart_template
+na_account_group_52122,"Depreciation, Amortization And Depletion",52122,l10n_na.na_chart_template
+na_account_group_521221,Depreciation And Amortization,521221,l10n_na.na_chart_template
+na_account_group_5213,Other Production Costs And Expenses,5213,l10n_na.na_chart_template
+na_account_group_52131,Shipping And Handling (Expensed As Incurred),52131,l10n_na.na_chart_template
+na_account_group_52132,Other Inventory Acquisition Costs (Expensed As Incurred),52132,l10n_na.na_chart_template
+na_account_group_52133,Taxes And Fees (Recognized As Cost Of Sales),52133,l10n_na.na_chart_template
+na_account_group_52134,Production Related Impairments Or Charges,52134,l10n_na.na_chart_template
+na_account_group_52135,Sales Of Material Or Parts,52135,l10n_na.na_chart_template
+na_account_group_52136,Lessors,52136,l10n_na.na_chart_template
+na_account_group_52137,Contract Costs,52137,l10n_na.na_chart_template
+na_account_group_522,"Selling, General And Administrative ",522,l10n_na.na_chart_template
+na_account_group_5221,Sales And Marketing (Distribution),5221,l10n_na.na_chart_template
+na_account_group_52211,Selling ,52211,l10n_na.na_chart_template
+na_account_group_522111,Sales Commissions And Fees,522111,l10n_na.na_chart_template
+na_account_group_522112,Rent And Depreciation,522112,l10n_na.na_chart_template
+na_account_group_522113,Other Sales Related Costs,522113,l10n_na.na_chart_template
+na_account_group_52212,Marketing And Advertising ,52212,l10n_na.na_chart_template
+na_account_group_522121,Advertising,522121,l10n_na.na_chart_template
+na_account_group_522122,Marketing,522122,l10n_na.na_chart_template
+na_account_group_5221221,"Planning And Executing The Conception, Pricing, Promotion And Distribution Of Ideas, Goods And Services",5221221,l10n_na.na_chart_template
+na_account_group_5221222,Corporate Promotions,5221222,l10n_na.na_chart_template
+na_account_group_522123,Other Marketing And Advertising Costs,522123,l10n_na.na_chart_template
+na_account_group_5221231,Tradeshows And Exhibits,5221231,l10n_na.na_chart_template
+na_account_group_5221232,Coupons And Premiums,5221232,l10n_na.na_chart_template
+na_account_group_5221233,Promotions And Giveaways,5221233,l10n_na.na_chart_template
+na_account_group_5221234,Miscellaneous Marketing And Advertising Costs,5221234,l10n_na.na_chart_template
+na_account_group_52213,Distribution (Shipping),52213,l10n_na.na_chart_template
+na_account_group_52214,Product Warranties,52214,l10n_na.na_chart_template
+na_account_group_52215,Other Selling And Marketing ,52215,l10n_na.na_chart_template
+na_account_group_5222,General And Administrative ,5222,l10n_na.na_chart_template
+na_account_group_52221,Payroll And Staff Related Costs,52221,l10n_na.na_chart_template
+na_account_group_522211,Payroll,522211,l10n_na.na_chart_template
+na_account_group_522212,Staff Related Costs,522212,l10n_na.na_chart_template
+na_account_group_5222121,Human Resources,5222121,l10n_na.na_chart_template
+na_account_group_5222122,Other Staff Related Costs,5222122,l10n_na.na_chart_template
+na_account_group_52222,Research And Development,52222,l10n_na.na_chart_template
+na_account_group_52223,"Communications, Information Technology (Including Software)",52223,l10n_na.na_chart_template
+na_account_group_52224,Professional And Other Services,52224,l10n_na.na_chart_template
+na_account_group_52225,Other Administrative Expenses,52225,l10n_na.na_chart_template
+na_account_group_52226,"Rent, Depreciation, Amortization And Depletion",52226,l10n_na.na_chart_template
+na_account_group_52227,Miscellaneous Operating Expenses,52227,l10n_na.na_chart_template
+na_account_group_523,Uncollectible Accounts Expense,523,l10n_na.na_chart_template
+na_account_group_6,Other (Non-Operating) Income And Expenses,6,l10n_na.na_chart_template
+na_account_group_61,Other Revenue And Expenses,61,l10n_na.na_chart_template
+na_account_group_611,Other Revenue,611,l10n_na.na_chart_template
+na_account_group_6111,Financial Revenue,6111,l10n_na.na_chart_template
+na_account_group_6112,Rental Revenue,6112,l10n_na.na_chart_template
+na_account_group_6113,Royalty Revenue,6113,l10n_na.na_chart_template
+na_account_group_6114,License Revenue,6114,l10n_na.na_chart_template
+na_account_group_6115,Other Miscellaneous Revenue,6115,l10n_na.na_chart_template
+na_account_group_612,Other Expenses,612,l10n_na.na_chart_template
+na_account_group_6121,Financial Expenses,6121,l10n_na.na_chart_template
+na_account_group_6122,Fines And Penalties Paid,6122,l10n_na.na_chart_template
+na_account_group_6123,Other Miscellaneous Expenses,6123,l10n_na.na_chart_template
+na_account_group_62,Gains And Losses,62,l10n_na.na_chart_template
+na_account_group_621,Foreign Currency Transaction Gain (Loss),621,l10n_na.na_chart_template
+na_account_group_622,Gain (Loss) On Investments,622,l10n_na.na_chart_template
+na_account_group_623,Gain (Loss) On Derivatives,623,l10n_na.na_chart_template
+na_account_group_624,Gain (Loss) On Disposal Of Assets,624,l10n_na.na_chart_template
+na_account_group_625,Debt Related Gain (Loss),625,l10n_na.na_chart_template
+na_account_group_626,Impairment Loss,626,l10n_na.na_chart_template
+na_account_group_627,Impairment Loss (Reversal) Financial Assets (IFRS Only),627,l10n_na.na_chart_template
+na_account_group_628,Other Gains And (Losses),628,l10n_na.na_chart_template
+na_account_group_63,Taxes (Other Than Income And Payroll) And Fees,63,l10n_na.na_chart_template
+na_account_group_631,Real Estate Taxes And Insurance,631,l10n_na.na_chart_template
+na_account_group_632,Highway (Road) Taxes And Tolls,632,l10n_na.na_chart_template
+na_account_group_633,Direct Tax And License Fees,633,l10n_na.na_chart_template
+na_account_group_634,Excise And Sales Taxes,634,l10n_na.na_chart_template
+na_account_group_635,Customs Fees And Duties (Not Classified As Sales Or Excise),635,l10n_na.na_chart_template
+na_account_group_636,Non-Deductible VAT (GST),636,l10n_na.na_chart_template
+na_account_group_637,General Insurance Expense,637,l10n_na.na_chart_template
+na_account_group_638,Administrative Fees (Revenue Stamps),638,l10n_na.na_chart_template
+na_account_group_639,Fines And Penalties,639,l10n_na.na_chart_template
+na_account_group_6310,Miscellaneous Taxes,6310,l10n_na.na_chart_template
+na_account_group_6311,Other Taxes And Fees,6311,l10n_na.na_chart_template
+na_account_group_64,Income Tax Expense (Benefit),64,l10n_na.na_chart_template
+na_account_group_7,Intercompany And Related Party Accounts,7,l10n_na.na_chart_template
+na_account_group_71,Intercompany And Related Party Assets,71,l10n_na.na_chart_template
+na_account_group_711,Intercompany Balances (Eliminated In Consolidation),711,l10n_na.na_chart_template
+na_account_group_712,Related Party Balances (Reported Or Disclosed),712,l10n_na.na_chart_template
+na_account_group_7122,Related Party Balances (By Affiliation),7122,l10n_na.na_chart_template
+na_account_group_71222,Officers Or Stockholders,71222,l10n_na.na_chart_template
+na_account_group_713,Intercompany Investments,713,l10n_na.na_chart_template
+na_account_group_7135,Trusts For The Benefit Of Employees,7135,l10n_na.na_chart_template
+na_account_group_7136,Equity Method Investments,7136,l10n_na.na_chart_template
+na_account_group_72,Intercompany And Related Party Liabilities,72,l10n_na.na_chart_template
+na_account_group_721,Intercompany Balances (Eliminated In Consolidation),721,l10n_na.na_chart_template
+na_account_group_722,Related Party Balances (Reported Or Disclosed),722,l10n_na.na_chart_template
+na_account_group_7221,Related Party Balances (By Type),7221,l10n_na.na_chart_template
+na_account_group_7222,Related Party Balances (By Affiliation),7222,l10n_na.na_chart_template
+na_account_group_73,Intercompany And Related Party Income And Expense,73,l10n_na.na_chart_template
+na_account_group_731,Intercompany And Related Party Income,731,l10n_na.na_chart_template
+na_account_group_7311,Intercompany Income (Eliminated In Consolidation),7311,l10n_na.na_chart_template
+na_account_group_73111,Products Revenue,73111,l10n_na.na_chart_template
+na_account_group_73112,Merchandise Revenue,73112,l10n_na.na_chart_template
+na_account_group_73113,Services Revenue,73113,l10n_na.na_chart_template
+na_account_group_73114,Other Intercompany Income,73114,l10n_na.na_chart_template
+na_account_group_7312,Related Party Income (Reported In Financial Statements),7312,l10n_na.na_chart_template
+na_account_group_732,Intercompany And Related Party Expenses,732,l10n_na.na_chart_template
+na_account_group_7321,Intercompany Expenses (Eliminated In Consolidation),7321,l10n_na.na_chart_template
+na_account_group_73211,Intercompany Expenses (Classified By Nature) ,73211,l10n_na.na_chart_template
+na_account_group_73212,Intercompany Expenses (Classified By Function) ,73212,l10n_na.na_chart_template
+na_account_group_732122,Selling And Distribution ,732122,l10n_na.na_chart_template
+na_account_group_7321221,"Salaries, Fees And Commissions",7321221,l10n_na.na_chart_template
+na_account_group_7321222,Other Sales Related Costs,7321222,l10n_na.na_chart_template
+na_account_group_732123,Administrative And General ,732123,l10n_na.na_chart_template
+na_account_group_732124,Other Intercompany Expenses,732124,l10n_na.na_chart_template
+na_account_group_7322,Related Party Expenses (Reported In Financial Statements),7322,l10n_na.na_chart_template
+na_account_group_733,Income (Loss) From Equity Method Investments,733,l10n_na.na_chart_template

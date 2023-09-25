@@ -1,0 +1,9 @@
+.idea/workspace.xml
+i18n/pt.mo
+/.idea/l10n_ao.iml
+/.idea/misc.xml
+.directory
+.idea/.directory
+.idea/inspectionProfiles/
+models/__init__.pyc
+models/account_chart_template.pyc

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_account_journal_report" model="ir.actions.report">
+            <field name="name">Account Journal</field>
+            <field name="model">account.journal.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">es_account_report_ao.account_journal_report</field>
+            <field name="report_file">es_account_report_ao.account_journal_report</field>
+        </record>
+
+        <template id="es_account_report_ao.account_journal_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="header" style="color: #0B74CE">
+                            <div class="row b_color">
+                                <div class="col-8">
+                                    <b><span class="text-left" t-field="o.company_id"/></b>
+                                </div>
+                                <div class="col-4" style="font-size:10px;">
+                                    <ul class="list-inline text-right">
+                                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                                        |
+                                        Pag. <span class="page"/>/<span class="topage"/>
+                                    </ul>
+                                </div>
+                            </div>
+                            <br/>
+                            <hr style="display: block; height: 1px;
+                            border: 0; border-top: 3px solid #0B74CE;
+                            margin: 0; padding: 0;"/>
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <div align="left">
+                                        <b class="b_color">
+                                            Extractos de Diário
+                                            <t t-if="o.filter_by == 'journal'">
+                                                <span t-field="o.journal_id"/>
+                                            </t>
+                                            (<span t-field="o.date_from"/> até <span t-field="o.date_to"/>)
+                                        </b>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div align="right"><b class="b_color">Valores em <span
+                                            t-esc="o.company_id.currency_id.symbol"/></b></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 text-left"
+                                     style="font-size:10px; margin-left:15px; padding:0px !important; border-top: 1px solid #0B74CE;">
+                                    <span>Lançamento:</span>
+                                    <span t-if="o.target_move == 'all'">TODOS</span>
+                                    <span t-if="o.target_move == 'posted'">PUBLICADOS</span>
+                                </div>
+                                <div class="col-4"
+                                     style="font-size:10px; margin-left:10px; padding:0px !important; border-top: 1px solid #0B74CE;">
+                                    <span>Data Contab.: </span>
+                                    <span t-esc="o.date_to"/>
+                                </div>
+                                <div class="col-4">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="page">
+                            <style>
+                                * {padding-bottom: 0 !important;
+                                padding-top: 0 !important;
+                                margin-bottom: 0 !important;margin-top:0 !important; }
+                                hr {
+                                display: block; height: 1px;
+                                border: 0; border-top: 1px solid #0B74CE;
+                                margin: 0; padding: 0;
+                                }
+                                .b_color{
+                                color: #0B74CE;
+                                }
+
+                                table {
+                                border-spacing: 3px;
+                                border-top: 3px solid black;
+                                border-collapse:collapse;
+                                }
+
+                                td {
+                                border-bottom:0 !important;
+                                border-top: 1px solid #B2BABB !important;
+                                }
+
+                                th {
+                                border-top:0 !important;
+                                border-bottom: 1px solid #B2BABB !important;
+                                }
+
+                                table, tr, th, td {
+                                padding:0px !important;
+                                border-collapse: separate;
+                                padding:1px;
+                                }
+
+                                .border_top_th{
+                                border-top: 1px solid black !important;
+                                }
+                                tr.border-top-tr th {
+                                border-bottom: 1px solid #ff000d;
+                                }
+                            </style>
+                            <table class="table table-condensed" style="font-size:10px;">
+                                <thead>
+
+                                    <tr>
+                                        <th style="border-bottom:0 !important;"><b>Data</b></th>
+                                        <th style="border-bottom:0 !important;"><b>Nº Diario</b></th>
+                                        <th style="border-bottom:0 !important;"><b>Descrição</b></th>
+                                        <th style="border-bottom:0 !important;" class="text-right"><b>Débito</b></th>
+                                        <th style="border-bottom:0 !important;" class="text-right"><b>Crédito</b></th>
+                                        <th style="border-bottom:0 !important;" class="text-right"><b>Doc</b></th>
+                                        <th style="border-bottom:0 !important;" class="text-right"><b>Nº Doc</b></th>
+                                        <th style="border-bottom:0 !important;" class="text-right"><b>Conta Orig.</b></th>
+                                        <th style="border-bottom:0 !important;" class="text-left"><span>
+                                            <![CDATA[&nbsp;]]></span><b>Doc</b>.</th>
+                                        <th style="border-bottom:0 !important;" class="text-right"><b>IVA</b></th>
+                                        <th style="border-bottom:0 !important;" class="text-right"><b>Nº Doc ext.</b></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td> <p style="font-size:10px;" ><b>Lancamento: <span t-field="o.journal_id.code"/></b></p></td><br> </br>
+                                        <td><p style="font-size:10px;" > <span t-field="o.journal_id.code"/> - <b>Regularizações Mensais:</b></p></td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+
+                                    </tr>
+                                </tbody>
+                                <tbody>
+
+                                    <t t-if="o.filter_by == 'journal'">
+                                        <tr t-foreach="o.get_account_movements()" t-as="move" >
+                                            <td>
+                                                <span t-esc="move['date']"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="move['journal_number']"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="move['description']"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="move['debit']"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="move['credit']"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="move['reference']"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="move['reason']"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="move['account']"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="0.0"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="move['tax']"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="move['analytic']"/>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Totais -->
+                                        <br> </br>
+                                        <br> </br>
+                                        <div>
+                                            <tr>
+                                                <br> </br>
+                                                <br> </br>
+                                                <th style="border:none;" colspan="2" rowspan="2"> <br> </br><b>Regularizacoes :Mensais</b> </th>
+                                                <th style="border:none;" class="text-center">
+                                                    <br> </br><b>Total Período</b>
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    <br> </br><b><span t-esc="move['total_period_debit']"/></b>
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    <br> </br><b><span t-esc="move['total_period_credit']"/></b>
+                                                </th>
+                                            </tr>
+                                            <tr>
+
+                                                <th style="border:none;" class="text-center">
+                                                    <br> </br><b>Total Acumulado</b>
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    <br> </br><b><span t-esc="move['total_accumulated_debit']"/></b>
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    <br> </br><b><span t-esc="move['total_accumulated_credit']"/></b>
+                                                </th>
+                                            </tr>
+
+                                            <tr>
+                                                <br> </br>
+                                                <br> </br>
+                                                <th style="border:none;" colspan="2" rowspan="2"> <br> </br><b>Lançamento: 000</b> </th>
+                                                <th style="border:none;" class="text-center">
+                                                    <br> </br><b>Total Período</b>
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    <br> </br><b><span t-esc="move['total_period_debit']"/></b>
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    <br> </br><b><span t-esc="move['total_period_credit']"/></b>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th style="border:none;" class="text-center">
+                                                    <br> </br><b>Total Acumulado</b>
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    <br> </br><b><span t-esc="move['total_accumulated_debit']"/></b>
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    <br> </br><b><span t-esc="move['total_accumulated_credit']"/></b>
+                                                </th>
+                                            </tr>
+
+
+                                        </div>
+
+                                    </t>
+
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                        <div class="footer">
+                            <div class="text-right" style="font-size:10px">
+                                <b>© COMPLLEXUS</b>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

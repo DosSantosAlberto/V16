@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_payslip_run_form" model="ir.ui.view">
+            <field name="name">hr.payslip.run.form.inherit</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div[@name='button_box']" position="inside">
+                    <field name="payment_state" invisible="1"/>
+                    <button name="post_treasury" type="object"
+                            attrs="{'invisible':['|', ('payment_state','not in', ['not_paid']),('state','in',['paid'])]}"
+                            icon="fa-mail-forward" class="oe_stat_button">
+                        <span class="o_stat_text text-success">
+                            Send to Treasury
+                        </span>
+                    </button>
+                    <button name="print_salary_map_xlsx" type="object"
+                            states="done" icon="fa-money" class="oe_stat_button">
+                        <span class="o_stat_text text-info">
+                            AGT MAP
+                        </span>
+                    </button>
+                    <widget name="web_ribbon" title="Em Pagamento" bg_color="bg-success"
+                            attrs="{'invisible': [('payment_state', 'in', ['not_paid','partial','paid'])]}"/>
+                    <widget name="web_ribbon" title="Pago" bg_color="bg-success"
+                            attrs="{'invisible': [('payment_state', 'in', ['not_paid','partial','in_payment'])]}"/>
+                    <widget name="web_ribbon" title="Parcial" bg_color="bg-warning"
+                            attrs="{'invisible': [('payment_state', 'in', ['not_paid','paid','in_payment'])]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_hr_payslip_run_tree" model="ir.ui.view">
+            <field name="name">hr.payslip.run.tree</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="inherit_id" ref="hr_payroll.hr_payslip_run_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="before">
+                    <field name="payment_state" widget="badge" decoration-danger="payment_state == 'not_paid'"
+                           decoration-info="payment_state  == 'in_payment'" decoration-success="payment_state == 'paid'"
+                           decoration-warning="payment_state == 'partial'"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

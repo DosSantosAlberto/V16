@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="ao_purchase_order_formview" model="ir.ui.view">
+            <field name="name">L10n AO Purchase View Inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name="tax_totals" position="after">
+                    <!--<div attrs="{'invisible': [('amount_total_wth','=', 0)]}" class="oe_subtotal_footer_separator oe_inline">
+                        <label for="amount_total_wth"/>
+                    </div>-->
+                    <field name="amount_total_wth" class="oe_subtotal_footer oe_right"
+                           attrs="{'invisible': [('amount_total_wth','=', 0)]}" widget='monetary'
+                           options="{'currency_field': 'currency_id'}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

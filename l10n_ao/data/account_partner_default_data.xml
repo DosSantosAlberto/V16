@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="base.main_company" model="res.company">
+            <field name="income_currency_exchange_account_id" model="account.account" search="[('code', '=', u'6621')]"/> <!-- Conta de ganho de cambio -->
+            <field name="expense_currency_exchange_account_id" model="account.account" search="[('code', '=', u'7621')]"/> <!-- Conta de perda de cambio -->
+            <field name="partner_receivable_code_prefix">31121</field>
+            <field name="partner_payable_code_prefix">32121</field>
+            <field name="fpartner_receivable_code_prefix">31122</field>
+            <field name="fpartner_payable_code_prefix">32122</field>
+            <field name="employee_payslip_code_prefix">3612</field>
+            <field name="employee_advance_code_prefix">3632</field>
+            <field name="tax_calculation_rounding_method">round_globally</field>
+            <field name="company_inss_account_code">3492</field>
+            <!--<field name="account_sale_tax_id" ref="1_account_tax_iva_sales_14"/>
+            <field name="account_purchase_tax_id" ref="1_account_tax_iva_purchase_14"/>
+            <field name="tax_cash_basis_journal_id" ref=""/>-->
+            <field name="tax_regime_id" ref="l10n_ao.account_regime_general"/>
+            <field name="tax_exigibility" eval="False"/>
+            <field name="paperformat_id" ref="paperformat_a4_agt"/>
+        </record>
+    </data>
+</odoo>

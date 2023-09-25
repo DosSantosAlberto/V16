@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="report_invoice_by_date_pdf">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <!--<t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>-->
+                    <t t-call="web.external_layout">
+                        <div class="page" style="font-family:Calibri; font-size: 10px;">
+
+                            <div class="col-xs-12 text-center">
+                                <b>
+                                    <h4>Facturação por datas</h4>
+                                </b>
+                            </div>
+                            <div class="col-xs-6">
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Data de inicio</th>
+                                            <th>Data de término</th>
+                                            <th>Impressão</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <td>
+                                            <span t-field="doc.start_date"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="doc.end_date"/>
+                                        </td>
+                                        <td>
+                                            <span t-out="time.strftime('%d-%m-%Y %H:%M:%S')"/>
+                                        </td>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-xs-12">
+                                <t t-foreach="doc.companies" t-as="company">
+                                    <div>
+                                        <b>
+                                            <h4>
+                                                <span t-out="company.name"/>
+                                            </h4>
+                                        </b>
+                                    </div>
+                                    <t t-set="tax_total" t-value="0.0"/>
+                                    <t t-set="amount_untaxed_total" t-value="0.0"/>
+                                    <table class="table table-borderless">
+                                        <t t-set="invoices" t-value="doc.get_invoices(company)"/>
+                                        <thead>
+                                            <tr style="background-color:#337AB7; color:#ffffff;">
+                                                <th>Nº</th>
+                                                <th>Cliente</th>
+                                                <th>Dates</th>
+                                                <th>Tipo</th>
+                                                <th class="text-right">Utilizador</th>
+                                                <th class="text-right">Estado</th>
+                                                <th class="text-right">Valor Tributável</th>
+                                                <th class="text-right">IVA</th>
+                                                <th class="text-right">Valor Vencido</th>
+                                                <th class="text-right">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-if="invoices['invoices']">
+                                                <tr t-foreach="invoices['invoices']" t-as="invoice">
+                                                    <td>
+                                                        <span t-field="invoice.name"/>
+                                                    </td>
+                                                    <td>
+                                                        <span t-field="invoice.partner_id"/>
+                                                    </td>
+                                                    <td>
+                                                        <span t-field="invoice.invoice_date"/>
+                                                    </td>
+                                                    <td>
+                                                        <span t-field="invoice.move_type"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <span t-field="invoice.user_id"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <span t-field="invoice.state"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                         <span t-if="invoice.move_type == 'out_invoice'"
+                                                              t-field="invoice.amount_untaxed"
+                                                              t-options='{"widget": "float", "precision": 2}'/>
+                                                        <span t-if="invoice.move_type == 'out_refund'"
+                                                              t-esc="invoice.amount_untaxed * -1"
+                                                              t-options='{"widget": "float", "precision": 2}'/>
+                                                        <t t-set="amount_untaxed_total" t-if="invoice.move_type == 'out_invoice'"
+                                                           t-value="amount_untaxed_total + invoice.amount_untaxed"/>
+                                                         <t t-set="amount_untaxed_total" t-if="invoice.move_type == 'out_refund'"
+                                                           t-value="amount_untaxed_total - invoice.amount_untaxed"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <span t-if="invoice.move_type == 'out_invoice'"
+                                                              t-field="invoice.amount_tax"
+                                                              t-options='{"widget": "float", "precision": 2}'/>
+                                                        <span t-if="invoice.move_type == 'out_refund'"
+                                                              t-esc="invoice.amount_tax * -1"
+                                                              t-options='{"widget": "float", "precision": 2}'/>
+                                                        <t t-set="tax_total" t-if="invoice.move_type == 'out_invoice'"
+                                                           t-value="tax_total + invoice.amount_tax"/>
+                                                        <t t-set="tax_total" t-if="invoice.move_type == 'out_refund'"
+                                                           t-value="tax_total - invoice.amount_tax"/>
+                                                        Kz
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <t t-if="invoice.move_type in ['in_invoice','out_invoice']">
+                                                            <span t-field="invoice.amount_residual"/>
+                                                        </t>
+                                                        <t t-if="invoice.move_type in ['in_refund','out_refund']">
+                                                            <span t-field="invoice.amount_residual_signed"/>
+                                                        </t>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <t t-if="invoice.move_type in ['in_invoice','out_invoice']">
+                                                            <span t-field="invoice.amount_total"/>
+                                                        </t>
+                                                        <t t-if="invoice.move_type in ['in_refund','out_refund']">
+                                                            <span t-field="invoice.amount_total_signed"/>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                                <tr style="background-color:#337AB7; color:#ffffff;">
+                                                    <th colspan="6">Total:</th>
+                                                    <th class="text-right">
+                                                        <span t-out="amount_untaxed_total"
+                                                              t-options='{"widget": "float", "precision": 2}'/>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span t-out="tax_total"
+                                                              t-options='{"widget": "float", "precision": 2}'/>
+                                                        Kz
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span t-out="invoices['total_residual']"
+                                                              t-options='{"widget": "float", "precision": 2}'/>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span t-out="invoices['total']"
+                                                              t-options='{"widget": "float", "precision": 2}'/>
+                                                    </th>
+                                                </tr>
+                                                <t t-if="doc.companies">
+                                                    <tr style="color:#337AB7;">
+                                                        <th colspan="10" class="text-center">Resumo Geral por Empresas
+                                                        </th>
+                                                    </tr>
+                                                    <tr style="background-color:#337AB7; color:#ffffff;">
+                                                        <th colspan="8">Empresa</th>
+                                                        <th class="text-right">Valor Vencido</th>
+                                                        <th class="text-right">Total</th>
+                                                    </tr>
+                                                    <t t-set="total_residual" t-value="0"/>
+                                            <t t-set="total" t-value="0"/>
+                                            <tr t-foreach="doc.companies" t-as="company">
+                                                <t t-set="invoices" t-value="doc.get_invoices(company)"/>
+                                                <td colspan="8">
+                                                    <span t-field="company.name"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-out="invoices['total_residual']"
+                                                          t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-out="invoices['total']"
+                                                          t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <t t-set="total_residual"
+                                                   t-value="total_residual + invoices['total_residual']"/>
+                                                <t t-set="total" t-value="total + invoices['total']"/>
+                                            </tr>
+                                            <tr style="background-color:#337AB7; color:#ffffff;">
+                                                <th colspan="8">Total Faturado</th>
+                                                <th class="text-right">
+                                                    <span t-out="total_residual"
+                                                          t-options='{"widget": "float", "precision": 2}'/>
+                                                </th>
+                                                <th class="text-right">
+                                                    <span t-out="total"
+                                                          t-options='{"widget": "float", "precision": 2}'/>
+                                                </th>
+                                            </tr>
+                                                </t>
+                                            </t>
+                                            <t t-if=" not invoices['invoices']">
+                                                <tr>
+                                                    <th colspan="8" class="text-center">
+                                                        Nenhum registro encontrado para esta empresa!
+                                                    </th>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </t>
+                               <!-- <t t-if="doc.companies">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr style="color:#337AB7;">
+                                                <th colspan="10" class="text-center">Resumo Geral por Empresas</th>
+                                            </tr>
+                                            <tr style="background-color:#337AB7; color:#ffffff;">
+                                                <th colspan="8">Empresa</th>
+                                                <th class="text-right">Valor Vencido</th>
+                                                <th class="text-right">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-set="total_residual" t-value="0"/>
+                                            <t t-set="total" t-value="0"/>
+                                            <tr t-foreach="doc.companies" t-as="company">
+                                                <t t-set="invoices" t-value="doc.get_invoices(company)"/>
+                                                <td colspan="8">
+                                                    <span t-field="company.name"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-out="invoices['total_residual']"
+                                                          t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-out="invoices['total']"
+                                                          t-options='{"widget": "float", "precision": 2}'/>
+                                                </td>
+                                                <t t-set="total_residual"
+                                                   t-value="total_residual + invoices['total_residual']"/>
+                                                <t t-set="total" t-value="total + invoices['total']"/>
+                                            </tr>
+                                            <tr style="background-color:#337AB7; color:#ffffff;">
+                                                <th colspan="8">Total Faturado</th>
+                                                <th class="text-right">
+                                                    <span t-out="total_residual"
+                                                          t-options='{"widget": "float", "precision": 2}'/>
+                                                </th>
+                                                <th class="text-right">
+                                                    <span t-out="total"
+                                                          t-options='{"widget": "float", "precision": 2}'/>
+                                                </th>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </t>-->
+                            </div>
+
+                            <div>
+
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

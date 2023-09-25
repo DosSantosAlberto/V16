@@ -1,0 +1,337 @@
+{
+  'Product': [
+    {
+      'ProductType': 'product',
+      'ProductCode': 13,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'DESK0004',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 36,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'DESK0005',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 37,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'DESK0006',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'service',
+      'ProductCode': 34,
+      'ProductGroup': 'Services',
+      'ProductDescription': '',
+      'productNumberCode': 'Deposit',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 14,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'E-COM06',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 15,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'E-COM07',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'consu',
+      'ProductCode': 550,
+      'ProductGroup': 'All',
+      'ProductDescription': 'este produto tem sido a maior procura não so na cidade de luanda, mais como em angola num todo!',
+      'productNumberCode': 'E-COM070',
+      'CustomsDetails': 'Caracterização aduaneira',
+      'UNNumber': '0827205'
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 16,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'E-COM08',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 17,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'E-COM09',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 18,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'E-COM10',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 19,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'E-COM11',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 20,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'E-COM12',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 21,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'E-COM13',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'service',
+      'ProductCode': 2,
+      'ProductGroup': 'Expenses',
+      'ProductDescription': '',
+      'productNumberCode': 'EXP_HA',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'service',
+      'ProductCode': 1,
+      'ProductGroup': 'Expenses',
+      'ProductDescription': '',
+      'productNumberCode': 'EXP_REST',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 10,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_0096',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 11,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_0097',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 12,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_0098',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 22,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_0269',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 27,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_0789',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 23,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_1118',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 33,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_5555',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 28,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_6666',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 31,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_6741',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 5,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_7777',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 8,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_7800',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 26,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_7888',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 30,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_8220',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 29,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': 'Drawer with two routing possiblities.',
+      'productNumberCode': 'FURN_8855',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 6,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_8888',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 24,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_8900',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 32,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_8999',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 25,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_9001',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'product',
+      'ProductCode': 7,
+      'ProductGroup': 'Software',
+      'ProductDescription': '',
+      'productNumberCode': 'FURN_9999',
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'consu',
+      'ProductCode': 35,
+      'ProductGroup': 'Office Furniture',
+      'ProductDescription': '',
+      'productNumberCode': False,
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'service',
+      'ProductCode': 4,
+      'ProductGroup': 'Services',
+      'ProductDescription': '',
+      'productNumberCode': False,
+      'CustomsDetails': '',
+      'UNNumber': ''
+    },
+    {
+      'ProductType': 'service',
+      'ProductCode': 3,
+      'ProductGroup': 'Services',
+      'ProductDescription': '',
+      'productNumberCode': False,
+      'CustomsDetails': '',
+      'UNNumber': ''
+    }
+  ]
+}

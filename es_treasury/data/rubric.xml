@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="agua" model="treasury.rubric">
+            <field name="name">Água</field>
+            <field name="account_code">75211</field>
+        </record>
+        <record id="energia" model="treasury.rubric">
+            <field name="name">Energia</field>
+            <field name="account_code">75212</field>
+        </record>
+        <record id="eletrecidade" model="treasury.rubric">
+            <field name="name">Electricidade</field>
+            <field name="account_code">75212</field>
+        </record>
+        <record id="gasolina" model="treasury.rubric">
+            <field name="name">Gasolina</field>
+            <field name="account_code">75213</field>
+        </record>
+        <record id="gasoleo" model="treasury.rubric">
+            <field name="name">Gasóleo</field>
+            <field name="account_code">75213</field>
+        </record>
+        <record id="ole_motor" model="treasury.rubric">
+            <field name="name">Óleo de Motor</field>
+            <field name="account_code">75213</field>
+        </record>
+        <record id="filtro_ar" model="treasury.rubric">
+            <field name="name">Filtro de Ar de carro</field>
+            <field name="account_code">75214</field>
+        </record>
+        <record id="filtro_oleo" model="treasury.rubric">
+            <field name="name">Filtro de óleo de carro</field>
+            <field name="account_code">75214</field>
+        </record>
+        <record id="filtro_ac" model="treasury.rubric">
+            <field name="name">Filtro de AC de carro</field>
+            <field name="account_code">75214</field>
+        </record>
+        <record id="chave_roda" model="treasury.rubric">
+            <field name="name">Chaves de roda</field>
+            <field name="account_code">75216</field>
+        </record>
+        <record id="tinteiros" model="treasury.rubric">
+            <field name="name">Tinteiros</field>
+            <field name="account_code">75217</field>
+        </record>
+        <record id="papel_a4" model="treasury.rubric">
+            <field name="name">Papel A4</field>
+            <field name="account_code">75217</field>
+        </record>
+        <record id="papel_a3" model="treasury.rubric">
+            <field name="name">Papel A3</field>
+            <field name="account_code">75217</field>
+        </record>
+        <record id="seguro" model="treasury.rubric">
+            <field name="name">Serviços de Seguros</field>
+            <field name="account_code">75222</field>
+        </record>
+        <record id="taxi" model="treasury.rubric">
+            <field name="name">Taxis</field>
+            <field name="account_code">75223</field>
+        </record>
+        <record id="manutencao" model="treasury.rubric">
+            <field name="name">Serviços de Manutenção</field>
+            <field name="account_code">75226</field>
+        </record>
+        <record id="seguranca" model="treasury.rubric">
+            <field name="name">Serviços de Segurança</field>
+            <field name="account_code">75227</field>
+        </record>
+        <record id="limpeza" model="treasury.rubric">
+            <field name="name">Serviços de Limpeza</field>
+            <field name="account_code">75228</field>
+        </record>
+        <record id="lixo" model="treasury.rubric">
+            <field name="name">Serviços de Recolha de Lixo</field>
+            <field name="account_code">75228</field>
+        </record>
+        <record id="publicidade" model="treasury.rubric">
+            <field name="name">Serviços de Publicidade</field>
+            <field name="account_code">75229</field>
+        </record>
+        <record id="notario" model="treasury.rubric">
+            <field name="name">Serviços de Notariado</field>
+            <field name="account_code">75230</field>
+        </record>
+    </data>
+</odoo>

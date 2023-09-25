@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="loan_form_view" model="ir.ui.view">
+            <field name="name">ProjectName.loan.form</field>
+            <field name="model">hs.loan</field>
+            <field name="arch" type="xml">
+                <form string="Register Payment">
+                    <header>
+                        <button name="post" class="oe_highlight" states="draft" string="Confirm" type="object"/>
+                        <button name="action_draft" class="oe_highlight" states="cancelled" string="Set To Draft"
+                                type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,posted,cancelled"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title" attrs="{'invisible': [('state', '=', 'draft')]}">
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="type" widget="radio"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="partner_type" widget="selection"
+                                       attrs="{'required': [('state', '=', 'draft'), ('payment_type', 'in', ('inbound', 'outbound'))], 'invisible': [('payment_type', 'not in', ('inbound', 'outbound'))], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="partner_id"
+                                       attrs="{'required': [('state', '=', 'draft'), ('payment_type', 'in', ('inbound', 'outbound'))], 'invisible': [('payment_type', 'not in', ('inbound', 'outbound'))], 'readonly': [('state', '!=', 'draft')]}"
+                                       context="{'default_is_company': True, 'default_supplier': payment_type == 'outbound', 'default_customer': payment_type == 'inbound'}"/>
+                                <label for="amount"/>
+                                <div name="amount_div" class="o_row">
+                                    <field name="amount" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                           groups="base.group_multi_currency"
+                                           attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                </div>
+                                <field name="journal_id" widget="selection"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="destination_journal_id" widget="selection"
+                                       attrs="{'required': [('payment_type', '=', 'transfer')], 'invisible': [('payment_type', '!=', 'transfer')], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="hide_payment_method" invisible="1"/>
+                                <field name="payment_method_id" string=" " widget="radio"
+                                       attrs="{'invisible': [('hide_payment_method', '=', True)], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="payment_method_code" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="payment_date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="communication"
+                                       attrs="{'invisible': [('state', '!=', 'draft'), ('communication', '=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+
+            </field>
+        </record>
+
+        <record id="loan_tree_view" model="ir.ui.view">
+            <field name="name">ProjectName.loan.tree</field>
+            <field name="model">ProjectName.loan</field>
+            <field name="arch" type="xml">
+                <tree string="ModelTitle">
+                    <field name="create_date"/>
+                    <field name="example_field"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="loan_calendar_view" model="ir.ui.view">
+            <field name="name">ProjectName.loan.calendar</field>
+            <field name="model">ProjectName.loan</field>
+            <field name="arch" type="xml">
+                <calendar string="ModelTitle" date_start="example_date_field" color="example_boolean_field">
+                    <field name="example_field"/>
+                    <field name="example_field" widget="monetary"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record id="loan_graph_view" model="ir.ui.view">
+            <field name="name">ProjectName.loan.graph</field>
+            <field name="model">ProjectName.loan</field>
+            <field name="arch" type="xml">
+                <graph string="ModelTitle">
+                    <field name="example_field"/>
+                    <field name="example_field" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="loan_pivot_view" model="ir.ui.view">
+            <field name="name">ProjectName.loan.pivot</field>
+            <field name="model">ProjectName.loan</field>
+            <field name="arch" type="xml">
+                <pivot string="ModelTitle">
+                    <field name="example_field" type="row"/>
+                    <field name="example_field" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="loan_search_view" model="ir.ui.view">
+            <field name="name">ProjectName.loan.search</field>
+            <field name="model">ProjectName.loan</field>
+            <field name="arch" type="xml">
+                <search string="ModelTitle">
+                    <group expand="1" string="Group By">
+                        <filter string="Example Field" name="example_field" domain="[]"
+                                context="{'group_by':'example_field'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="loan_kanban_view" model="ir.ui.view">
+            <field name="name">ProjectName.loan.kanban</field>
+            <field name="model">ProjectName.loan</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="example_field"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_res_partner_kanban">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title oe_partner_heading">
+                                        <field name="example_field"/>
+                                    </strong>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="loan_act_window" model="ir.actions.act_window">
+            <field name="name">ModelTitle</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ProjectName.loan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form,calendar,graph,pivot</field>
+            <field name="context">{"search_default_example_field": 1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new ModelTitle.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="ModelTitle" id="loan_menu" parent="your_root_menu" action="loan_act_window"/>
+
+    </data>
+</odoo>

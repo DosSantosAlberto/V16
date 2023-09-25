@@ -1,0 +1,1277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_account_financial_balance" model="ir.actions.report">
+            <field name="name">account_financial_balance</field>
+            <field name="model">account.financial.balance</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">es_account_report_ao.action_action_name</field>
+            <field name="report_file">es_account_report_ao.action_action_name</field>
+        </record>
+        <template id="es_account_report_ao.action_action_name">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="header" style="color: #0B74CE">
+                            <div class="row b_color">
+                                <div class="col-8">
+                                    <b>
+                                        <span class="text-left" t-field="o.company_id"/>
+                                    </b>
+                                </div>
+                                <div class="col-4" style="font-size:10px;">
+                                    <ul class="list-inline text-right">
+                                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime(&apos;%Y-%m-%d %H:%M&apos;)"/>
+                                        |
+                                    Pag. <span class="page" /> / <span class="topage" />
+                                       <!--<span t-esc="o.get_page_number(page)"/> -->
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <br/>
+                            <hr style="display: block; height: 1px; border: 0; border-top: 3px solid #0B74CE; margin: 0; padding: 0;"/>
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <div align="left">
+                                        <b class="b_color">
+                                            Balanço
+                                        (
+                                            <span t-field="o.date_from"/>
+                                            até
+                                            <span t-field="o.date_to"/>
+                                            )
+                                        </b>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div align="right">
+                                        <b class="b_color">
+                                            Valores em
+                                            <span t-esc="o.company_id.currency_id.symbol"/>
+                                        </b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page">
+                            <style>
+                                * {padding-bottom: 0 !important;
+                                    padding-top: 0 !important;
+                                    margin-bottom: 0 !important;margin-top:0 !important; }
+                                    hr {
+                                    display: block; height: 1px;
+                                    border: 0; border-top: 1px solid #0B74CE;
+                                    margin: 0; padding: 0;
+                                    }
+                                    .b_color{
+                                    color: #0B74CE;
+                                    }
+
+                                    table {
+                                    border-spacing: 3px;
+                                    border-top: 3px solid black;
+                                    border-collapse:collapse;
+                                    }
+
+                                    td {
+                                    border-bottom:0 !important;
+                                    border-top: 1px solid #B2BABB !important;
+                                    }
+
+                                    th {
+                                    border-top:0 !important;
+                                    border-bottom: 1px solid #B2BABB !important;
+                                    }
+
+                                    table, tr, th, td {
+                                    border-collapse: separate;
+                                    padding:0px !important;
+                                    }
+
+                                    .border_top_th{
+                                    border-top: 1px solid black !important;
+                                    }
+                                </style>
+                            <t t-if="o.enable_filter">
+                                <t t-set="date_from_cmp" t-value="o.prev_accounting_year().date_from"/>
+                                <t t-set="date_to_cmp" t-value="o.prev_accounting_year().date_to"/>
+                            </t>
+                            <table class="table table-condensed" style="border-color:black;font-size:11px;">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2" class="text-center" style="border-bottom:0 !important;">Designação</th>
+                                        <th rowspan="2" class="text-center" style="border-bottom:0 !important;">Notas</th>
+                                        <t t-if="o.enable_filter" style="border-bottom:2px solid #000 !important;">
+                                            <th colspan="2" class="text-center" style="border-bottom:2px solid #000 !important;">
+                                            Exercícios
+                                            </th>
+                                        </t>
+                                        <t t-else="">
+                                            <th class="text-center" style="border-bottom:2px solid #000 !important;">
+                                            Exercício
+                                            </th>
+                                        </t>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center" style="border-bottom:0 !important;">
+                                            <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(o.date_to),&apos;%Y-%m-%d&apos;))"/>
+                                        </th>
+                                        <t t-if="o.enable_filter">
+                                            <th class="text-center" style="border-bottom:0 !important;">
+                                                <span t-esc="time.strftime(&apos;%Y&apos;,time.strptime(str(date_to_cmp),&apos;%Y-%m-%d&apos;))"/>
+                                            </th>
+                                        </t>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr></tr>
+                                    <t t-if="o.enable_filter">
+                                        <tr>
+                                            <td>
+                                                <b>
+
+                                                Ativo
+                                            </b>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <br/>
+                                                <span style="margin: 1em;">
+                                                   <b>Ativos não correntes:</b>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Imobilizações corpóreas
+                                        </td>
+                                            <td class="text-center">
+                                            4
+                                        </td>
+                                           <td class="text-center">
+                                            <t t-set ="imo_c" t-value="o.get_account_balance([11],o.date_from,o.date_to)"/>
+                                                <span t-esc="abs(imo_c)"  t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-center">
+                                                 <t t-set ="imo_c_past" t-value="o.get_account_balance([11],date_from_cmp,date_to_cmp)"/>
+                                                <span t-esc="abs(imo_c_past)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Imobilizações incorpóreas
+                                        </td>
+                                            <td class="text-center">
+                                            5
+                                        </td>
+                                             <t t-set ="imo_ic" t-value="o.get_account_balance([12],o.date_from,o.date_to)"/>
+                                            <td class="text-center">
+                                               <span t-esc="abs(imo_ic)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-center">
+                                             <t t-set ="imo_ic_past" t-value="o.get_account_balance([12],date_from_cmp,date_to_cmp)"/>
+
+                                               <span t-esc="abs(imo_ic_past)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Investimentos em subsidiárias e associadas
+                                        </td>
+                                            <td class="text-center">
+                                            6
+                                        </td>
+                                            <td class="text-center">  <t t-set ="invest_assoc" t-value="abs(o.get_account_balance([131],o.date_from,o.date_to)) +
+                                                abs(o.get_account_balance([132],o.date_from,o.date_to))"/>
+                                                 <span t-esc="abs(invest_assoc)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-center"> <t t-set ="invest_assoc_past" t-value="abs(o.get_account_balance([131],date_from_cmp,date_to_cmp))
+                                                 +abs(o.get_account_balance([132],date_from_cmp,date_to_cmp))"/>
+                                                 <span t-esc="abs(invest_assoc_past)" t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Outros ativos financeiros
+                                        </td>
+                                            <td class="text-center">
+                                            7
+                                        </td>
+                                            <td class="text-center">
+                                                <t t-set ="other_finance" t-value="abs(o.get_account_balance([139],o.date_from,o.date_to))
+                                                    +abs(o.get_account_balance([14],o.date_from,o.date_to))  "/>
+                                                 <span t-esc="abs(other_finance)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                             <td class="text-center">
+                                                <t t-set ="other_finance_past" t-value="abs(o.get_account_balance([139],date_from_cmp,date_to_cmp))
+                                                    +abs(o.get_account_balance([14],date_from_cmp,date_to_cmp)) "/>
+                                                 <span t-esc="abs(other_finance_past)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Outros ativos não correntes
+                                        </td>
+                                            <td class="text-center">
+                                            9
+                                        </td>
+                                             <td class="text-center">
+                                                <t t-set ="other_finance_c" t-value="o.get_account_balance([18],o.date_from,o.date_to)"/>
+
+                                                ( <span t-esc="abs(other_finance_c)" t-options='{"widget": "float", "precision": 2}'/>)
+                                            </td>
+                                             <t t-set ="other_finance_c_past" t-value="o.get_account_balance([18],date_from_cmp,date_to_cmp)"/>
+                                            <td class="text-center">
+                                               (<span t-esc="abs(other_finance_c_past)" t-options='{"widget": "float", "precision": 2}'/>)
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p >Total do activo não Correntes</p>
+                                        </td>
+                                            <td class="text-center">
+                                                <t t-set ="total_active_current" t-value="abs(imo_c)+abs(imo_ic)+abs(invest_assoc)
+                                                +abs(other_finance)-abs(other_finance_c)"/>
+
+                                            </td>
+                                            <td class="text-center">
+                                                  <t t-set ="total_active_current_past" t-value="abs(imo_c_past)+abs(imo_ic_past)+abs(invest_assoc_past)
+                                                +abs(other_finance_past)+abs(other_finance_c_past)"/>
+
+                                             <span t-esc="abs(total_active_current)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                            <td class="text-center">
+                                                 <span t-esc="abs(total_active_current_past)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold !important; ">
+                                                <br/>
+                                                <span style="margin: 1em;">
+                                                    <b>Ativos correntes:</b>
+                                            </span>
+                                            </td>
+                                            <td class="text-center">
+
+                                        </td>
+                                            <td> </td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Existências
+                                        </td>
+                                            <td class="text-center">
+                                            8
+                                        </td>
+                                            <t t-set ="exist_co_vd" t-value=" abs(o.get_account_balance([21],o.date_from,o.date_to))
+                                             +abs(o.get_account_balance([22],o.date_from,o.date_to))+ abs(o.get_account_balance([26],o.date_from,o.date_to))
+                                             + abs(o.get_account_balance([29],o.date_from,o.date_to))
+                                              "/>
+                                            <td class="text-center">
+                                              <span t-esc="abs(exist_co_vd)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                            <t t-set ="exist_co_vd_past" t-value=" abs(o.get_account_balance([21],date_from_cmp,date_to_cmp))
+                                             +abs(o.get_account_balance([26],date_from_cmp,date_to_cmp)) + abs(o.get_account_balance([22],date_from_cmp,date_to_cmp))
+                                             + abs(o.get_account_balance([29],date_from_cmp,date_to_cmp))
+                                              "/>
+                                            <td class="text-center">
+                                            <span t-esc="abs(exist_co_vd_past)"  t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Contas a receber
+                                        </td>
+                                            <td class="text-center">
+                                            9
+                                        </td>
+                                            <td class="text-center">
+                                                <t t-set ="account_rec" t-value=" +abs(o.get_account_balance([31],o.date_from,o.date_to))
+                                             +abs(o.get_account_balance([37819999],o.date_from,o.date_to))
+                                             + abs(o.get_account_balance([3791],o.date_from,o.date_to))
+
+                                              " t-options='{"widget": "float", "precision": 2}'/>
+
+                                                <span t-esc="abs(account_rec)" t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                            <td class="text-center">
+                                                <t t-set ="account_rec_past" t-value=" +abs(o.get_account_balance([31],date_from_cmp,date_to_cmp))
+                                             +abs(o.get_account_balance([37819999],date_from_cmp,date_to_cmp))
+                                             + abs(o.get_account_balance([3791],date_from_cmp,date_to_cmp))" t-options='{"widget": "float", "precision": 2}'/>
+
+                                                <span t-esc="abs(account_rec_past)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Disponibilidades
+                                        </td>
+                                            <td class="text-center">
+                                            10
+                                        </td>
+                                             <t t-set ="available_c" t-value=" +abs(o.get_account_balance([43],o.date_from,o.date_to))
+                                             +abs(o.get_account_balance([45],o.date_from,o.date_to))+abs(o.get_account_balance([41],o.date_from,o.date_to))
+                                              "/>
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(available_c) " t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                             <t t-set ="available_past" t-value=" +abs(o.get_account_balance([43],date_from_cmp,date_to_cmp))
+                                             +abs(o.get_account_balance([45],date_from_cmp,date_to_cmp))+abs(o.get_account_balance([41],date_from_cmp,date_to_cmp))
+                                              "/>
+                                            <td class="text-center">
+                                                 <span t-esc="abs(available_past)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Outros activos correntes
+
+                                                <!-- Contas 21,22,26 e 29-->
+                                        </td>
+                                            <td class="text-center">
+                                            12
+                                        </td>
+                                            <t t-set ="exist_co_vd" t-value=" abs(o.get_account_balance([27],o.date_from,o.date_to))
+                                             +abs(o.get_account_balance([28],o.date_from,o.date_to))+ abs(o.get_account_balance([29],o.date_from,o.date_to))
+                                             + abs(o.get_account_balance([371],o.date_from,o.date_to)) + abs(o.get_account_balance([372],o.date_from,o.date_to))
+                                               + abs(o.get_account_balance([373],o.date_from,o.date_to))"/>
+                                            <td class="text-center">
+                                              <span t-esc="abs(exist_co_vd)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                            <t t-set ="exist_co_vd_past" t-value=" abs(o.get_account_balance([27],date_from_cmp,date_to_cmp))
+                                             +abs(o.get_account_balance([28],date_from_cmp,date_to_cmp)) + abs(o.get_account_balance([29],date_from_cmp,date_to_cmp))
+                                             + abs(o.get_account_balance([371],date_from_cmp,date_to_cmp)) + abs(o.get_account_balance([372],date_from_cmp,date_to_cmp))
+                                               + abs(o.get_account_balance([373],date_from_cmp,date_to_cmp))"/>
+                                            <td class="text-center">
+                                            <span t-esc="abs(exist_co_vd_past)"  t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <p style="text-center">Total do activo  Correntes</p>
+                                        </td>
+                                             <t t-set ="total_active_c_a" t-value=" abs(available_c) + abs(exist_co_vd)+abs(account_rec)
+                                             "/>
+                                            <td class="text-center">
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="abs(total_active_c_a )" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                             <t t-set ="total_active_c_p" t-value=" abs(available_past) + abs(exist_co_vd_past)+abs(account_rec_past)
+                                             "/>
+                                            <td class="text-center">
+                                                <span t-esc="abs(total_active_c_p)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td>Total dos Activos  </td>
+                                            <td class="text-center">
+                                                 <t t-set ="total_actives" t-value="abs(total_active_c_a) + abs(total_active_current)"/>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="abs(total_actives)" t-options='{"widget": "float", "precision": 2}'/>
+
+
+                                            </td>
+                                                  <t t-set ="total_actives_p" t-value="total_active_c_p + total_active_current_past"/>
+
+                                            <td class="text-center">
+                                                      <span t-esc="abs(total_actives_p)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Capital Próprio e Passivo
+                                        </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <br/>
+                                                <span style="margin: 1em;">
+                                            Capital próprio:
+                                        </span>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Capital
+                                        </td>
+                                            <td class="text-center">
+                                            12
+                                        </td>
+                                             <t t-set ="capital" t-value="abs(o.get_account_balance([51],o.date_from,o.date_to))
+                                            +abs(o.get_account_balance([52],o.date_from,o.date_to))"/>
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(capital)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-center">
+                                            <t t-set ="capital_past" t-value="abs(o.get_account_balance([51],date_from_cmp,date_to_cmp))
+                                            + abs(o.get_account_balance([51],date_from_cmp,date_to_cmp)) "/>
+                                               <span t-esc="abs(capital_past)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Reservas
+                                        </td>
+                                            <td class="text-center">
+                                            13
+                                        </td>
+                                             <td class="text-center">
+                                             <t t-set ="reserves_c_p" t-value="(o.get_account_balance([55],o.date_from,o.date_to))
+                                             +abs(o.get_account_balance([56],o.date_from,o.date_to))
+                                             +abs(o.get_account_balance([57],o.date_from,o.date_to))
+                                             +abs(o.get_account_balance([58],o.date_from,o.date_to))
+                                            "/>
+                                              <span t-esc="abs(reserves_c_p)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set ="reserves_c_past" t-value="o.get_account_balance([55],date_from_cmp,date_to_cmp)
+                                             +o.get_account_balance([56],date_from_cmp,date_to_cmp)
+                                             +o.get_account_balance([57],date_from_cmp,date_to_cmp)
+                                             +o.get_account_balance([58],date_from_cmp,date_to_cmp)
+                                            "/>
+                                                 <span t-esc="reserves_c_past" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Resultados transitados
+                                        </td>
+                                            <td class="text-center">
+                                            14
+                                        </td>
+                                            <td class="text-center">
+                                               <t t-set ="result_transits" t-value="o.get_account_balance([81],o.date_from,o.date_to)
+
+                                            "/>
+                                                <span t-esc="(abs(result_transits))" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td><t t-set ="result_transits_past" t-value="o.get_account_balance([81],date_from_cmp,date_to_cm)
+
+                                            "/>
+                                                <td class="text-center">
+                                            <span t-esc="(abs(result_transits_past))" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Resultados do exercício
+                                        </td>
+                                            <td>
+                                                <t t-set ="capital_pro" t-value="o.get_account_balance([88],o.date_from,o.date_to)"/>
+                                                 <t t-set ="capital_pro_past" t-value="o.get_account_balance([88],date_from_cmp,date_to_cmp)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="abs(capital_pro)" />
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="abs(capital_pro_past)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                             <tr>
+                                            <td>Total do Capital Próprio</td>
+                                            <td class="text-center">
+
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set ="total_capital" t-value="abs(capital)+abs(reserves_c_p)+abs(result_transits)+abs(capital_pro)"/>
+
+                                             <span t-esc="abs(total_capital)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set ="total_capital_past" t-value="abs(capital_past)+abs(reserves_c_past)+abs(result_transits_past)+abs(capital_pro_past)"/>
+
+                                          <span t-esc="abs(total_capital_past)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <br/>
+                                                <span style="margin: 1em;">
+                                            Passivo não corrente:
+                                            </span>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                          Empréstimos de médio e longo prazos
+                                        </td>
+                                            <td class="text-center">
+                                            15
+                                        </td>
+                                           <t t-set ="barrow_long" t-value="o.get_account_balance(3392,o.date_from,o.date_to)"/>
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(barrow_long)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <t t-set ="barrow_long_past" t-value="o.get_account_balance(3392,date_from_cmp,date_to_cmp)"/>
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(barrow_long_past)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                          Impostos diferidos
+                                        </td>
+                                            <td class="text-center">
+                                            16
+                                        </td>
+                                             <t t-set ="tax_d" t-value="0.00"/>
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(tax_d)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                             <t t-set ="tax_d_past" t-value="0.00"/>
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(tax_d_past)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Provisões para pensões
+                                        </td>
+                                            <td class="text-center">
+                                            17
+                                        </td>
+                                            <td class="text-center">
+                                                <t t-set ="prov" t-value="o.get_account_balance(391,o.date_from,o.date_to)"/>
+
+                                                <span t-esc="abs(prov)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-center">
+                                                 <t t-set ="prov_past" t-value="o.get_account_balance(391,date_from_cmp,date_to_cmp)"/>
+
+                                                <span t-esc="abs(prov_past)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Provisões para outros riscos e encargos
+                                        </td>
+                                            <td class="text-center">
+                                            18
+                                        </td>
+                                            <td class="text-center">
+                                          <t t-set ="prov_risk" t-value="o.get_account_balance(399,o.date_from,o.date_to)"/>
+
+                                                <span t-esc="abs(prov_risk)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-center">
+                                            <t t-set ="prov_risk_past" t-value="o.get_account_balance(399,date_from_cmp,date_to_cmp)"/>
+                                                 <span t-esc="abs(prov_risk_past)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Outros passivos não correntes
+                                        </td>
+                                            <td class="text-center">
+                                            19
+                                        </td>
+                                            <td> </td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total do Passivo não Corrente </td>
+                                            <td class="text-center">
+
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set ="total_pass" t-value="abs(barrow_long)
+                                                            +abs(tax_d)+abs(prov)+abs(prov_risk)"/>
+                                             <span t-esc="abs(total_pass)" t-options='{"widget": "float", "precision": 2}'/>
+
+
+                                            </td>
+                                            <td class="text-center">
+                                                 <t t-set ="total_pass_past" t-value="abs(barrow_long_past)
+                                                            +abs(tax_d_past)+abs(prov_past)+abs(prov_risk_past)"/>
+                                             <span t-esc="abs(total_pass_past)" t-options='{"widget": "float", "precision": 2}'/>
+
+
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <br/>
+                                                <span style="margin: 1em">
+                                            Passivo corrente:
+                                            </span>
+                                            </td>
+                                            <td class="text-center"></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Contas a pagar
+                                        </td>
+                                            <td class="text-center">
+                                            19
+                                        </td>
+                                            <td class="text-center">
+                                                <t t-set ="pay_account" t-value=" +abs(o.get_account_balance([32],o.date_from,o.date_to))
+                                                +abs(o.get_account_balance([34],o.date_from,o.date_to))
+                                                 +abs(o.get_account_balance([3711],o.date_from,o.date_to))
+                                                +abs(o.get_account_balance([3713],o.date_from,o.date_to))
+                                                +abs(o.get_account_balance([3723],o.date_from,o.date_to))
+                                                +abs(o.get_account_balance([3751],o.date_from,o.date_to))
+                                                +abs(o.get_account_balance([3792999],o.date_from,o.date_to))
+                                                +abs(o.get_account_balance([3793101],o.date_from,o.date_to))"
+                                                   t-options='{"widget": "float", "precision": 2}'/>
+
+                                                <span t-esc="abs(pay_account)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                             <t t-set ="pay_account_past" t-value="abs(o.get_account_balance([32],date_from_cmp,date_to_cmp))+
+                                             abs(o.get_account_balance([32],date_from_cmp,date_to_cmp))
+                                             +abs(o.get_account_balance([3711],date_from_cmp,date_to_cmp))
+                                             +abs(o.get_account_balance([3713],date_from_cmp,date_to_cmp))
+                                             +abs(o.get_account_balance([3723],date_from_cmp,date_to_cmp))
+                                             +abs(o.get_account_balance([3751],date_from_cmp,date_to_cmp))
+                                             +abs(o.get_account_balance([3792],date_from_cmp,date_to_cmp))
+                                              +abs(o.get_account_balance([3792999],date_from_cmp,date_to_cmp))
+                                              +abs(o.get_account_balance([3793101],date_from_cmp,date_to_cmp))"/>
+                                            <td class="text-center">
+                                                       <span t-esc="abs(pay_account_past)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Empréstimos de curto prazo
+                                        </td>
+                                            <td class="text-center">
+                                            20
+                                        </td>
+                                             <td class="text-center">
+                                                <t t-set ="emp_pra" t-value="abs(o.get_account_balance([33],o.date_from,o.date_to))
+                                            "/><span t-esc="abs(emp_pra)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set ="emp_pra_past" t-value="abs(o.get_account_balance([33],date_from_cmp,date_to_cmp))
+                                            "/><span t-esc="abs(emp_pra_past)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Parte cor. dos empr. a médio e longo prazos </td>
+                                            <td class="text-center">
+                                            15
+                                        </td>
+                                            <td class="text-center">
+                                                 <t t-set ="part_long" t-value="o.get_account_balance([3393],o.date_from,o.date_to)
+                                            "/>
+                                                 <span t-esc="abs(part_long)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set ="part_long_past" t-value="o.get_account_balance([3393],o.date_from,o.date_to)
+                                            "/>
+                                                 <span t-esc="abs(part_long_past)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Outros passivos correntes
+                                        </td>
+                                            <td class="text-center">
+                                            21
+                                        </td>
+                                             <t t-set ="other_current" t-value="abs(o.get_account_balance([35],o.date_from,o.date_to))+
+                                            abs(o.get_account_balance([36],o.date_from,o.date_to))
+                                            "/>
+                                            <td class="text-center">
+                                                 <span t-esc="abs(other_current)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                            <t t-set ="other_current_past" t-value="abs(o.get_account_balance([35],date_from_cmp,date_to_cmp))
+                                            +abs(o.get_account_balance([36],date_from_cmp,date_to_cmp))
+                                            "/>
+
+                                            <td class="text-center">
+                                              <span t-esc="abs(other_current_past)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td>Total do Passivo Corrente</td>
+                                            <td class="text-center">
+                                                 <t t-set ="total_passive_c" t-value="abs(pay_account) + abs(part_long) +abs(emp_pra)+abs(other_current)
+                                             "/>
+
+                                            </td>
+                                            <td class="text-center">
+                                                 <span t-esc="abs(total_passive_c)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                            <t t-set ="total_passive_c_past" t-value="abs(pay_account_past) + abs(part_long_past)+ abs(emp_pra_past)
+                                            +abs(other_current_past)
+                                             "/>
+                                            <td class="text-center">
+
+                                              <span t-esc="abs(total_passive_c_past)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Total dos Passivo</td>
+                                            <td class="text-center">
+                                                 <t t-set ="total_passives_e" t-value="abs(total_pass) + abs(total_passive_c)
+                                             "/>
+
+                                            </td>
+                                            <td class="text-center">
+
+                                                 <span t-esc="abs(total_passives_e)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                            <t t-set ="total_passives_e_past" t-value="abs(total_pass_past) + (total_passive_c_past)
+                                             "/>
+                                            <td class="text-center">
+
+                                              <span t-esc="abs(total_passives_e_past)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-style: italic !important;">
+                                            Total do capital próprio e passivo
+                                        </td>
+                                            <td class="text-center">
+                                         <t t-set ="total_passive_pr" t-value="abs(total_passives_e) +abs(total_capital) "/>
+                                           <t t-set ="total_passive_pr_past" t-value="abs(total_passives_e_past) +abs(total_capital_past) "/>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="abs(total_passive_pr)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                             <td class="text-center">
+                                                <span t-esc="abs(total_passive_pr_past)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+
+
+                                    </t>
+                                    <t t-else="">
+                                        <tr>
+                                            <td>  
+                                            Ativo  
+                                        </td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="">
+                                                <span style="margin: 1em;">
+                                                    <b>Ativos não correntes:</b>
+                                            </span>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Imobilizações corpóreas 
+                                        </td>
+                                            <td class="text-center">
+                                            4
+                                        </td>
+                                             <td class="text-center">
+                                                <t t-set ="imo_c" t-value="o.get_account_balance([11],o.date_from,o.date_to)"/>
+                                                <span t-esc="abs(imo_c)"  t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Imobilizações incorpóreas 
+                                        </td>
+                                            <td class="text-center">
+                                            5
+                                        </td>
+                                            <t t-set ="imo_ic" t-value="o.get_account_balance([12],o.date_from,o.date_to)"/>
+
+                                            <td class="text-center">
+                                               <span t-esc="abs(imo_ic)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Investimentos em subsidiárias e associadas 
+                                        </td>
+                                            <td class="text-center">
+                                            6
+                                        </td>
+                                            <t t-set ="invest_assoc" t-value="abs(o.get_account_balance([131],o.date_from,o.date_to)) +
+                                                abs(o.get_account_balance([132],o.date_from,o.date_to))"/>
+                                            <td class="text-center">
+                                                <span t-esc="abs(invest_assoc)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Outros ativos financeiros 
+                                        </td>
+                                            <td class="text-center">
+                                            7
+                                        </td>
+                                            <td class="text-center">
+                                            <t t-set ="other_finance" t-value="abs(o.get_account_balance([139],o.date_from,o.date_to))
+                                                +abs(o.get_account_balance([14],o.date_from,o.date_to))  "/>
+                                             <span t-esc="abs(other_finance)" t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Outros ativos não correntes 
+                                        </td>
+                                            <td class="text-center">
+                                            9
+                                        </td>
+                                            <td class="text-center">
+                                            <t t-set ="other_finance_c" t-value="o.get_account_balance([18],o.date_from,o.date_to)"/>
+
+                                            ( <span t-esc="abs(other_finance_c)" t-options='{"widget": "float", "precision": 2}'/>)
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p >Total do activo não Correntes</p>
+                                        </td>
+                                            <td class="text-center">
+                                                <t t-set ="total_active_current" t-value="abs(imo_c)+abs(imo_ic)+abs(invest_assoc)
+                                                +abs(other_finance)-abs(other_finance_c)"/>
+
+
+                                            </td>
+                                            <td class="text-center">
+                                             <span t-esc="total_active_current" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span style="margin: 1em;">
+                                                    <b>Ativos correntes:</b>
+                                            </span>
+                                            </td>
+                                            <td class="text-center">
+
+                                        </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Existências
+                                        </td>
+                                            <td class="text-center">
+                                            9
+                                        </td>
+                                               <t t-set ="exist_co_vd" t-value=" abs(o.get_account_balance([21],o.date_from,o.date_to))
+                                        +abs(o.get_account_balance([22],o.date_from,o.date_to))+ abs(o.get_account_balance([26],o.date_from,o.date_to))
+                                        + abs(o.get_account_balance([29],o.date_from,o.date_to))
+                                         "/>
+                                       <td class="text-center">
+                                         <span t-esc="abs(exist_co_vd)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                       </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Contas a receber
+                                        </td>
+                                            <td class="text-center">
+                                            10
+                                        </td>
+                                            <td class="text-center">
+                                            <t t-set ="account_rec" t-value=" +abs(o.get_account_balance([31],o.date_from,o.date_to))
+                                         +abs(o.get_account_balance([37819999],o.date_from,o.date_to))
+                                         + abs(o.get_account_balance([3791],o.date_from,o.date_to))
+
+                                          " t-options='{"widget": "float", "precision": 2}'/>
+
+                                            <span t-esc="abs(account_rec)" t-options='{"widget": "float", "precision": 2}'/>
+                                    </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Disponibilidades
+                                        </td>
+                                            <td class="text-center">
+                                            11
+                                        </td>
+                                            <t t-set ="available_c" t-value=" +abs(o.get_account_balance([43],o.date_from,o.date_to))
+                                        +abs(o.get_account_balance([45],o.date_from,o.date_to))+abs(o.get_account_balance([41],o.date_from,o.date_to))
+                                         "/>
+
+                                       <td class="text-center">
+                                           <span t-esc="abs(available_c) " t-options='{"widget": "float", "precision": 2}'/>
+                                       </td>
+                                        </tr>
+                                         <tr>
+                                            <td>
+                                           Outros ativos correntes
+                                        </td>
+                                            <td class="text-center">
+                                            12
+                                        </td>
+                                            <td class="text-center">
+                                            <t t-set ="other_current" t-value=" +abs(o.get_account_balance([27],o.date_from,o.date_to))
+                                         +abs(o.get_account_balance([28],o.date_from,o.date_to))+ abs(o.get_account_balance([29],o.date_from,o.date_to))
+                                         + abs(o.get_account_balance([371],o.date_from,o.date_to))  + abs(o.get_account_balance([372],o.date_from,o.date_to))
+                                         + abs(o.get_account_balance([373],o.date_from,o.date_to))" t-options='{"widget": "float", "precision": 2}'/>
+                                            <span t-esc="abs(other_current)" t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                        </tr>
+                                          <tr>
+                                            <td>
+                                                <p >Total do activo Corrente</p>
+                                        </td>
+                                            <td class="text-center">
+                                                <t t-set ="total_active_c_a" t-value=" abs(available_c) + abs(exist_co_vd)+abs(account_rec)
+                                                "/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="abs(total_active_c_a )" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                             <td><b>Total dos Activos</b>  </td>
+                                            <td class="text-center">
+                                                 <t t-set ="total_actives" t-value="abs(total_active_c_a) + abs(total_active_current)"/>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="abs(total_actives)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Capital Próprio e Passivo
+                                        </td>
+                                            <td> </td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span style="margin: 1em;">
+                                           <b> Capital próprio:</b>
+                                            <br/>
+                                                </span>
+                                            </td>
+                                            <td> </td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Capital
+                                        </td>
+                                            <td class="text-center">
+                                            12
+                                        </td>
+                                            <t t-set ="capital" t-value="abs(o.get_account_balance([51],o.date_from,o.date_to))
+                                            +abs(o.get_account_balance([52],o.date_from,o.date_to))"/>
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(capital)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Reservas
+                                        </td>
+                                            <td class="text-center">
+                                            13
+                                        </td>
+                                             <td class="text-center">
+                                            <t t-set ="reserves_c_p" t-value="(o.get_account_balance([55],o.date_from,o.date_to))
+                                            +abs(o.get_account_balance([56],o.date_from,o.date_to))
+                                            +abs(o.get_account_balance([57],o.date_from,o.date_to))
+                                            +abs(o.get_account_balance([58],o.date_from,o.date_to))
+                                           "/>
+                                             <span t-esc="abs(reserves_c_p)" t-options='{"widget": "float", "precision": 2}'/>
+                                           </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Resultados transitados
+                                        </td>
+                                            <td class="text-center">
+                                            14
+                                        </td>
+                                             <td class="text-center">
+                                            <t t-set ="result_transits" t-value="abs(o.get_account_balance([81],o.date_from,o.date_to))
+
+                                         "/>
+                                             <span t-esc="(abs(result_transits))" t-options='{"widget": "float", "precision": 2}'/>
+                                         </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                           Resultados do exercício
+                                        </td>
+                                            <td></td>
+                                          <td class="text-center">
+                                            <t t-set ="capital_pro" t-value="o.get_account_balance([88],o.date_from,o.date_to)"/>
+                                         <span t-esc="abs(capital_pro)" />
+                                        </td>
+                                        </tr>
+                                         <tr>
+                                            <td>
+                                                Total do Capital Próprio
+                                        </td>
+                                            <td>
+                                                <t t-set ="total_capital" t-value="abs(capital)+abs(reserves_c_p)+abs(result_transits)+abs(capital_pro)"/>
+
+                                            </td>
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(total_capital)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold;">
+                                                <span style="margin: 1em;">
+                                            Passivo não corrente:
+                                            </span>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                          Empréstimos de médio e longo prazos 
+                                        </td>
+                                            <td class="text-center">
+                                            15
+                                        </td>
+                                             <t t-set ="barrow_long" t-value="o.get_account_balance(3392,o.date_from,o.date_to)"/>
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(barrow_long)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                          Impostos diferidos
+                                        </td>
+                                            <td class="text-center">
+                                            16
+                                        </td>
+                                            <t t-set ="tax_d" t-value="0.00"/>
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(tax_d)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Provisões para pensões
+                                        </td>
+                                            <td class="text-center">
+                                            17
+                                        </td>
+                                            <t t-set ="prov" t-value="o.get_account_balance(391,o.date_from,o.date_to)"/>
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(prov)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Provisões para outros riscos e encargos
+                                        </td>
+                                            <td class="text-center">
+                                            18
+                                        </td>
+                                             <t t-set ="prov_risk" t-value="o.get_account_balance(399,o.date_from,o.date_to)"/>
+
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(prov_risk)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Outros passivos não correntes 
+                                        </td>
+                                            <td class="text-center">
+                                            19
+                                        </td>
+                                            <td></td>
+                                        </tr>
+                                          <tr>
+                                            <td>
+                                                Total do Passivo não corrente
+                                        </td>
+                                            <td>
+                                                <t t-set ="total_pass" t-value="abs(barrow_long)
+                                                +abs(tax_d)+abs(prov)+abs(prov_risk)"/>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(total_pass)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold;">
+                                                <span style="margin: 1em">
+                                            Passivo corrente:
+                                            </span>
+                                            </td>
+                                            <td class="text-center"></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Contas a pagar
+                                        </td>
+                                            <td class="text-center">
+                                            19
+                                        </td>
+                                            <t t-set ="pay_account" t-value=" +abs(o.get_account_balance([32],o.date_from,o.date_to))
+                                                +abs(o.get_account_balance([34],o.date_from,o.date_to))
+                                                 +abs(o.get_account_balance([3711],o.date_from,o.date_to))
+                                                +abs(o.get_account_balance([3713],o.date_from,o.date_to))
+                                                +abs(o.get_account_balance([3723],o.date_from,o.date_to))
+                                                +abs(o.get_account_balance([3751],o.date_from,o.date_to))
+                                                +abs(o.get_account_balance([3792999],o.date_from,o.date_to))
+                                                +abs(o.get_account_balance([3793101],o.date_from,o.date_to))"
+                                                   t-options='{"widget": "float", "precision": 2}'/>
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(pay_account)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Empréstimos de curto prazo
+                                        </td>
+                                            <td class="text-center">
+                                            20
+                                        </td>
+                                           <td class="text-center">
+                                                <t t-set ="emp_pra" t-value="abs(o.get_account_balance([33],o.date_from,o.date_to))
+                                                "/>
+                                                    <span t-esc="abs(emp_pra)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Parte cor. dos empr. a médio e longo prazos </td>
+                                            <td class="text-center">
+                                            15
+                                        </td>
+                                             <t t-set ="part_long" t-value="o.get_account_balance([3393],o.date_from,o.date_to)
+                                            "/>
+
+                                            <td class="text-center">
+                                                <span t-esc="abs(part_long)" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            Outros passivos correntes
+                                        </td>
+                                            <td class="text-center">
+                                            21
+                                        </td>
+                                              <t t-set ="other_current" t-value="abs(o.get_account_balance([35],o.date_from,o.date_to))+
+                                            abs(o.get_account_balance([36],o.date_from,o.date_to))
+                                            "/>
+                                            <td class="text-center">
+                                                 <span t-esc="abs(other_current)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total do Passivo Corrente</td>
+                                            <td class="text-center">
+                                              <t t-set ="total_passive_c" t-value="abs(pay_account) + abs(part_long) +abs(emp_pra)+abs(other_current)"/>
+
+                                            </td>
+                                            <td class="text-center">
+                                                 <span t-esc="abs(total_passive_c)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td>Total dos Passivo</td>
+                                            <td class="text-center">
+
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-set ="total_passives_e" t-value="abs(total_pass) + abs(total_passive_c)
+                                             "/>
+                                                <span t-esc="abs(total_passives_e)" t-options='{"widget": "float", "precision": 2}'/>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td >
+                                                <b>Total do capital próprio e passivo</b>
+                                        </td>
+                                            <td class="text-center">
+                                            </td>
+                                                <td class="text-center">
+                                                        <t t-set ="total_passive_pr" t-value="abs(total_passives_e) +abs(total_capital) "/>
+
+                                                <span t-esc="abs(total_passive_pr)" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> </td>
+                                            <td class="text-center"> </td>
+                                            <td> </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="res_users_sign" inherit_id="l10n_ao.report_invoice_document_agt">
+        <xpath expr="//table[@id='informations']" position="before">
+            <t t-foreach="o.user_id.signature_ids" t-as="signature">
+                <div style="position:absolute;margin-top:-150px;margin-left:270px;">
+                <t t-if="signature.company_id == o.company_id">
+                    <img t-if="signature.signature_image" t-att-src="image_data_uri(signature.signature_image)"
+                         class="float-right" style="max-height:80px;max-width:270px;"/>
+                </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_account_payment_form" model="ir.ui.view">
+            <field name="name">account.payment.invoice.form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='amount_div']" position="after">
+                    <field name="amount_text"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_bank_id']" position="after">
+                      <field name="receipt_no" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="is_advanced" attrs="{'readonly':[('state','!=','draft')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

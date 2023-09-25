@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="payment" xml:space="preserve">
+    <t t-name="display_multicaixa_list" t-inherit="payment.display_tx_list" t-inherit-mode="extension" owl="1">
+         <xpath expr="//t[@t-foreach='tx_pending']" position="replace">
+             <!-- Pending transactions -->
+             <t t-foreach="tx_pending" t-as="tx">
+                 <a t-att-href="tx['landing_route']" class="list-group-item">
+                        <h4 class="list-group-item-heading mb5">
+                            <t t-esc="tx['reference']"/>
+                            <span class="badge float-end"><t t-esc="tx['amount']"/>
+                                <t t-esc="tx['currency_code']"/></span>
+                        </h4>
+                     <small class="list-group-item-text">
+                            <t t-if="tx['display_message']">
+                                <!-- display_message is the content of the HTML field associated
+                                with the current transaction state, set on the provider. -->
+                                <t t-out="tx['display_message']"/>
+                                <div t-if="tx['provider_code']='multicaixa'" style="display: table;padding-left:35%;">
+                                    <div style="display: table-row;">
+                                        <div style="display: table-cell;"><strong>ENTITY:</strong></div>
+                                        <div style="display: table-cell; padding-left:10px;;"><strong><span t-esc="tx['entity_reference']"/></strong></div>
+                                    </div>
+                                    <div style="display: table-row;">
+                                        <div style="display: table-cell;"><strong>REFERENCE:</strong></div>
+                                        <div style="display: table-cell; padding-left:10px;"><strong><span t-esc="tx['reference_id']"/></strong></div>
+                                    </div>
+                                    <div style="display: table-row;">
+                                        <div style="display: table-cell;"><strong>AMOUNT:</strong></div>
+                                        <div style="display: table-cell; padding-left:10px;"><strong><span t-esc="tx['amount']"/></strong></div>
+                                    </div>
+                                    <div style="display: table-row;">
+                                        <div style="display: table-cell;"><strong>EXPIRY DATE:</strong></div>
+                                        <div style="display: table-cell; padding-left:10px;"><strong><span t-esc="tx['expiry_date']"/></strong></div>
+                                    </div>
+                                </div>
+                            </t>
+                         <t t-else="">
+                                Your payment is in pending state.<br/>
+                             You will be notified when the payment is fully confirmed.
+                             <br/>
+                             You can click here to be redirected to the confirmation page.
+                            </t>
+                        </small>
+                 </a>
+        </t>
+
+            </xpath>
+    </t>
+</templates>

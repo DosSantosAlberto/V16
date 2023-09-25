@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- modify Slary Rule tree view -->
+    <record id="ag_salaryrule_tree_view" model="ir.ui.view">
+        <field name="name">Salary Rule Tree View</field>
+        <field name="model">hr.salary.rule</field>
+        <field name="inherit_id" ref="hr_payroll.hr_salary_rule_list"/>
+        <field name="priority" eval="1024"/>
+        <field name="arch" type="xml">
+            <field name="sequence" position="replace">
+                <field name="sequence_view"/>
+            </field>
+            <field name="name" position="before">
+                <field name="sequence" widget="handle"/>
+            </field>
+        </field>
+    </record>
+</odoo>

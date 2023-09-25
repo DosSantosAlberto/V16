@@ -1,0 +1,254 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* payment_multicaixa
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0-20181128\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-15 20:32+0000\n"
+"PO-Revision-Date: 2019-04-15 21:35+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: pt\n"
+"X-Generator: Poedit 2.2.1\n"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.multicaixa_confirmation
+msgid ""
+"1 - Payments / 2 - Reference Payment / 3 - Set Entity Code / 4 -\n"
+"                                                Set your order Reference / 5 - Confirm Amount / 6 - Pay Invoice"
+msgstr ""
+"1 - Pagamentos / 2 - Pagamentos por Referência / 3 - Insira o código da Entidade / 4 -\n"
+"                                                Insira a Referência / 5 - Insira o Montante / 6 - E faça Pagar"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.external_layout_multicaixa_footer
+msgid ""
+"<br/>\n"
+"                                            <br/>\n"
+"                                            <br/>\n"
+"                                            After introducing the data, confirm with green key. Way for the receipt\n"
+"                                            as prove of Your payment. You can perform your payment using Internet\n"
+"                                            Banking too."
+msgstr ""
+"<br/>\n"
+"                                            <br/>\n"
+"                                            <br/>\n"
+"                                            Após introdução de todos os dados, confirme com a tecla VERDE e aguarde pelo recibo\n"
+"                                            como prova do pagamento. Também pode efectuar pagamento através do Internet Banking."
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.multicaixa_acquirer_button
+msgid ""
+"<strong>Warning!</strong>\n"
+"                        It's not permited payment greater than 99999999.99"
+msgstr ""
+"<strong>Aviso!</strong>\n"
+"                        Não são permitidos pagamntos superiores a 99999999.99"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.external_layout_multicaixa_footer
+#: model:ir.ui.view,arch_db:payment_multicaixa.multicaixa_confirmation
+msgid "AMOUNT"
+msgstr "MONTANTE"
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_acquirer_api_key
+msgid "API Key"
+msgstr "API Key"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.multicaixa_confirmation
+msgid ""
+"After introducing the data, confirm with green key. Way for the receipt\n"
+"                                                as prove of Your payment.\n"
+"                                                You can perform your payment using Internet Banking too."
+msgstr ""
+"Após introdução de todos os dados, confirme com a tecla VERDE e aguarde pelo recibo\n"
+"                                                como prova do pagamento.\n"
+"                                                Também pode efectuar pagamento através do Internet Banking."
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.external_layout_multicaixa_footer
+#: model:ir.ui.view,arch_db:payment_multicaixa.multicaixa_confirmation
+msgid "ENTITY"
+msgstr "ENTIDADE"
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_transaction_entity_reference
+msgid "Entity Ref"
+msgstr "Ref. Entidade"
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_acquirer_entity_reference
+msgid "Entity Reference"
+msgstr "Referência da Entidade"
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_transaction_environment
+msgid "Environment"
+msgstr "Ambiente"
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_transaction_expiry_date
+msgid "Expire Date"
+msgstr "Data de Expiração"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.acquirer_multicaixa_form
+msgid "Get Payment Events"
+msgstr "Obter Eventos de Pagamentos"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.acquirer_multicaixa_form
+msgid "Get References"
+msgstr "Obter Referências"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.acquirer_multicaixa_form
+msgid "Get all payments and synchronize with existing transactions."
+msgstr "Obtém todos pagamentos e sincroniza com as transacções existentes."
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.acquirer_multicaixa_form
+msgid "Get all references and synchronize with existing transactions."
+msgstr "Obtém todos pagamentos e sincroniza com as transacções existentes."
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_transaction_is_multicaixa
+msgid "Is Multicaixa"
+msgstr "Is Multicaixa"
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_acquirer_max_expiry_days
+msgid "Max days to expire"
+msgstr "Max. dias para Expirar"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.external_layout_multicaixa_footer
+#: model:ir.ui.view,arch_db:payment_multicaixa.multicaixa_confirmation
+msgid "Multicaixa Payment Details"
+msgstr "Detalhes de Pagamento Multicaixa"
+
+#. module: payment_multicaixa
+#: model:ir.model,name:payment_multicaixa.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr "Adquirente do Pagamento"
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_transaction_payment_date
+msgid "Payment Date"
+msgstr "Data de Pagamento"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.multicaixa_confirmation
+msgid ""
+"Payment Network, use the information provided bellow for entity and reference\n"
+"                                        and\n"
+"                                        go to the closest Multicaixa our use your, use your Credit/ Debit card and\n"
+"                                        follow the steps:"
+msgstr ""
+"Pagamento por Referência, use o internet Banking ou desloca-se ao\n"
+"                                            Multicaixa mais próximo,\n"
+"                                            e use os seu cartão Multicaixa para efectuar o pagamento da seguinte forma:\n"
+"                                            "
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.external_layout_multicaixa_footer
+msgid ""
+"Payment Network, use your internet Banking or go to the closest\n"
+"                                                Multicaixa,\n"
+"                                                use your Credit/ Debit card and follow the steps:\n"
+"                                                <span>\n"
+"                                                    <br/>\n"
+"                                                    1 - Payments / 2 - Reference Payment / 3 - Set Entity Code / 4 -\n"
+"                                                    Set your order Reference / 5 - Confirm Amount / 6 - Pay Invoice\n"
+"                                                </span>"
+msgstr ""
+"Pagamento por Referência, use o Internet Banking ou desloca-se ao\n"
+"                                            Multicaixa mais próximo,\n"
+"                                            e use os seu cartão Multicaixa para efectuar o pagamento da seguinte forma:\n"
+"                                            <span>\n"
+"                                                <br/>\n"
+"                                                1 - Pagamentos / 2 - Pagamentos por Referência / 3 - Insira o código da Entidade / 4 -\n"
+"                                                Insira a Referência / 5 - Insira o Montante / 6 - E faça Pagar\n"
+"                                            </span>"
+
+#. module: payment_multicaixa
+#: model:ir.model,name:payment_multicaixa.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "Transação de Pagamento"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.external_layout_multicaixa_footer
+#: model:ir.ui.view,arch_db:payment_multicaixa.multicaixa_confirmation
+msgid "REFERENCE"
+msgstr "REFERÊNCIA"
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_transaction_reference_id
+msgid "Reference ID"
+msgstr "Reference ID"
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_transaction_terminal_id
+msgid "Terminal Id"
+msgstr "Terminal ID"
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_transaction_terminal_location
+msgid "Terminal Location"
+msgstr "Terminal Localização"
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_transaction_terminal_transaction_id
+msgid "Terminal Transaction Id"
+msgstr "Terminal ID Transacção"
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_transaction_terminal_type
+msgid "Terminal Type"
+msgstr "Terminal Tipo"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.transaction_multicaixa_form
+msgid "Test Payment Event"
+msgstr "Testar Evento de Pagamento"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.transaction_multicaixa_form
+msgid "This test if the connection for pushing the payment events is working."
+msgstr "This test if the connection for pushing the payment events is working."
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_transaction_tx_id
+msgid "Transaction Id"
+msgstr "Transaction Id"
+
+#. module: payment_multicaixa
+#: model:ir.model.fields,field_description:payment_multicaixa.field_payment_acquirer_reference_validation
+msgid "Validate Reference"
+msgstr "Validar Referência"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.external_layout_multicaixa_footer
+#: model:ir.ui.view,arch_db:payment_multicaixa.multicaixa_confirmation
+msgid "XX XXX.XXX, XX"
+msgstr "XX XXX.XXX, XX"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.external_layout_multicaixa_footer
+#: model:ir.ui.view,arch_db:payment_multicaixa.multicaixa_confirmation
+msgid "XXX XXX XXX XXX XXX"
+msgstr "XXX XXX XXX XXX XXX"
+
+#. module: payment_multicaixa
+#: model:ir.ui.view,arch_db:payment_multicaixa.external_layout_multicaixa_footer
+#: model:ir.ui.view,arch_db:payment_multicaixa.multicaixa_confirmation
+msgid "XXXXX"
+msgstr "XXXXX"

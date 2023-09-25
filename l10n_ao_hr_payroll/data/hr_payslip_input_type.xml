@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Payslip Input Types -->
+    <data noupdate="1">
+        <record id="hr_payslip_input_type_work_rate" model="hr.payslip.input.type">
+            <field name="code">work_rate</field>
+            <field name="name">Coeficiente Laboral</field>
+        </record>
+    </data>
+</odoo>

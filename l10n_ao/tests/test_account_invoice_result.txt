@@ -1,0 +1,276 @@
+{
+  'SalesInvoices': {
+    'NumberOfEntries': 2,
+    'TotalDebit': 0,
+    'TotalCredit': 2448.38,
+    'Invoice': [
+      {
+        'InvoiceNo': 'FAT/19/0002',
+        'DocumentStatus': {
+          'InvoiceStatus': 'N',
+          'InvoiceStatusDate': False,
+          'Reason': '',
+          'SourceID': 2,
+          'SourceBilling': 'P'
+        },
+        'Hash': False,
+        'HashControl': False,
+        'Period': '04',
+        'InvoiceDate': '2019-04-28',
+        'InvoiceType': 'FT',
+        'SpecialRegimes': {
+          'SelfBillingIndicator': '0',
+          'CashVATSchemeIndicator': '0',
+          'ThirdPartiesBillingIndicator': '0'
+        },
+        'SourceID': 2,
+        'EACCode': '',
+        'SystemEntryDate': False,
+        'TransactionID': 2,
+        'CustomerID': 24,
+        'ShipTo': '',
+        'ShipFrom': '',
+        'MovementEndTime': '',
+        'MovementStartTime': '',
+        'Lines': [
+          {
+            'LineNumber': 3,
+            'OrderReferences': '',
+            'ProductCode': 3,
+            'ProductDescription': 'Virtual Interior Design',
+            'Quantity': 24.0,
+            'UnitOfMeasure': 'Hour(s)',
+            'UnitPrice': 75.0,
+            'TaxBase': 75.0,
+            'TaxPointDate': '',
+            'References': {
+              'Reference': 'FAT/19/0002',
+              'Reason': ''
+            },
+            'Description': 'Service on demand',
+            'ProductSerialNumber': {
+              'SerialNumber': ''
+            },
+            'DebitAmount': 0,
+            'CreditAmount': 1800.0,
+            'Tax': [
+              {
+                'TaxType': 'IS',
+                'TaxCountryRegion': 'AO',
+                'TaxCode': 'NOR',
+                'TaxPercentage': -1.0,
+                'TaxAmount': ''
+              },
+              {
+                'TaxType': 'NS',
+                'TaxCountryRegion': 'AO',
+                'TaxCode': 'NOR',
+                'TaxPercentage': 14.0,
+                'TaxAmount': ''
+              },
+              {
+                'TaxType': 'NS',
+                'TaxCountryRegion': 'AO',
+                'TaxCode': 'NOR',
+                'TaxPercentage': 6.5,
+                'TaxAmount': ''
+              }
+            ],
+            'TaxExemptionReason': '',
+            'TaxExemptionCode': '',
+            'SettlementAmount': 0.0,
+            'CustomsInformation': {
+              'ARCNo': '',
+              'IECAmount': ''
+            }
+          }
+        ],
+        'DocumentTotals': {
+          'TaxPayable': 252.0,
+          'NetTotal': 1800.0,
+          'GrossTotal': 2052.0,
+          'Currency': {
+
+          },
+          'Settlement': {
+            'SettlementDiscount': '',
+            'SettlementAmount': '',
+            'SettlementDate': '',
+            'PaymentTerms': False
+          },
+          'Payment': [
+            {
+              'PaymentMechanism': 'CUST.IN/2019/0001',
+              'PaymentAmount': 1935.0,
+              'PaymentDate': '2019-04-28'
+            }
+          ]
+        },
+        'WithholdingTax': [
+          {
+            'WithholdingTaxType': 'II',
+            'WithholdingTaxDescription': 'Retenção 6,5% Venda',
+            'WithholdingTaxAmount': 117.0
+          }
+        ]
+      },
+      {
+        'InvoiceNo': 'FAT/19/0001',
+        'DocumentStatus': {
+          'InvoiceStatus': 'N',
+          'InvoiceStatusDate': False,
+          'Reason': '',
+          'SourceID': 2,
+          'SourceBilling': 'P'
+        },
+        'Hash': False,
+        'HashControl': False,
+        'Period': '04',
+        'InvoiceDate': '2019-04-28',
+        'InvoiceType': 'FT',
+        'SpecialRegimes': {
+          'SelfBillingIndicator': '0',
+          'CashVATSchemeIndicator': '0',
+          'ThirdPartiesBillingIndicator': '0'
+        },
+        'SourceID': 2,
+        'EACCode': '',
+        'SystemEntryDate': False,
+        'TransactionID': 1,
+        'CustomerID': 12,
+        'ShipTo': '',
+        'ShipFrom': '',
+        'MovementEndTime': '',
+        'MovementStartTime': '',
+        'Lines': [
+          {
+            'LineNumber': 1,
+            'OrderReferences': '',
+            'ProductCode': 3,
+            'ProductDescription': 'Virtual Interior Design',
+            'Quantity': 10.0,
+            'UnitOfMeasure': 'Hour(s)',
+            'UnitPrice': 30.75,
+            'TaxBase': 30.75,
+            'TaxPointDate': '',
+            'References': {
+              'Reference': 'FAT/19/0001',
+              'Reason': ''
+            },
+            'Description': 'Virtual Interior Design',
+            'ProductSerialNumber': {
+              'SerialNumber': ''
+            },
+            'DebitAmount': 0,
+            'CreditAmount': 307.5,
+            'Tax': [
+              {
+                'TaxType': 'IS',
+                'TaxCountryRegion': 'AO',
+                'TaxCode': 'NOR',
+                'TaxPercentage': -1.0,
+                'TaxAmount': ''
+              },
+              {
+                'TaxType': 'NS',
+                'TaxCountryRegion': 'AO',
+                'TaxCode': 'NOR',
+                'TaxPercentage': 5.0,
+                'TaxAmount': ''
+              },
+              {
+                'TaxType': 'NS',
+                'TaxCountryRegion': 'AO',
+                'TaxCode': 'NOR',
+                'TaxPercentage': 6.5,
+                'TaxAmount': ''
+              }
+            ],
+            'TaxExemptionReason': '',
+            'TaxExemptionCode': '',
+            'SettlementAmount': 0.0,
+            'CustomsInformation': {
+              'ARCNo': '',
+              'IECAmount': ''
+            }
+          },
+          {
+            'LineNumber': 2,
+            'OrderReferences': '',
+            'ProductCode': 5,
+            'ProductDescription': 'Office Chair',
+            'Quantity': 1.0,
+            'UnitOfMeasure': 'Unit(s)',
+            'UnitPrice': 70.0,
+            'TaxBase': 70.0,
+            'TaxPointDate': '',
+            'References': {
+              'Reference': 'FAT/19/0001',
+              'Reason': ''
+            },
+            'Description': '[FURN_7777] Office Chair',
+            'ProductSerialNumber': {
+              'SerialNumber': ''
+            },
+            'DebitAmount': 0,
+            'CreditAmount': 70.0,
+            'Tax': [
+              {
+                'TaxType': 'IS',
+                'TaxCountryRegion': 'AO',
+                'TaxCode': 'NOR',
+                'TaxPercentage': -1.0,
+                'TaxAmount': ''
+              },
+              {
+                'TaxType': 'NS',
+                'TaxCountryRegion': 'AO',
+                'TaxCode': 'NOR',
+                'TaxPercentage': 5.0,
+                'TaxAmount': ''
+              },
+              {
+                'TaxType': 'NS',
+                'TaxCountryRegion': 'AO',
+                'TaxCode': 'NOR',
+                'TaxPercentage': 6.5,
+                'TaxAmount': ''
+              }
+            ],
+            'TaxExemptionReason': '',
+            'TaxExemptionCode': '',
+            'SettlementAmount': 0.0,
+            'CustomsInformation': {
+              'ARCNo': '',
+              'IECAmount': ''
+            }
+          }
+        ],
+        'DocumentTotals': {
+          'TaxPayable': 18.88,
+          'NetTotal': 377.5,
+          'GrossTotal': 396.38,
+          'Currency': {
+
+          },
+          'Settlement': {
+            'SettlementDiscount': '',
+            'SettlementAmount': '',
+            'SettlementDate': '',
+            'PaymentTerms': False
+          },
+          'Payment': [
+
+          ]
+        },
+        'WithholdingTax': [
+          {
+            'WithholdingTaxType': 'II',
+            'WithholdingTaxDescription': 'Retenção 6,5% Venda',
+            'WithholdingTaxAmount': 24.540000000000003
+          }
+        ]
+      }
+    ]
+  }
+}

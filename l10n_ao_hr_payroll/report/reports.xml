@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="ag_hr_paper_format_portrait" model="report.paperformat">
+            <field name="name">Alien Group - HR Payroll Paper Format Portrait</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">25</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">25</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="ag_paper_format_portrait" model="report.paperformat">
+            <field name="name">Alien Group - Paper Format Portrait</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="ag_paper_format_landscape" model="report.paperformat">
+            <field name="name">Alien Group - Paper Format Landscape</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report
+                id="action_report_employee_file"
+                model="hr.employee"
+                string="Employee File"
+                report_type="qweb-pdf"
+                paperformat="ag_paper_format_portrait"
+                name="l10n_ao_hr_payroll.report_employee_file"
+                file="l10n_ao_hr_payroll.report_employee_file"
+        />
+
+        <report
+                id="action_report_employee_list"
+                model="hr.employee"
+                string="Employee List"
+                report_type="qweb-pdf"
+                paperformat="ag_paper_format_portrait"
+                name="l10n_ao_hr_payroll.report_employee_list"
+                file="l10n_ao_hr_payroll.report_employee_list"
+        />
+
+        <report
+                id="action_ag_report_payslip"
+                model="hr.payslip"
+                string="Payslip Double"
+                report_type="qweb-pdf"
+                paperformat="ag_hr_paper_format_portrait"
+                name="l10n_ao_hr_payroll.ag_report_payslip"
+                file="l10n_ao_hr_payroll.ag_report_payslip"
+        />
+
+        <report
+                id="action_report_simple_payslip"
+                model="hr.payslip"
+                string="Simple Payslip"
+                report_type="qweb-pdf"
+                paperformat="base.paperformat_euro"
+                name="l10n_ao_hr_payroll.report_simple_payslip"
+                file="l10n_ao_hr_payroll.report_simple_payslip"/>
+
+        <report
+                id="action_report_inss"
+                model="hr.payslip"
+                string="INSS Report"
+                report_type="qweb-pdf"
+                paperformat="ag_paper_format_landscape"
+                name="l10n_ao_hr_payroll.report_inss"
+                file="hr_payroll.report_inss"
+                menu="False"
+        />
+
+        <report
+                id="action_report_irt"
+                model="hr.payslip"
+                string="IRT Report"
+                report_type="qweb-pdf"
+                paperformat="ag_paper_format_portrait"
+                name="l10n_ao_hr_payroll.report_irt"
+                file="hr_payroll.report_irt"
+                menu="False"
+        />
+
+         <report
+                id="action_salary_map"
+                model="hr.payslip"
+                string="Salary Map"
+                report_type="qweb-pdf"
+                paperformat="base.paperformat_euro"
+                name="l10n_ao_hr_payroll.report_salary"
+                file="hr_payroll.report_salary"
+                menu="False"
+        />
+
+        <report
+                id="action_report_bank"
+                model="hr.payslip"
+                string="Bank Report"
+                report_type="qweb-pdf"
+                paperformat="base.paperformat_euro"
+                name="l10n_ao_hr_payroll.report_bank"
+                file="hr_payroll.report_bank"
+                menu="False"
+        />
+
+        <report
+                id="action_report_remuneration_map"
+                model="hr.payslip"
+                string="Remuneration Map"
+                report_type="qweb-pdf"
+                paperformat="base.paperformat_euro"
+                name="l10n_ao_hr_payroll.report_remuneration_map"
+                file="hr_payroll.report_remuneration_map"
+                menu="False"
+        />
+
+    </data>
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="supplier_map_wizard_form_view" model="ir.ui.view">
+            <field name="name">supplier.map.wizard.form</field>
+            <field name="model">supplier.map.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Mapa de Fornecedor">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                MAPA DE FORNECEDORES
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="company_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                            </group>
+                            <group>
+                                <field name="end_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button name="print" type="object"
+                                    string="PRINT PDF" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_supplier_map_wizard_act_window" model="ir.actions.act_window">
+            <field name="name">Mapa de Fonecedores</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">supplier.map.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Mapa de Fornecedores" id="supplier_map_menu"
+                  parent="account.account_reports_management_menu"
+                  sequence="6"
+                  action="open_supplier_map_wizard_act_window"/>
+
+    </data>
+</odoo>

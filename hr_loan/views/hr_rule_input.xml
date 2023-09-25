@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_rule_input_view_form" model="ir.ui.view">
+            <field name="name">hr_rule_input_view_form</field>
+            <field name="model">hr.rule.input</field>
+            <field name="arch" type="xml">
+                <tree string="Rule Input" editable="bottom">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_rule_input_action" model="ir.actions.act_window">
+            <field name="name">Rule Input</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.rule.input</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+<!--        <menuitem id="hr_rule_input_menu" name="Entrada de regra" parent="menu_hr_loans_and_advances" action="hr_rule_input_action" sequence="10"/>-->
+
+    </data>
+</odoo>

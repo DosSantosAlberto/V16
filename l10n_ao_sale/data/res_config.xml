@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="0">
+        <function id="function_call_discount" model="res.config.settings" name="set_default_discount"/>
+    </data>
+</odoo>

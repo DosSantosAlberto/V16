@@ -1,0 +1,333 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+    <record id="action_model_2_report" model="ir.actions.report">
+            <field name="name">Declaração Modelo2</field>
+            <field name="model">fiscal.reports.agt.model2</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">es_account_report_ao.model_2_report</field>
+            <field name="report_file">es_account_report_ao.model_2_report</field>
+        </record>
+    <template id="es_account_report_ao.model_2_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                        <div style="height:120px;width:25.5%;border:2px solid #00407e;">
+                            <img src="/es_account_report_ao/static/img/agt.png"
+                                 style="height:100px;width:200px;margin-top:"/>
+
+                        </div>
+                        <div style="height:120px;width:75.1%;border:2px solid #00407e;margin-top:-120px;margin-left:230px">
+                            <p style="text-align:center;font-size:32px;text-transform:uppercase;font-weight:bold;margin-top:10px;">
+                                IMPOSTO INDUSTRIAL
+                            </p>
+                            <p style="text-align:center;font-size:28px;text-transform:uppercase;font-weight:;">
+                                DECLARAÇÃO MODELO 2
+                            </p>
+                        </div>
+
+                        <div>
+                            <p style=" margin-top:10px;font-weight:bold;font-size:20px;text-align:center;text-transform:uppercase;">
+                                DECLARAÇÃO ANUAL DE RENDIMENTO
+                            </p>
+                            <p style="margin-top:-12px;font-size:20px;text-align:center;text-transform:uppercase;">
+                                (sem Contabilidade Organizada)<br></br>
+                                (A QUE SE REFERE O ARTIGO 58º DO CII)
+                            </p>
+                            <p style="margin-top:-34px;font-size:16px;margin-left:743.5px;font-weight:bold;">
+                                exercício
+                                de
+                                <span t-field="o.company_id.account_opening_date"/>
+                            </p>
+                            <div style="height:1px;width:8.9%;border: 1px solid black;margin-left:840px;margin-top:-13px;"></div>
+                            <div>
+                                <div style="border:1px solid #00407e;width:100%;height:22px;background-color:#00407e;margin-top:10px;"></div>
+                                <p style="font-size:14px;margin-top:-23px;color:white;text-transform:uppercase">1.
+                                    IDENTIFICAÇÃO DO DECLARANTE
+                                </p>
+                            </div>
+
+                            <div style="border:1px solid #00407e;width:15%;height:22px;background-color:#00407e;margin-top:-4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Nome/Firma
+                                </p>
+                                <div style="width:578.5%;margin-top:-30px; margin-left:134px;height:22px;border:1px solid #00407e;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.name"/>
+                                </div>
+                            </div>
+                            <div style="border:1px solid #00407e;width:15%;height:44px;background-color:#00407e;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:4px;color:white;margin-left:4px;">Morada</p>
+                                <div style="width:578.5%;margin-top:-33px; margin-left:134px;border:1px solid #00407e;height:44px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.street"/>
+                                </div>
+                            </div>
+                            <div style="margin-top:-20px;">
+                                <div style="border:1px solid #00407e;width:15%;height:22px;background-color:#00407e;margin-top:23px;">
+                                    <p style="font-size:13px;margin-top:2px;color:white;margin-left:4px;">
+                                        Telefone Fixo
+                                    </p>
+                                    <div style="width:310%;height:22px;margin-top:-31px; margin-left:134px;border:1px solid #00407e;background-color;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.phone"/>
+                                    </div>
+                                </div>
+                                <div style="border:1px solid #00407e;width:8%;height:22px;background-color:#00407e;margin-top:-22px;margin-left:555px">
+                                    <p style="font-size:13px;margin-top:1px;color:white;margin-left:;text-align:center;">Telemóvel
+                                    </p>
+                                    <div style="width:412.9%;margin-top:-30px; margin-left:72px;border:1px solid #00407e;height:22px;background-color;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.phone"/>
+                                    </div>
+                                </div>
+                            </div>
+                              <div style="border:1px solid #00407e;width:15%;height:22px;background-color:#00407e;margin-top:4px;">
+                                    <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">E-mail</p>
+                                    <div type="text "
+                                         style="width:578%;margin-top:-30px; margin-left:134px;border:1px solid #00407e;height:22px;background-color:;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.email"/>
+
+                                    </div>
+                                </div>
+
+                           <div style="border:1px solid #00407e;width:15%;height:22px;background-color:#00407e;margin-top:4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Repartição
+                                </p>
+                                <div style="width:578.5%;margin-top:-30px; margin-left:134px;height:22px;border:1px solid #00407e;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.company_registry"/>
+                                </div>
+                            </div>
+                               <div style="margin-top:-20px;">
+                                <div style="border:1px solid #00407e;width:15%;height:22px;background-color:#00407e;margin-top:23px;">
+                                    <p style="font-size:13px;margin-top:2px;color:white;margin-left:4px;">
+                                        Actividade Exercida
+                                    </p>
+                                    <div style="width:310%;height:22px;margin-top:-31px; margin-left:134px;border:1px solid #00407e;background-color;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.phone"/>
+                                    </div>
+                                </div>
+                                <div style="border:1px solid #00407e;width:8%;height:22px;background-color:#00407e;margin-top:-22px;margin-left:555px">
+                                    <p style="font-size:13px;margin-top:1px;color:white;margin-left:;text-align:center;">Código
+                                    </p>
+                                    <div style="width:412.9%;margin-top:-30px; margin-left:72px;border:1px solid #00407e;height:22px;background-color;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.phone"/>
+                                    </div>
+                                </div>
+                            </div>
+                             <div style="border:1px solid #00407e;width:15%;height:22px;background-color:#00407e;margin-top:4px;">
+                                    <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Outras actividades</p>
+                                    <div type="text "
+                                         style="width:578%;margin-top:-30px; margin-left:134px;border:1px solid #00407e;height:22px;background-color:;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.email"/>
+
+                                    </div>
+                                </div>
+
+
+
+                                <div>
+                                    <div style="border:1px solid #00407e;width:99.9%;height:22px;background-color:#00407e;margin-top:5px;"></div>
+                                    <p style="font-size:16px;margin-top:-19px;color:white;text-transform:uppercase">
+                                        2. RENDIMENTOS DAS VENDAS DOS SERVIÇOS (nº 2 do artigo 59.º)
+                                    </p>
+                                </div>
+                                <div style="border:1px solid #00407e;width:55%;height:22px;background-color:#00407e;margin-top:-4px;margin-left:px;">
+                                    <p style="font-size:13px;margin-top:1px;color:white;">2.1. Serviços prestados</p>
+                                    <div
+                                         style="width:82%;margin-top:-30px; margin-left:505px;border:1px solid #00407e;height:22px;"></div>
+                                </div>
+                            <div style="border:1px solid #00407e;width:55%;height:22px;background-color:#00407e;margin-top:4px;margin-left:px;">
+                                    <p style="font-size:13px;margin-top:1px;color:white;">2.2. Vendas de bens</p>
+                                    <div
+                                         style="width:82%;margin-top:-30px; margin-left:505px;border:1px solid #00407e;height:22px;"></div>
+                                </div>
+                            <div style="border:1px solid #00407e;width:55%;height:22px;background-color:#00407e;margin-top:4px;margin-left:px;">
+                                    <p style="font-size:13px;margin-top:1px;color:white;">2.3. Matéria colectável (2.1 + 2.2)</p>
+                                    <div
+                                         style="width:82%;margin-top:-30px; margin-left:505px;border:1px solid #00407e;height:22px;">
+                                        <span style=" margin-left:4px;margin-top:-1px;font-size:12px;">
+                                          <t t-esc="o.get_data_account_end('2.1') + o.get_data_account_end('2.2')"/>
+                                        </span>
+                                    </div>
+                                </div>
+
+                              <div>
+                                    <div style="border:1px solid #00407e;width:99.9%;height:22px;background-color:#00407e;margin-top:5px;"></div>
+                                    <p style="font-size:16px;margin-top:-19px;color:white;text-transform:uppercase">
+                                        3. CÁLCULO DO IMPOSTO
+                                    </p>
+                                </div>
+                                <div style="border:1px solid #00407e;width:55%;height:22px;background-color:#00407e;margin-top:-4px;margin-left:px;">
+                                    <p style="font-size:13px;margin-top:1px;color:white;">3.1. Colecta – 6,5% x (2.3)</p>
+                                    <div
+                                         style="width:82%;margin-top:-30px; margin-left:505px;border:1px solid #00407e;height:22px;"></div>
+
+                                </div>
+                            <div style="border:1px solid #00407e;width:55%;height:22px;background-color:#00407e;margin-top:4px;margin-left:px;">
+                                    <p style="font-size:13px;margin-top:1px;color:white;">3.2. Imposto provisório (sobre as vendas)</p>
+                                    <div
+                                         style="width:82%;margin-top:-30px; margin-left:505px;border:1px solid #00407e;height:22px;">
+                                         <span style=" margin-left:4px;margin-top:-1px;font-size:12px;">
+                                          <!--<t t-esc="o._compute_price_tax"/>   -->
+                                        </span>
+                                    </div>
+
+                                </div>
+                            <div style="border:1px solid #00407e;width:55%;height:22px;background-color:#00407e;margin-top:4px;margin-left:px;">
+                                    <p style="font-size:13px;margin-top:1px;color:white;">3.3. Retenção na fonte (sobre os serviços)</p>
+                                    <div
+                                         style="width:82%;margin-top:-30px; margin-left:505px;border:1px solid #00407e;height:22px;"></div>
+                                </div>
+                             <div style="border:1px solid #00407e;width:55%;height:22px;background-color:#00407e;margin-top:4px;margin-left:px;">
+                                    <p style="font-size:13px;margin-top:1px;color:white;">3.4. Imposto a pagar (3.1 – 3.2 – 3.3)</p>
+                                    <div
+                                         style="width:82%;margin-top:-30px; margin-left:505px;border:1px solid #00407e;height:22px;"></div>
+                                </div>
+                              <div>
+                                    <div style="border:1px solid #00407e;width:99.9%;height:22px;background-color:#00407e;margin-top:5px;"></div>
+                                    <p style="font-size:16px;margin-top:-19px;color:white;text-transform:uppercase">
+                                        4. IDENTIFICAÇÃO DO REPRESENTANTE LEGAL
+                                    </p>
+                                </div>
+
+                            <div style="border:1px solid #00407e;width:15%;height:22px;background-color:#00407e;margin-top:4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Nome
+                                </p>
+                                <div style="width:578.5%;margin-top:-30px; margin-left:134px;height:22px;border:1px solid #00407e;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.name"/>
+                                </div>
+                            </div>
+                               <div style="margin-top:-20px;">
+                                <div style="border:1px solid #00407e;width:15%;height:22px;background-color:#00407e;margin-top:23px;">
+                                    <p style="font-size:13px;margin-top:2px;color:white;margin-left:4px;">
+                                        Telefone
+                                    </p>
+                                    <div style="width:310%;height:22px;margin-top:-31px; margin-left:134px;border:1px solid #00407e;background-color;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.phone"/>
+                                    </div>
+                                </div>
+                                <div style="border:1px solid #00407e;width:8%;height:22px;background-color:#00407e;margin-top:-22px;margin-left:555px">
+                                    <p style="font-size:13px;margin-top:1px;color:white;margin-left:;text-align:center;">NIF
+                                    </p>
+                                    <div style="width:412.9%;margin-top:-30px; margin-left:72px;border:1px solid #00407e;height:22px;background-color;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.vat"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                              <div style="width:555px;height:">
+                                    <p style="margin-left:px;text-align:justify;font-size:13px;font-weight:bold;">
+                                        A presente declaração corresponde à verdade, de acordo com os princípios
+                                        do Plano Geral de Contabilidade, e não omite qualquer informação solicitada.
+                                    </p>
+                                        <div
+                                               style="width:59%;height:44px;margin-top:-43px; margin-left:594px;border:1px solid #00407e;"></div>
+                                </div>
+                                <p style="margin-left:750px;margin;margin-top:-42px;font-weight:bold;font-size:10px;">Assinatura
+                                </p>
+
+                              <div>
+                                    <div style="border:1px solid #00407e;width:99.9%;height:22px;background-color:#00407e;margin-top:40px;"></div>
+                                    <p style="font-size:16px;margin-top:-19px;color:white;text-transform:uppercase">
+                                        5.  IDENTIFICAÇÃO DO TÉCNICO DE CONTAS
+                                    </p>
+                                </div>
+
+                            <div style="border:1px solid #00407e;width:15%;height:22px;background-color:#00407e;margin-top:4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Nome
+                                </p>
+                                <div style="width:578.5%;margin-top:-30px; margin-left:134px;height:22px;border:1px solid #00407e;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.name"/>
+                                </div>
+                            </div>
+                               <div style="margin-top:-20px;">
+                                <div style="border:1px solid #00407e;width:15%;height:22px;background-color:#00407e;margin-top:23px;">
+                                    <p style="font-size:13px;margin-top:2px;color:white;margin-left:4px;">
+                                        Telefone
+                                    </p>
+                                    <div style="width:310%;height:22px;margin-top:-31px; margin-left:134px;border:1px solid #00407e;background-color;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.phone"/>
+                                    </div>
+                                </div>
+                                <div style="border:1px solid #00407e;width:8%;height:22px;background-color:#00407e;margin-top:-22px;margin-left:555px">
+                                    <p style="font-size:13px;margin-top:1px;color:white;margin-left:;text-align:center;">NIF
+                                    </p>
+                                    <div style="width:412.9%;margin-top:-30px; margin-left:72px;border:1px solid #00407e;height:22px;background-color;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.vat"/>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div style="border:1px solid #00407e;width:15%;height:22px;background-color:#00407e;margin-top:4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Nº de Técnico de Contas
+                                </p>
+                                <div style="width:578.5%;margin-top:-48px; margin-left:134px;height:22px;border:1px solid #00407e;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.company_registry"/>
+                                </div>
+                            </div>
+
+                              <div style="width:555px;height:">
+                                    <p style="margin-left:px;text-align:justify;font-size:13px;font-weight:bold;">
+                                        A presente declaração corresponde à verdade, de acordo com os princípios
+                                        do Plano Geral de Contabilidade, e não omite qualquer informação solicitada.
+                                    </p>
+                                        <div
+                                               style="width:59%;height:44px;margin-top:-43px; margin-left:594px;border:1px solid #00407e;"></div>
+                                </div>
+                                <p style="margin-left:750px;margin;margin-top:-42px;font-weight:bold;font-size:10px;">Assinatura
+                                </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div style="width:555px;height:">
+
+                                    <div type="text "
+                                           style="width:59%;height:44px;margin-top:-43px; margin-left:609px;border:"></div>
+                            </div>
+                            <p></p>
+
+                        </div>
+                        <div style="margin-top:33px;">
+                            <div style="border:1px solid #00407e;width:99.9%;height:22px;background-color:#00407e;"></div>
+                            <p style="font-size:16px;margin-top:-22px;color:white;text-transform:uppercase">
+                               6. A PREENCHER PELA REPARTIÇÃO FISCAL
+                            </p>
+                        </div>
+                        <div style="border:1px solid #00407e;;width:15%;height:22px;background-color:#00407e;margin-top:-8px;margin-left:px;">
+                            <p style="font-size:13px;margin-top:1px;color:white;">Repartição Fiscal</p>
+                                <div
+                                       style="width:292%;margin-top:-30px; margin-left:101px;border:1px solid #00407e;height:22px; "></div>
+                        </div>
+                            <div
+                                 style="width:45%;height:88px;margin-top:-22px; margin-left:506px;border:1px solid #00407e;"></div>
+                        <p style="margin-left:540px;margin;margin-top:-86px;font-weight:bold;font-size:10px;text-align:center;">Assinatura E Carimbo Do Responsável</p>
+                        <div>
+                            <div style="border:1px solid #00407e;;width:15%;height:22px;background-color:#00407e;margin-top:-2px;margin-left:px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;">Número</p>
+                                    <div
+                                           style="width:292%;margin-top:-30px; margin-left:101px;border:1px solid #00407e;height:22px; "></div>
+                            </div>
+
+                            <div style="border:1px solid #00407e;width:15%;height:22px;background-color:#00407e;margin-top:4px;margin-left:px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;">Com pagamento</p>
+                                    <div
+                                           style="width:293%;margin-top:-30px; margin-left:101px;border:1px solid #00407e;height:22px;"></div>
+                            </div>
+                        </div>
+
+
+                </t>
+            </t>
+        </t>
+    </template>
+    </data>
+
+</odoo>

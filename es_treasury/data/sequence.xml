@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_es_treasury" model="ir.sequence">
+            <field name="name">Sessão tesouraria</field>
+            <field name="code">es.treasury.session</field>
+            <field name="prefix">SESSÃO/%(year)s/</field>
+            <field name="padding">1</field>
+        </record>
+
+        <record id="seq_hs_treasury_bank_out" model="ir.sequence">
+            <field name="name">Bank Out</field>
+            <field name="code">hs.treasury.bank.out</field>
+            <field name="prefix">BKOUT/%(year)s/</field>
+            <field name="padding">1</field>
+        </record>
+
+        <record id="seq_hs_treasury_cash_out" model="ir.sequence">
+            <field name="name">Cash Out</field>
+            <field name="code">hs.treasury.cash.out</field>
+            <field name="prefix">CXOUT/%(year)s/</field>
+            <field name="padding">1</field>
+
+        </record>
+
+        <record id="seq_hs_treasury_cash_in" model="ir.sequence">
+            <field name="name">Cash In</field>
+            <field name="code">hs.treasury.cash.in</field>
+            <field name="prefix">CXIN/%(year)s/</field>
+            <field name="padding">1</field>
+
+        </record>
+
+        <record id="seq_hs_treasury_bank_in" model="ir.sequence">
+            <field name="name">Bank In</field>
+            <field name="code">hs.treasury.bank.in</field>
+            <field name="prefix">BKIN/%(year)s/</field>
+            <field name="padding">1</field>
+        </record>
+
+    </data>
+</odoo>

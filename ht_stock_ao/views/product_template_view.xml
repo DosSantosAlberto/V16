@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_product_template_inherit_view" model="ir.ui.view">
+            <field name="name">product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="priority" eval="8"/>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='options']//field[@name='sale_ok']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('detailed_type', '=', 'consu')]}</attribute>
+                </xpath>
+                <xpath expr="//div[@name='options']//label[@for='sale_ok']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('detailed_type', '=', 'consu')]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='categ_id']" position="attributes">
+                    <attribute name="domain">[('type', '=', detailed_type)]</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,1075 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <data>
+    <record id="action_model_5_report" model="ir.actions.report">
+            <field name="name">Declaração Modelo1</field>
+            <field name="model">fiscal.reports.agt.model5</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">es_account_report_ao.model_5_report</field>
+            <field name="report_file">es_account_report_ao.model_5_report</field>
+        </record>
+
+    <template id="es_account_report_ao.model_5_report" name="Modelo 1 - Declaração Anual De Rendimento">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                        <div style="height:180px;width:25.8%;border:2px solid #5084bc;">
+                            <img src="/es_account_report_ao/static/img/agt.png"
+                                 style="height:100px;width:160px;margin-left:30px;"/>
+
+                        </div>
+                        <div style="height:180px;width:75%;border:2px solid #5084bc;margin-top:-180px;margin-left:235px">
+                            <p style="text-align:center;font-size:32px;text-transform:uppercase;font-weight:bold;margin-top:10px;">
+                                REGIME DE TRIBUTAÇÃO DOS
+                            </p>
+                            <p style="text-align:center;font-size:32px;text-transform:uppercase;font-weight:bold;">
+                                GRUPOS DE SOCIEDADES
+                            </p>
+                              <p style="text-align:center;font-size:28px;text-transform:uppercase;font-weight:">
+                                MODELO5
+                            </p>
+                        </div>
+
+                        <div>
+                            <p style=" margin-top:10px;font-weight:;font-size:16px;text-align:center;text-transform:uppercase;">
+                                (A QUE SE REFEREM O NÚMERO 5 DO ARTIGO 8º DO
+                            </p>
+                            <p style="margin-top:-12px;font-size:16px;text-align:center;text-transform:uppercase;">
+                                DECRETO PRESIDENCIAL Nº 147/13, DE 1 DE OUTUBRO )
+                            </p>
+                            <p style="margin-top:-34px;font-size:16px;margin-left:742px;font-weight:bold;">
+                                exercício
+                                de
+                                <span t-field="o.company_id.account_opening_date"/>
+                            </p>
+                            <div style="height:1px;width:9.8%;border: 1px solid black;margin-left:830px;margin-top:-13px;"> </div>
+                            <div>
+                                <div style="border:1px solid #5084bc;width:99.9%;height:26px;background-color:#5084bc;margin-top:10px;"> </div>
+                                <p style="font-size:14px;margin-top:-23px;color:white;text-transform:uppercase">1.
+                                    IDENTIFICAÇÃO DA SOCIEDADE DOMINANTE
+                                </p>
+                            </div>
+
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:-10px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Nome/Firma
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.name"/>
+                                </div>
+
+
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">NIF
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.vat"/>
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:44px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:4px;color:white;margin-left:4px;">Morada</p>
+                                <div style="width:578.5%;margin-top:-40px; margin-left:134px;border:1px solid #5084bc;height:44px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.street"/>
+                                </div>
+                            </div>
+
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;">Telefone Fixo</p>
+                                <div type="text "
+                                     style="width:140%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.phone"/>
+
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:-22px;margin-left:325px">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:10px;height:22px;">
+                                    Telemóvel
+                                </p>
+                                <div style="width:457px;margin-top:-40px; margin-left:137px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.hr_phone"/>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="border:1px solid ##5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                    <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">E-mail</p>
+                                    <div type="text "
+                                         style="width:568%;margin-top:-35px; margin-left:137px;border:1px solid #5084bc;height:22px;background-color:;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.email"/>
+
+                                    </div>
+                                </div>
+                                <div>
+                                    <!--Primeira Linha  -->
+
+                                <div style="border:1px solid #5084bc;width:99.9%;height:180px;background-color:;margin-top:5px;">
+
+                                        <div style="width:40%;height:100px;background-color:;margin-top:20px;">
+                                            <p style="font-size:14px;font-weight:bold;margin-top:20px;margin-left:5px;">Depende de outra sociedade em Angola?</p>
+                                            <p style="font-size:14px;font-weight:bold;margin-top:30px;margin-left:5px;">Possui accoes ou processos de insolvencia,liquidacao,
+                                                dissolucao ou execucao fiscal pendentes contra si?</p>
+                                        </div>
+                                        <div style="width:10%;height:115px;background-color:;margin-left:345px;margin-top:-115px">
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:3px;margin-top:px">
+                                                <p style="text-align:center;font-size:14px;color:white">Sim</p>
+
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:47px;margin-top:-22px">
+                                                  <p style="text-align:center;font-size:14px;color:white">Não</p>
+                                            </div>
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:5px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:10px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+                                        </div>
+                                         <div style="width:36%;height:100px;background-color:;margin-top:-100px;margin-left:530px;">
+                                            <p style="font-size:14px;font-weight:bold;margin-top:10px;">Desenha actividade ha mais de um ano?</p>
+                                            <p style="font-size:14px;font-weight:bold;margin-top:10px;">Beneficia de incentivos fiscais?</p>
+                                        </div>
+                                         <div style="width:10%;height:115px;background-color:;margin-left:823px;margin-top:-115px">
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:3px;margin-top:-125px">
+                                                <p style="text-align:center;font-size:14px;color:white">Sim</p>
+
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:47px;margin-top:-22px">
+                                                  <p style="text-align:center;font-size:14px;color:white">Não</p>
+                                            </div>
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:5px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:10px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+                                        </div>
+
+                                          <div style="width:10%;height:115px;background-color:;margin-left:825px;margin-top:-115px">
+
+                                        </div>
+                                        <!-- LINHA 3.4-->
+                                        <div style="border:1px solid #5084bc;width:47%;height:20px;background-color:#5084bc;margin-left:">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Capital Social (AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:47%;height:30px;background-color:;margin-left:">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+
+                                         <!-- LINHA 3.5-->
+                                        <div style="border:1px solid #5084bc;width:45%;height:20px;background-color:#5084bc;margin-left:500px;margin-top:-50px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Resultado do ultimo exercicio fiscal(AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:45%;height:30px;background-color:;margin-left:500px;margin-top:0px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+
+
+                                    </div>
+
+                                     <!-- Segunda Linha  -->
+                                     <div>
+                                <div style="border:1px solid #5084bc;width:99.9%;height:26px;background-color:#5084bc;margin-top:10px;">
+                                </div>
+                                <p style="font-size:14px;margin-top:-23px;color:white;text-transform:uppercase">2.
+                                    SOCIEDADES QUE INTEGRAM O PERIMETRO DO GRUPO
+                                </p>
+                            </div>
+
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:-10px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Nome/Firma
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.name"/>
+                                </div>
+
+
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">NIF
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.vat"/>
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:44px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:4px;color:white;margin-left:4px;">Morada</p>
+                                <div style="width:578.5%;margin-top:-40px; margin-left:134px;border:1px solid #5084bc;height:44px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.street"/>
+                                </div>
+                            </div>
+
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;">Telefone Fixo</p>
+                                <div type="text "
+                                     style="width:140%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.phone"/>
+
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:-22px;margin-left:325px">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:10px;height:22px;">
+                                    Telemóvel
+                                </p>
+                                <div style="width:457px;margin-top:-40px; margin-left:137px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.hr_phone"/>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="border:1px solid ##5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                    <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">E-mail</p>
+                                    <div type="text "
+                                         style="width:568%;margin-top:-35px; margin-left:137px;border:1px solid #5084bc;height:22px;background-color:;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.email"/>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                                    <div style="border:1px solid #5084bc;width:99.9%;height:240px;background-color:;margin-top:5px;">
+
+                                        <div style="width:17%;height:100px;background-color:;margin-top:20px;">
+                                            <p style="font-size:14px;font-weight:bold;margin-top:10px;margin-left:5px;">Constituida por sociedade dominante?</p>
+                                            <p style="font-size:14px;font-weight:bold;margin-top:-18px;margin-left:5px;">Desempenha actividade há mais de um ano?</p>
+                                        </div>
+                                        <div style="width:10%;height:115px;background-color:;margin-left:160px;margin-top:-115px">
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:3px;margin-top:px">
+                                                <p style="text-align:center;font-size:14px;color:white">Sim</p>
+
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:47px;margin-top:-22px">
+                                                  <p style="text-align:center;font-size:14px;color:white">Não</p>
+                                            </div>
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:5px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:10px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+                                        </div>
+                                         <div style="width:36%;height:100px;background-color:;margin-top:-100px;margin-left:254px;">
+                                            <p style="font-size:14px;font-weight:bold;margin-top:10px;">Depende de outra sociedade em Angola?</p>
+                                            <p style="font-size:14px;font-weight:;margin-top:10px;">Posuui acções ou processos de insolvência,liquidação,
+                                                dissolução ou execusão fiscal pendentes contra si?</p>
+                                        </div>
+                                         <div style="width:10%;height:115px;background-color:;margin-left:585px;margin-top:-115px">
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:3px;margin-top:-125px">
+                                                <p style="text-align:center;font-size:14px;color:white">Sim</p>
+
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:47px;margin-top:-22px">
+                                                  <p style="text-align:center;font-size:14px;color:white">Não</p>
+                                            </div>
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:5px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:10px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+                                        </div>
+
+                                         <div style="width:18%;height:100px;background-color:;margin-top:-100px;margin-left:670px;">
+                                            <p style="font-size:14px;font-weight:bold;margin-top:10px;margin-left:5px;">Beneficia de incentivos fiscais</p>
+
+                                        </div>
+
+                                          <div style="width:10%;height:115px;background-color:;margin-left:825px;margin-top:-115px">
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:3px;margin-top:-125px">
+                                                <p style="text-align:center;font-size:14px;color:white">Sim</p>
+
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:47px;margin-top:-22px">
+                                                  <p style="text-align:center;font-size:14px;color:white">Não</p>
+                                            </div>
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:5px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+
+                                        </div>
+                                        <!-- LINHA 3.4-->
+                                        <div style="border:1px solid #5084bc;width:27.5%;height:20px;background-color:#5084bc;margin-left:">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Capital Social (AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:27.5%;height:30px;background-color:;margin-left:">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+
+                                         <!-- LINHA 3.5-->
+                                        <div style="border:1px solid #5084bc;width:45%;height:20px;background-color:#5084bc;margin-left:256px;margin-top:-50px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Capital social pertecente a soc.dominante(AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:45%;height:30px;background-color:;margin-left:256px;margin-top:0px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+                                         <!-- Linha 3.6 -->
+                                     <div style="border:1px solid #5084bc;width:26.2%;height:20px;background-color:#5084bc;margin-left:674px;margin-top:-50px">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Capital Social (AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:26.2%;height:30px;background-color:;margin-left:674px;margin-top:px">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">Capital Social (AKZ)</p>
+
+                                        </div>
+
+                                          <!-- LINHA 3.8-->
+                                        <div style="border:1px solid #5084bc;width:49.4%;height:20px;background-color:#5084bc;margin-left:;margin-top:10px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Resultado do penultimo exercicio(AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:49.4%;height:30px;background-color:;margin-left:">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+                                          <!-- LINHA 3.8-->
+                                        <div style="border:1px solid #5084bc;width:49.4%;height:20px;background-color:#5084bc;margin-left:460px;margin-top:-50px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Resultado do ultimo exercicio fiscal (AKZ)</p>
+
+                                        </div>
+                                        <div style="border:1px solid #5084bc;width:49.4%;height:30px;background-color:;margin-left:460px;margin-top:-0px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+
+                                    </div>
+                                 <div>
+
+                                 </div>
+
+                                </div>
+                                 <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:10px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Nome/Firma
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.name"/>
+                                </div>
+
+
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">NIF
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.vat"/>
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:44px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:4px;color:white;margin-left:4px;">Morada</p>
+                                <div style="width:578.5%;margin-top:-40px; margin-left:134px;border:1px solid #5084bc;height:44px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.street"/>
+                                </div>
+                            </div>
+
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;">Telefone Fixo</p>
+                                <div type="text "
+                                     style="width:140%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.phone"/>
+
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:-22px;margin-left:325px">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:10px;height:22px;">
+                                    Telemóvel
+                                </p>
+                                <div style="width:457px;margin-top:-40px; margin-left:137px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.hr_phone"/>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="border:1px solid ##5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                    <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">E-mail</p>
+                                    <div type="text "
+                                         style="width:568%;margin-top:-35px; margin-left:137px;border:1px solid #5084bc;height:22px;background-color:;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.email"/>
+
+                                    </div>
+                                </div>
+                            </div>
+                                <br>
+                                    <br>
+
+                                    </br>
+                                </br><br>
+                                    <br>
+
+                                    </br>
+                                </br>
+
+
+
+                                <!-- tERCEIRA lINHA -->
+
+                                 <div style="border:1px solid #5084bc;width:99.9%;height:240px;background-color:;margin-top:5px;">
+
+                                        <div style="width:17%;height:100px;background-color:;margin-top:20px;">
+                                            <p style="font-size:14px;font-weight:bold;margin-top:10px;margin-left:5px;">Constituida por sociedade dominante?</p>
+                                            <p style="font-size:14px;font-weight:bold;margin-top:-18px;margin-left:5px;">Desempenha actividade há mais de um ano?</p>
+                                        </div>
+                                        <div style="width:10%;height:115px;background-color:;margin-left:160px;margin-top:-115px">
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:3px;margin-top:px">
+                                                <p style="text-align:center;font-size:14px;color:white">Sim</p>
+
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:47px;margin-top:-22px">
+                                                  <p style="text-align:center;font-size:14px;color:white">Não</p>
+                                            </div>
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:5px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:10px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+                                        </div>
+                                         <div style="width:36%;height:100px;background-color:;margin-top:-100px;margin-left:254px;">
+                                            <p style="font-size:14px;font-weight:bold;margin-top:10px;">Depende de outra sociedade em Angola?</p>
+                                            <p style="font-size:14px;font-weight:;margin-top:10px;">Posuui acções ou processos de insolvência,liquidação,
+                                                dissolução ou execusão fiscal pendentes contra si?</p>
+                                        </div>
+                                         <div style="width:10%;height:115px;background-color:;margin-left:585px;margin-top:-115px">
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:3px;margin-top:-125px">
+                                                <p style="text-align:center;font-size:14px;color:white">Sim</p>
+
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:47px;margin-top:-22px">
+                                                  <p style="text-align:center;font-size:14px;color:white">Não</p>
+                                            </div>
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:5px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:10px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+                                        </div>
+
+                                         <div style="width:18%;height:100px;background-color:;margin-top:-100px;margin-left:670px;">
+                                            <p style="font-size:14px;font-weight:bold;margin-top:10px;margin-left:5px;">Beneficia de incentivos fiscais</p>
+
+                                        </div>
+
+                                          <div style="width:10%;height:115px;background-color:;margin-left:825px;margin-top:-115px">
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:3px;margin-top:-125px">
+                                                <p style="text-align:center;font-size:14px;color:white">Sim</p>
+
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:47px;margin-top:-22px">
+                                                  <p style="text-align:center;font-size:14px;color:white">Não</p>
+                                            </div>
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:5px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+
+                                        </div>
+                                        <!-- LINHA 3.4-->
+                                        <div style="border:1px solid #5084bc;width:27.5%;height:20px;background-color:#5084bc;margin-left:">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Capital Social (AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:27.5%;height:30px;background-color:;margin-left:">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+
+                                         <!-- LINHA 3.5-->
+                                        <div style="border:1px solid #5084bc;width:45%;height:20px;background-color:#5084bc;margin-left:256px;margin-top:-50px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Capital social pertecente a soc.dominante(AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:45%;height:30px;background-color:;margin-left:256px;margin-top:0px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+                                         <!-- Linha 3.6 -->
+                                     <div style="border:1px solid #5084bc;width:26.2%;height:20px;background-color:#5084bc;margin-left:674px;margin-top:-50px">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Capital Social (AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:26.2%;height:30px;background-color:;margin-left:674px;margin-top:px">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">Capital Social (AKZ)</p>
+
+                                        </div>
+
+                                          <!-- LINHA 3.8-->
+                                        <div style="border:1px solid #5084bc;width:49.4%;height:20px;background-color:#5084bc;margin-left:;margin-top:10px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Resultado do penultimo exercicio(AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:49.4%;height:30px;background-color:;margin-left:">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+                                          <!-- LINHA 3.8-->
+                                        <div style="border:1px solid #5084bc;width:49.4%;height:20px;background-color:#5084bc;margin-left:460px;margin-top:-50px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Resultado do ultimo exercicio fiscal (AKZ)</p>
+
+                                        </div>
+                                        <div style="border:1px solid #5084bc;width:49.4%;height:30px;background-color:;margin-left:460px;margin-top:-0px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+
+                                    </div>
+                                      <!-- Segunda Linha  -->
+                                     <div>
+                                <div style="border:1px solid #5084bc;width:99.9%;height:26px;background-color:#5084bc;margin-top:10px;">
+                                </div>
+                                <p style="font-size:14px;margin-top:-23px;color:white;text-transform:uppercase">2.
+                                    SOCIEDADES QUE INTEGRAM O PERIMETRO DO GRUPO
+                                </p>
+                            </div>
+
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:-10px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Nome/Firma
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.name"/>
+                                </div>
+
+
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">NIF
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.vat"/>
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:44px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:4px;color:white;margin-left:4px;">Morada</p>
+                                <div style="width:578.5%;margin-top:-40px; margin-left:134px;border:1px solid #5084bc;height:44px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.street"/>
+                                </div>
+                            </div>
+
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;">Telefone Fixo</p>
+                                <div type="text "
+                                     style="width:140%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.phone"/>
+
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:-22px;margin-left:325px">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:10px;height:22px;">
+                                    Telemóvel
+                                </p>
+                                <div style="width:457px;margin-top:-40px; margin-left:137px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.hr_phone"/>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="border:1px solid ##5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                    <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">E-mail</p>
+                                    <div type="text "
+                                         style="width:568%;margin-top:-35px; margin-left:137px;border:1px solid #5084bc;height:22px;background-color:;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.email"/>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                                <!-- tERCEIRA lINHA -->
+
+                                 <div style="border:1px solid #5084bc;width:99.9%;height:240px;background-color:;margin-top:5px;">
+
+                                        <div style="width:17%;height:100px;background-color:;margin-top:20px;">
+                                            <p style="font-size:14px;font-weight:bold;margin-top:10px;margin-left:5px;">Constituida por sociedade dominante?</p>
+                                            <p style="font-size:14px;font-weight:bold;margin-top:-18px;margin-left:5px;">Desempenha actividade há mais de um ano?</p>
+                                        </div>
+                                        <div style="width:10%;height:115px;background-color:;margin-left:160px;margin-top:-115px">
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:3px;margin-top:px">
+                                                <p style="text-align:center;font-size:14px;color:white">Sim</p>
+
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:47px;margin-top:-22px">
+                                                  <p style="text-align:center;font-size:14px;color:white">Não</p>
+                                            </div>
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:5px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:10px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+                                        </div>
+                                         <div style="width:36%;height:100px;background-color:;margin-top:-100px;margin-left:254px;">
+                                            <p style="font-size:14px;font-weight:bold;margin-top:10px;">Depende de outra sociedade em Angola?</p>
+                                            <p style="font-size:14px;font-weight:;margin-top:10px;">Posuui acções ou processos de insolvência,liquidação,
+                                                dissolução ou execusão fiscal pendentes contra si?</p>
+                                        </div>
+                                         <div style="width:10%;height:115px;background-color:;margin-left:585px;margin-top:-115px">
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:3px;margin-top:-125px">
+                                                <p style="text-align:center;font-size:14px;color:white">Sim</p>
+
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:47px;margin-top:-22px">
+                                                  <p style="text-align:center;font-size:14px;color:white">Não</p>
+                                            </div>
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:5px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:10px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+                                        </div>
+
+                                         <div style="width:18%;height:100px;background-color:;margin-top:-100px;margin-left:670px;">
+                                            <p style="font-size:14px;font-weight:bold;margin-top:10px;margin-left:5px;">Beneficia de incentivos fiscais</p>
+
+                                        </div>
+
+                                          <div style="width:10%;height:115px;background-color:;margin-left:825px;margin-top:-115px">
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:3px;margin-top:-125px">
+                                                <p style="text-align:center;font-size:14px;color:white">Sim</p>
+
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:47px;margin-top:-22px">
+                                                  <p style="text-align:center;font-size:14px;color:white">Não</p>
+                                            </div>
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:5px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+
+                                        </div>
+                                        <!-- LINHA 3.4-->
+                                        <div style="border:1px solid #5084bc;width:27.5%;height:20px;background-color:#5084bc;margin-left:">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Capital Social (AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:27.5%;height:30px;background-color:;margin-left:">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+
+                                         <!-- LINHA 3.5-->
+                                        <div style="border:1px solid #5084bc;width:45%;height:20px;background-color:#5084bc;margin-left:256px;margin-top:-50px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Capital social pertecente a soc.dominante(AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:45%;height:30px;background-color:;margin-left:256px;margin-top:0px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+                                         <!-- Linha 3.6 -->
+                                     <div style="border:1px solid #5084bc;width:26.2%;height:20px;background-color:#5084bc;margin-left:674px;margin-top:-50px">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Capital Social (AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:26.2%;height:30px;background-color:;margin-left:674px;margin-top:px">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">Capital Social (AKZ)</p>
+
+                                        </div>
+
+                                          <!-- LINHA 3.8-->
+                                        <div style="border:1px solid #5084bc;width:49.4%;height:20px;background-color:#5084bc;margin-left:;margin-top:10px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Resultado do penultimo exercicio(AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:49.4%;height:30px;background-color:;margin-left:">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+                                          <!-- LINHA 3.8-->
+                                        <div style="border:1px solid #5084bc;width:49.4%;height:20px;background-color:#5084bc;margin-left:460px;margin-top:-50px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Resultado do ultimo exercicio fiscal (AKZ)</p>
+
+                                        </div>
+                                        <div style="border:1px solid #5084bc;width:49.4%;height:30px;background-color:;margin-left:460px;margin-top:-0px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+
+                                    </div>
+
+                                 <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:10px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Nome/Firma
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.name"/>
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">NIF
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.vat"/>
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:44px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:4px;color:white;margin-left:4px;">Morada</p>
+                                <div style="width:578.5%;margin-top:-40px; margin-left:134px;border:1px solid #5084bc;height:44px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.street"/>
+                                </div>
+                            </div>
+
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;">Telefone Fixo</p>
+                                <div type="text "
+                                     style="width:140%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.phone"/>
+
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:-22px;margin-left:325px">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:10px;height:22px;">
+                                    Telemóvel
+                                </p>
+                                <div style="width:457px;margin-top:-40px; margin-left:137px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.hr_phone"/>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="border:1px solid ##5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                    <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">E-mail</p>
+                                    <div type="text "
+                                         style="width:568%;margin-top:-35px; margin-left:137px;border:1px solid #5084bc;height:22px;background-color:;">
+                                        <span style=" margin-left:4px;" t-field="o.company_id.email"/>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                                 <!-- tERCEIRA lINHA -->
+
+                                 <div style="border:1px solid #5084bc;width:99.9%;height:240px;background-color:;margin-top:5px;">
+
+                                        <div style="width:17%;height:100px;background-color:;margin-top:20px;">
+                                            <p style="font-size:14px;font-weight:bold;margin-top:10px;margin-left:5px;">Constituida por sociedade dominante?</p>
+                                            <p style="font-size:14px;font-weight:bold;margin-top:-18px;margin-left:5px;">Desempenha actividade há mais de um ano?</p>
+                                        </div>
+                                        <div style="width:10%;height:115px;background-color:;margin-left:160px;margin-top:-115px">
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:3px;margin-top:px">
+                                                <p style="text-align:center;font-size:14px;color:white">Sim</p>
+
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:47px;margin-top:-22px">
+                                                  <p style="text-align:center;font-size:14px;color:white">Não</p>
+                                            </div>
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:5px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:10px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+                                        </div>
+                                         <div style="width:36%;height:100px;background-color:;margin-top:-100px;margin-left:254px;">
+                                            <p style="font-size:14px;font-weight:bold;margin-top:10px;">Depende de outra sociedade em Angola?</p>
+                                            <p style="font-size:14px;font-weight:;margin-top:10px;">Posuui acções ou processos de insolvência,liquidação,
+                                                dissolução ou execusão fiscal pendentes contra si?</p>
+                                        </div>
+                                         <div style="width:10%;height:115px;background-color:;margin-left:585px;margin-top:-115px">
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:3px;margin-top:-125px">
+                                                <p style="text-align:center;font-size:14px;color:white">Sim</p>
+
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:47px;margin-top:-22px">
+                                                  <p style="text-align:center;font-size:14px;color:white">Não</p>
+                                            </div>
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:5px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:10px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+                                        </div>
+
+                                         <div style="width:18%;height:100px;background-color:;margin-top:-100px;margin-left:670px;">
+                                            <p style="font-size:14px;font-weight:bold;margin-top:10px;margin-left:5px;">Beneficia de incentivos fiscais</p>
+
+                                        </div>
+
+                                          <div style="width:10%;height:115px;background-color:;margin-left:825px;margin-top:-115px">
+
+                                            <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:3px;margin-top:-125px">
+                                                <p style="text-align:center;font-size:14px;color:white">Sim</p>
+
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:22px;background-color:#5084bc;margin-left:47px;margin-top:-22px">
+                                                  <p style="text-align:center;font-size:14px;color:white">Não</p>
+                                            </div>
+                                            <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:3px;margin-top:5px">
+                                            </div>
+                                              <div style="border:1px solid #5084bc;width:45%;height:35px;background-color:;margin-left:47px;margin-top:-35px">
+                                            </div>
+
+                                        </div>
+                                        <!-- LINHA 3.4-->
+                                        <div style="border:1px solid #5084bc;width:27.5%;height:20px;background-color:#5084bc;margin-left:">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Capital Social (AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:27.5%;height:30px;background-color:;margin-left:">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+
+                                         <!-- LINHA 3.5-->
+                                        <div style="border:1px solid #5084bc;width:45%;height:20px;background-color:#5084bc;margin-left:256px;margin-top:-50px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Capital social pertecente a soc.dominante(AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:45%;height:30px;background-color:;margin-left:256px;margin-top:0px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+                                         <!-- Linha 3.6 -->
+                                     <div style="border:1px solid #5084bc;width:26.2%;height:20px;background-color:#5084bc;margin-left:674px;margin-top:-50px">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Capital Social (AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:26.2%;height:30px;background-color:;margin-left:674px;margin-top:px">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">Capital Social (AKZ)</p>
+
+                                        </div>
+
+                                          <!-- LINHA 3.8-->
+                                        <div style="border:1px solid #5084bc;width:49.4%;height:20px;background-color:#5084bc;margin-left:;margin-top:10px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Resultado do penultimo exercicio(AKZ)</p>
+
+                                        </div>
+                                         <div style="border:1px solid #5084bc;width:49.4%;height:30px;background-color:;margin-left:">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+                                          <!-- LINHA 3.8-->
+                                        <div style="border:1px solid #5084bc;width:49.4%;height:20px;background-color:#5084bc;margin-left:460px;margin-top:-50px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;color:white">Resultado do ultimo exercicio fiscal (AKZ)</p>
+
+                                        </div>
+                                        <div style="border:1px solid #5084bc;width:49.4%;height:30px;background-color:;margin-left:460px;margin-top:-0px;">
+                                            <p style="font-size:12px;font-weight:bold;margin-top:0px;">AKZ</p>
+
+                                        </div>
+
+                                    </div>
+
+                                <!-- Segunda Linha  -->
+                                     <div>
+                                <div style="border:1px solid #5084bc;width:99.9%;height:26px;background-color:#5084bc;margin-top:10px;">
+                                </div>
+                                <p style="font-size:14px;margin-top:-23px;color:white;text-transform:uppercase">3.
+                                    SOCIEDADES QUE SAIRAM DO PERIMETRO DO GRUPO
+                                </p>
+                            </div>
+
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:-10px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Nome/Firma
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.name"/>
+                                </div>
+
+
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">NIF
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.vat"/>
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;">Data da saida</p>
+                                <div type="text "
+                                     style="width:140%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.create_date"/>
+
+                                </div>
+                            </div>
+
+
+
+
+
+                                <BR></BR> <BR></BR> <BR></BR> <BR></BR>
+                                 <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:-10px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Nome/Firma
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.name"/>
+                                </div>
+
+
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">NIF
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.vat"/>
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;">Data da saida</p>
+                                <div type="text "
+                                     style="width:200%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.create_date"/>
+
+                                </div>
+                            </div>
+
+                                 <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:10px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Nome/Firma
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.name"/>
+                                </div>
+
+
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">NIF
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.vat"/>
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;">Data da saida</p>
+                                <div type="text "
+                                     style="width:200%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.create_date"/>
+
+                                </div>
+                            </div>
+
+                                 <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:10px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Nome/Firma
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.name"/>
+                                </div>
+
+
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">NIF
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.vat"/>
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;">Data da saida</p>
+                                <div type="text "
+                                     style="width:200%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.create_date"/>
+
+                                </div>
+                            </div>
+
+                                  <div>
+                                <div style="border:1px solid #5084bc;width:99.9%;height:26px;background-color:#5084bc;margin-top:10px;">
+                                </div>
+                                <p style="font-size:14px;margin-top:-23px;color:white;text-transform:uppercase">4.
+                                    IDENTIFICACAO DO REPRESENTANTE DA SOCIEDADE DOMINANTE
+                                </p>
+                            </div>
+
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:-10px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">Nome/Firma
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.name"/>
+                                </div>
+
+
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:4px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;margin-left:4px;">NIF
+                                </p>
+                                <div style="width:577.5%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;background-color;">
+                                    <span style="margin-left:4px;" t-field="o.company_id.vat"/>
+                                </div>
+                            </div>
+                            <div style="border:1px solid #5084bc;width:15%;height:22px;background-color:#5084bc;margin-top:3px;">
+                                <p style="font-size:13px;margin-top:1px;color:white;">Data da saida</p>
+                                <div type="text "
+                                     style="width:200%;margin-top:-37px; margin-left:134px;height:22px;border:1px solid #5084bc;height:22px;background-color;">
+                                    <span style=" margin-left:4px;" t-field="o.company_id.create_date"/>
+
+                                </div>
+                                 <div type="text "
+                                     style="width:260%;margin-top:10px; margin-left:px;height:44px;border:;background-color;">
+                                     <P style="font-size:12px;font-weight:bold;text-transform:lowercase"><i>UTILIZAR TANTOS IMPRESSOS QUANTOS NECESSARIO, CASO O NUMERO DE LINHAS NAO SEJA SUFICIENTE</i> </P>
+
+                                </div>
+                                 <div
+                                               style="width:360%;height:66px;margin-top:-75px; margin-left:430px;border:1px solid #5084bc;">
+                                     <P style="font-size:12px;font-weight:;text-transform:uppercase;text-align:center">ASSINATURA</P>
+
+                                        </div>
+                            </div>
+
+                                <BR></BR> <BR></BR> <BR></BR> <BR></BR>
+
+                                <div style="width:555px;height:">
+
+                                        <div
+                                               style="width:59%;height:44px;margin-top:-43px; margin-left:609px;border:1px solid white;">
+
+                                        </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                </t>
+            </t>
+        </t>
+    </template>
+    </data>
+
+</odoo>

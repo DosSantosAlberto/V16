@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="ir_model_access_aghr_remuneration_code_manager" model="ir.model.access">
+        <field name="name">hr_remuneration_code_manager</field>
+        <field name="model_id" ref="model_hr_remuneration_code"/>
+        <field name="group_id" ref="hr_contract.group_hr_contract_manager"/>
+        <field eval="1" name="perm_read"/>
+        <field eval="1" name="perm_write"/>
+        <field eval="1" name="perm_create"/>
+        <field eval="1" name="perm_unlink"/>
+    </record>
+
+    <record id="ir_model_access_aghr_remuneration_manager" model="ir.model.access">
+        <field name="name">hr_remuneration_manager</field>
+        <field name="model_id" ref="model_hr_remuneration"/>
+        <field name="group_id" ref="hr_contract.group_hr_contract_manager"/>
+        <field eval="1" name="perm_read"/>
+        <field eval="1" name="perm_write"/>
+        <field eval="1" name="perm_create"/>
+        <field eval="1" name="perm_unlink"/>
+    </record>
+
+    <record id="ir_model_access_wizard_bank_user" model="ir.model.access">
+        <field name="name">wizard_bank</field>
+        <field name="model_id" ref="model_wizard_bank"/>
+        <field name="group_id" ref="hr_payroll.group_hr_payroll_user"/>
+        <field eval="1" name="perm_read"/>
+        <field eval="1" name="perm_write"/>
+        <field eval="1" name="perm_create"/>
+        <field eval="1" name="perm_unlink"/>
+    </record>
+
+    <record id="ir_model_access_wizard_inss_user" model="ir.model.access">
+        <field name="name">wizard_inss</field>
+        <field name="model_id" ref="model_wizard_inss"/>
+        <field name="group_id" ref="hr_payroll.group_hr_payroll_user"/>
+        <field eval="1" name="perm_read"/>
+        <field eval="1" name="perm_write"/>
+        <field eval="1" name="perm_create"/>
+        <field eval="1" name="perm_unlink"/>
+    </record>
+
+    <record id="ir_model_access_wizard_irt_user" model="ir.model.access">
+        <field name="name">wizard_irt</field>
+        <field name="model_id" ref="model_wizard_irt"/>
+        <field name="group_id" ref="hr_payroll.group_hr_payroll_user"/>
+        <field eval="1" name="perm_read"/>
+        <field eval="1" name="perm_write"/>
+        <field eval="1" name="perm_create"/>
+        <field eval="1" name="perm_unlink"/>
+    </record>
+
+    <record id="ir_model_access_wizard_remuneration_user" model="ir.model.access">
+        <field name="name">wizard_remuneration_map</field>
+        <field name="model_id" ref="model_wizard_remuneration_map"/>
+        <field name="group_id" ref="hr_payroll.group_hr_payroll_user"/>
+        <field eval="1" name="perm_read"/>
+        <field eval="1" name="perm_write"/>
+        <field eval="1" name="perm_create"/>
+        <field eval="1" name="perm_unlink"/>
+    </record>
+
+     <record id="ir_model_access_wizard_salary_user" model="ir.model.access">
+        <field name="name">wizard_salary</field>
+        <field name="model_id" ref="model_wizard_salary"/>
+        <field name="group_id" ref="hr_payroll.group_hr_payroll_user"/>
+        <field eval="1" name="perm_read"/>
+        <field eval="1" name="perm_write"/>
+        <field eval="1" name="perm_create"/>
+        <field eval="1" name="perm_unlink"/>
+    </record>
+
+    <record id="ir_model_access_wizard_import_rules" model="ir.model.access">
+        <field name="name">wizard_import_rules</field>
+        <field name="model_id" ref="model_wizard_import_rules"/>
+        <field name="group_id" ref="hr_payroll.group_hr_payroll_user"/>
+        <field eval="1" name="perm_read"/>
+        <field eval="1" name="perm_write"/>
+        <field eval="1" name="perm_create"/>
+        <field eval="1" name="perm_unlink"/>
+    </record>
+</odoo>

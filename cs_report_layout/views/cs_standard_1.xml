@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="external_cs_standard_1">
+
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and &apos;company_id&apos; in o and o.company_id.sudo()">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+
+        <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+            <div class="row">
+                <div class="col-4 mb4">
+                    <div style="margin-top: 13px;padding:0;">
+                        <img t-if="company.logo" t-attf-style="min-height:{{company.logo_size}}px;max-height:{{company.logo_size}}px;" t-att-src="image_data_uri(company.logo)"/>
+                    </div>
+                </div>
+                <div class="col-8" name="company_address">
+                    <div sstyle="margin-top: 13px;padding:0;">
+                        <b>
+                            <span t-field="company.name"/>
+                        </b>
+                        <br/>
+                        <t>
+                            Contribuinte Nº:
+                            <span t-field="company.vat"/>
+                        </t>
+                        <br/>
+                        <t t-if="company.phone">
+                            <!-- <i class="fa fa-phone"/> -->
+                            <b>Tel:</b>
+                            <span t-field="company.phone"/>
+                        </t>
+                        <br t-if="company.phone"/>
+                        <t>
+                            <!-- <i class="fa fa-home"/> -->
+
+                            <span t-field="company.street"/>
+                            <br t-if="company.street"/>
+                            <span t-field="company.state_id"/>-
+                            <span t-field="company.country_id"/>
+                        </t>
+                        <br/>
+                        <t t-if="company.email">
+                            <!-- <i class="fa fa-envelope"/> -->
+                            <b>Email:</b>
+                            <span t-field="company.email"/>
+                        </t>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        </div>
+            <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout {{  'o_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}" t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}});" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <div class="pt-5">
+                <!-- This div ensures that the address is not cropped by the header. -->
+                <t t-call="web.address_layout"/>
+            </div>
+            <t t-out="0"/>
+        </div>
+        <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+            <div class="text-right" style="font-size:10px">
+                <b>© COMPLLEXUS</b>
+            </div>
+            <div class="text-center" style="border-top: 1px solid black;">
+                <div>
+                    <span t-field="company.website"/>
+                </div>
+                <div class="text-muted text-right">
+                    Page:
+                    <span class="page"/>
+                    /
+                    <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>

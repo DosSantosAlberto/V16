@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="l10nao_product_product_view" model="ir.ui.view">
+            <field name="name">SAFT produt AO View</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="SAFT">
+                        <group>
+                            <!--  <field name="saft_type"/>-->
+                            <field name="unnumber"/>
+                            <field name="customs_details"/>
+                        </group>
+                    </page>
+                </notebook>
+                <field name="taxes_id" position="attributes">
+                    <attribute name="required">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="l10naos_product_product_view" model="ir.ui.view">
+            <field name="name">SAFT produt AOs View</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="account.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name="taxes_id" position="attributes">
+                    <attribute name="required">1</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

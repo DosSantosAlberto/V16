@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--Account Sequences -->
+        <record id="seq_customer_account_payment_ao" model="ir.sequence">
+            <field name="name">Recibo de clientes conforme AGT</field>
+            <field name="code">account.payment.customer</field>
+            <field name="prefix">RG %(year)s/</field>
+            <field name="padding">1</field>
+        </record>
+    </data>
+
+</odoo>

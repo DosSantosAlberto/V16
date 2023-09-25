@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="report_ao_bank_statement_document">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="report.internal_layout">
+                    <div class="page">
+                        <h2 class="text-center">
+                            <strong>Statement</strong>
+                        </h2>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <strong>Statement Name</strong>:
+                                <br/>
+                                <span t-field="o.name"/>
+                            </div>
+                            <div class="col-xs-3">
+                                <strong>Journal</strong>:
+                                <br/>
+                                <span t-field="o.journal_id"/>
+                            </div>
+                            <div class="col-xs-3">
+                                <strong>Company</strong>:
+                                <br/>
+                                <span t-field="o.company_id"/>
+                            </div>
+                            <div class="col-xs-3">
+                                <strong>User</strong>:
+                                <br/>
+                                <span t-field="o.user_id"/>
+                            </div>
+                        </div>
+
+                        <div class="row mb32">
+                            <div class="col-xs-3">
+                                <strong>Opening Date</strong>:
+                                <br/>
+                                <span t-field="o.date"/>
+                            </div>
+                            <div class="col-xs-3">
+                                <strong>Closing Date</strong>:
+                                <br/>
+                                <span t-field="o.date_done"/>
+                            </div>
+                            <div class="col-xs-3">
+                                <strong>Starting Balance</strong>:
+                                <br/>
+                                <span t-field="o.balance_start"
+                                      t-field-options='{"widget": "monetary", "display_currency": "res_company.currency_id"}'/>
+                            </div>
+                            <div class="col-xs-3">
+                                <strong>Ending Balance</strong>:
+                                <br/>
+                                <span t-field="o.balance_end_real"
+                                      t-field-options='{"widget": "monetary", "display_currency": "res_company.currency_id"}'/>
+                            </div>
+                        </div>
+
+                        <table class="table table-condensed" style="font-size:11px;">
+                            <thead>
+                                <th>
+                                    <strong>Item</strong>
+                                </th>
+                                <th>
+                                    <strong>Date</strong>
+                                </th>
+                                <th>
+                                    <strong>Communication</strong>
+                                </th>
+                                <th>
+                                    <strong>Reference</strong>
+                                </th>
+                                <th>
+                                    <strong>Partner</strong>
+                                </th>
+                                <th class="text-right">
+                                    <strong>Amount</strong>
+                                </th>
+                                <!--<th class="text-right">
+                                    <strong>Amount Currency</strong>
+                                </th>
+                                <th class="text-right">
+                                    <strong>Currency</strong>
+                                </th>
+                                <th class="text-center">
+                                    <strong>Account</strong>
+                                </th>-->
+                            </thead>
+                            <tbody>
+                                <t t-set="counter" t-value="1"/>
+                                <t t-set="calculated_balance" t-value="0"/>
+                                <tr t-foreach="o.line_ids" t-as="line">
+                                    <td>
+                                        <span t-out="counter"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.date"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.ref"/>
+                                    </td>
+                                    <td>
+                                        <span t-if="line.partner_id" t-out="line.partner_id.name"/>
+                                        <span t-if="line.partner_name" t-field="line.partner_name"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.amount"
+                                              t-field-options='{"widget": "monetary", "display_currency": "res_company.currency_id"}'/>
+                                    </td>
+                                    <!-- <td>
+                                         <span t-field="line.amount_currency"/>
+                                     </td>
+                                     <td>
+                                         <span t-field="line.currency_id.name"/>
+                                     </td>
+                                     <td>
+                                         <span t-field="line.bank_account_id.name"/>
+                                     </td>-->
+                                    <t t-set="counter" t-value="counter+1"/>
+                                    <t t-set="calculated_balance" t-value="calculated_balance+line.amount"/>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="row">
+                            <div class="col-xs-5 pull-right">
+                                <table class="table" style="font-size:11px;">
+                                    <tr style="font-size:13px;">
+                                        <td>
+                                            <strong>Calculated Balance</strong>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-out="calculated_balance"/>
+                                            <span t-out="o.company_id.currency_id.symbol"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="l10n_ao.report_bank_statement">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="l10n_ao.report_ao_bank_statement_document" t-lang="doc.company_id.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

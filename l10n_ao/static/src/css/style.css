@@ -1,0 +1,24 @@
+.vertical-text {
+    position: absolute;
+    -webkit-transform: rotate(-90deg);
+    -webkit-transform-origin: left bottom;
+    -moz-transform: rotate(-90deg);
+    -moz-transform-origin: left bottom;
+    top: 15cm;
+    margin: 0cm;
+    font-size: 12px;
+    width: 100%;
+}
+
+
+.text-format {
+
+    font-size: 11px;
+    float: right;
+
+}
+
+.text-format1{
+ float: left;
+ font-size: 11px;
+}

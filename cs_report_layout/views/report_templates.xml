@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="styles_company_report">
+        <t t-foreach="company_ids" t-as="company" t-translation="off">
+            <t t-set="font" t-value="company.font or &apos;Lato&apos;"/>
+            <t t-set="primary" t-value="company.primary_color or &apos;black&apos;"/>
+            <t t-set="secondary" t-value="company.secondary_color or &apos;black&apos;"/>
+            <t t-set="layout" t-value="company.external_report_layout_id.key or &apos;web.external_layout_standard&apos;"/>
+                    .o_company_<t t-esc="company.id"/>_layout {
+                    font-family: <t t-esc="font"/>;
+                <t t-if="layout == &apos;web.external_layout_striped&apos;">
+                    &amp;.o_report_layout_striped {
+                       strong {
+                            color: <t t-esc="secondary"/>;
+                        }
+                        h2 {
+                            color: <t t-esc="primary"/>;
+                        }
+                        thead tr th {
+                            color: <t t-esc="secondary"/>;
+                        }
+                    }
+                    .row &gt; div &gt; table,
+                    div#total table {
+                        &amp;:first-child,
+                        &amp;:last-child,
+                        &amp;.o_subtotal,
+                        &amp;.o_total {
+                            strong {
+                                color: <t t-esc="primary"/>;
+                            }
+                        }
+                    }
+                </t>
+            <t t-elif="layout == &apos;web.external_layout_boxed&apos;">
+                    &amp;.o_report_layout_boxed {
+                        #total strong {
+                            color: <t t-esc="primary"/>;
+                        }
+                        #informations strong {
+                            color: <t t-esc="secondary"/>;
+                        }
+                        h2 span {
+                            color: <t t-esc="primary"/>;
+                        }
+                        table {
+                            thead {
+                                tr th {
+                                    color: <t t-esc="secondary"/>;
+                                }
+                            }
+                            tbody tr td {
+                                &amp;.o_line_section td {
+                                        background-color: rgba(<t t-esc="primary"/>, 0.7);
+                                    }
+                                &amp;.is-subtotal,
+                                    td.o_price_total {
+                                        background-color: rgba(<t t-esc="secondary"/>, 0.1);
+                                    }
+                            }
+                        }
+                    }
+                    .row &gt; div &gt; table,
+                    div#total table {
+                        tr {
+                            &amp;.o_total td {
+                                background-color: rgba(<t t-esc="primary"/>, 0.9);
+                            }
+                        }
+                    }
+                </t>
+            <t t-elif="layout == &apos;web.external_layout_bold&apos;">
+                    &amp;.o_clean_footer {
+                        border-top: 3px solid <t t-esc="secondary"/>;
+                        h4 {
+                            color: <t t-esc="secondary"/>;
+                        }
+                        .pagenumber {
+                            border: 3px solid <t t-esc="primary"/>;
+                            background-color: <t t-esc="secondary"/>;
+                        }
+                    }
+                    &amp;.o_report_layout_bold {
+                        h1, h2, h3 {
+                            color: <t t-esc="primary"/>;
+                        }
+                        strong {
+                            color: <t t-esc="secondary"/>;
+                        }
+                        table {
+                           thead {
+                               color: <t t-esc="secondary"/>;
+                               tr th {
+                                    border-top: 3px solid <t t-esc="secondary"/> !important;
+                                }
+                            }
+                            tbody {
+                                tr:last-child td {
+                                    border-bottom: 3px solid <t t-esc="secondary"/>;
+                                }
+                            }
+                        }
+                        #total {
+                            strong {
+                                color: <t t-esc="secondary"/>;
+                            }
+                        }
+                    }
+                </t>
+            <t t-elif="layout == &apos;web.external_layout_standard&apos;">
+                    &amp;.o_report_layout_standard {
+                        h2 {
+                            color: <t t-esc="primary"/>;
+                        }
+                        #informations strong {
+                            color: <t t-esc="secondary"/>;
+                        }
+                        #total strong{
+                            color: <t t-esc="primary"/>;
+                        }
+                        table {
+                            thead {
+                                color: <t t-esc="secondary"/>;
+                            }
+                        }
+                    }
+                </t>
+                }
+                <t t-if="layout== &apos;cs_report_layout.external_layout_cbs_cs_standard_1&apos;">
+                <t t-call="external_cs_standard_1"/>
+            </t>
+            <t t-if="layout== &apos;cs_report_layout.external_layout_cbs_cs_standard_1_2&apos;">
+                <t t-call="external_cs_standard_1_2"/>
+            </t>
+            <t t-if="layout== &apos;cs_report_layout.external_layout_cbs_cs_standard_1_3&apos;">
+                <t t-call="external_cs_standard_1_3"/>
+            </t>
+        </t>
+    </template>
+</odoo>

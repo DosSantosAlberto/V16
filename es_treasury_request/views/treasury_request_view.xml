@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="treasury_request_form_view" model="ir.ui.view">
+            <field name="name">treasury_request.form</field>
+            <field name="model">treasury.request</field>
+            <field name="arch" type="xml">
+                <form string="Treasury Request">
+                    <header>
+                        <button name="button_submit" string="Submit" states="new" class="oe_highlight" type="object"/>
+                        <button name="button_financial_approve" states="submit" type="object" string="Approve"/>
+                        <button name="button_cancel" type="object" states="submit" string="Cancel" class="btn btn-danger"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Number"
+                                       attrs="{'invisible':[('name','=', False)],'readonly':[('state','!=','new')]}"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="employee_id" attrs="{'readonly':[('state','!=','new')]}"/>
+                                <field name="department_id" attrs="{'readonly':[('state','!=','new')]}"/>
+                                <field name="manager" attrs="{'readonly':[('state','!=','new')]}"/>
+                                <field name="submit_date"
+                                       attrs="{'invisible':[('submit_date','=', False)], 'readonly':[('state','!=','new')]}"/>
+                            </group>
+                            <group>
+                                <field name="date" attrs="{'readonly':[('state','!=','new')]}"/>
+                                <field name="approve_date"
+                                       attrs="{'invisible':[('approve_date','=', False)], 'readonly':[('state','!=','new')]}"/>
+                                <field name="user_id" invisible="1" string="Owner" attrs="{'readonly':[('state','!=','new')]}"/>
+                                <field name="user_manager" invisible="1" attrs="{'readonly':[('state','!=','new')]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="lines" string="Lines">
+                                <field name="lines" attrs="{'readonly':[('state','!=','new')]}">
+                                    <tree editable="bottom">
+                                        <field name="area" invisible="1"/>
+                                        <field name="name" string="Prodcut/Service"/>
+                                        <field name="price_unit"/>
+                                        <field name="qty"/>
+                                        <field name="subtotal"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="treasury_request_tree_view" model="ir.ui.view">
+            <field name="name">treasury.request.tree</field>
+            <field name="model">treasury.request</field>
+            <field name="arch" type="xml">
+                <tree string="Treasury Request">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="employee_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="treasury_request_act_window" model="ir.actions.act_window">
+            <field name="name">Requisição Financeira</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">treasury.request</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Requisições"
+                  id="treasury_request_menu"
+                  parent="es_treasury.treasury_root"
+                  sequence="2"
+                  action="treasury_request_act_window"/>
+
+    </data>
+</odoo>

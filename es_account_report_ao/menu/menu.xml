@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <menuitem id="fiscal_report_menu"
+              name="Declarações Fiscais"
+              parent="account.menu_finance_reports"
+              sequence="9"/>
+</odoo>

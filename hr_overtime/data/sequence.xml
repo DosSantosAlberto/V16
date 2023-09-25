@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="overtime_sequence" model="ir.sequence">
+            <field name="name">Overtime</field>
+            <field name="code">overtime.seq</field>
+            <field name="prefix">HE/%(range_year)s/</field>
+            <field name="padding">1</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem name="Schedules" parent="hr.menu_human_resources_configuration"
+              action="resource.action_resource_calendar_form" id="menu_hr_configuration_schedule"/>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="l10nao_partner_saft_form_view" model="ir.ui.view">
+        <field name="name">partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="country_id" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="city" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <!--<xpath expr="//group[@name='accounting_entries']" position="after">
+                <group string="SAFT Self-Billing">
+&lt;!&ndash;                    <field name="self_billing_c" attrs="{'invisible':[('customer','=',False)]}"/>&ndash;&gt;
+                    <field name="self_billing_s" attrs="{'invisible':[('supplier','=',False)]}"/>
+                </group>
+            </xpath>-->
+        </field>
+    </record>
+</odoo>

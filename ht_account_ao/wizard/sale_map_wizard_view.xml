@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_map_wizard_form_view" model="ir.ui.view">
+            <field name="name">sale.map.wizard.form</field>
+            <field name="model">sale.map.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Sale Map">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                MAPA DE VENDA
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="company_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="start_date" required="1"/>
+                                <field name="filter" required="1"/>
+                            </group>
+                            <group>
+                                <field name="end_date" required="1"/>
+                                <field name="mode" required="1"/>
+                                <!--<field name="customers" widget="many2many_tags"
+                                       attrs="{'invisible':[('filter','!=', 'customer')],'required':[('filter','==', 'customer')]}"/>-->
+                            </group>
+                        </group>
+                        <group string="Products">
+                            <field name="products"  nolabel="1" options="{'no_create': True, 'no_open': True}"
+                                   attrs="{'invisible':[('filter','!=', 'product')],'required':[('filter','==', 'product')]}"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button name="print" type="object"
+                                    string="PRINT PDF" class="oe_highlight"/>
+                            <!--<button name="print_xls" type="object"
+                                    string="PRINT XLS" class="oe_highlight"/>-->
+                            <button string="Cancel" special="cancel"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="open_sale_map_wizard_act_window" model="ir.actions.act_window">
+            <field name="name">Sale Map</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.map.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[('type', '=', 'out_invoice')]</field>
+            <field name="context">{'default_type': 'out_invoice'}</field>
+        </record>
+        <menuitem id="menu_sale_map_wizard"
+                  name="Sale Map"
+                  parent="account.menu_finance_legal_statement"
+                  action="open_sale_map_wizard_act_window"/>
+    </data>
+</odoo>

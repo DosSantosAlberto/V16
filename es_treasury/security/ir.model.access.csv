@@ -1,0 +1,19 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_treasury_box_manager","treasury_box manager","model_treasury_box",es_treasury.group_treasury_manager,1,1,1,1
+"access_treasury_box_treasurer","treasury_box treasurer","model_treasury_box",es_treasury.group_treasury_treasurer,1,1,0,0
+
+"access_treasury_box_session_manager","treasury_box_session manager","model_treasury_box_session",es_treasury.group_treasury_manager,1,1,1,0
+"access_treasury_box_session_treasurer","treasury_box_session treasurer","model_treasury_box_session",es_treasury.group_treasury_treasurer,1,1,1,0
+
+"access_treasury_box_session_line_manager","treasury_box_session_line manager","model_treasury_box_session_line",es_treasury.group_treasury_manager,1,1,1,1
+"access_treasury_box_session_line_treasurer","treasury_box_session_line treasurer","model_treasury_box_session_line",es_treasury.group_treasury_treasurer,1,1,1,0
+
+"access_treasury_cash_flow_treasury","treasury.cash.flow.treasury","model_treasury_cash_flow",es_treasury.group_treasury_treasurer,1,1,1,0
+"access_treasury_cash_flow_manager","treasury.cash.flow.manager","model_treasury_cash_flow",es_treasury.group_treasury_manager,1,1,1,1
+
+"access_treasury_rubric_treasury","treasury.rubric.treasury","model_treasury_rubric",es_treasury.group_treasury_treasurer,1,1,1,0
+"access_treasury_rubric_manager","treasury.rubric.manager","model_treasury_rubric",es_treasury.group_treasury_manager,1,1,1,1
+
+"access_treasury_es_entity","es.entity","model_es_entity",es_treasury.group_treasury_treasurer,1,1,1,0
+"access_treasury_rubric_manager","es.entity","model_es_entity",es_treasury.group_treasury_manager,1,1,1,1
+"access_treasury_cash_flow_report_manager","treasury.cash.flow.report","model_treasury_cash_flow_report",es_treasury.group_treasury_manager,1,1,1,1

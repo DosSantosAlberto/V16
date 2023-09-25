@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_treasury_cash_flow_form" model="ir.ui.view">
+            <field name="name">treasury.cash.flow.form</field>
+            <field name="model">treasury.cash.flow</field>
+            <field name="arch" type="xml">
+                <form string="Register Treasury Cash Flow">
+                    <header>
+                        <button name="post" class="oe_highlight" states="draft" string="Confirm" type="object"/>
+                        <button name="action_draft" class="oe_highlight" states="cancelled" string="Set To Draft"
+                                type="object"/>
+                        <button name="action_cancel" class="oe_highlight" states="post" string="Cancel"
+                                type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,posted,reconciled,cancelled"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title" attrs="{'invisible': [('state', '=', 'draft')]}">
+                            <h1><field name="name" attrs="{ 'readonly': [('state', '!=', 'draft')]}"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="type" widget="radio" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="partner_type" widget="selection"
+                                       attrs="{'required': [('state', '=', 'draft'), ('type', 'in', ('inbound', 'outbound'))], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="status" options="{'no_open': True, 'no_create': True}"
+                                       attrs="{'required': [('state', '=', 'draft'), ('partner_type', 'not in', ['employee','gb','other','customer','supplier','debtor','creditor'])], 'invisible':[('partner_type', 'in', ['employee','gb','other','customer','supplier','debtor','creditor'])], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="debtor" options="{'no_open': True, 'no_create': True}"
+                                       attrs="{'required': [('state', '=', 'draft'), ('partner_type', 'not in', ['employee','gb','other','customer','supplier','status','creditor'])], 'invisible':[('partner_type', 'in', ['employee','gb','other','customer','supplier','status','creditor'])], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="creditor" options="{'no_open': True, 'no_create': True}"
+                                       attrs="{'required': [('state', '=', 'draft'), ('partner_type', 'not in', ['employee','gb','other','customer','supplier','debtor','status'])], 'invisible':[('partner_type', 'in', ['employee','gb','other','customer','supplier','debtor','status'])], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="customer" options="{'no_open': True, 'no_create': True}"
+                                       domain="[('customer_rank', '>', 0)]"
+                                       attrs="{'required': [('state', '=', 'draft'), ('partner_type', 'not in', ['employee','gb','other','debtor','creditor','status','supplier'])], 'invisible':[('partner_type', 'in', ['employee','gb','other', 'supplier','debtor','creditor','status'])], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="vendor" options="{'no_open': True, 'no_create': True}"
+                                       domain="[('supplier_rank', '>', 0)]"
+                                       attrs="{'required': [('state', '=', 'draft'), ('partner_type', 'not in', ['employee','gb','other','debtor','creditor','status','customer'])], 'invisible':[('partner_type', 'in', ['employee','gb','other','customer','debtor','creditor','status'])], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="partner_id" options="{'no_open': True, 'no_create': True}" invisible="1"/>
+                                <field name="employee_id" options="{'no_open': True, 'no_create': True}"
+                                       attrs="{'required':[('partner_type', 'in', ['employee','gb'])], 'invisible':[('partner_type', 'not in', ['employee','gb'])],  'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="journal_id" domain="[('type','=', 'cash')]"
+                                       options="{'no_open': True, 'no_create': True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="destination_journal_id" domain="[('type','=', 'cash')]"
+                                       options="{'no_open': True, 'no_create': True}"
+                                       attrs="{'required': [('type', '=', 'transfer')], 'invisible': [('type', '!=', 'transfer')], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="has_cost_center" invisible="1"/>
+                                <field name="cost_center" options="{'no_create': True, 'no_open': True}"
+                                       attrs="{'required':[('has_cost_center','!=',False)], 'readonly': [('state', '!=', 'draft')], 'invisible':[('has_cost_center','=',False)]}"/>
+                                <field name="later_balance" invisible="1"/>
+                            </group>
+                            <group>
+                                <label for="amount"/>
+                                <div name="amount_div" class="o_row">
+                                    <field name="amount" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                           groups="base.group_multi_currency"
+                                           attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                </div>
+                                <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="rubric_id" options="{'no_create': True, 'no_open': True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')], 'invisible':[('type','!=','outbound')]}"/>
+                                <field name="communication"
+                                       attrs="{'invisible': [('state', '!=', 'draft'), ('communication', '=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="company_id" groups="base.group_multi_company"
+                                       attrs="{ 'readonly': [('state', '!=', 'draft')], 'invisible': [('state', '=', 'draft')]}"/>
+                                <field name="move_id"
+                                       attrs="{ 'readonly': [('state', '!=', 'draft')], 'invisible': [('state', '=', 'draft')]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <!-- Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_treasury_bank_flow_form" model="ir.ui.view">
+            <field name="name">treasury.bank.flow.form</field>
+            <field name="model">treasury.cash.flow</field>
+            <field name="arch" type="xml">
+                <form string="Register Treasury Bank Flow">
+                    <header>
+                        <button name="post" class="oe_highlight" states="draft" string="Confirm" type="object"/>
+                        <button name="action_draft" class="oe_highlight" states="cancelled" string="Set To Draft"
+                                type="object"/>
+                        <button name="action_cancel" class="oe_highlight" states="post" string="Cancel"
+                                type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,posted,reconciled,cancelled"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title" attrs="{'invisible': [('state', '=', 'draft')]}">
+                            <h1><field name="name" attrs="{'readonly': [('state', '!=', 'draft')]}"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="type" widget="radio" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="partner_type" widget="selection"
+                                       attrs="{'required': [('state', '=', 'draft'), ('type', 'in', ('inbound', 'outbound'))], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="status" options="{'no_open': True, 'no_create': True}"
+                                       attrs="{'required': [('state', '=', 'draft'), ('partner_type', 'not in', ['employee','gb','other','customer','supplier','debtor','creditor'])], 'invisible':[('partner_type', 'in', ['employee','gb','other','customer','supplier','debtor','creditor'])], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="debtor" options="{'no_open': True, 'no_create': True}"
+                                       attrs="{'required': [('state', '=', 'draft'), ('partner_type', 'not in', ['employee','gb','other','customer','supplier','status','creditor'])], 'invisible':[('partner_type', 'in', ['employee','gb','other','customer','supplier','status','creditor'])], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="creditor" options="{'no_open': True, 'no_create': True}"
+                                       attrs="{'required': [('state', '=', 'draft'), ('partner_type', 'not in', ['employee','gb','other','customer','supplier','debtor','status'])], 'invisible':[('partner_type', 'in', ['employee','gb','other','customer','supplier','debtor','status'])], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="customer" options="{'no_open': True, 'no_create': True}"
+                                       domain="[('customer_rank', '>', 0)]"
+                                       attrs="{'required': [('state', '=', 'draft'), ('partner_type', 'not in', ['employee','gb','other','debtor','creditor','status','supplier'])], 'invisible':[('partner_type', 'in', ['employee','gb','other', 'supplier','debtor','creditor','status'])], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="vendor" options="{'no_open': True, 'no_create': True}"
+                                       domain="[('supplier_rank', '>', 0)]"
+                                       attrs="{'required': [('state', '=', 'draft'), ('partner_type', 'not in', ['employee','gb','other','debtor','creditor','status','customer'])], 'invisible':[('partner_type', 'in', ['employee','gb','other','customer','debtor','creditor','status'])], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="partner_id" options="{'no_open': True, 'no_create': True}" invisible="1"/>
+                                <field name="employee_id" options="{'no_open': True, 'no_create': True}"
+                                       attrs="{'required':[('partner_type', 'in', ['employee','gb'])], 'invisible':[('partner_type', 'not in', ['employee','gb'])], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="journal_id" domain="[('type','=', 'bank')]"
+                                       options="{'no_open': True, 'no_create': True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="destination_journal_id" domain="[('type','=', 'cash')]"
+                                       options="{'no_open': True, 'no_create': True}"
+                                       attrs="{'required': [('type', '=', 'transfer')], 'invisible': [('type', '!=', 'transfer')], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="has_cost_center" invisible="1"/>
+                                <field name="cost_center" options="{'no_create': True, 'no_open': True}"
+                                       attrs="{'required':[('has_cost_center','!=',False)], 'readonly': [('state', '!=', 'draft')], 'invisible':[('has_cost_center','=',False)]}"/>
+                            </group>
+                            <group>
+                                <label for="amount"/>
+                                <div name="amount_div" class="o_row">
+                                    <field name="amount" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                           groups="base.group_multi_currency" required="1"
+                                           attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                </div>
+                                <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="rubric_id" options="{'no_create': True, 'no_open': True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')], 'invisible':[('type','!=','outbound')]}"/>
+                                <field name="communication"
+                                       attrs="{'invisible': [('state', '!=', 'draft'), ('communication', '=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="company_id" groups="base.group_multi_company"
+                                       attrs="{ 'readonly': [('state', '!=', 'draft')], 'invisible': [('state', '=', 'draft')]}"/>
+                                <field name="move_id"
+                                       attrs="{ 'readonly': [('state', '!=', 'draft')], 'invisible': [('state', '=', 'draft')]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <!-- Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_treasury_cash_flow_tree" model="ir.ui.view">
+            <field name="name">treasury.cash.flow.in.tree</field>
+            <field name="model">treasury.cash.flow</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="state == 'draft'" decoration-muted="state in ['cancelled']"
+                      edit="false">
+                    <field name="date"/>
+                    <field name="name"/>
+                    <field name="journal_id"/>
+                    <field name="journal_type" invisible="1"/>
+                    <field name="partner_id" string="Partner"/>
+                    <field name="employee_id"/>
+                    <field name="amount" sum="Amount"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="state"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="partner_type" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_treasury_cash_flow_kanban" model="ir.ui.view">
+            <field name="name">treasury.cash.flow.kanban</field>
+            <field name="model">treasury.cash.flow</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="employee_id"/>
+                    <field name="date"/>
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="row mb4">
+                                    <div class="col-xs-6">
+                                        <strong><span><field name="name"/></span></strong>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <strong><i class="fa fa-clock-o"/> <t
+                                                t-out="record.date.value"/></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <span><field name="partner_id"/></span>
+                                        <span><field name="employee_id"/></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <field name="amount" widget='monetary'/>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span class="pull-right label label-default">
+                                            <field name="state" widget="label_selection"
+                                                   options="{'classes': {'draft': 'default', 'sent': 'success'}}"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_treasury_cash_flow_search" model="ir.ui.view">
+            <field name="name">treasury.cash.flow.search</field>
+            <field name="model">treasury.cash.flow</field>
+            <field name="arch" type="xml">
+                <search string="Treasury Cash Flow">
+                    <field name="name" string="Payment"
+                           filter_domain="['|', '|', ('name', 'ilike', self), ('partner_id', 'ilike', self), ('ref', 'ilike', self)]"/>
+                    <field name="journal_id"/>
+                    <field name="partner_id" string="Customer/Vendor"/>
+                    <field name="employee_id"/>
+                    <field name="other_partner"/>
+                    <separator/>
+                    <filter string="Draft" name="state_draft" domain="[('state', '=', 'draft')]"/>
+                    <filter string="Posted" name="state_posted" domain="[('state', '=', 'posted')]"/>
+                    <separator/>
+                    <filter string="Payment Date" name="date" date="date"/>
+                    <separator/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_treasury_cash_flow_graph" model="ir.ui.view">
+            <field name="name">treasury.cash.flow.graph</field>
+            <field name="model">treasury.cash.flow</field>
+            <field name="arch" type="xml">
+                <graph string="Cash Flow" type="bar" stacked="1">
+                    <field name="type"/>
+                    <field name="journal_id"/>
+                    <field name="amount" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="action_treasury_cash_flow_out" model="ir.actions.act_window">
+            <field name="name">Cash Out</field>
+            <field name="res_model">treasury.cash.flow</field>
+            <field name="view_mode">tree,kanban,form,graph</field>
+            <field name="context">{'default_type': 'outbound', 'default_partner_type': 'supplier',
+                                   'default_is_outbound': True}</field>
+            <field name="domain">[('partner_type', 'not in', ['customer', 'debtor']), ('type', '=', 'outbound'),
+                                  ('journal_type', '=', 'cash')]</field>
+            <field name="view_id" ref="es_treasury.view_treasury_cash_flow_tree"/>
+        </record>
+
+        <record id="action_treasury_bank_flow_out" model="ir.actions.act_window">
+            <field name="name">Bank Out</field>
+            <field name="res_model">treasury.cash.flow</field>
+            <field name="view_mode">tree,kanban,form,graph</field>
+            <field name="context">{'default_type': 'outbound', 'default_partner_type': 'supplier',
+                                   'default_is_outbound': True, }</field>
+            <field name="domain">[('partner_type', 'not in', ['customer', 'debtor']), ('type', '=', 'outbound'),
+                                  ('journal_type', '=', 'bank')]</field>
+            <field name="view_id" ref="es_treasury.view_treasury_cash_flow_tree"/>
+        </record>
+
+        <record id="action_treasury_cash_flow_in" model="ir.actions.act_window">
+            <field name="name">Cash In</field>
+            <field name="res_model">treasury.cash.flow</field>
+            <field name="view_mode">tree,kanban,form,graph</field>
+            <field name="context">{'default_type': 'inbound', 'default_partner_type': 'customer',
+                                   'default_is_inbound': True}</field>
+            <field name="domain">[('partner_type', 'not in', ['supplier', 'creditor']),
+                                  ('type', '=', 'inbound'), ('journal_type', '=', 'cash')]</field>
+            <field name="view_id" ref="es_treasury.view_treasury_cash_flow_tree"/>
+        </record>
+
+        <record id="action_treasury_bank_flow_in" model="ir.actions.act_window">
+            <field name="name">Bank In</field>
+            <field name="res_model">treasury.cash.flow</field>
+            <field name="view_mode">tree,kanban,form,graph</field>
+            <field name="context">{'default_type': 'inbound', 'default_partner_type': 'customer',
+                                   'default_is_inbound': True}</field>
+            <field name="domain">[('partner_type', 'not in', ['supplier', 'creditor']),
+                                  ('type', '=', 'inbound'), ('journal_type', '=', 'bank')]</field>
+            <field name="view_id" ref="es_treasury.view_treasury_cash_flow_tree"/>
+        </record>
+
+        <!-- -->
+        <record model="ir.actions.act_window.view" id="act_open_account_treasury_cash_flow_in_view_form">
+            <field eval="5" name="sequence"/>
+            <field name="act_window_id" ref="es_treasury.action_treasury_cash_flow_in"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="es_treasury.view_treasury_cash_flow_form"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_account_treasury_cash_flow_in_view_tree">
+            <field eval="4" name="sequence"/>
+            <field name="act_window_id" ref="es_treasury.action_treasury_cash_flow_in"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="es_treasury.view_treasury_cash_flow_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_account_treasury_cash_flow_out_view_form">
+            <field eval="5" name="sequence"/>
+            <field name="act_window_id" ref="es_treasury.action_treasury_cash_flow_out"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="es_treasury.view_treasury_cash_flow_form"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_account_treasury_cash_flow_out_view_tree">
+            <field eval="4" name="sequence"/>
+            <field name="act_window_id" ref="es_treasury.action_treasury_cash_flow_out"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="es_treasury.view_treasury_cash_flow_tree"/>
+        </record>
+
+        <!-- -->
+
+
+        <record model="ir.actions.act_window.view" id="act_open_account_treasury_bank_flow_in_view_form">
+            <field eval="5" name="sequence"/>
+            <field name="act_window_id" ref="es_treasury.action_treasury_bank_flow_in"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="es_treasury.view_treasury_bank_flow_form"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_account_treasury_bank_flow_in_view_tree">
+            <field eval="4" name="sequence"/>
+            <field name="act_window_id" ref="es_treasury.action_treasury_bank_flow_in"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="es_treasury.view_treasury_cash_flow_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_account_treasury_bank_flow_out_view_form">
+            <field eval="5" name="sequence"/>
+            <field name="act_window_id" ref="es_treasury.action_treasury_bank_flow_out"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="es_treasury.view_treasury_bank_flow_form"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_account_treasury_bank_flow_out_view_tree">
+            <field eval="4" name="sequence"/>
+            <field name="act_window_id" ref="es_treasury.action_treasury_bank_flow_out"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="es_treasury.view_treasury_cash_flow_tree"/>
+        </record>
+
+        <!-- This Menu Cash Flow Out -->
+        <menuitem id="es_treasury_cash_out_menu" name="Saida de Caixa" parent="es_treasury.out_cash_bak_menu"
+                  action="es_treasury.action_treasury_cash_flow_out" sequence="1"/>
+
+        <menuitem id="es_treasury_bank_out_menu" name="Saida de Banco" parent="es_treasury.out_cash_bak_menu"
+                  action="es_treasury.action_treasury_bank_flow_out" sequence="2"/>
+
+        <!-- This Menu Cash Flow In -->
+        <menuitem id="es_treasury_cash_in_menu" name="Entrada de Caixa" parent="es_treasury.in_cash_bak_menu"
+                  action="es_treasury.action_treasury_cash_flow_in" sequence="1"/>
+
+        <menuitem id="es_treasury_bank_in_menu" name="Entrada de Banco" parent="es_treasury.in_cash_bak_menu"
+                  action="es_treasury.action_treasury_bank_flow_in" sequence="2"/>
+    </data>
+</odoo>

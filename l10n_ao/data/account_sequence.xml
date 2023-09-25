@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!--Account Journal Sequences -->
+        <record id="sequence_payment_customer_invoice" model="ir.sequence">
+            <field name="name">Pagamentos de clientes</field>
+            <field eval="0" name="padding"/>
+            <field name="prefix">RC %(range_y)s/</field>
+             <field name="code">account.payment</field>
+            <field name="use_date_range">True</field>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="sequence_payment_customer_refund" model="ir.sequence">
+            <field name="name">Nota de Crédito de Clientes</field>
+            <field eval="3" name="padding"/>
+            <field name="prefix">NC %(range_y)s/</field>
+            <field name="use_date_range">True</field>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="sequence_payment_supplier_invoice" model="ir.sequence">
+            <field name="name">Pagamento de Factura de Fornecedor</field>
+            <field eval="0" name="padding"/>
+            <field name="prefix">PFF %(range_y)s/</field>
+             <field name="code">account.payment.sup</field>
+            <field name="use_date_range">True</field>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="sequence_payment_supplier_refund" model="ir.sequence">
+            <field name="name">Nota de Crédito de Fornecedor</field>
+            <field eval="3" name="padding"/>
+            <field name="prefix">NCF %(range_y)s/</field>
+            <field name="use_date_range">True</field>
+            <field name="implementation">no_gap</field>
+        </record>
+        <!-- Client, Supplier and HR sequence-->
+        <record id="sequence_customer_account_chart" model="ir.sequence">
+            <field name="name">Conta de Cliente</field>
+            <field name="code">customer_account_1</field>
+            <field eval="4" name="padding"/>
+            <field name="prefix"></field>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="sequence_supplier_account_chart" model="ir.sequence">
+            <field name="name">Conta de Fornecedor</field>
+            <field name="code">supplier_account_1</field>
+            <field eval="4" name="padding"/>
+            <field name="prefix"></field>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="sequence_employee_account_chart" model="ir.sequence">
+            <field name="name">Conta Salário Funcionário</field>
+            <field name="code">employee_account_1</field>
+            <field eval="4" name="padding"/>
+            <field name="prefix"></field>
+            <field name="implementation">no_gap</field>
+        </record>
+    </data>
+</openerp>

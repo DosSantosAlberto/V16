@@ -1,0 +1,1563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_employee_file">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                    <div class="page">
+                        <h2 class="text-center">Employee File</h2>
+                        <table class="table table-condensed">
+                            <tr>
+                                <td colspan="2" rowspan="6" class="text-center" with="*">
+                                    <img t-if="o.image_1920"
+                                         t-att-src="'data:image/png;base64,%s' % to_text(o.image_1920)"
+                                         style="height: 170px;"/>
+                                </td>
+                                <td width="25%">
+                                    <strong>Name</strong>
+                                </td>
+                                <td width="25%">
+                                    <t t-esc="o.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Employee Number</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.employee_number"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Department</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.department_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Job Position</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.job_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Active</strong>
+                                </td>
+                                <td>
+                                    <span t-if="o.active">Yes</span>
+                                    <span t-if="not o.active">No</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <span t-esc="' | '.join(map(lambda x: x.name, o.category_ids))"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text-center" style="padding-top: 20px;">
+                                    <strong>Company Info</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="25%">
+                                    <strong>Work Email</strong>
+                                </td>
+                                <td width="25%">
+                                    <t t-esc="o.work_email"/>
+                                </td>
+                                <td width="25%">
+                                    <strong>Work Phone</strong>
+                                </td>
+                                <td width="25%">
+                                    <t t-esc="o.work_phone"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Work Mobile</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.mobile_phone"/>
+                                </td>
+                                <td>
+                                    <strong>Office Location</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.work_location"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Manager</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.parent_id.name"/>
+                                </td>
+                                <td>
+                                    <strong>Coach</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.coach_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Is a Manager</strong>
+                                </td>
+                                <td>
+                                    <!--                                    <span t-if="o.manager">Yes</span>-->
+                                    <!--                                    <span t-if="not o.manager">No</span>-->
+                                </td>
+                                <td>
+                                    <strong>Coach</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.coach_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text-center" style="padding-top: 20px;">
+                                    <strong>Personal Info</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Gender</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.gender"/>
+                                </td>
+                                <td>
+                                    <strong>Marital Status</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.marital"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Date of Birth</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.birthday"/>
+                                </td>
+                                <td>
+                                    <strong>Place of Birth</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.place_of_birth"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Is Foreign</strong>
+                                </td>
+                                <td>
+                                    <span t-if="o.is_foreign">Yes</span>
+                                    <span t-if="not o.is_foreign">No</span>
+                                </td>
+                                <td>
+                                    <strong>Nationality</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.country_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Province</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.address_province"/>
+                                </td>
+                                <td>
+                                    <strong>County</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.address_county"/>
+                                </td>
+                            </tr>
+                            <tr t-if="o.address_address and len(o.address_address.strip()) &gt; 0" class="text-center">
+                                <td colspan="4">
+                                    <t t-esc="o.address_address"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Fiscal Number</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.fiscal_number"/>
+                                </td>
+                                <td>
+                                    <strong>Security Number</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.social_security"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Personal Mobile</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.personal_mobile_1"/>
+                                </td>
+                                <td>
+                                    <strong>Other Personal Mobile</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.personal_mobile_2"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Home Landline</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.personal_home_landline"/>
+                                </td>
+                                <td>
+                                    <strong>Personal Email</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.personal_email"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text-center" style="padding-top: 20px;">
+                                    <strong>HR Info</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Medical Exam</strong>
+                                </td>
+                                <td>
+                                    <!--                                    <t t-esc="o.medic_exam"/>-->
+                                </td>
+                                <td>
+                                    <strong>Company Vehicle</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.vehicle"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Home-Work Dist.</strong>
+                                </td>
+                                <td>
+                                    <!--<t t-if="o.vehicle_distance&gt;0">
+                                        <t t-esc="o.vehicle_distance"/>
+                                        Km
+                                    </t>-->
+                                </td>
+                                <td>
+                                    <strong>Payment Method</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.payment_method"/>
+                                </td>
+                            </tr>
+                            <tr t-if="o.payment_method == 'bank'">
+                                <td>
+                                    <strong>Bank</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.bank_bank.name"/>
+                                </td>
+                                <td>
+                                    <strong>Bank Account</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="o.bank_account"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_employee_list">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <h2 class="text-center">List of Employees</h2>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Emp. Num.</th>
+                                <th>Name</th>
+                                <th>Department</th>
+                                <th>Job Title</th>
+                                <th>Email</th>
+                                <th>Telephone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="o">
+                                <tr>
+                                    <td>
+                                        <t t-esc="o.employee_number"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="o.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="o.department_id.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="o.job_id.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="o.work_email"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="o.work_phone"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_simple_payslip">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                    <div class="page">
+                        <h2>Pay Slip
+                            <span t-esc="o.number"/>
+                        </h2>
+
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td>
+                                    <strong>Period</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.payslip_period"/>
+                                </td>
+                                <td>
+                                    <strong>Name</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Close Date</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.date_to"/>
+                                </td>
+                                <td>
+                                    <strong>Employee Number</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="o.employee_id.employee_number and o.employee_id.employee_number.zfill(4) or ''"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Wage</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.contract_id.wage_final"/>
+                                </td>
+                                <td>
+                                    <strong>Department</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.department_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Rate/Hour</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.contract_id.wage_hour"/>
+                                </td>
+                                <td>
+                                    <strong>Position</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.job_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Social Number</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.social_security"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Payment Type</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.payment_method"/>
+                                </td>
+                                <td>
+                                    <strong>VAT</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.fiscal_number"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-sm">
+                            <thead>
+                                <tr style="border-bottom: 2px solid black">
+                                    <th>Name</th>
+                                    <th class="text-right" style="width: 230px;">Remunerations</th>
+                                    <th class="text-right" style="width: 230px;">Deductions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="line">
+                                    <td>
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-if="line. remuneration != 0.0" t-field="line.remuneration"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-if="line.deduction != 0.0" t-field="line.deduction"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr style="border-top: 2px solid black">
+                                    <td class="text-right">
+                                        <strong>Totals</strong>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.total_remunerations"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.total_deductions"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="">
+
+                                    </td>
+                                    <td class="text-right" style="border-top: 2px solid black;">
+                                        <strong>Total Paid (AKZ)</strong>
+                                    </td>
+                                    <td class="text-right" style="border-top: 2px solid black;">
+                                        <strong t-field="o.total_paid"/>
+                                    </td>
+                                </tr>
+                                <t t-if="o.show_total_paid_usd">
+                                    <tr>
+                                        <td style="border:none;">
+
+                                        </td>
+                                        <td class="text-right" style="border:none;">
+                                            <strong>Total Paid (USD)</strong>
+                                        </td>
+                                        <td class="text-right" style="border:none;">
+                                            <strong t-field="o.total_paid_usd"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:none;">
+
+                                        </td>
+                                        <td class="text-right" style="border:none;">
+                                            <strong>Exchange Rate</strong>
+                                        </td>
+                                        <td class="text-right" style="border:none;">
+                                            <strong t-field="o.currency_rate"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <table border="1">
+                            <tr>
+                                <td style="width: 400px;">
+                                    <strong>Declare I received the amount stated in this Payslip</strong>
+                                </td>
+                                <td style="width: 50px;"></td>
+                                <td style="width: 400px;">
+                                    <strong>Notes</strong>
+                                </td>
+                            </tr>
+                            <tr style="height: 80px;">
+                                <td style="padding-top: 30px; vertical-align: top;">
+                                    _____________________________________________
+                                </td>
+                                <td>
+
+                                </td>
+                                <td style="vertical-align: top;">
+                                    <span t-field="o.note"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <p>
+                            <strong>Generated By Odoo</strong>
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="ag_report_payslip">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                    <div class="page" style="font-size: small">
+                        <h6>
+                            <strong>Original</strong>
+                        </h6>
+                        <h2>
+                            <strong>Pay Slip: <span t-esc="o.number"/></strong>
+                        </h2>
+                        <table class="table table-sm">
+                            <tr>
+                                <td>
+                                    <strong>Period</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.payslip_period"/>
+                                </td>
+                                <td>
+                                    <strong>Name</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Close Date</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.date_to"/>
+                                </td>
+                                <td>
+                                    <strong>Employee Number</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="o.employee_id.employee_number and o.employee_id.employee_number.zfill(4) or ''"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Wage</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.contract_id.wage_final"/>
+                                </td>
+                                <td>
+                                    <strong>Department</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.department_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Rate/Hour</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.contract_id.wage_hour"/>
+                                </td>
+                                <td>
+                                    <strong>Position</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.job_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Social Number</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.social_security"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Payment Type</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.payment_method"/>
+                                </td>
+                                <td>
+                                    <strong>VAT</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.fiscal_number"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-sm">
+                            <thead>
+                                <tr style="border-bottom: 2px solid black">
+                                    <th>Name</th>
+                                    <th class="text-right" style="width: 230px;">Remunerations</th>
+                                    <th class="text-right" style="width: 230px;">Deductions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="line">
+                                    <td>
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-if="line. remuneration != 0.0" t-field="line.remuneration"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-if="line.deduction != 0.0" t-field="line.deduction"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr style="border-top: 2px solid black">
+                                    <td class="text-right">
+                                        <strong>Totals</strong>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.total_remunerations"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.total_deductions"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="">
+
+                                    </td>
+                                    <td class="text-right" style="border-top: 2px solid black;">
+                                        <strong>Total Paid (AKZ)</strong>
+                                    </td>
+                                    <td class="text-right" style="border-top: 2px solid black;">
+                                        <strong t-field="o.total_paid"/>
+                                    </td>
+                                </tr>
+                                <t t-if="o.show_total_paid_usd">
+                                    <tr>
+                                        <td style="border:none;">
+
+                                        </td>
+                                        <td class="text-right" style="border:none;">
+                                            <strong>Total Paid (USD)</strong>
+                                        </td>
+                                        <td class="text-right" style="border:none;">
+                                            <strong t-field="o.total_paid_usd"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:none;">
+
+                                        </td>
+                                        <td class="text-right" style="border:none;">
+                                            <strong>Exchange Rate</strong>
+                                        </td>
+                                        <td class="text-right" style="border:none;">
+                                            <strong t-field="o.currency_rate"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <table border="1">
+                            <tr>
+                                <td style="width: 400px;">
+                                    <strong>Declare I received the amount stated in this Payslip</strong>
+                                </td>
+                                <td style="width: 50px;"></td>
+                                <td style="width: 400px;">
+                                    <strong>Notes</strong>
+                                </td>
+                            </tr>
+                            <tr style="height: 80px;">
+                                <td style="padding-top: 30px; vertical-align: top;">
+                                    _____________________________________________
+                                </td>
+                                <td>
+
+                                </td>
+                                <td style="vertical-align: top;">
+                                    <span t-field="o.note"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+
+                <t t-call="web.external_layout">
+                    <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                    <div class="page" style="font-size: small">
+                        <h6>
+                            <strong>Duplicate</strong>
+                        </h6>
+                        <h2>
+                            <strong>Pay Slip: <span t-esc="o.number"/></strong>
+                        </h2>
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td>
+                                    <strong>Period</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.payslip_period"/>
+                                </td>
+                                <td>
+                                    <strong>Name</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Close Date</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.date_to"/>
+                                </td>
+                                <td>
+                                    <strong>Employee Number</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="o.employee_id.employee_number and o.employee_id.employee_number.zfill(4) or ''"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Wage</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.contract_id.wage_final"/>
+                                </td>
+                                <td>
+                                    <strong>Department</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.department_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Rate/Hour</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.contract_id.wage_hour"/>
+                                </td>
+                                <td>
+                                    <strong>Position</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.job_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Social Number</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.social_security"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Payment Type</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.payment_method"/>
+                                </td>
+                                <td>
+                                    <strong>VAT</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.fiscal_number"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-sm">
+                            <thead>
+                                <tr style="border-bottom: 2px solid black">
+                                    <th>Name</th>
+                                    <th class="text-right" style="width: 230px;">Remunerations</th>
+                                    <th class="text-right" style="width: 230px;">Deductions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="line">
+                                    <td>
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-if="line. remuneration != 0.0" t-field="line.remuneration"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-if="line.deduction != 0.0" t-field="line.deduction"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr style="border-top: 2px solid black">
+                                    <td class="text-right">
+                                        <strong>Totals</strong>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.total_remunerations"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.total_deductions"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="">
+
+                                    </td>
+                                    <td class="text-right" style="border-top: 2px solid black;">
+                                        <strong>Total Paid (AKZ)</strong>
+                                    </td>
+                                    <td class="text-right" style="border-top: 2px solid black;">
+                                        <strong t-field="o.total_paid"/>
+                                    </td>
+                                </tr>
+                                <t t-if="o.show_total_paid_usd">
+                                    <tr>
+                                        <td style="border:none;">
+
+                                        </td>
+                                        <td class="text-right" style="border:none;">
+                                            <strong>Total Paid (USD)</strong>
+                                        </td>
+                                        <td class="text-right" style="border:none;">
+                                            <strong t-field="o.total_paid_usd"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:none;">
+
+                                        </td>
+                                        <td class="text-right" style="border:none;">
+                                            <strong>Exchange Rate</strong>
+                                        </td>
+                                        <td class="text-right" style="border:none;">
+                                            <strong t-field="o.currency_rate"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_salary">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <style type="text/css">
+                        .container2 {
+                        height: 8cm;
+                        /* Width and count aren't respected, but you
+                        have to give at least some dummy value (??). */
+                        /* This is the strange way to define the number of columns:
+                        50% = 2 columns, 33% = 3 columns 25% = 4 columns */
+                        -webkit-columns: 0 0; width: 25%;
+                        /* Gap and rule do work. */
+                        -webkit-column-gap: 1em;
+                        text-align: justify;
+                        }
+                        .text-center {text-align:center;}
+                        .text-left {text-align:left;}
+                        .text-right {text-align:right;}
+                        table
+                        {
+                        border-collapse: collapse;
+                        width:1200px; font-size:12px;
+                        }
+                        table tr th { min-width:12px; border: 2px solid #000;
+                        line-height: 1.42857;
+                        vertical-align: top;
+                        }
+                        table tr td,th{padding:5px;}
+                        hr{border:solid 1px #000;}
+                        .name{width:250px;}
+                        border-bottom: solid 2px #000;
+                        border-collapse: separate;
+                        }
+                        .title{font-size:13px; font-weight: bold;}
+                        .border_bottom {border-bottom: solid black 1px;}
+                        .horizontal_line{
+                        border-bottom: 3px solid black;
+                        }
+                    </style>
+                    <div class="oe_structure"/>
+                    <div>
+                        <div class="horizontal_line"/>
+                        <h4>Mapa Salarial (<t t-esc="period"/>)
+                        </h4>
+                        <div class="col-xs-12">
+                            <t t-set="total_remuneration" t-value="0"/>
+                            <t t-set="total_overtimes" t-value="0"/>
+                            <t t-set="total_other_remunerations" t-value="0"/>
+                            <t t-set="total_misses" t-value="0"/>
+                            <t t-set="total_inss" t-value="0"/>
+                            <t t-set="total_irt" t-value="0"/>
+                            <t t-set="total_extra_deductions" t-value="0"/>
+                            <t t-set="total_paid_amount" t-value="0"/>
+                            <table>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td colspan="3" class=" text-center title">
+                                        <div class="border_bottom">Remunerações</div>
+                                    </td>
+                                    <td colspan="4" class=" text-center title">
+                                        <div class="border_bottom">Deduções</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>Func.</th>
+                                    <th class="name">Nome</th>
+                                    <th>Venc.</th>
+                                    <th>H. Extra</th>
+                                    <th>Outros</th>
+                                    <th>Atr/Fal</th>
+                                    <th>SS</th>
+                                    <th>IRT</th>
+                                    <th>Outros</th>
+                                    <th>Pago AKZ</th>
+                                </tr>
+                                <tr t-foreach="docs" t-as="o">
+                                    <td class="text-right">
+                                        <span t-esc="o.employee_id.employee_number and o.employee_id.employee_number.zfill(4) or ''"/>
+                                    </td>
+                                    <td class="text-left name">
+                                        <span t-field="o.employee_id"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.remuneration"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.overtimes"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.extra_remunerations"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.misses"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="formatLang(env, abs(o.amount_inss))"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="formatLang(env, abs(o.amount_irt))"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="formatLang(env, abs(o.extra_deductions))"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.total_paid"/>
+                                    </td>
+                                    <t t-set="total_overtimes" t-value="total_overtimes + o.overtimes"/>
+                                    <t t-set="total_other_remunerations"
+                                       t-value="total_other_remunerations + o.total_remunerations - o.remuneration - o.overtimes"/>
+                                    <t t-set="total_inss" t-value="total_inss + o.amount_inss"/>
+                                    <t t-set="total_irt" t-value="total_irt + o.amount_irt"/>
+                                    <t t-set="total_misses" t-value="total_misses + o.misses"/>
+                                    <t t-set="total_extra_deductions"
+                                       t-value="total_extra_deductions + o.extra_deductions"/>
+                                    <t t-set="total_paid_amount" t-value="total_paid_amount + o.total_paid"/>
+                                    <t t-set="total_remuneration" t-value="total_remuneration + o.remuneration"/>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" class="text-right">Totals</th>
+                                    <th class="text-right">
+                                        <span t-esc="formatLang(env, total_remuneration)"/>
+                                    </th>
+                                    <th class="text-right">
+                                        <span t-esc="formatLang(env, total_overtimes)"/>
+                                    </th>
+                                    <th class="text-right">
+                                        <span t-esc="formatLang(env, total_other_remunerations)"/>
+                                    </th>
+                                    <th class="text-right">
+                                        <span t-esc="formatLang(env, total_misses)"/>
+                                    </th>
+                                    <th class="text-right">
+                                        <span t-esc="formatLang(env, -total_inss)"/>
+                                    </th>
+                                    <th class="text-right">
+                                        <span t-esc="formatLang(env, -total_irt)"/>
+                                    </th>
+                                    <th class="text-right">
+                                        <t t-if="total_extra_deductions != 0">
+                                            <span t-esc="formatLang(env, -total_extra_deductions)"/>
+                                        </t>
+                                        <t t-if="total_extra_deductions == 0">
+                                            <span t-esc="formatLang(env, total_extra_deductions)"/>
+                                        </t>
+                                    </th>
+                                    <th class="text-right">
+                                        <span t-esc="formatLang(env, total_paid_amount)"/>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_inss">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <style type="text/css">
+                        .container2 {
+                        height: 8cm;
+                        /* Width and count aren't respected, but you
+                        have to give at least some dummy value (??). */
+                        /* This is the strange way to define the number of columns:
+                        50% = 2 columns, 33% = 3 columns 25% = 4 columns */
+                        -webkit-columns: 0 0; width: 25%;
+                        /* Gap and rule do work. */
+                        -webkit-column-gap: 1em;
+                        text-align: justify;
+                        }
+                        .text-center {text-align:center;}
+                        .text-left {text-align:left;}
+                        .text-right {text-align:right;}
+                        .conteudo
+                        {
+                        border-collapse: collapse;
+                        width:100%; font-size:12px;
+                        min-height:900px;
+                        }
+                        .conteudo &gt; tr &gt; th, td, th { min-width:12px; border: 1px solid #000;
+                        line-height: 1
+                        vertical-align: top;
+                        padding:5px;
+                        }
+                        hr{border:solid 1px #000;}
+                        .name{width:250px;}
+                        .borda{
+                        border-bottom: solid 1px #000;
+                        border-collapse: separate;
+                        }
+                        .borda_completa{border: solid 1px #000;}
+                        .title{font-weight: bold;}
+                        .no_border{border:none;}
+                        .rep{width:500px;padding-bottom:0;}
+                        .details{width:600px;}
+                        .right{float:right;}
+                        .inf{width:100%;
+                        min-width:30px;
+                        }
+                        .inf tr{line-height:0.5;}
+                        .inf td{border:none;}
+                        .font_12{font-size:12px;}
+                        .font_10{font-size:10px;}
+                    </style>
+                    <div/>
+                    <div>
+                        <div>
+                            <table class="header">
+                                <tr>
+                                    <td class="text-center rep no_border font_12">
+                                        REPÚBLICA DE ANGOLA
+                                        <BR/>
+                                        INSTITUTO NACIONAL DE SEGURANÇA SOCIAL
+                                    </td>
+                                    <td class="details">
+                                        <table class="no_border inf font_10">
+                                            <tr>
+                                                <td class="no_border">ACTIVIDADE</td>
+                                                <td class="no_border">
+                                                    <span t-field="res_company.partner_id.industry_id"/>
+                                                </td>
+                                                <td class="no_border">Nº C0NTRIB. S.SOCIAL</td>
+                                                <td class="no_border">
+                                                    <span t-field="res_company.company_registry"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="no_border">NOME</td>
+                                                <td colspan="3" class="no_border">
+                                                    <span t-field="res_company.name"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="no_border">MORADA</td>
+                                                <td colspan="3" class="no_border">
+                                                    <span t-field="res_company.street"/>
+                                                    <span t-if="res_company.street and res_company.street2"
+                                                          t-esc="', '"/>
+                                                    <span t-field="res_company.street2"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="no_border">LOCALIDADE</td>
+                                                <td colspan="2" class="no_border">
+                                                    <span t-field="res_company.city"/>
+                                                </td>
+                                                <td class="no_border">TELEFONE:
+                                                    <span t-field="res_company.phone"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="no_border">CÓDIGO POSTAL</td>
+                                                <td class="no_border">
+                                                    <span t-field="res_company.zip"/>
+                                                </td>
+                                                <td class="no_border">Nº DE IDENTIF. DE PESSOA COLECTIVA</td>
+                                                <td class="no_border">
+                                                    <span t-field="res_company.vat"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                        </div>
+                        <div class="col-xs-12 text-left title font_12">
+                            <table class="no_border inf">
+                                <tr class="no_border font_12">
+                                    <td class="title">
+                                        FOLHA DE REMUNERAÇÕES REFERENTES A:
+                                        <span t-esc="period.upper()"/>
+                                    </td>
+                                    <td class="title text-center">Folha nº</td>
+                                </tr>
+                            </table>
+                            <br/>
+                        </div>
+                        <div class="col-xs-12">
+                            <t t-set="total_base" t-value="0"/>
+                            <t t-set="total_iliquido" t-value="0"/>
+                            <t t-set="total_extra" t-value="0"/>
+                            <t t-set="total_iliquido3" t-value="0"/>
+                            <t t-set="total_iliquido8" t-value="0"/>
+                            <table class="conteudo font_12">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">Nº</th>
+                                        <th rowspan="2" class="name">Nomes Completos</th>
+                                        <th rowspan="2">Categoria</th>
+                                        <th rowspan="2">Salário Base</th>
+                                        <th rowspan="2">Remuneração Adicional</th>
+                                        <th rowspan="2">Salário Ilíquido</th>
+                                        <th>3%</th>
+                                        <th>8%</th>
+                                        <th rowspan="2">Nº Beneficiario</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Sobre Ilíquido</th>
+                                        <th>Sobre Ilíquido</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="docs" t-as="o">
+                                        <td class="text-right">
+                                            <span t-field="o.employee_id.employee_number"/>
+                                        </td>
+                                        <td class="text-left name">
+                                            <span t-field="o.employee_id"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="o.employee_id.job_id"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="o.remuneration_inss_base"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="formatLang(env, o.remuneration_inss_extra)"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="o.remuneration_inss_total"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="formatLang(env, o.remuneration_inss_total * 0.03)"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="formatLang(env, o.remuneration_inss_total * 0.08)"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="o.employee_id.social_security"/>
+                                        </td>
+                                        <t t-set="total_base" t-value="total_base + o.remuneration_inss_base"/>
+                                        <t t-set="total_iliquido" t-value="total_iliquido + o.remuneration_inss_total"/>
+                                        <t t-set="total_extra" t-value="total_extra + o.remuneration_inss_extra"/>
+                                        <t t-set="total_iliquido3"
+                                           t-value="total_iliquido3 + o.remuneration_inss_total * 0.03"/>
+                                        <t t-set="total_iliquido8"
+                                           t-value="total_iliquido8 + o.remuneration_inss_total * 0.08"/>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3" class="text-center">Totais</th>
+                                        <th class="text-right">
+                                            <span t-esc="formatLang(env, total_base)"/>
+                                        </th>
+                                        <th class="text-right">
+                                            <span t-esc="formatLang(env, total_extra)"/>
+                                        </th>
+                                        <th class="text-right">
+                                            <span t-esc="formatLang(env, total_iliquido)"/>
+                                        </th>
+                                        <th class="text-right">
+                                            <span t-esc="formatLang(env, total_iliquido3)"/>
+                                        </th>
+                                        <th class="text-right">
+                                            <span t-esc="formatLang(env, total_iliquido8)"/>
+                                        </th>
+                                        <th class="text-right"/>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div>
+                            <table class="no_border inf font_10">
+                                <tr class="no_border font_12">
+                                    <td class="title">Total dos Salários Ilíquidos</td>
+                                    <td class="title text-right">
+                                        <span t-esc="formatLang(env, total_iliquido)"/>
+                                    </td>
+                                    <td/>
+                                    <td/>
+                                </tr>
+                                <tr class="no_border font_12">
+                                    <td class="title">8% Sobre o Salário Ilíquido/Empresa</td>
+                                    <td class="title text-right">
+                                        <span class="text-right" t-esc="formatLang(env, total_iliquido8)"/>
+                                    </td>
+                                    <td/>
+                                    <td/>
+                                </tr>
+                                <tr class="no_border font_12">
+                                    <td class="title">3% Sobre o Salário Ilíquido/Trabalhadores</td>
+                                    <td class="title text-right">
+                                        <span class="text-right" t-esc="formatLang(env, total_iliquido3)"/>
+                                    </td>
+                                    <td/>
+                                    <td/>
+                                </tr>
+                                <tr class="no_border font_12">
+                                    <td class="title">11% Total a Depositar</td>
+                                    <td class="title text-right">
+                                        <span class="text-right"
+                                              t-esc="formatLang(env, total_iliquido3 + total_iliquido8)"/>
+                                    </td>
+                                    <td/>
+                                    <td class="text-center">
+                                        <hr/>
+                                        <span class="page"/>
+                                        <p/>(Assinatura e carimbo)
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_irt">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <style type="text/css">
+                        .container2 {
+                        height: 8cm;
+                        /* Width and count aren't respected, but you
+                        have to give at least some dummy value (??). */
+                        /* This is the strange way to define the number of columns:
+                        50% = 2 columns, 33% = 3 columns 25% = 4 columns */
+                        -webkit-columns: 0 0; width: 25%;
+                        /* Gap and rule do work. */
+                        -webkit-column-gap: 1em;
+                        text-align: justify;
+                        }
+                        .text-center {text-align:center;}
+                        .text-left {text-align:left;}
+                        .text-right {text-align:right;}
+                        .conteudo
+                        {
+                        border-collapse: collapse;
+                        width:100%; font-size:12px;
+                        min-height:900px;
+                        }
+                        .conteudo > tr > th, td, th { min-width:12px; border: 1px solid #000;
+                        line-height: 1
+                        vertical-align: top;
+                        padding:5px;
+                        }
+                        .name{width:250px;}
+                        .borda{
+                        border-bottom: solid 1px #000;
+                        border-collapse: separate;
+                        }
+                        .borda_completa{border: solid 1px #000;}
+                        .title{font-weight: bold;}
+                        .no_border{border:none;}
+                        .rep{width:500px;padding-bottom:0;}
+                        .details{width:600px;}
+                        .right{float:right;}
+                        .inf{width:100%;
+                        min-width:30px;
+                        }
+                        .inf tr{line-height:0.5;}
+                        .inf td{border:none;}
+                        .font_12{font-size:12px;}
+                        .font_10{font-size:10px;}
+                        .horizontal_line{
+                        border-bottom: 3px solid black; margin-bottom:10px;
+                        }
+                    </style>
+                    <div/>
+                    <div>
+                        <div>
+                            <div class="horizontal_line"/>
+                            <h4>Mapa de Liquidação de IRT (<t t-esc="period"/>)
+                            </h4>
+                            <div class="col-xs-12">
+                                <t t-set="total_base_amount_irt" t-value="0"/>
+                                <t t-set="total_liquid" t-value="0"/>
+                                <t t-set="total_other" t-value="0"/>
+                                <t t-set="total_percentual" t-value="0"/>
+                                <table class="conteudo font_12">
+                                    <thead>
+                                        <tr>
+                                            <th>Nº</th>
+                                            <th class="name">Nome Completo</th>
+                                            <th>Nº de Contribuinte</th>
+                                            <th>Valor Colectável</th>
+                                            <th>Liquidado</th>
+                                            <th>Outros</th>
+                                            <th>Taxa Média</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="percentual" t-value="0"/>
+                                        <tr t-foreach="docs" t-as="o">
+                                            <td class="text-right">
+                                                <span t-field="o.employee_id.employee_number"/>
+                                            </td>
+                                            <td class="text-left name">
+                                                <span t-field="o.employee_id"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-field="o.employee_id.fiscal_number"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-field="o.amount_base_irt"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="formatLang(env, abs(o.amount_irt))"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="formatLang(env, 0.0)"/>
+                                            </td>
+                                            <t t-set="percentual" t-value="(-o.amount_irt * 100) / o.amount_base_irt"/>
+                                            <td class="text-right">
+                                                <span t-esc="formatLang(env, percentual)"/>
+                                            </td>
+                                            <t t-set="total_base_amount_irt"
+                                               t-value="total_base_amount_irt + o.amount_base_irt "/>
+                                            <t t-set="total_liquid" t-value="total_liquid + abs(o.amount_irt)"/>
+                                            <t t-set="total_other" t-value="total_other + 0.0"/>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="3" class="text-center">Totais</th>
+                                            <th class="text-right">
+                                                <span t-esc="formatLang(env, total_base_amount_irt)"/>
+                                            </th>
+                                            <th class="text-right">
+                                                <span t-esc="formatLang(env, total_liquid)"/>
+                                            </th>
+                                            <th class="text-right">
+                                                <span t-esc="formatLang(env, total_other)"/>
+                                            </th>
+                                            <th class="text-right">
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br/>
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_bank">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <style type="text/css">
+                        .container2 {
+                        height: 8cm;
+                        /* Width and count aren't respected, but you
+                        have to give at least some dummy value (??). */
+                        /* This is the strange way to define the number of columns:
+                        50% = 2 columns, 33% = 3 columns 25% = 4 columns */
+                        -webkit-columns: 0 0; width: 25%;
+                        /* Gap and rule do work. */
+                        -webkit-column-gap: 1em;
+                        text-align: justify;
+                        }
+                        .text-center {text-align:center;}
+                        .text-left {text-align:left;}
+                        .text-right {text-align:right;}
+                        .conteudo
+                        {
+                        border-collapse: collapse;
+                        width:100%; font-size:12px;
+                        min-height:900px;
+                        }
+                        .conteudo > tr > th, td, th { min-width:12px; border: 1px solid #000;
+                        line-height: 1
+                        vertical-align: top;
+                        padding:5px;
+                        }
+                        hr{border:solid 1px #000;}
+                        .name{width:250px;}
+                        .borda{
+                        border-bottom: solid 1px #000;
+                        border-collapse: separate;
+                        }
+                        .borda_completa{border: solid 1px #000;}
+                        .title{font-weight: bold;}
+                        .no_border{border:none;}
+                        .rep{width:500px;padding-bottom:0;}
+                        .details{width:600px;}
+                        .right{float:right;}
+                        .inf{width:100%;
+                        min-width:30px;
+                        }
+                        .inf tr{line-height:0.5;}
+                        .inf td{border:none;}
+                        .font_12{font-size:12px;}
+                        .font_10{font-size:10px;}
+                        #header .col1{width: 100px;}
+                        #main .col1{width: 450px;}
+                        #main .col2{width: 250px;}
+                    </style>
+                    <div class="oe_structure"/>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h4 class="text-center">
+                                <b>Bank Payment Report</b>
+                            </h4>
+                            <table id="header" class="conteudo font_12 no_border">
+                                <tr class="no_border">
+                                    <th class="col1">Bank</th>
+                                    <td>
+                                        <t t-esc="bank"/>
+                                    </td>
+                                    <th>Period</th>
+                                    <td>
+                                        <t t-esc="period"/>
+                                    </td>
+                                    <th>Total (AKZ)</th>
+                                    <td>
+                                        <t t-esc="sum_total_paid"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <br/>
+                            <table id="main" class="conteudo font_12">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>IBAN/Account Number</th>
+                                        <th>Amount (AKZ)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="docs" t-as="o">
+                                        <td class="text-left col1">
+                                            <span t-field="o.employee_id"/>
+                                        </td>
+                                        <td class="text-left col2">
+                                            <span t-field="o.employee_id.bank_account"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="o.total_paid"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

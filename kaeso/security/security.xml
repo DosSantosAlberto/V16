@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="sign_template_multi_company_rule" model="ir.rule">
+		<field name="name">Sign: Multi Company</field>
+		<field name="model_id" ref="sign.model_sign_template"/>
+		<field name="domain_force">[
+			'|',
+				('company_id','=', False),
+				('company_id', 'in', company_ids),
+		]</field>
+	</record>
+	
+	<record id="survey_template_multi_company_rule" model="ir.rule">
+	<field name="name">Survey: Multi Company</field>
+	<field name="model_id" ref="survey.model_survey_survey"/>
+	<field name="domain_force">[
+		'|',
+			('company_id','=', False),
+			('company_id', 'in', company_ids),]
+	</field>
+</record>
+</odoo>

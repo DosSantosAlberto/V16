@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--<record id="ao_account_payment_view" model="ir.ui.view">
+            <field name="name">Invoice Payment View Inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='amount_div']" position="after">
+                    <field name="inv_has_withholding" invisible="1"/>
+                    <label for="current_wth" attrs="{'invisible':[('inv_has_withholding','!=',True)]}"/>
+                    <div name="wht_div" class="o_row" attrs="{'invisible':[('inv_has_withholding','!=',True)]}">
+                        <field name="current_wth"/>
+                    </div>
+                   <label for="amount_wth" attrs="{'invisible':[('inv_has_withholding','!=',True)]}"/>
+                    <div name="wht_amount_div" class="o_row" attrs="{'invisible':[('inv_has_withholding','!=',True)]}">
+                        <strong>
+                            <field name="amount_wth" readonly="True"/>
+                        </strong>
+                    </div>
+                </xpath>
+                <xpath expr="//sheet" position="inside">
+                     <field name="inv_has_withholding" invisible="1"/>
+                     <group attrs="{'invisible':[('inv_has_withholding','!=',True)]}">
+                         <div class="alert alert-warning" role="alert">
+                             <span>
+                                 <h2>Warning!</h2>
+                                 <div class="o_row">
+                                     This invoice is subject to withholding on value of
+                                     <field name="wth_amount" readonly="True" class="oe_inline"/>
+                                     <field name="currency_id" readonly="True"
+                                            options="{'no_create': True, 'no_open': True}"/>
+                                     , the total amount with Withholding for this payment amount is
+                                     <field name="amount_wth" readonly="True"/>.
+                                 </div>
+                             </span>
+                         </div>
+                     </group>
+                 </xpath>
+            </field>
+        </record>
+
+        <record id="ao_account_payment_view_form" model="ir.ui.view">
+            <field name="name">Payment View Inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <group>
+                    <field name="journal_id" position="after">
+                        <field name="payment_mechanism"/>
+                    </field>
+                </group>
+                <xpath expr="//sheet" position="inside">
+                    <field name="inv_has_withholding" invisible="1"/>
+                    <group attrs="{'invisible':[('inv_has_withholding','!=',True)]}">
+                        <div class="alert alert-warning" role="alert">
+                            <span>
+                                <h2>Warning!</h2>
+                                <div class="o_row">
+                                    One or more invoices were subjected to withholding of
+                                    <field name="wth_amount"/>
+                                    <field name="currency_id" readonly="True"/>
+                                </div>
+                            </span>
+                        </div>
+                    </group>
+                </xpath>
+
+                <xpath expr="//button[@name='action_post']" position="after">
+                    <button name="action_payment_receipt_sent" string="Send by Email" type="object" class="oe_highlight"
+                            attrs="{'invisible':[('state', '!=','posted')]}"
+                            groups="base.group_user"/>
+                </xpath>
+                <xpath expr="//div[@name='amount_div']" position="after">
+                    <field name="amount_text"/>
+                </xpath>
+
+
+            </field>
+        </record>
+
+        <record id="ao_account_payment_transaction_view_form" model="ir.ui.view">
+            <field name="name">Payment View Inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="payment.view_account_payment_form_inherit_payment"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_transaction_id']" position="after">
+                    <field name="transfer_order_id" readonly="1"/>
+                </xpath>
+            </field>
+        </record>-->
+
+          <record id="ao_account_payment_view_tree" model="ir.ui.view">
+            <field name="name">Payment View tree Inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="replace">
+                    <field name ="payment_number"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="ao_account_payment_view_form" model="ir.ui.view">
+            <field name="name">Payment View  form Inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="replace">
+                    <field name="payment_number" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                </field>
+            </field>
+        </record>
+
+         <record id="ao_view_account_payment_search" model="ir.ui.view">
+            <field name="name">account.payment.search</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_search"/>
+             <field name="arch" type="xml">
+                 <field name="name" position="replace">
+                    <field name="payment_number" string="Payment Number"
+                        filter_domain="['|', '|', ('name', 'ilike', self), ('partner_id', 'ilike', self), ('ref', 'ilike', self)]"/>
+                </field>
+             </field>
+         </record>
+
+    </data>
+</odoo>

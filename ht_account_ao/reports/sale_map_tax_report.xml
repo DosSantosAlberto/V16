@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <template id="report_sale_map_tax_pdf">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.basic_layout">
+                        <div class="header" style="color: #0B74CE">
+                            <div class="row b_color">
+                                <div class="col-8">
+                                    <b><span class="text-left" t-field="doc.company_id.name"/></b>
+                                </div>
+                                <div class="col-4">
+                                    <ul class="list-inline text-right">
+                                        <span t-out="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                                        |
+                                        Pag. <span class="page"/>/<span class="topage"/>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr style="display: block; height: 1px;
+                            border: 0; border-top: 3px solid #0B74CE;
+                            margin: 0; padding: 0;"/>
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <div align="left">
+                                        <b class="b_color">
+                                            VENDAS POR <span t-field="doc.filter"/>
+                                        </b>
+                                        <br/>
+                                        (<span t-field="doc.date_from"/> até <span t-field="doc.date_to"/>)
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div align="right"><b class="b_color">Valores Expresso em <span
+                                            t-out="doc.company_id.currency_id.symbol"/></b></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page">
+                            <style>
+                                * {padding-bottom: 0 !important;
+                                padding-top: 0 !important;
+                                margin-bottom: 0 !important;margin-top:0 !important; }
+                                hr {
+                                display: block; height: 1px;
+                                border: 0; border-top: 1px solid #0B74CE;
+                                margin: 0; padding: 0;
+                                }
+                                .b_color{
+                                color: #0B74CE;
+                                }
+
+                                table {
+                                border-spacing: 3px;
+                                border-top: 3px solid black;
+                                border-collapse:collapse;
+                                }
+
+                                td {
+                                border-bottom:0 !important;
+                                border-top: 1px solid #B2BABB !important;
+                                }
+
+                                th {
+                                border-top:0 !important;
+                                border-bottom: 1px solid #B2BABB !important;
+                                }
+
+                                table, tr, th, td {
+                                border-collapse: separate;
+                                padding:0px !important;
+                                }
+
+                                .border_top_th{
+                                border-top: 1px solid black !important;
+                                }
+                            </style>
+                            <table class="table table-condensed" style="font-size:10px;">
+                                <thead>
+                                    <th class="text-center" style="border:none !important;"
+                                        rowspan="3">Nº</th>
+                                    <th class="text-center" style="border:none !important;"
+                                        rowspan="3">Ref.</th>
+                                    <th class="text-left" style="border:none !important;"
+                                        rowspan="3">Descrição do artigo</th>
+                                    <th class="text-center" style="border-bottom:1px solid black !important;"
+                                        colspan="12">Resumo de Vendas</th>
+                                    <tr style="font-weight:bold;">
+                                        <th class="text-center"
+                                            colspan="2">IVA 0%</th>
+                                        <th class="text-center"
+                                            colspan="2">IVA 2%</th>
+                                        <th class="text-center"
+                                            colspan="2">IVA 5%</th>
+                                        <th class="text-center"
+                                            colspan="2">IVA 7%</th>
+                                        <th class="text-center"
+                                            colspan="2">IVA 14%</th>
+                                        <th class="text-center"
+                                            colspan="2">TOTAIS</th>
+                                    </tr>
+                                    <tr class="text-right" style="font-weight:bold;">
+                                        <th style="border-bottom:0 !important;">Valor Liquido</th>
+                                        <th style="border-bottom:0 !important;">Imposto</th>
+                                        <th style="border-bottom:0 !important;">Valor Liquido</th>
+                                        <th style="border-bottom:0 solid black !important;">Imposto</th>
+                                        <th style="border-bottom:0 !important;">Valor Liquido</th>
+                                        <th style="border-bottom:0 !important;">Imposto</th>
+                                        <th style="border-bottom:0 !important;">Valor Liquido</th>
+                                        <th style="border-bottom:0 !important;">Imposto</th>
+                                        <th style="border-bottom:0 !important;">Valor Liquido</th>
+                                        <th style="border-bottom:0 !important;">Imposto</th>
+                                        <th style="border-bottom:0 !important;">Valor Liquido</th>
+                                        <th style="border-bottom:0 !important;">IVA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="number" t-value="1"/>
+                                    <t t-set="col_iva_0" t-value="0"/>
+                                    <t t-set="col_net_0" t-value="0"/>
+                                    <t t-set="col_net_2" t-value="0"/>
+                                    <t t-set="col_iva_2" t-value="0"/>
+                                    <t t-set="col_net_5" t-value="0"/>
+                                    <t t-set="col_iva_5" t-value="0"/>
+                                    <t t-set="col_net_7" t-value="0"/>
+                                    <t t-set="col_iva_7" t-value="0"/>
+                                    <t t-set="col_net_14" t-value="0"/>
+                                    <t t-set="col_iva_14" t-value="0"/>
+                                    <t t-set="col_net_total" t-value="0"/>
+                                    <t t-set="col_iva_total" t-value="0"/>
+
+                                    <tr t-foreach="doc.get_invoice()" t-as="line">
+                                        <td class="text-center"><span t-out="number"/></td>
+                                        <td class="text-center"><span t-out="line['ref']"/></td>
+                                        <td><span t-out="line['name']"/></td>
+                                        <td class="text-right" id="net_0">
+                                            <t t-if="not line.get('iva_0.0')">0,00</t>
+                                            <span t-if="line.get('iva_0.0')" t-out="line['net_0.0']"/>
+                                            <t t-if="col_net_0" t-set="col_net_0" t-value="col_net_0 + line.get('format_net_0.0')"/>
+                                        </td>
+                                        <td class="text-right" id="iva0">
+                                            <t t-if="not line.get('iva_0.0')">0,00</t>
+                                            <span t-if="line.get('iva_0.0')" t-out="line['iva_0.0']"/>
+                                            <t t-if="line.get('iva_0.0')" t-set="col_iva_0" t-value="col_iva_0 + line.get('format_iva_0.0')"/>
+                                        </td>
+                                        <td class="text-right" id="net_2">
+                                            <t t-if="not line.get('iva_2.0')">0,00</t>
+                                            <span t-if="line.get('iva_2.0')" t-out="line['net_2.0']"/>
+                                            <t t-if="line.get('iva_2.0')" t-set="col_net_2"
+                                               t-value="col_net_2 + line.get('format_net_2.0')"/>
+                                        </td>
+                                        <td class="text-right" id="iva2">
+                                            <t t-if="not line.get('iva_2.0')">0,00</t>
+                                            <span t-if="line.get('iva_2.0')" t-out="line['iva_2.0']"/>
+                                            <t t-if="line.get('iva_2.0')" t-set="col_iva_2"
+                                               t-value="col_iva_2 + line.get('format_iva_2.0')"/>
+                                        </td>
+                                        <td class="text-right" id="net_5">
+                                            <t t-if="not line.get('iva_5.0')">0,00</t>
+                                            <span t-if="line.get('iva_5.0')" t-out="line['net_5.0']"/>
+                                            <t t-if="line.get('iva_5.0')" t-set="col_net_5"
+                                               t-value="col_net_5 + line['format_net_5.0']"/>
+                                        </td>
+                                        <td class="text-right" id="iva5">
+                                            <t t-if="not line.get('iva_5.0')">0,00</t>
+                                            <span t-if="line.get('iva_5.0')" t-out="line['iva_5.0']"/>
+                                            <t t-if="line.get('iva_5.0')" t-set="col_iva_5"
+                                               t-value="col_iva_5 + line['format_iva_5.0']"/>
+                                        </td>
+                                        <td class="text-right" id="net_7">
+                                            <t t-if="not line.get('iva_7.0')">0,00</t>
+                                            <span t-if="line.get('iva_7.0')" t-out="line['net_7.0']"/>
+                                            <t t-if="line.get('iva_7.0')" t-set="col_net_7"
+                                               t-value="col_net_7 + line['format_net_7.0']"/>
+                                        </td>
+                                        <td class="text-right" id="iva7">
+                                            <t t-if="not line.get('iva_7.0')">0,00</t>
+                                            <span t-if="line.get('iva_7.0')" t-out="line['iva_7.0']"/>
+                                            <t t-if="line.get('iva_7.0')" t-set="col_iva_7"
+                                               t-value="col_iva_7 + line['format_iva_7.0']"/>
+                                        </td>
+                                        <td class="text-right" id="net_14">
+                                            <t t-if="not line.get('iva_14.0')">0,00</t>
+                                            <span t-if="line.get('iva_14.0')" t-out="line['net_14.0']"/>
+                                            <t t-if="line.get('iva_14.0')" t-set="col_net_14"
+                                               t-value="col_net_14 + line['format_net_14.0']"/>
+                                        </td>
+                                        <td class="text-right" id="iva14">
+                                            <t t-if="not line.get('iva_14.0')">0,00</t>
+                                            <span t-if="line.get('iva_14.0')" t-out="line['iva_14.0']"/>
+                                            <t t-if="line.get('iva_14.0')" t-set="col_iva_14"
+                                               t-value="col_iva_14 + line['format_iva_14.0']"/>
+                                        </td>
+                                        <td class="text-right" id="total">
+                                            <span t-out="line['total']"/>
+                                            <t t-set="col_net_total" t-value="col_net_total + line['format_total']"/>
+                                        </td>
+                                        <td class="text-right" id="total_iva">
+                                            <span t-out="line['iva_total']"/>
+                                            <t t-set="col_iva_total"
+                                               t-value="col_iva_total + line['format_iva_total']"/>
+                                        </td>
+
+                                        <t t-set="number" t-value="number + 1"/>
+                                    </tr>
+                                    <tr style="background-color:#2ec18b; font-weight:bold;">
+                                        <td colspan="3" class="text-right"><span>Totais</span></td>
+                                        <td id="col_net_0" class="text-right">
+                                            <span t-out="doc.amount_format(col_net_0 or 0)"/>
+                                        </td>
+                                        <td id="col_iva_0" class="text-right">
+                                            <span t-out="doc.amount_format(col_iva_0 or 0)"/>
+                                        </td>
+                                        <td id="col_net_2" class="text-right">
+                                            <span t-out="doc.amount_format(col_net_2 or 0)"/>
+                                        </td>
+                                        <td id="col_iva_2" class="text-right">
+                                            <span t-out="doc.amount_format(col_iva_2 or 0)"/>
+                                        </td>
+                                        <td id="col_net_5" class="text-right">
+                                            <span t-out="doc.amount_format(col_net_5 or 0)"/>
+                                        </td>
+                                        <td id="col_iva_5" class="text-right" style="border-bottom:0 !important;">
+                                            <span t-out="doc.amount_format(col_iva_5 or 0)"/>
+                                        </td>
+                                        <td id="col_net_7" class="text-right">
+                                            <span t-out="doc.amount_format(col_net_7 or 0)"/>
+                                        </td>
+                                        <td id="col_iva_7" class="text-right">
+                                            <span t-out="doc.amount_format(col_iva_7 or 0)"/>
+                                        </td>
+                                        <td id="col_net_14" class="text-right">
+                                            <span t-out="doc.amount_format(col_net_14 or 0)"/>
+                                        </td>
+                                        <td id="col_iva_14" class="text-right">
+                                            <span t-out="doc.amount_format(col_iva_14 or 0)"/>
+                                        </td>
+                                        <td id="col_total_net" class="text-right">
+                                            <span t-out="doc.amount_format(col_net_total or 0)"/>
+                                        </td>
+                                        <td id="col_total_iva" class="text-right">
+                                            <span t-out="doc.amount_format(col_iva_total or 0)"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <div class="footer">
+                            <div class="text-right" style="font-size:10px">
+                                <b>© COMPLLEXUS</b>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

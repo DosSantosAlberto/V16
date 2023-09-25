@@ -1,0 +1,933 @@
+id,code,name,account_type,reconcile,chart_template_id/id
+na_account_account_11111,11111,Developed Land,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11112,11112,Undeveloped Land,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11113,11113,Agricultural Land,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11114,11114,Land Held For Development,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_111151,111151,Landfill,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_111152,111152,Other Land With Limited Life,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_111161,111161,Mining Properties And Mineral Rights,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_111162,111162,Mine Development,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_111163,111163,Drilling Rights,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_111164,111164,Oil Deposits,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_111165,111165,Gas Deposits,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_111166,111166,Coal Deposits,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_111167,111167,Mineral Deposits,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_111168,111168,Other Deposits,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_111169,111169,Other Land Subject To Deletion,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1121,1121,"Manufacturing, Production And Service Facilities",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1122,1122,"Barns, Silos And Other Agricultural Buildings",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1123,1123,Warehouses And Storage Facilities,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1124,1124,Storefronts And Showrooms,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1125,1125,"Office Buildings, Research Facilities",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1126,1126,Building Improvements,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1127,1127,Owner Occupied Property Measured Using Investment Property Fair Value Model,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1131,1131,Machinery,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113111,113111,"Presses, Bending, Casting Machines",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113112,113112,"Turning, Drilling, Milling, Grinding Machines",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113113,113113,"Laser, Water-Jet, Photochemical, Ion Beam, Plasma Cutting Machines",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113114,113114,"Broaching, Lapping, Honing Machines",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113115,113115,"Turbines, Compressors, Pumps And Piping",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113116,113116,"Ovens, Autoclaves, Heaters, Boilers",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113117,113117,"Refrigerators, Air-Conditioners",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113118,113118,"Washing, Cleaning, Sterilization Machines",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113119,113119,"Cranes, Hoists, Convey Belts",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1131110,1131110,Industrial Robots,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1131111,1131111,3d Printers,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1131112,1131112,"CNC, Cad/Cam",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1131113,1131113,"Welders, Wrenches And Other Hand Held Tools And Machines",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1131114,1131114,"Jigs, Dies, Molds, Fixtures",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1131115,1131115,Other Machines And Machine Tools,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113121,113121,"Combines, Threshers, Fellers, Harvesters",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113122,113122,"Cleaning, Processing, Sorting, Bailing, Milling Machines",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113123,113123,Storage Bins And Conveyers,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113124,113124,"Tractors, Trailers And Other Vehicles Classified As Machinery",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113125,113125,Bearer Plants (Perennials),asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113126,113126,Living Animals,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321111,11321111,Light Duty Trucks,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321112,11321112,Heavy Duty Trucks,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321113,11321113,Truck Trailers,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321121,11321121,Cars,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321122,11321122,Pickups And Suvs,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321123,11321123,Electric And Hybrid Vehicles,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321131,11321131,"Ships, Vessels And Tugs",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321132,11321132,Platforms And Barges,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321141,11321141,Cars And Locomotives,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321142,11321142,Rails And Rail Infrastructure Not Classified As Machinery,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321151,11321151,Passenger Aircraft,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321152,11321152,Cargo Aircraft,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321153,11321153,Executive Aircraft,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321154,11321154,Flight Systems,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321161,11321161,"Bulldozers, Excavators, Backhoes",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321162,11321162,"Plows, Scrapers, Compactors, Graders, Pavers",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321163,11321163,Drills And Drilling Not Classified As Energy ,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321171,11321171,Shipping Containers,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321172,11321172,Reusable (Returnable) Containers Or Pallets,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11321173,11321173,Other Shipping Related Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113221,113221,"Notebooks, Desktops And Workstations",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113222,113222,Servers And Networking Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113223,113223,Research And Development Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1132241,1132241,Acquired Computer Software,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1132242,1132242,Internally Developed Computer Software For Own Use (Classified As PP&E),asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113231,113231,"Computer Peripherals, Printers, Scanners",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113232,113232,Telephones And Communication Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113233,113233,"Cash Registers, Terminals, Checkout Counters",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113234,113234,Audio Visual Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113235,113235,"Laminators, Shredders And Other Office Equipment",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113241,113241,Pipelines,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113242,113242,Refining Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113243,113243,Upstream Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113244,113244,Downstream Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113245,113245,Gas Transmission Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113246,113246,Gas Distribution Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1132471,1132471,Electric Transmission And Distribution Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1132472,1132472,Electric Generation Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113248,113248,Nuclear Fuel,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_113249,113249,Oil And Gas Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1132410,1132410,Gas Gathering And Processing Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1132411,1132411,Wells And Related Equipment And Facilities,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1132412,1132412,Marine Services Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1132413,1132413,Exploration Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1132414,1132414,Production Equipment,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1132415,1132415,"Gas, Transmission And Distribution Equipment",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1132416,1132416,Mining Assets,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1141,1141,"Desks, Chairs",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1142,1142,"Shelves, Cabinets",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1143,1143,Showroom Cabinets And Displays,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1144,1144,Decorations And Artwork,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1145,1145,"Works Of Art, Historical Treasures, And Similar Assets ",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1146,1146,"Coffee Makers, Fringes, Stoves, Ovens",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1147,1147,"Temporary Cabinets, Displays, Signs And Banners",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1148,1148,Other Furniture And Fixtures,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1151,1151,Spare Parts Inventory (Repairs And Maintenance Parts),asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1152,1152,Tangible Exploration And Evaluation Assets,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1153,1153,"Oil And Gas Assets (Exploration, Evaluation, Development Or Production)",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11541,11541,Operating Leased Assets,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11542,11542,Financial Leased Assets,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1155,1155,"Other Property, Plant And Equipment",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1156,1156,Allowance For Maintenance And Repairs,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_1161,1161,Advances And Deposits Paid,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1162,1162,Capitalized Construction Costs,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11631,11631,Investment Property,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_11632,11632,Investment Property Under Construction Or Development,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13111,13111,Patents,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13112,13112,Patented Technology,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1312111,1312111,Secret Formulas And Recipes,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1312112,1312112,"Designs, Prototypes And Models",asset_fixed,False,l10n_na.na_chart_template
+na_account_account_131212,131212,Trade Secrets,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_131213,131213,Blueprints And Manuals,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13131,13131,Acquired In-Process R&D,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13132,13132,Developed In-Process R&D,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13141,13141,Copyrights,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13142,13142,Artistic-Related Intangible Assets,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13143,13143,Media Content,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13144,13144,Film Libraries,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1321,1321,Purchased Software,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1322,1322,Internally Developed Computer Software For Own Use,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1323,1323,Software Developed For Resale,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_133111,133111,Trademarks,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_133112,133112,Trade Names,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_133113,133113,Brand Names,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_133114,133114,Trade Dress,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_133115,133115,Mastheads And Publishing Titles,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13312,13312,Certification Marks,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13313,13313,Collective Marks,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13314,13314,Service Marks,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13315,13315,Internet Domain Names,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13316,13316,Other Marketing-Related Assets,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13321,13321,Customer Lists,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13322,13322,Customer Relationships,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13323,13323,Distribution Righters And Systems,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13324,13324,Order Or Production Backlog,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_13325,13325,Database Rights,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1341,1341,Customer Contracts,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_1342,1342,Operating And Broadcast Rights,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_1343,1343,Noncompete Agreements,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_1344,1344,Employment Contracts,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_1345,1345,Insurance Contracts,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_1346,1346,Reinsurance Contracts,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_1347,1347,Royalty Agreements,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_1348,1348,Service Agreements,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_1349,1349,Other Contractual Rights,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_134110,134110,Core Deposits,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_134111,134111,Franchise Rights,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_134112,134112,Licensing Agreements,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_13412,13412,Distribution Agreements,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_13413,13413,Use Rights,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_13414,13414,Servicing Contracts,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_13415,13415,Standstill Agreements,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_13416,13416,Transmission Service Agreement,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_13417,13417,Construction Permits,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_13418,13418,Other Contract-Based Intangible Assets,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_1351,1351,Right-Of-Use Asset Classified As Operating Lease,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_1352,1352,Right-Of-Use Asset Classified As Financial Lease,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_1361,1361,Intangible Exploration And Evaluation Assets,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1362,1362,Deferred Charges,asset_fixed,False,l10n_na.na_chart_template
+na_account_account_1371,1371,Advances And Deposits Paid,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_1372,1372,Capitalized Acquisition Costs,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_13811,13811,Debt Instruments,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_13812,13812,Loans (Classified As Investments),asset_non_current,False,l10n_na.na_chart_template
+na_account_account_13813,13813,Equity Instruments,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_138211,138211,Embedded Options (Assets),asset_non_current,False,l10n_na.na_chart_template
+na_account_account_138221,138221,Embedded Futures And Forwards (Assets),asset_non_current,False,l10n_na.na_chart_template
+na_account_account_138231,138231,Embedded Swaps (Assets),asset_non_current,False,l10n_na.na_chart_template
+na_account_account_138241,138241,Other Embedded Derivatives (Assets),asset_non_current,False,l10n_na.na_chart_template
+na_account_account_13911,13911,Restricted Cash,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_13912,13912,Restricted Cash Equivalents,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_131011,131011,Bearer Plants,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_131012,131012,Animals,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_131013,131013,Other Agricultural Assets,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_14111,14111,Merchandise At Cost,asset_current,False,l10n_na.na_chart_template
+na_account_account_14112,14112,Capitalized Shipping And Handling,asset_current,False,l10n_na.na_chart_template
+na_account_account_14113,14113,Merchandise In Transit,asset_current,False,l10n_na.na_chart_template
+na_account_account_14114,14114,Merchandise Purchases,asset_current,False,l10n_na.na_chart_template
+na_account_account_14211,14211,Material At Cost,asset_current,False,l10n_na.na_chart_template
+na_account_account_14212,14212,Capitalized Shipping And Handling,asset_current,False,l10n_na.na_chart_template
+na_account_account_14213,14213,Material In Transit,asset_current,False,l10n_na.na_chart_template
+na_account_account_14214,14214,Material Purchases,asset_current,False,l10n_na.na_chart_template
+na_account_account_1422111,1422111,Lubricants,asset_current,False,l10n_na.na_chart_template
+na_account_account_1422112,1422112,Fasteners,asset_current,False,l10n_na.na_chart_template
+na_account_account_1422113,1422113,Fittings,asset_current,False,l10n_na.na_chart_template
+na_account_account_1422114,1422114,Other Production Supplies,asset_current,False,l10n_na.na_chart_template
+na_account_account_142212,142212,Spare Parts,asset_current,False,l10n_na.na_chart_template
+na_account_account_142213,142213,Consumables (Small Assets),asset_current,False,l10n_na.na_chart_template
+na_account_account_142214,142214,Packaging And Storage Materials,asset_current,False,l10n_na.na_chart_template
+na_account_account_142221,142221,"Testing, Quality Control And R&D Supplies",asset_current,False,l10n_na.na_chart_template
+na_account_account_142222,142222,Computer Supplies And Consumables,asset_current,False,l10n_na.na_chart_template
+na_account_account_142223,142223,Telecommunication Supplies And Consumables,asset_current,False,l10n_na.na_chart_template
+na_account_account_142224,142224,Office Supplies,asset_current,False,l10n_na.na_chart_template
+na_account_account_1422251,1422251,"Brochures, Sales Catalogues",asset_current,False,l10n_na.na_chart_template
+na_account_account_1422252,1422252,"Samples, Promotional Items, Premiums, Giveaways",asset_current,False,l10n_na.na_chart_template
+na_account_account_1422253,1422253,Gifts And Donations,asset_current,False,l10n_na.na_chart_template
+na_account_account_1422254,1422254,Sold Or Charged To Client,asset_current,False,l10n_na.na_chart_template
+na_account_account_142226,142226,Publications And Periodicals,asset_current,False,l10n_na.na_chart_template
+na_account_account_142227,142227,Food And Beverages In Stock,asset_current,False,l10n_na.na_chart_template
+na_account_account_142228,142228,Janitorial Supplies,asset_current,False,l10n_na.na_chart_template
+na_account_account_142229,142229,Other Supplies And Consumables,asset_current,False,l10n_na.na_chart_template
+na_account_account_14223,14223,Capitalized Shipping And Handling,asset_current,False,l10n_na.na_chart_template
+na_account_account_14224,14224,Supplies And Consumables In Transit,asset_current,False,l10n_na.na_chart_template
+na_account_account_14225,14225,Supplies And Consumables Purchases,asset_current,False,l10n_na.na_chart_template
+na_account_account_142311,142311,Coal And Coke (In Stock),asset_current,False,l10n_na.na_chart_template
+na_account_account_142312,142312,Gas And Diesel (In Stock),asset_current,False,l10n_na.na_chart_template
+na_account_account_142313,142313,Other Fuel (In Stock),asset_current,False,l10n_na.na_chart_template
+na_account_account_142321,142321,Electricity (Prepaid),asset_current,False,l10n_na.na_chart_template
+na_account_account_142322,142322,Natural Gas (Prepaid),asset_current,False,l10n_na.na_chart_template
+na_account_account_142323,142323,Heating Oil (In Stock),asset_current,False,l10n_na.na_chart_template
+na_account_account_142324,142324,Other Energy (Prepaid),asset_current,False,l10n_na.na_chart_template
+na_account_account_14233,14233,Water And Sewage (Prepaid),asset_current,False,l10n_na.na_chart_template
+na_account_account_14234,14234,Waste Removal (Prepaid),asset_current,False,l10n_na.na_chart_template
+na_account_account_14235,14235,Other Prepaid Utility Costs,asset_current,False,l10n_na.na_chart_template
+na_account_account_1424,1424,Food And Beverage,asset_current,False,l10n_na.na_chart_template
+na_account_account_1425,1425, Agricultural Produce,asset_current,False,l10n_na.na_chart_template
+na_account_account_14311,14311,Pre-Paid Utilities,asset_current,False,l10n_na.na_chart_template
+na_account_account_14312,14312,Pre-Paid Licenses And Royalties,asset_current,False,l10n_na.na_chart_template
+na_account_account_14313,14313,Other Production Related Pre-Paid Expenses ,asset_current,False,l10n_na.na_chart_template
+na_account_account_14321,14321,Costs To Obtain Contract,asset_current,False,l10n_na.na_chart_template
+na_account_account_14322,14322,Costs To Fulfill Contract,asset_current,False,l10n_na.na_chart_template
+na_account_account_1441,1441,Finished Goods Expected To Be Returned,asset_current,False,l10n_na.na_chart_template
+na_account_account_1442,1442,Finished Goods Held For Lease,asset_current,False,l10n_na.na_chart_template
+na_account_account_1511,1511,Prepaid Insurance,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_1512,1512,Prepaid Rent,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_1513,1513,Prepaid Advertising,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_1514,1514,Prepaid Licenses,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15151,15151,Prepaid Mineral Royalties,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_1516,1516,Prepaid Supplies,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_1517,1517,Prepaid Interest,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15181,15181,Pre-Paid Real Estate Taxes And Insurance,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15182,15182,Pre-Paid Highway (Road) Taxes And Tolls,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15183,15183,Pre-Paid Direct Tax And License,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15184,15184,Pre-Paid Excise And Sales Taxes,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15185,15185,Pre-Paid Import / Export Taxes And Fees,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15186,15186,Pre-Paid General Insurance ,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15187,15187,Pre-Paid Administrative Fees (Revenue Stamps),asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15188,15188,Pre-Paid Miscellaneous Taxes,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15189,15189,Advances On Income Tax,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_1519111,1519111,Prepaid Coal And Coke,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_1519112,1519112,Prepaid Gas And Diesel,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_1519113,1519113,Other Prepaid Fuel,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_1519121,1519121,Prepaid Electricity,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_1519122,1519122,Prepaid Natural Gas,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_1519123,1519123,Prepaid Heating Oil,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15192,15192,Prepaid Water And Sewage,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15193,15193,Prepaid Waste Removal,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15194,15194,Other Pre-Paid Utilities,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_151101,151101,Costs Of Obtaining A Contract,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_151102,151102,Costs Of Fulfilling A Contract,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_151111,151111,Prepaid Listing Fee ,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_151112,151112,Prepaid Slotting Fee ,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_151113,151113,Prepaid Shelf Space Agreement ,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_151114,151114,Prepaid Co-Advertising Agreement ,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_151115,151115,Other Prepaid Consideration,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15112,15112,Other Prepaid Expense,asset_prepayments,False,l10n_na.na_chart_template
+na_account_account_15211,15211,Unbilled Revenue ,asset_current,False,l10n_na.na_chart_template
+na_account_account_15212,15212,Estimated Revenue,asset_current,False,l10n_na.na_chart_template
+na_account_account_15213,15213,Non-Trade Receivables,asset_current,False,l10n_na.na_chart_template
+na_account_account_15214,15214,Other Accrued Revenue,asset_current,False,l10n_na.na_chart_template
+na_account_account_15221,15221,Accrued Dividends ,asset_current,False,l10n_na.na_chart_template
+na_account_account_15222,15222,Accrued Interest ,asset_current,False,l10n_na.na_chart_template
+na_account_account_15311,15311,Security Deposit,asset_current,False,l10n_na.na_chart_template
+na_account_account_15312,15312,"Deposit Contracts, Assets",asset_current,False,l10n_na.na_chart_template
+na_account_account_15313,15313,Retainage Deposit,asset_current,False,l10n_na.na_chart_template
+na_account_account_15314,15314,Margin Deposit Assets,asset_current,False,l10n_na.na_chart_template
+na_account_account_15315,15315,Escrow Deposit,asset_current,False,l10n_na.na_chart_template
+na_account_account_15316,15316,"Deposits With Clearing Organizations And Others, Securities",asset_current,False,l10n_na.na_chart_template
+na_account_account_15317,15317,Earnest Money Deposits,asset_current,False,l10n_na.na_chart_template
+na_account_account_15318,15318,Other Deposits,asset_current,False,l10n_na.na_chart_template
+na_account_account_15321,15321,Deferred Leasing Costs,asset_current,False,l10n_na.na_chart_template
+na_account_account_153221,153221,Deferred Gas Cost,asset_current,False,l10n_na.na_chart_template
+na_account_account_15323,15323,"Deferred Storm And Property Reserve Deficiency, Current _ ",asset_current,False,l10n_na.na_chart_template
+na_account_account_15324,15324,Deferred Offering Costs,asset_current,False,l10n_na.na_chart_template
+na_account_account_15325,15325,"Other Deferred Costs, Net",asset_current,False,l10n_na.na_chart_template
+na_account_account_15331,15331,Current Tax Assets,asset_current,False,l10n_na.na_chart_template
+na_account_account_15332,15332,Deferred Tax Assets,asset_current,False,l10n_na.na_chart_template
+na_account_account_15341,15341,"Disposal Group, Including Discontinued Operation",asset_current,False,l10n_na.na_chart_template
+na_account_account_15342,15342,"Assets Held-For-Sale, Not Part Of Disposal Group",asset_current,False,l10n_na.na_chart_template
+na_account_account_1611,1611,Trade Accounts Receivable,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_16121,16121,Trade Notes Receivable,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_16122,16122,Loans Receivable,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_161311,161311,Unbilled Receivables Not Billable At Balance Sheet Date,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_16211,16211,Contracts With Customers Receivables,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_16212,16212,Contracts With Customers Assets,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_162211,162211,Contract In Progress Number 1,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_162212,162212,Contract In Progress Number 2,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_162213,162213,Contract In Progress Number N,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_1631,1631,Nontrade Receivables,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_1632,1632,Interest Receivable,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_1633,1633,Income Tax (Refund) Receivable,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_1634,1634,Taxes (Other Than Income) Receivable,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_163511,163511,VAT/GST Receivable From Customers,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_163512,163512,VAT/GST Balance Receivable From Taxation Authority,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_1636,1636,Insurance Settlements Receivable,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_1637,1637,Grants Receivable,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_1638,1638,Dividends Receivable,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_1639,1639,Other Receivables,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_164111,164111,Petty Cash,asset_cash,False,l10n_na.na_chart_template
+na_account_account_164112,164112,Cash In Vault,asset_cash,False,l10n_na.na_chart_template
+na_account_account_164211,164211,Certificates Of Deposit,asset_cash,False,l10n_na.na_chart_template
+na_account_account_164212,164212,Commercial Paper,asset_cash,False,l10n_na.na_chart_template
+na_account_account_164213,164213,Credit And Debit Card Receivables,asset_cash,False,l10n_na.na_chart_template
+na_account_account_164214,164214,Money Market Funds,asset_cash,False,l10n_na.na_chart_template
+na_account_account_164215,164215,Other Highly Liquid Investments And Securities,asset_cash,False,l10n_na.na_chart_template
+na_account_account_164221,164221,Postage Stamps,asset_cash,False,l10n_na.na_chart_template
+na_account_account_164222,164222,Revenue Stamps,asset_cash,False,l10n_na.na_chart_template
+na_account_account_164223,164223,Coupons And Vouchers,asset_cash,False,l10n_na.na_chart_template
+na_account_account_164224,164224,Other Liquid Valuables,asset_cash,False,l10n_na.na_chart_template
+na_account_account_2111,2111,Common Stock At Par,equity,False,l10n_na.na_chart_template
+na_account_account_2112,2112,Common Stock Held By Subsidiary,equity,False,l10n_na.na_chart_template
+na_account_account_2113,2113,Subscribed Common Stock,equity,False,l10n_na.na_chart_template
+na_account_account_2114,2114,Preferred Stock At Par,equity,False,l10n_na.na_chart_template
+na_account_account_2115,2115,Subscribed Preferred Stock,equity,False,l10n_na.na_chart_template
+na_account_account_2116,2116,Partners Capital,equity,False,l10n_na.na_chart_template
+na_account_account_2117,2117,Members Equity,equity,False,l10n_na.na_chart_template
+na_account_account_2118,2118,Non-Share Equity,equity,False,l10n_na.na_chart_template
+na_account_account_221,221,Appropriated,equity,False,l10n_na.na_chart_template
+na_account_account_222,222,Unappropriated,equity,False,l10n_na.na_chart_template
+na_account_account_223,223,Deficit ,equity,False,l10n_na.na_chart_template
+na_account_account_224,224,In Suspense,equity,False,l10n_na.na_chart_template
+na_account_account_2251,2251,"Additional Paid In Capital, Common Stock",equity,False,l10n_na.na_chart_template
+na_account_account_2252,2252,"Additional Paid In Capital, Preferred Stock",equity,False,l10n_na.na_chart_template
+na_account_account_2253,2253,Other Additional Capital,equity,False,l10n_na.na_chart_template
+na_account_account_2254,2254,Receivables From The Issuance Of The Entity's Shares  (IFRS),equity,False,l10n_na.na_chart_template
+na_account_account_2255,2255,Amounts Received From Other Transactions Involving The Entity's Stock (IFRS),equity,False,l10n_na.na_chart_template
+na_account_account_2261,2261,Treasury Stock Common,equity,False,l10n_na.na_chart_template
+na_account_account_2262,2262,Treasury Stock Preferred,equity,False,l10n_na.na_chart_template
+na_account_account_231,231,Exchange Differences On Translation,equity,False,l10n_na.na_chart_template
+na_account_account_232,232,Remeasurements Cash Flow Hedges,equity,False,l10n_na.na_chart_template
+na_account_account_233,233,Remeasurements Available-For-Sale Financial Assets,equity,False,l10n_na.na_chart_template
+na_account_account_234,234,Remeasurement Of Defined Benefit Plans,equity,False,l10n_na.na_chart_template
+na_account_account_235,235,Revaluation Surplus (IFRS Only),equity,False,l10n_na.na_chart_template
+na_account_account_236,236,Remeasurements Investments In Equity Instruments (IFRS only),equity,False,l10n_na.na_chart_template
+na_account_account_2411,2411,"Deferred Employee Stock Ownership Plan, Issuance Of Shares Or Sale Of Treasury Shares",equity,False,l10n_na.na_chart_template
+na_account_account_2412,2412,"Warrants, Rights Outstanding",equity,False,l10n_na.na_chart_template
+na_account_account_2413,2413,Unearned ESOP Shares,equity,False,l10n_na.na_chart_template
+na_account_account_2414,2414,Deferred Compensation Equity,equity,False,l10n_na.na_chart_template
+na_account_account_2421,2421,"Receivable From Officers, Directors For Issuance Of Capital Stock",equity,False,l10n_na.na_chart_template
+na_account_account_2422,2422,Receivable From Shareholders Or Affiliates For Issuance Of Capital Stock,equity,False,l10n_na.na_chart_template
+na_account_account_2423,2423,"Stockholders' Equity Note, Subscriptions Receivable",equity,False,l10n_na.na_chart_template
+na_account_account_3111,3111,Trade Accounts Payable,payable,True,l10n_na.na_chart_template
+na_account_account_3112,3112,Trade Notes Payable,payable,True,l10n_na.na_chart_template
+na_account_account_3211,3211,Refunds Provision,liability_current,False,l10n_na.na_chart_template
+na_account_account_3212,3212,Premiums And Coupons Obligation,liability_current,False,l10n_na.na_chart_template
+na_account_account_3213,3213,Warrantee Costs Obligation,liability_current,False,l10n_na.na_chart_template
+na_account_account_3214,3214,Provision For Loss On Contracts,liability_current,False,l10n_na.na_chart_template
+na_account_account_3215,3215,Onerous Contracts Provision,liability_current,False,l10n_na.na_chart_template
+na_account_account_3221,3221,Legal Proceedings Provision,liability_current,False,l10n_na.na_chart_template
+na_account_account_3222,3222,Accrued Environmental Loss,liability_current,False,l10n_na.na_chart_template
+na_account_account_3223,3223,Regulatory Obligation,liability_current,False,l10n_na.na_chart_template
+na_account_account_3231,3231,Self Insurance Obligation,liability_current,False,l10n_na.na_chart_template
+na_account_account_3232,3232,"Provision For Decommissioning, Restoration And Rehabilitation Costs",liability_current,False,l10n_na.na_chart_template
+na_account_account_3233,3233,Restructuring Provision (IFRS),liability_current,False,l10n_na.na_chart_template
+na_account_account_3234,3234,Provisions For Employee Benefits (IFRS),liability_current,False,l10n_na.na_chart_template
+na_account_account_32351,32351,Miscellaneous Other Provisions (IFRS),liability_current,False,l10n_na.na_chart_template
+na_account_account_3311,3311,Medium-Term Notes,asset_current,False,l10n_na.na_chart_template
+na_account_account_3312,3312,Convertible Notes Payable,asset_current,False,l10n_na.na_chart_template
+na_account_account_3313,3313,Notes Payable To Bank,asset_current,False,l10n_na.na_chart_template
+na_account_account_3314,3314,Senior Notes,asset_current,False,l10n_na.na_chart_template
+na_account_account_3315,3315,Junior Subordinated Notes,asset_current,False,l10n_na.na_chart_template
+na_account_account_3316,3316,Other Notes Payable,asset_current,False,l10n_na.na_chart_template
+na_account_account_33211,33211,Secured Bank Loans ,liability_non_current,False,l10n_na.na_chart_template
+na_account_account_33212,33212,Unsecured Bank Loans ,liability_non_current,False,l10n_na.na_chart_template
+na_account_account_3341,3341,Commercial Paper,liability_non_current,False,l10n_na.na_chart_template
+na_account_account_3342,3342,Secured Debt,liability_non_current,False,l10n_na.na_chart_template
+na_account_account_3343,3343,Unsecured Debt,liability_non_current,False,l10n_na.na_chart_template
+na_account_account_3344,3344,Convertible Debt,liability_non_current,False,l10n_na.na_chart_template
+na_account_account_3345,3345,Subordinated Debt,liability_non_current,False,l10n_na.na_chart_template
+na_account_account_3346,3346,Convertible Subordinated Debt,liability_non_current,False,l10n_na.na_chart_template
+na_account_account_3347,3347,Other Long-Term Debt,liability_non_current,False,l10n_na.na_chart_template
+na_account_account_3348,3348,Other Borrowings,liability_non_current,False,l10n_na.na_chart_template
+na_account_account_3351,3351,Finance Lease Liability,liability_current,False,l10n_na.na_chart_template
+na_account_account_3352,3352,Operating Lease Obligations,liability_current,False,l10n_na.na_chart_template
+na_account_account_33611,33611,Embedded Options (Liabilities),liability_non_current,False,l10n_na.na_chart_template
+na_account_account_33621,33621,Embedded Futures And Forwards (Liabilities),liability_non_current,False,l10n_na.na_chart_template
+na_account_account_33631,33631,Embedded Swaps (Liabilities),liability_non_current,False,l10n_na.na_chart_template
+na_account_account_33641,33641,Other Embedded Derivatives (Liabilities),liability_non_current,False,l10n_na.na_chart_template
+na_account_account_341111,341111,Wages ,payable,True,l10n_na.na_chart_template
+na_account_account_341112,341112,Salaries ,payable,True,l10n_na.na_chart_template
+na_account_account_341113,341113,Commissions ,payable,True,l10n_na.na_chart_template
+na_account_account_341114,341114,Bonuses (Sales Based),payable,True,l10n_na.na_chart_template
+na_account_account_341115,341115,Temporary Or Contract Workers ,payable,True,l10n_na.na_chart_template
+na_account_account_341121,341121,"Vacation, Holiday",payable,True,l10n_na.na_chart_template
+na_account_account_341122,341122,Sick Pay,payable,True,l10n_na.na_chart_template
+na_account_account_341123,341123,Maternity Leave,payable,True,l10n_na.na_chart_template
+na_account_account_341124,341124,Sabbatical Leave,payable,True,l10n_na.na_chart_template
+na_account_account_341125,341125,Other Compensated Absences,payable,True,l10n_na.na_chart_template
+na_account_account_3411311,3411311,Bonuses (Performance Based),payable,True,l10n_na.na_chart_template
+na_account_account_3411312,3411312,Bonuses (Non-Performance Based),payable,True,l10n_na.na_chart_template
+na_account_account_3411313,3411313,Mandatory (Legal Or Regulatory),payable,True,l10n_na.na_chart_template
+na_account_account_3411321,3411321,Food And Beverages,payable,True,l10n_na.na_chart_template
+na_account_account_3411322,3411322,Wellness Programs,payable,True,l10n_na.na_chart_template
+na_account_account_3411323,3411323,Professional Or Membership Fees,payable,True,l10n_na.na_chart_template
+na_account_account_3411324,3411324,Reimbursed Costs,payable,True,l10n_na.na_chart_template
+na_account_account_3411325,3411325,Other Perquisites And Social Benefits,payable,True,l10n_na.na_chart_template
+na_account_account_341141,341141,Social Security Tax,payable,True,l10n_na.na_chart_template
+na_account_account_341142,341142,Health Insurance (Mandatory),payable,True,l10n_na.na_chart_template
+na_account_account_341143,341143,Safety Insurance (Mandatory),payable,True,l10n_na.na_chart_template
+na_account_account_341144,341144,Workers Compensation Insurance,payable,True,l10n_na.na_chart_template
+na_account_account_341145,341145,Other Payroll Related Insurance,payable,True,l10n_na.na_chart_template
+na_account_account_341146,341146,Other Payroll Taxes And Fees,payable,True,l10n_na.na_chart_template
+na_account_account_3411511,3411511,Defined Benefit Pension Plan,payable,True,l10n_na.na_chart_template
+na_account_account_3411512,3411512,Other Postretirement Defined Benefit Plan,payable,True,l10n_na.na_chart_template
+na_account_account_3411513,3411513,Other Postretirement And Postemployment Plans And Benefits,payable,True,l10n_na.na_chart_template
+na_account_account_341152,341152,Termination Benefits,payable,True,l10n_na.na_chart_template
+na_account_account_341153,341153,Other Post Employment Benefits,payable,True,l10n_na.na_chart_template
+na_account_account_341161,341161,Share-Based Arrangements,payable,True,l10n_na.na_chart_template
+na_account_account_341162,341162,Deferred Cash-Based Arrangements,payable,True,l10n_na.na_chart_template
+na_account_account_341163,341163,Other Deferred Compensation Arrangements,payable,True,l10n_na.na_chart_template
+na_account_account_341171,341171,Employee Benefits (Excluding Pension And Other Postretirement Benefits),payable,True,l10n_na.na_chart_template
+na_account_account_341172,341172,Other Employee Related Accruals,payable,True,l10n_na.na_chart_template
+na_account_account_3412111,3412111,Accrued Coal And Coke,payable,True,l10n_na.na_chart_template
+na_account_account_3412112,3412112,Accrued Gas And Diesel,payable,True,l10n_na.na_chart_template
+na_account_account_3412113,3412113,Accrued Other Fuel,payable,True,l10n_na.na_chart_template
+na_account_account_3412121,3412121,Accrued Electricity,payable,True,l10n_na.na_chart_template
+na_account_account_3412122,3412122,Accrued Natural Gas,payable,True,l10n_na.na_chart_template
+na_account_account_3412123,3412123,Accrued Heating Oil,payable,True,l10n_na.na_chart_template
+na_account_account_3412124,3412124,Other Accrued Energy,payable,True,l10n_na.na_chart_template
+na_account_account_3413,3413,Accrued Insurance,payable,True,l10n_na.na_chart_template
+na_account_account_3414,3414,Accrued Rent,payable,True,l10n_na.na_chart_template
+na_account_account_3415,3415,"Lease Incentive, Payable",payable,True,l10n_na.na_chart_template
+na_account_account_3416,3416,Accrued Royalties,payable,True,l10n_na.na_chart_template
+na_account_account_3417,3417,Accrued Sales Commission,payable,True,l10n_na.na_chart_template
+na_account_account_3418,3418,Accrued Professional Fees,payable,True,l10n_na.na_chart_template
+na_account_account_3419,3419,Accrued Marketing Costs,payable,True,l10n_na.na_chart_template
+na_account_account_34110,34110,Accrued Advertising,payable,True,l10n_na.na_chart_template
+na_account_account_342101,342101,Customer Advances Received,liability_current,False,l10n_na.na_chart_template
+na_account_account_342102,342102,Customer Deposits Received,liability_current,False,l10n_na.na_chart_template
+na_account_account_342103,342103,Customer Loyalty Program Liability,liability_current,False,l10n_na.na_chart_template
+na_account_account_342104,342104,Layaway Sales,liability_current,False,l10n_na.na_chart_template
+na_account_account_342105,342105,Activation And Hook-Up Fees,liability_current,False,l10n_na.na_chart_template
+na_account_account_342106,342106,Royalties,liability_current,False,l10n_na.na_chart_template
+na_account_account_342107,342107,Subscriptions,liability_current,False,l10n_na.na_chart_template
+na_account_account_342108,342108,Advance Ticket Sales,liability_current,False,l10n_na.na_chart_template
+na_account_account_342109,342109,Membership Fees,liability_current,False,l10n_na.na_chart_template
+na_account_account_342110,342110,Registration Fees,liability_current,False,l10n_na.na_chart_template
+na_account_account_342111,342111,Services (Non-Software),liability_current,False,l10n_na.na_chart_template
+na_account_account_342112,342112,Licenses (Non-Software),liability_current,False,l10n_na.na_chart_template
+na_account_account_342113,342113,Services (Software),liability_current,False,l10n_na.na_chart_template
+na_account_account_342114,342114,Licenses (Software),liability_current,False,l10n_na.na_chart_template
+na_account_account_342115,342115,Deferred Revenue And Credits,liability_current,False,l10n_na.na_chart_template
+na_account_account_342116,342116,Other Deferred Revenue,liability_current,False,l10n_na.na_chart_template
+na_account_account_34221,34221,Contracts With Customers,liability_current,False,l10n_na.na_chart_template
+na_account_account_342311,342311,Contract Billings Contract Number 1,liability_current,False,l10n_na.na_chart_template
+na_account_account_342312,342312,Contract Billings Contract Number 2,liability_current,False,l10n_na.na_chart_template
+na_account_account_342313,342313,Contract Billings Contract Number N,liability_current,False,l10n_na.na_chart_template
+na_account_account_342321,342321,Recognized Income Contract Number 1,liability_current,False,l10n_na.na_chart_template
+na_account_account_342322,342322,Recognized Income Contract Number 2,liability_current,False,l10n_na.na_chart_template
+na_account_account_342323,342323,Recognized Income Contract Number N,liability_current,False,l10n_na.na_chart_template
+na_account_account_3431,3431,Accrued Income Taxes,payable,True,l10n_na.na_chart_template
+na_account_account_3432,3432,Deferred Income Taxes,payable,True,l10n_na.na_chart_template
+na_account_account_3433,3433,Liability For Uncertainty In Income Taxes,payable,True,l10n_na.na_chart_template
+na_account_account_34341,34341,Accrued Property (Real Estate) Tax,payable,True,l10n_na.na_chart_template
+na_account_account_34342,34342,Accrued Highway Tax,payable,True,l10n_na.na_chart_template
+na_account_account_34343,34343,Accrued Direct Tax And License Fees,payable,True,l10n_na.na_chart_template
+na_account_account_34344,34344,Accrued Excise And Sales Taxes,payable,True,l10n_na.na_chart_template
+na_account_account_34345,34345,Accrued Customs Fees And Duties (Not Classified As Sales Or Excise),payable,True,l10n_na.na_chart_template
+na_account_account_343461,343461,VAT/GST Payable To Suppliers,payable,True,l10n_na.na_chart_template
+na_account_account_343462,343462,VAT/GST Balance Payable To Taxation Authority,payable,True,l10n_na.na_chart_template
+na_account_account_343463,343463,Non-Deductible VAT/GST Payable To Taxation Authority,payable,True,l10n_na.na_chart_template
+na_account_account_3441,3441,Other (Non-Financial) Liabilities,liability_non_current,False,l10n_na.na_chart_template
+na_account_account_4111,4111,Merchandise,income,False,l10n_na.na_chart_template
+na_account_account_4112,4112,Products,income,False,l10n_na.na_chart_template
+na_account_account_4121,4121,Services (Single Ac),income,False,l10n_na.na_chart_template
+na_account_account_4122,4122,Services (Completed Contract),income,False,l10n_na.na_chart_template
+na_account_account_4211,4211,Products Delivered Over Time,income,False,l10n_na.na_chart_template
+na_account_account_4212,4212,Constructed Products (Percentage Of Completion),income,False,l10n_na.na_chart_template
+na_account_account_4221,4221,Services (Multiple Act),income,False,l10n_na.na_chart_template
+na_account_account_4222,4222,Services Recognized As Projects (Percentage Of Completion),income,False,l10n_na.na_chart_template
+na_account_account_4311,4311,Refund Obligations (Returns And Allowances),expense,False,l10n_na.na_chart_template
+na_account_account_4312,4312,"Discounts, Rebates, Credits",expense,False,l10n_na.na_chart_template
+na_account_account_4313,4313,"Price Concessions, Incentives",expense,False,l10n_na.na_chart_template
+na_account_account_4314,4314,Performance Bonuses Or Penalties ,expense,False,l10n_na.na_chart_template
+na_account_account_4315,4315,Other Consideration Contingent On Future Events,expense,False,l10n_na.na_chart_template
+na_account_account_4321,4321,"Coupons, Vouchers, Loyalty Points, Free Goods",expense,False,l10n_na.na_chart_template
+na_account_account_4322,4322,"Listing Fees, Slotting Fees, Shelf-Space Arrangements",expense,False,l10n_na.na_chart_template
+na_account_account_4323,4323,Cooperative Advertising,expense,False,l10n_na.na_chart_template
+na_account_account_4324,4324,Buydowns,expense,False,l10n_na.na_chart_template
+na_account_account_4325,4325,Payments In Excess Of Fair Value Of Distinct Goods Or Services,expense,False,l10n_na.na_chart_template
+na_account_account_4326,4326,Fees Paid To Third Parties (Not For Distinct Goods Or Services),expense,False,l10n_na.na_chart_template
+na_account_account_4331,4331,Fair Value Adjustment To Non-Cash Consideration,income_other,False,l10n_na.na_chart_template
+na_account_account_4332,4332,Stand-Alone Selling Price Adjustment To Non-Cash Consideration,income_other,False,l10n_na.na_chart_template
+na_account_account_4333,4333,Adjustment To Goods Or Services Contributed By Customer,income_other,False,l10n_na.na_chart_template
+na_account_account_4334,4334,Re-Sold Parts And Material,expense,False,l10n_na.na_chart_template
+na_account_account_5111,5111,Merchandise,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_5112,5112,Raw Material,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_511311,511311,Lubricants,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_511312,511312,Fasteners,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_511313,511313,Fittings,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_511314,511314,Other Consumable Material ,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_51132,51132,Spare Parts,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_51133,51133,Consumables,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_51134111,51134111,Coal And Coke,expense,False,l10n_na.na_chart_template
+na_account_account_51134112,51134112,Gas And Diesel,expense,False,l10n_na.na_chart_template
+na_account_account_51134113,51134113,Other Fuel,expense,False,l10n_na.na_chart_template
+na_account_account_51134121,51134121,Electricity,expense,False,l10n_na.na_chart_template
+na_account_account_51134122,51134122,Natural Gas,expense,False,l10n_na.na_chart_template
+na_account_account_51134123,51134123,Heating Oil,expense,False,l10n_na.na_chart_template
+na_account_account_511342,511342,Water And Sewage,expense,False,l10n_na.na_chart_template
+na_account_account_511343,511343,Waste Removal,expense,False,l10n_na.na_chart_template
+na_account_account_511344,511344,Other Utilities,expense,False,l10n_na.na_chart_template
+na_account_account_511351,511351,Non-Production Supplies And Consumables,expense,False,l10n_na.na_chart_template
+na_account_account_511352,511352,"Testing, Quality Control And R&D Supplies",expense,False,l10n_na.na_chart_template
+na_account_account_511353,511353,Computer Supplies And Consumables,expense,False,l10n_na.na_chart_template
+na_account_account_511354,511354,Telecommunication Supplies And Consumables,expense,False,l10n_na.na_chart_template
+na_account_account_511355,511355,Office Supplies,expense,False,l10n_na.na_chart_template
+na_account_account_511356,511356,Marketing Sales Supplies,expense,False,l10n_na.na_chart_template
+na_account_account_511357,511357,"Brochures, Sales Catalogues",expense,False,l10n_na.na_chart_template
+na_account_account_511358,511358,"Samples, Promotional Items, Premiums, Giveaways",expense,False,l10n_na.na_chart_template
+na_account_account_511359,511359,Gifts And Donations,expense,False,l10n_na.na_chart_template
+na_account_account_5113510,5113510,Publications And Periodicals,expense,False,l10n_na.na_chart_template
+na_account_account_5113511,5113511,Food And Beverages,expense,False,l10n_na.na_chart_template
+na_account_account_5113512,5113512,Janitorial Supplies,expense,False,l10n_na.na_chart_template
+na_account_account_5113513,5113513,Other Supplies And Consumables,expense,False,l10n_na.na_chart_template
+na_account_account_51141,51141,Packaging And Shipping Material,expense,False,l10n_na.na_chart_template
+na_account_account_51142,51142,"Gas, Diesel, Oil And Other Fluids",expense,False,l10n_na.na_chart_template
+na_account_account_51143,51143,Parts And Materials Not Recognized In Inventory,expense,False,l10n_na.na_chart_template
+na_account_account_51144,51144,Other Costs Expensed As Incurred,expense,False,l10n_na.na_chart_template
+na_account_account_512111,512111,Wages,expense,False,l10n_na.na_chart_template
+na_account_account_512112,512112,Salaries,expense,False,l10n_na.na_chart_template
+na_account_account_512113,512113,Commissions,expense,False,l10n_na.na_chart_template
+na_account_account_512114,512114,Bonuses (Sales Based),expense,False,l10n_na.na_chart_template
+na_account_account_512115,512115,Temporary Or Contract Workers,expense,False,l10n_na.na_chart_template
+na_account_account_512121,512121,"Vacation, Holiday",expense,False,l10n_na.na_chart_template
+na_account_account_512122,512122,Sick Leave,expense,False,l10n_na.na_chart_template
+na_account_account_512123,512123,Maternity Leave,expense,False,l10n_na.na_chart_template
+na_account_account_512124,512124,Sabbatical Leave,expense,False,l10n_na.na_chart_template
+na_account_account_512125,512125,Other Compensated Absences,expense,False,l10n_na.na_chart_template
+na_account_account_5121311,5121311,Bonuses (Performance Based),expense,False,l10n_na.na_chart_template
+na_account_account_5121312,5121312,Bonuses (Non-Performance Based),expense,False,l10n_na.na_chart_template
+na_account_account_5121313,5121313,Mandatory (Legal Or Regulatory),expense,False,l10n_na.na_chart_template
+na_account_account_5121321,5121321,Food And Beverages,expense,False,l10n_na.na_chart_template
+na_account_account_5121322,5121322,Wellness Programs,expense,False,l10n_na.na_chart_template
+na_account_account_5121323,5121323,Professional Or Membership Fees,expense,False,l10n_na.na_chart_template
+na_account_account_5121324,5121324,Reimbursed Costs,expense,False,l10n_na.na_chart_template
+na_account_account_5121325,5121325,Other Fringe And Social Benefits,expense,False,l10n_na.na_chart_template
+na_account_account_512141,512141,Social Security Tax,expense,False,l10n_na.na_chart_template
+na_account_account_512142,512142,Health Insurance (Mandatory),expense,False,l10n_na.na_chart_template
+na_account_account_512143,512143,Safety Insurance (Mandatory),expense,False,l10n_na.na_chart_template
+na_account_account_512144,512144,Workers Compensation Insurance,expense,False,l10n_na.na_chart_template
+na_account_account_512145,512145,Other Insurance,expense,False,l10n_na.na_chart_template
+na_account_account_512146,512146,Other Payroll Taxes And Fees,expense,False,l10n_na.na_chart_template
+na_account_account_5121511,5121511,Defined Contribution Pension Plan,expense,False,l10n_na.na_chart_template
+na_account_account_5121512,5121512,Defined Benefit Pension Plan,expense,False,l10n_na.na_chart_template
+na_account_account_5121513,5121513,Other Postretirement Defined Benefit Plan,expense,False,l10n_na.na_chart_template
+na_account_account_5121514,5121514,Other Postretirement And Postemployment Plans And Benefits,expense,False,l10n_na.na_chart_template
+na_account_account_512152,512152,Termination Benefits,expense,False,l10n_na.na_chart_template
+na_account_account_512153,512153,Other Post Employment Benefits,expense,False,l10n_na.na_chart_template
+na_account_account_512161,512161,Share-Based Arrangements,expense,False,l10n_na.na_chart_template
+na_account_account_512162,512162,Deferred Cash-Based Arrangements,expense,False,l10n_na.na_chart_template
+na_account_account_512163,512163,Other Deferred Compensation Arrangements,expense,False,l10n_na.na_chart_template
+na_account_account_512171,512171,Employee Benefits (Excluding Pension And Other Postretirement Benefits),expense,False,l10n_na.na_chart_template
+na_account_account_512172,512172,Other Employee Related Expenses,expense,False,l10n_na.na_chart_template
+na_account_account_512211,512211,Direct Compensation ,expense,False,l10n_na.na_chart_template
+na_account_account_512212,512212,Indirect Compensation ,expense,False,l10n_na.na_chart_template
+na_account_account_512213,512213,Post-Employment Benefits,expense,False,l10n_na.na_chart_template
+na_account_account_512221,512221,Direct Compensation ,expense,False,l10n_na.na_chart_template
+na_account_account_512222,512222,Indirect Compensation ,expense,False,l10n_na.na_chart_template
+na_account_account_512223,512223,Post-Employment Benefits,expense,False,l10n_na.na_chart_template
+na_account_account_513111,513111,"Shipping, Freight Forwarding",expense,False,l10n_na.na_chart_template
+na_account_account_513112,513112,Storage And Handling,expense,False,l10n_na.na_chart_template
+na_account_account_513113,513113,Other Shipping Services,expense,False,l10n_na.na_chart_template
+na_account_account_5132111,5132111,"Internet, Mobile Phone",expense,False,l10n_na.na_chart_template
+na_account_account_5132112,5132112,"Radio, Television",expense,False,l10n_na.na_chart_template
+na_account_account_5132113,5132113,Outdoor,expense,False,l10n_na.na_chart_template
+na_account_account_5132114,5132114,Print,expense,False,l10n_na.na_chart_template
+na_account_account_5132115,5132115,"Print, Brochures, Customer Magazines And Newsletters",expense,False,l10n_na.na_chart_template
+na_account_account_5132116,5132116,Other Media Production,expense,False,l10n_na.na_chart_template
+na_account_account_5132121,5132121,Social Media And Internet,expense,False,l10n_na.na_chart_template
+na_account_account_5132122,5132122,Radio And Television,expense,False,l10n_na.na_chart_template
+na_account_account_5132123,5132123,Print And Outdoor,expense,False,l10n_na.na_chart_template
+na_account_account_5132124,5132124,Other Media Procurement,expense,False,l10n_na.na_chart_template
+na_account_account_513221,513221,"Market Research, Data Collection",expense,False,l10n_na.na_chart_template
+na_account_account_513222,513222,"Focus Groups, Data Analysis",expense,False,l10n_na.na_chart_template
+na_account_account_513223,513223,"Telemarketing, Direct Marketing",expense,False,l10n_na.na_chart_template
+na_account_account_513224,513224,Public Relations,expense,False,l10n_na.na_chart_template
+na_account_account_513225,513225,Other Marketing ,expense,False,l10n_na.na_chart_template
+na_account_account_513311,513311,Land Lines,expense,False,l10n_na.na_chart_template
+na_account_account_513312,513312,Mobile Phones,expense,False,l10n_na.na_chart_template
+na_account_account_5133131,5133131,Hosting,expense,False,l10n_na.na_chart_template
+na_account_account_5133132,5133132,Domain And Site Maintenance,expense,False,l10n_na.na_chart_template
+na_account_account_5133141,5133141,Design And Implementation,expense,False,l10n_na.na_chart_template
+na_account_account_5133142,5133142,Technical Support And Maintenance,expense,False,l10n_na.na_chart_template
+na_account_account_51341,51341,Sales Agents And Brokers,expense,False,l10n_na.na_chart_template
+na_account_account_51342,51342,Franchisors,expense,False,l10n_na.na_chart_template
+na_account_account_51343,51343,Purchase Agents And Brokers,expense,False,l10n_na.na_chart_template
+na_account_account_513511,513511,"Legal, Notary",expense,False,l10n_na.na_chart_template
+na_account_account_513512,513512,"Accounting, Audit And Tax",expense,False,l10n_na.na_chart_template
+na_account_account_513513,513513,Due Diligence,expense,False,l10n_na.na_chart_template
+na_account_account_513514,513514,Management Consulting,expense,False,l10n_na.na_chart_template
+na_account_account_513515,513515,"Engineering, Design, Architectural Fees",expense,False,l10n_na.na_chart_template
+na_account_account_513516,513516,Research Or Devolvement Services,expense,False,l10n_na.na_chart_template
+na_account_account_51352,51352,"Translation, Interpreting",expense,False,l10n_na.na_chart_template
+na_account_account_51353,51353,Inspection And Testing,expense,False,l10n_na.na_chart_template
+na_account_account_51354,51354,Certification,expense,False,l10n_na.na_chart_template
+na_account_account_51355,51355,Employment Agents And Agencies,expense,False,l10n_na.na_chart_template
+na_account_account_51356,51356,Bank Fees,expense,False,l10n_na.na_chart_template
+na_account_account_513571,513571,Vehicle,expense,False,l10n_na.na_chart_template
+na_account_account_513572,513572,Equipment,expense,False,l10n_na.na_chart_template
+na_account_account_513573,513573,Property Insurance,expense,False,l10n_na.na_chart_template
+na_account_account_513574,513574,General Business Risk,expense,False,l10n_na.na_chart_template
+na_account_account_51358,51358,Contract Manufacturing,expense,False,l10n_na.na_chart_template
+na_account_account_5136111,5136111,Domestic,expense,False,l10n_na.na_chart_template
+na_account_account_5136112,5136112,International,expense,False,l10n_na.na_chart_template
+na_account_account_513612,513612,Per Diem And Non Benefit Reimbursed Costs,expense,False,l10n_na.na_chart_template
+na_account_account_513613,513613,Airline And Other Travel Tickets,expense,False,l10n_na.na_chart_template
+na_account_account_513614,513614,Fuel,expense,False,l10n_na.na_chart_template
+na_account_account_513615,513615,"Taxies, Transit And Parking",expense,False,l10n_na.na_chart_template
+na_account_account_513616,513616,Other Travel ,expense,False,l10n_na.na_chart_template
+na_account_account_513621,513621,Restaurants,expense,False,l10n_na.na_chart_template
+na_account_account_513622,513622,"Shows, Cabarets, Sporting Events",expense,False,l10n_na.na_chart_template
+na_account_account_513623,513623,Other Entertainment ,expense,False,l10n_na.na_chart_template
+na_account_account_51363,51363,Training And Education,expense,False,l10n_na.na_chart_template
+na_account_account_51371,51371,Repairs,expense,False,l10n_na.na_chart_template
+na_account_account_51372,51372,Servicing And Upkeep,expense,False,l10n_na.na_chart_template
+na_account_account_51373,51373,Maintenance,expense,False,l10n_na.na_chart_template
+na_account_account_51374,51374,Janitorial,expense,False,l10n_na.na_chart_template
+na_account_account_5138,5138,Utilities (Classified As Service),expense,False,l10n_na.na_chart_template
+na_account_account_5139,5139,Other Services,expense,False,l10n_na.na_chart_template
+na_account_account_51411,51411,"Land, Buildings And Structures",expense,False,l10n_na.na_chart_template
+na_account_account_51412,51412,Machinery And Equipment,expense,False,l10n_na.na_chart_template
+na_account_account_51413,51413,Transportation Equipment,expense,False,l10n_na.na_chart_template
+na_account_account_51414,51414,Hardware And Software,expense,False,l10n_na.na_chart_template
+na_account_account_51415,51415,"Furniture, Fixtures, Office Equipment And Decorations",expense,False,l10n_na.na_chart_template
+na_account_account_51416,51416,Small Asset Rentals,expense,False,l10n_na.na_chart_template
+na_account_account_51417,51417,Operating Leases,expense,False,l10n_na.na_chart_template
+na_account_account_51418,51418,Other Short- Term Rentals,expense,False,l10n_na.na_chart_template
+na_account_account_5142111,5142111,Landfill,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142112,5142112,Other Land With Limited Life,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514212,514212,Land Improvements,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142131,5142131,Bearer Plants,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142132,5142132,Other Agricultural Assets,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514221,514221,"Manufacturing, Production And Service Facilities",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514222,514222,"Barns, Silos And Other Agricultural Buildings",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514223,514223,Warehouses And Storage Facilities,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514224,514224,Storefronts And Showrooms,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514225,514225,"Office Buildings, Research Facilities",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514226,514226,Building Improvements,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514227,514227,Owner Occupied Property Measured Using Investment Property Fair Value Model,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142281,5142281,Investment Property Completed,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142282,5142282,Investment Property Under Construction Or Development,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423111,51423111,"Presses, Bending, Casting Machines",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423112,51423112,"Turning, Drilling, Milling, Grinding Machines",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423113,51423113,"Laser, Water-Jet, Photochemical, Ion Beam, Plasma Cutting Machines",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423114,51423114,"Broaching, Lapping, Honing Machines",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423115,51423115,"Turbines, Compressors, Pumps And Piping",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423116,51423116,"Ovens, Autoclaves, Heaters, Boilers",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423117,51423117,"Refrigerators, Air-Conditioners",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423118,51423118,"Washing, Cleaning, Sterilization Machines",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423119,51423119,"Cranes, Hoists, Convey Belts",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514231110,514231110,Industrial Robots,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514231111,514231111,3d Printers,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514231112,514231112,"CNC, Cad/Cam",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514231113,514231113,"Welders, Wrenches And Other Hand Held Tools And Machines",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514231114,514231114,"Jigs, Dies, Molds, Fixtures",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514231115,514231115,Other Machines And Machine Tools,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423121,51423121,"Combines, Threshers, Fellers, Harvesters",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423122,51423122,"Cleaning, Processing, Sorting, Bailing, Milling Machines",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423123,51423123,Storage Bins And Conveyers,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423124,51423124,"Tractors, Trailers And Other Vehicles Classified As Machinery",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423125,51423125,Bearer Plants (Perennials),expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423126,51423126,Heard Or Draft Animals,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142313,5142313,Other Machinery,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142321111,5142321111,Light Duty Trucks,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142321112,5142321112,Heavy Duty Trucks,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142321113,5142321113,Truck Trailers,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142321121,5142321121,Cars,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142321122,5142321122,Pickups And Suvs,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142321123,5142321123,Electric And Hybrid Vehicles,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142321131,5142321131,"Ships, Vessels And Tugs",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142321132,5142321132,Platforms And Barges,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142321141,5142321141,Cars And Locomotives,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142321142,5142321142,Rails And Rail Infrastructure Not Classified As Machinery,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142321151,5142321151,Passenger Aircraft,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142321152,5142321152,Cargo Aircraft,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142321153,5142321153,Executive Aircraft,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142321154,5142321154,Flight Controls,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232121,514232121,"Bulldozers, Excavators, Backhoes",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232122,514232122,"Plows, Scrapers, Compactors, Graders, Pavers",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232123,514232123,Drills And Drilling Not Classified As Energy ,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232131,514232131,Shipping Containers,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232132,514232132,Reusable (Returnable) Containers Or Pallets,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232133,514232133,Other Shipping Related Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423221,51423221,"Notebooks, Desktops And Workstations",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423222,51423222,Servers And Networking Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423223,51423223,Research And Development Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423224,51423224,Acquired Computer Software (Classified As PP&E),expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423225,51423225,Developed Computer Software (Classified As PP&E),expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423231,51423231,"Computer Peripherals, Printers, Scanners",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423232,51423232,Telephones And Communication Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423233,51423233,"Cash Registers, Terminals, Checkout Counters",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423234,51423234,Audio Visual Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423235,51423235,"Laminators, Shredders And Other Office Equipment",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423241,51423241,Pipelines,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423242,51423242,Refining Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423243,51423243,Upstream Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423244,51423244,Downstream Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423245,51423245,Gas Transmission Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423246,51423246,Gas Distribution Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232471,514232471,Electric Transmission And Distribution Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232472,514232472,Electric Generation Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423248,51423248,Nuclear Fuel,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51423249,51423249,Oil And Gas Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232410,514232410,Gas Gathering And Processing Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232411,514232411,Wells And Related Equipment And Facilities,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232412,514232412,Marine Services Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232413,514232413,Exploration Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232414,514232414,Production Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232415,514232415,"Gas, Transmission And Distribution Equipment",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514232416,514232416,Mining Assets,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142325,5142325,Other Equipment,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514241,514241,"Desks, Chairs",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514242,514242,"Shelves, Cabinets",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514243,514243,Showroom Cabinets And Displays,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514244,514244,Decorations And Artwork,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514245,514245,"Works Of Art, Historical Treasures, And Similar Assets ",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514246,514246,"Coffee Makers, Fringes, Stoves, Ovens",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514247,514247,"Temporary Cabinets, Display Cases, Signs And Banners",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514248,514248,Other Furniture And Fixtures,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514251,514251,Spare Parts Inventory (Repairs And Maintenance Parts),expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514252,514252,Tangible Exploration And Evaluation Assets,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514253,514253,"Oil And Gas Assets (Exploration, Evaluation, Development Or Production)",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142541,5142541,Operating Leased Assets,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5142542,5142542,Financial Leased Assets,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514255,514255,"Other Property, Plant And Equipment",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143111,5143111,Patents,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143112,5143112,Patented Technology,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514312111,514312111,Secret Formulas And Recipes,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514312112,514312112,"Designs, Prototypes And Models",expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51431212,51431212,Trade Secrets,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51431213,51431213,Blueprints And Manuals,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143131,5143131,Acquired In-Process R&D,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143132,5143132,Developed In-Process R&D,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143141,5143141,Copyrights,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143142,5143142,Artistic-Related Intangible Assets,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143143,5143143,Media Content,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143144,5143144,Film Libraries,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514321,514321,Purchased Software,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514322,514322,Software Developed For Own Use,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514323,514323,Software Developed For Resale,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51433111,51433111,Trademarks,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51433112,51433112,Trade Names,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51433113,51433113,Brand Names,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51433114,51433114,Trade Dress,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51433115,51433115,Mastheads And Publishing Titles,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143313,5143313,Collective Marks,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143314,5143314,Service Marks,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143315,5143315,Internet Domain Names,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143316,5143316,Other Marketing-Related Assets,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143321,5143321,Customer Lists,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143322,5143322,Customer Relationships,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143323,5143323,Distribution Righters And Systems,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143324,5143324,Order Or Production Backlog,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143325,5143325,Database Rights,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514341,514341,Customer Contracts,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514342,514342,Operating And Broadcast Rights,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514343,514343,Noncompete Agreements,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514344,514344,Employment Contracts,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514345,514345,Insurance Contracts,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514346,514346,Reinsurance Contracts,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514347,514347,Royalty Agreements,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514348,514348,Service Agreements,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514349,514349,Other Contractual Rights,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143410,5143410,Core Deposits,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51434111,51434111,Franchise Rights,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51434112,51434112,Licensing Agreements,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143412,5143412,Distribution Agreements,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143413,5143413,Use Rights,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143414,5143414,Servicing Contracts,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143415,5143415,Standstill Agreements,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143416,5143416,Transmission Service Agreement,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143417,5143417,Construction Permits,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5143418,5143418,Other Contract-Based Intangible Assets,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514351,514351,Operating Lease (Classified As Intangible),expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514352,514352,Finance Lease (Classified As Intangible),expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514361,514361,Intangible Exploration And Evaluation Assets,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_514362,514362,Deferred Charges,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51441,51441,Mining Properties And Mineral Rights,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51442,51442,Mine Development,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51443,51443,Drilling Rights,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51444,51444,Oil Deposits,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51445,51445,Gas Deposits,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51446,51446,Coal Deposits,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51447,51447,Mineral Deposits,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51448,51448,Other Deposits,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_51449,51449,Other Land Subject To Deletion,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_52111,52111,Cost Of Merchandise Sold,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_5211211,5211211,Sales Of Direct Material,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_5211231,5211231,Indirect Material,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_5211232,5211232,Indirect Labor,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_52112331,52112331,Maintenance Supplies,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_5211234,5211234,Setup And Re-Tooling,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_5211235,5211235,Quality Control And Inspection,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_52112361,52112361,Communications Costs,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_52112362,52112362,Utilities,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_5211237,5211237,Other Taxes And Fees (Classified As Cost Of Sales),expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_5211238,5211238,Shipping And Handling (Expensed As Incurred),expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_5211239,5211239,Other Variable Costs,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_521211,521211,Short- Term Lease,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_521212,521212,Lease Of Small Assets (IFRS Only),expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_5212211,5212211,Depreciation,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_5212212,5212212,Amortization,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_521222,521222,Depletion,expense_depreciation,False,l10n_na.na_chart_template
+na_account_account_521331,521331,Direct Tax And License Fees,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_521332,521332,Excise And Sales Taxes,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_521341,521341,Inventory Write-Down,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_521361,521361,Direct Financing Lease,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_521362,521362,Sales Type Lease,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_521363,521363,Direct Costs Of Leased And Rented Property Or Equipment,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_521371,521371,Costs Of Obtaining A Contract,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_521372,521372,Costs Of Fulfilling A Contract,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_5221111,5221111,Sales Staff Compensation,expense,False,l10n_na.na_chart_template
+na_account_account_5221112,5221112,Fees Paid To Third Parties (IFRS 15.26.F | ASC 606-10-25-18.F ),expense,False,l10n_na.na_chart_template
+na_account_account_5221121,5221121,Rent Of Sales Equipment And Facilities,expense,False,l10n_na.na_chart_template
+na_account_account_5221122,5221122,Depreciation Of Sales Equipment And Facilities,expense,False,l10n_na.na_chart_template
+na_account_account_5221131,5221131,Training,expense,False,l10n_na.na_chart_template
+na_account_account_5221132,5221132,Travel And Entertainment,expense,False,l10n_na.na_chart_template
+na_account_account_5221133,5221133,Product Warranty ,expense,False,l10n_na.na_chart_template
+na_account_account_5221134,5221134,Utilities And Facility Expenses,expense,False,l10n_na.na_chart_template
+na_account_account_5221135,5221135,Other Sales Expenses,expense,False,l10n_na.na_chart_template
+na_account_account_522131,522131,Transportation And Shipping,expense,False,l10n_na.na_chart_template
+na_account_account_522132,522132,Storage And Handling,expense,False,l10n_na.na_chart_template
+na_account_account_522133,522133,Repairs And Maintenance ,expense,False,l10n_na.na_chart_template
+na_account_account_522134,522134,Other Shipping Costs,expense,False,l10n_na.na_chart_template
+na_account_account_5222111,5222111,Office Staff Compensation,expense,False,l10n_na.na_chart_template
+na_account_account_5222112,5222112,Officer Compensation,expense,False,l10n_na.na_chart_template
+na_account_account_52221211,52221211,Recruiting ,expense,False,l10n_na.na_chart_template
+na_account_account_52221212,52221212,Other Human Resource Costs,expense,False,l10n_na.na_chart_template
+na_account_account_522241,522241,Legal Fees,expense,False,l10n_na.na_chart_template
+na_account_account_522251,522251,Travel And Entertainment,expense,False,l10n_na.na_chart_template
+na_account_account_522252,522252,Training,expense,False,l10n_na.na_chart_template
+na_account_account_522253,522253,Food And Beverages (Non-Travel),expense,False,l10n_na.na_chart_template
+na_account_account_522254,522254,Periodicals And Subscriptions (Excluding Software As A Service),expense,False,l10n_na.na_chart_template
+na_account_account_522255,522255,License Fees And Royalties (Excluding Software),expense,False,l10n_na.na_chart_template
+na_account_account_522256,522256,General Maintenance And Cleanings Costs,expense,False,l10n_na.na_chart_template
+na_account_account_522257,522257,Utilities,expense,False,l10n_na.na_chart_template
+na_account_account_522258,522258,Miscellaneous Administrative Expenses,expense,False,l10n_na.na_chart_template
+na_account_account_522261,522261,"Rent (Operating Lease Expense) Office Furniture, Equipment And Facilities",expense,False,l10n_na.na_chart_template
+na_account_account_522262,522262,"Depreciation Office Furniture, Equipment And Facilities",expense,False,l10n_na.na_chart_template
+na_account_account_522263,522263,Amortization,expense,False,l10n_na.na_chart_template
+na_account_account_522264,522264,Depletion,expense,False,l10n_na.na_chart_template
+na_account_account_5231,5231,Credit Loss Expense,expense,False,l10n_na.na_chart_template
+na_account_account_5232,5232,Credit Loss Expense Reversal,income_other,False,l10n_na.na_chart_template
+na_account_account_61111,61111,Interest ,income_other,False,l10n_na.na_chart_template
+na_account_account_61112,61112,Dividends ,income_other,False,l10n_na.na_chart_template
+na_account_account_61113,61113,Other Finance Revenue,income_other,False,l10n_na.na_chart_template
+na_account_account_61211,61211,Interest ,expense,False,l10n_na.na_chart_template
+na_account_account_61212,61212,Other Finance Expenses,expense,False,l10n_na.na_chart_template
+na_account_account_6211,6211,Foreign Currency Transaction Loss,expense,False,l10n_na.na_chart_template
+na_account_account_6212,6212,Foreign Currency Transaction Gain,income_other,False,l10n_na.na_chart_template
+na_account_account_6231,6231,Gain (Loss) On Options (Purchased And Written),income_other,False,l10n_na.na_chart_template
+na_account_account_6232,6232,Gain (Loss) On Futures And Forwards,income_other,False,l10n_na.na_chart_template
+na_account_account_6233,6233,Gain (Loss) On Swaps,income_other,False,l10n_na.na_chart_template
+na_account_account_6234,6234,Gain (Loss) On Commodity Contract Asset,income_other,False,l10n_na.na_chart_template
+na_account_account_6235,6235,Gain (Loss) On Energy Marketing Contracts,income_other,False,l10n_na.na_chart_template
+na_account_account_6236,6236,Gain (Loss) On Other Derivatives,income_other,False,l10n_na.na_chart_template
+na_account_account_6251,6251,Gain (Loss) On Restructuring Of Debt,income_other,False,l10n_na.na_chart_template
+na_account_account_6252,6252,Gain (Loss) On Extinguishment Of Debt,income_other,False,l10n_na.na_chart_template
+na_account_account_6253,6253,Gain (Loss) On Repurchase Of Debt Instrument,income_other,False,l10n_na.na_chart_template
+na_account_account_6271,6271,Impairment Loss (Reversal) Receivables (IFRS Only),income_other,False,l10n_na.na_chart_template
+na_account_account_6272,6272,Impairment Loss (Reversal) Other Financial Assets (IFRS Only),income_other,False,l10n_na.na_chart_template
+na_account_account_6312,6312,Real Estate Insurance,expense,False,l10n_na.na_chart_template
+na_account_account_63101,63101,Production Tax Expense,expense,False,l10n_na.na_chart_template
+na_account_account_63102,63102,Pump Taxes,expense,False,l10n_na.na_chart_template
+na_account_account_63103,63103,Taxes Other,expense,False,l10n_na.na_chart_template
+na_account_account_7111,7111,Accounts Receivable,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_7112,7112,Notes Receivable,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_7113,7113,Loans Receivable,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_7114,7114,Lease Receivables,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_7115,7115,Other Claims,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_7116,7116,Equity In Subsidiaries,equity,False,l10n_na.na_chart_template
+na_account_account_71211,71211,Accounts Receivable,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_71212,71212,Notes Receivable,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_71213,71213,Loans And Leases,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_71214,71214,Other Claims Or Receivables,asset_receivable,True,l10n_na.na_chart_template
+na_account_account_71215,71215,Equity In Subsidiaries,equity,False,l10n_na.na_chart_template
+na_account_account_71221,71221,Employees,payable,True,l10n_na.na_chart_template
+na_account_account_712221,712221,Principal Owners And Family Members,payable,True,l10n_na.na_chart_template
+na_account_account_712222,712222,Key Management And Family Members,payable,True,l10n_na.na_chart_template
+na_account_account_712223,712223,Other Parties That Control Or Can Significantly Management Or Operating Policies,payable,True,l10n_na.na_chart_template
+na_account_account_71223,71223,Joint Ventures,payable,True,l10n_na.na_chart_template
+na_account_account_71224,71224,Associates,payable,True,l10n_na.na_chart_template
+na_account_account_71225,71225,Affiliates,payable,True,l10n_na.na_chart_template
+na_account_account_71226,71226,Other Related Parties,payable,True,l10n_na.na_chart_template
+na_account_account_7131,7131,Advances To Affiliates,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_7132,7132,Investments In Subsidiaries,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_7133,7133,Investments In Joint Ventures,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_7134,7134,Investments In Associates,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_71351,71351,Pension Trust,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_71352,71352,Profit Sharing Trust,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_71353,71353,Other Trusts ,asset_non_current,False,l10n_na.na_chart_template
+na_account_account_71361,71361,Investments In Associates Accounted For Using Equity Method,equity,False,l10n_na.na_chart_template
+na_account_account_71362,71362,Investments In Joint Ventures Accounted For Using Equity Method,equity,False,l10n_na.na_chart_template
+na_account_account_7211,7211,Accounts Payable,payable,True,l10n_na.na_chart_template
+na_account_account_7212,7212,Notes Payable,payable,True,l10n_na.na_chart_template
+na_account_account_7213,7213,Loans Payable,payable,True,l10n_na.na_chart_template
+na_account_account_7214,7214,Lease Payables,payable,True,l10n_na.na_chart_template
+na_account_account_7215,7215,Other Obligations,payable,True,l10n_na.na_chart_template
+na_account_account_72211,72211,Accounts Payable,payable,True,l10n_na.na_chart_template
+na_account_account_72212,72212,Notes Payable,payable,True,l10n_na.na_chart_template
+na_account_account_72213,72213,Loans And Leases Payable,payable,True,l10n_na.na_chart_template
+na_account_account_72214,72214,Other Obligations Or Payables,payable,True,l10n_na.na_chart_template
+na_account_account_72221,72221,Employees,payable,True,l10n_na.na_chart_template
+na_account_account_72222,72222,Officers Or Stockholders,payable,True,l10n_na.na_chart_template
+na_account_account_72223,72223,Affiliate,payable,True,l10n_na.na_chart_template
+na_account_account_72224,72224,Other Related Parties,payable,True,l10n_na.na_chart_template
+na_account_account_731141,731141,Interest Revenue,income_other,False,l10n_na.na_chart_template
+na_account_account_731142,731142,Dividend Revenue,income_other,False,l10n_na.na_chart_template
+na_account_account_731143,731143,Royalties Revenue,income_other,False,l10n_na.na_chart_template
+na_account_account_731144,731144,Rent Revenue,income_other,False,l10n_na.na_chart_template
+na_account_account_731145,731145,Gains,income_other,False,l10n_na.na_chart_template
+na_account_account_73121,73121,Sales To Officers,income_other,False,l10n_na.na_chart_template
+na_account_account_73122,73122,Sales To Other Related Parties,income_other,False,l10n_na.na_chart_template
+na_account_account_732111,732111,Material And Consumables,expense,False,l10n_na.na_chart_template
+na_account_account_732112,732112,Services,expense,False,l10n_na.na_chart_template
+na_account_account_7321211,7321211,Cost Of Products Sold,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_7321212,7321212,Cost Of Merchandise Sold,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_7321213,7321213,Cost Of Services Rendered,expense_direct_cost,False,l10n_na.na_chart_template
+na_account_account_7321231,7321231,Management Fees,expense,False,l10n_na.na_chart_template
+na_account_account_7321232,7321232,Professional Services,expense,False,l10n_na.na_chart_template
+na_account_account_7321233,7321233,Licensing Fees,expense,False,l10n_na.na_chart_template
+na_account_account_7321234,7321234,Research And Development Costs,expense,False,l10n_na.na_chart_template
+na_account_account_7321241,7321241,Interest Expense,expense,False,l10n_na.na_chart_template
+na_account_account_7321242,7321242,Royalties Expense,expense,False,l10n_na.na_chart_template
+na_account_account_7321243,7321243,Rent Expense,expense,False,l10n_na.na_chart_template
+na_account_account_7321244,7321244,Losses,expense,False,l10n_na.na_chart_template
+na_account_account_73221,73221,Purchases From Officers,expense,False,l10n_na.na_chart_template
+na_account_account_73222,73222,Purchases From Other Related Parties,expense,False,l10n_na.na_chart_template

@@ -1,0 +1,22 @@
+{
+    'name': 'Namibia Base Localization',
+    'odoo_version': '16.0',
+    'version': '1.0.0',
+    'category': 'Localization',
+    'description': """Namibia localization data like Bank,Provinces""",
+    'author': 'Alien Group Lda',
+    'summary': "Base Localization data for Namibia",
+    'website': 'https://www.alien-group.com',
+    'depends': ['base', 'calendar', 'product'],
+    'data': [
+        'data/banks.xml',
+        'data/country_state.xml',
+        #'data/country_state_county.xml',
+        'views/banks_view.xml',
+        'views/res_partner_view.xml',
+        #'views/calendar_event_view.xml',
+        'security/ir.model.access.csv',
+    ],
+    'installable': True,
+    'auto_install': False,
+}

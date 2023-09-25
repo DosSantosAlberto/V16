@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- modify employee tree view -->
+    <record id="ag_employee_tree_view" model="ir.ui.view">
+        <field name="name">Inherited Employee Tree View</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="employee_number"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- modify employee form view -->
+    <record id="ag_employee_form_view" model="ir.ui.view">
+        <field name="name">AG - Inherited Employee Form View</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+<!--            <field name="bank_account_id" position="replace"/>-->
+            <xpath expr="//div[hasclass('oe_title')]/h1" position="after">
+                <label for="employee_number" class="oe_edit_only"/>
+                <h1>
+                    <field name="employee_number"/>
+                </h1>
+            </xpath>
+            <field name="department_id" position="before">
+                <field name="admission_date"/>
+                <field name="last_work_date"/>
+            </field>
+            <field name="country_id" position="before">
+                <field name="is_foreign" widget="boolean_toggle"/>
+            </field>
+            <field name="passport_id" position="after">
+                <field name="fiscal_number"/>
+                <field name="social_security"/>
+            </field>
+            <field name="address_home_id" position="after">
+                <field name="address_province"/>
+                <field name="address_county"/>
+                <field name="address_address"/>
+                <field name="personal_mobile_1"/>
+                <field name="personal_mobile_2"/>
+                <field name="personal_home_landline"/>
+                <field name="personal_email"/>
+            </field>
+
+            <page name="hr_settings" position="inside">
+                <group string="Payment" name="payment_group">
+                    <field name="payment_method" groups="hr_payroll.group_hr_payroll_user"
+                           required="1"/>
+                </group>
+            </page>
+
+            <page name="personal_information" position="inside">
+                <group string="Bank Account">
+                    <field name="bank_bank" attrs="{'required':[('payment_method','=','bank')]}" widget="many2one_tags" groups="hr_payroll.group_hr_payroll_user"/>
+                    <field name="bank_account" attrs="{'required':[('payment_method','=','bank')]}" groups="hr_payroll.group_hr_payroll_user"/>
+                </group>
+            </page>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_form_inherit" model="ir.ui.view">
+            <field name="name">l10n_ao.account.account.form</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='account_type']" position="after">
+                    <field name="cost_center"
+                           attrs="{'invisible':[('has_cost_center','==', False)]}"
+                           options="{'no_open': True, 'no_create': True}"/>
+                    <field name="cash_flow"
+                           attrs="{'invisible':[('has_cash_flow','==', False)]}"
+                           options="{'no_open': True, 'no_create': True}"/>
+                    <field name="iva_plan"
+                           attrs="{'invisible':[('has_iva','==', False)], 'required':[('has_iva','!=', False)]}"
+                           options="{'no_open': True, 'no_create': True}"/>
+                    <field name="fiscal_plan"
+                           attrs="{'invisible':[('has_fiscal_plan','==', False)]}"
+                           options="{'no_open': True, 'no_create': True}"/>
+                </xpath>
+                <xpath expr="//field[@name='tag_ids']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='deprecated']" position="after">
+                    <field name="has_cash_flow"/>
+                    <field name="has_fiscal_plan"/>
+                    <field name="has_iva"/>
+                    <field name="has_cost_center"/>
+
+                </xpath>
+            </field>
+        </record>
+
+        <record id="cost_center_view_tree" model="ir.ui.view">
+            <field name="name">cost_center_view_tree</field>
+            <field name="model">account.cost.center</field>
+            <field name="arch" type="xml">
+                <tree string="Cost Center" editable="bottom">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="company_id"
+                           readonly="1"
+                           groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="open_cost_center_action" model="ir.actions.act_window">
+            <field name="name">Cost Center</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.cost.center</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="cash_flow_view_tree" model="ir.ui.view">
+            <field name="name">account_cash_view_tree</field>
+            <field name="model">account.cash.flow</field>
+            <field name="arch" type="xml">
+                <tree string="Cash Flow" editable="bottom">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="open_cash_flow_action" model="ir.actions.act_window">
+            <field name="name">Cash Flow</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.cash.flow</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="tax_iva_view_tree" model="ir.ui.view">
+            <field name="name">account_iva_view_tree</field>
+            <field name="model">account.iva</field>
+            <field name="arch" type="xml">
+                <tree string="Tax IVA" editable="bottom">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="open_tax_iva_action" model="ir.actions.act_window">
+            <field name="name">Plan IVA</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.iva</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="fiscal_plan_view_tree" model="ir.ui.view">
+            <field name="name">account_fiscal_plan_view_tree</field>
+            <field name="model">account.fiscal.plan</field>
+            <field name="arch" type="xml">
+                <tree string="Fiscal Plan" editable="bottom">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="open_fiscal_plan_action" model="ir.actions.act_window">
+            <field name="name">Fiscal Plan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.fiscal.plan</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="cost_center_menu" action="ht_account_ao.open_cost_center_action"
+                  name="Cost Center" parent="account.account_account_menu" sequence="1"/>
+        <menuitem id="cash_flow_menu" action="ht_account_ao.open_cash_flow_action"
+                  name="Cash Flow" parent="account.account_account_menu" sequence="1"/>
+        <menuitem id="tax_iva_menu" action="ht_account_ao.open_tax_iva_action"
+                  name="IVA Plan" parent="account.account_account_menu" sequence="1"/>
+        <menuitem id="fiscal_plan_menu" action="ht_account_ao.open_fiscal_plan_action"
+                  name="Fiscal Plan" parent="account.account_account_menu" sequence="1"/>
+
+    </data>
+</odoo>

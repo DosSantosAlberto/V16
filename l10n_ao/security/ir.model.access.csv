@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_saft_file,l10nao.saft.file,model_l10nao_saft_file,account.group_account_invoice,1,1,1,1
+access_saft_ao_wizard,l10nao.saft.wizard,model_l10nao_saft_wizard,account.group_account_invoice,1,1,1,1
+access_account_tax_exemption,account.tax.exemption,model_account_tax_exemption,account.group_account_invoice,1,1,1,1
+access_account_result_settlement,account.result.settlement,model_account_result_settlement,account.group_account_manager,1,1,1,1
+access_account_tax_vat_user,account.tax.vat,model_account_tax_vat,account.group_account_invoice,1,1,0,0
+access_account_tax_vat_manager,account.tax.vat,model_account_tax_vat,account.group_account_manager,1,1,1,1
+access_account_tax_regime,account.tax.regime,model_account_tax_regime,account.group_account_user,1,0,0,0

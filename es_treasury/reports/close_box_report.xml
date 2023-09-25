@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="report_close_box" model="ir.actions.report">
+            <field name="name">Fluxo de Caixa</field>
+            <field name="model">treasury.box.session</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">es_treasury.report_close_box_view</field>
+            <field name="report_file">es_treasury.report_close_box</field>
+            <field name="print_report_name">'Fluxo de caixa - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="model_treasury_box_session"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_close_box_view">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="header" style="color: #0B74CE">
+                            <div class="row b_color">
+                                <div class="col-8">
+                                    <b><span class="text-left" t-field="res_company.name"/></b>
+                                </div>
+                                <div class="col-4">
+                                    <ul class="list-inline text-right">
+                                        <span t-out="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                                        |
+                                        Pag. <span class="page"/>/<span class="topage"/>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr style="display: block; height: 1px;
+                            border: 0; border-top: 3px solid #0B74CE;
+                            margin: 0; padding: 0;"/>
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <div align="left">
+                                        <b class="b_color">
+                                            MOVIMENTOS DE CAIXA
+                                        </b>
+                                        <br/>
+                                        (<span t-field="o.start_date"/> até <span t-field="o.end_date"/>)
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div align="right"><b class="b_color">Valores Expresso em <span
+                                            t-out="res_company.currency_id.symbol"/></b></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page">
+                            <style type="text/css">
+                                * {
+                                padding-bottom: 0 !important; padding-top: 0 !important;
+                                margin-bottom: 0 !important; margin-top:0 !important;
+                                font-size: 12px !important;
+                                }
+                                hr {
+                                display: block; height: 1px;
+                                border: 0; border-top: 3px solid black;
+                                margin: 0; padding: 0;
+                                }
+                                .b_color{
+                                color: #0B74CE;
+                                }
+
+                                table {
+                                border-spacing: 3px;
+                                border-top: 3px solid black;
+                                border-collapse:collapse;
+                                }
+
+                                td {
+                                border-bottom:0 !important;
+                                border-top: 1px solid #B2BABB !important;
+                                }
+
+                                th {
+                                border-top:0 !important;
+                                border-bottom: 1px solid #B2BABB !important;
+                                }
+
+                                table, tr, th, td {
+                                border-collapse: separate;
+                                padding:0px !important;
+                                }
+
+                                .border_top_th{
+                                border-top: 1px solid black !important;
+                                }
+                            </style>
+                            <div class="row">
+                                <div class="col-8 mb-1">
+                                    <b><span style="font-size: 18px !important;" t-field="o.box"/></b>
+                                </div>
+                                <div class="col-4 text-right"><b><span style="color:green">Original</span></b></div>
+                            </div>
+                            <table class="table table-sm o_main_table" name="box_info_table">
+                                <thead>
+                                    <tr>
+                                        <th><span>Ref</span></th>
+                                        <th><span>Sessão</span></th>
+                                        <th class="text-right"><span>Saldo Inicial</span></th>
+                                        <th class="text-right"><span>Saldo Final</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span t-field="o.box"/></td>
+                                        <td><span t-field="o.name"/></td>
+                                        <td class="text-right"><span t-out="o.amount_format(o.start_balance)"/></td>
+                                        <td class="text-right"><span t-out="o.amount_format(o.end_balance)"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <table id="table" class="table table-sm o_main_table">
+                                <thead>
+                                    <tr>
+                                        <th style="border-bottom: 1px solid #B2BABB !important;" colspan="6"
+                                            class="text-center">
+                                            <span>DETALHES</span>
+                                        </th>
+                                    </tr>
+                                    <tr style="font-size: 12px; font-weight:bold;">
+                                        <th><b>Data</b></th>
+                                        <th><b>Descrição</b></th>
+                                        <th><b>Responsável</b></th>
+                                        <th class="text-right"><b>Entrada</b></th>
+                                        <th class="text-right"><b>Saída</b></th>
+                                        <th class="text-right"><b>Saldo</b></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="total_balance" t-value="0.0"/>
+                                    <t t-set="total_in_amount" t-value="0.0"/>
+                                    <t t-set="total_out_amount" t-value="0.0"/>
+                                    <t t-foreach="o.session_lines" t-as="session">
+                                        <tr style="font-size: 12px;">
+                                            <td>
+                                                <span t-field="session.release_date"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="session.communication"/>
+                                            </td>
+                                            <td>
+                                                <span t-if="session.partner_id" t-field="session.partner_id"/>
+                                                <span t-if="session.employee_id" t-field="session.employee_id"/>
+                                                <span t-if="session.creditor" t-field="session.creditor"/>
+                                                <span t-if="session.debtor" t-field="session.debtor"/>
+                                                <span t-if="session.status" t-field="session.status"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="session.payment_type == 'inbound'"
+                                                      t-out="o.amount_format(session.amount)"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="session.payment_type == 'outbound'"
+                                                      t-out="o.amount_format(session.amount)"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-out="o.amount_format(session.balance)"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <tr style="border-style:hidden" t-foreach="range(max(15-len(o.session_lines),0))"
+                                        t-as="l">
+                                        <td style="border-style:hidden; border:none !important;" t-translation="off">
+                                            &amp;nbsp;</td>
+                                        <td style="border-style:hidden; border:none !important;" class="hidden"/>
+                                        <td style="border-style:hidden; border:none !important;"/>
+                                        <td style="border-style:hidden; border:none !important;"/>
+                                        <td style="border-style:hidden; border:none !important;"
+                                            t-if="display_discount"/>
+                                        <td style="border-style:hidden; border:none !important;"/>
+                                        <td style="border-style:hidden; border:none !important;"/>
+                                        <td style="border-style:hidden; border:none !important;"/>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p align="center">Processado por</p>
+                                    <p align="center">__________________________________</p>
+                                    <p align="center" t-field="o.create_uid"/>
+                                </div>
+                                <div class="col-6">
+                                    <p align="center">Aprovado por</p>
+                                    <p align="center">__________________________________</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <div class="text-right" style="font-size:10px">
+                                <b>© COMPLLEXUS</b>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

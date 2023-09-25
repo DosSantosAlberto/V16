@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Salary Structure -->
+    <data noupdate="1">
+        <record id="hr_salary_structure_base" model="hr.payroll.structure">
+            <field name="note">ESB</field>
+            <field name="name">Estrutura Salarial Base</field>
+            <field name="type_id" ref="hr_contract.structure_type_employee"/>
+            <field name="country_id" ref="base.ao"/>
+            <field name="rule_ids"
+                   eval="[(6,0,[ref('hr_salary_rule_ordenadobase'),
+                   ref('hr_salary_rule_segurancasocial'),
+                   ref('hr_salary_rule_impostoderendimentosobreotrabalho_new_10'),
+                   ref('hr_salary_rule_impostoderendimentosobreotrabalho_new_13'),
+                   ref('hr_salary_rule_impostoderendimentosobreotrabalho_new_16'),
+                   ref('hr_salary_rule_impostoderendimentosobreotrabalho_new_18'),
+                   ref('hr_salary_rule_impostoderendimentosobreotrabalho_new_19'),
+                   ref('hr_salary_rule_impostoderendimentosobreotrabalho_new_20'),
+                   ref('hr_salary_rule_impostoderendimentosobreotrabalho_new_21'),
+                   ref('hr_salary_rule_impostoderendimentosobreotrabalho_new_22'),
+                   ref('hr_salary_rule_impostoderendimentosobreotrabalho_new_23'),
+                   ref('hr_salary_rule_impostoderendimentosobreotrabalho_new_24'),
+                   ref('hr_salary_rule_impostoderendimentosobreotrabalho_new_24_5'),
+                   ref('hr_salary_rule_impostoderendimentosobreotrabalho_new_25'),
+                   ref('hr_salary_rule_abonodefamlia'),
+                   ref('hr_salary_rule_subsdiodealeitamento'),
+                   ref('hr_salary_rule_subsdiodechefia'),
+                   ref('hr_salary_rule_subsdiodecombustvel'),
+                   ref('hr_salary_rule_subsdiodecomunicao'),
+                   ref('hr_salary_rule_subsdiodefalhas'),
+                   ref('hr_salary_rule_subsdiodealimentao'),
+                   ref('hr_salary_rule_subsdioderisco'),
+                   ref('hr_salary_rule_subsdiodesupervisao'),
+                   ref('hr_salary_rule_subsidiodetransporte'),
+                   ref('hr_salary_rule_subsidionoturno'),
+                   ref('hr_salary_rule_descontopordanos'),
+                   ref('hr_salary_rule_descontoadiantamentosalarial0'),
+                   ref('hr_salary_rule_faltajustificadaremunerada'),
+                   ref('hr_salary_rule_faltajustificadanaoremunerada'),
+                   ref('hr_salary_rule_faltainjustificada'),
+                   ref('hr_salary_rule_atrasos'),
+                   ])]"/>
+        </record>
+    </data>
+</odoo>

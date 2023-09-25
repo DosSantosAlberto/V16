@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <template id="report_credit_note_map_pdf">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.basic_layout">
+                        <div class="header" style="color: #0B74CE">
+                            <div class="row b_color">
+                                <div class="col-8">
+                                    <b><span class="text-left" t-field="doc.company_id.name"/></b>
+                                </div>
+                                <div class="col-4">
+                                    <ul class="list-inline text-right">
+                                        <span t-out="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                                        |
+                                        Pag. <span class="page"/>/<span class="topage"/>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr style="display: block; height: 1px;
+                            border: 0; border-top: 3px solid #0B74CE;
+                            margin: 0; padding: 0;"/>
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <div align="left">
+                                        <b class="b_color">
+                                            Mapa de Notas de Crédito - <span t-field="doc.filter"/>
+                                        </b>
+                                        <br/>
+                                        (<span t-field="doc.date_from"/> até <span t-field="doc.date_to"/>)
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div align="right"><b class="b_color">Valores Expresso em <span
+                                            t-out="doc.company_id.currency_id.symbol"/></b></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page">
+                            <style>
+                                * {padding-bottom: 0 !important;
+                                padding-top: 0 !important;
+                                margin-bottom: 0 !important;margin-top:0 !important; }
+                                hr {
+                                display: block; height: 1px;
+                                border: 0; border-top: 1px solid #0B74CE;
+                                margin: 0; padding: 0;
+                                }
+                                .b_color{
+                                color: #0B74CE;
+                                }
+
+                                table {
+                                border-spacing: 3px;
+                                border-top: 3px solid black;
+                                border-collapse:collapse;
+                                }
+
+                                td {
+                                border-bottom:0 !important;
+                                border-top: 1px solid #B2BABB !important;
+                                }
+
+                                th {
+                                border-top:0 !important;
+                                border-bottom: 1px solid #B2BABB !important;
+                                }
+
+                                table, tr, th, td {
+                                border-collapse: separate;
+                                padding:0px !important;
+                                }
+
+                                .border_top_th{
+                                border-top: 1px solid black !important;
+                                }
+                            </style>
+                            <table class="table table-condensed" style="font-size:10px;">
+                                <thead>
+                                    <th class="text-center" style="border-bottom:0 !important;"
+                                        rowspan="3">Nº</th>
+                                    <th class="text-center" style="border-bottom:1px solid black !important;"
+                                        colspan="14">Detalhes</th>
+                                    <tr style="font-weight:bold; color: black;">
+                                        <th class="text-center"
+                                            colspan="2">Cliente</th>
+                                        <th class="text-center"
+                                            colspan="5">Factura</th>
+                                        <th class="text-center"
+                                            colspan="5">Nota de Crédito</th>
+                                    </tr>
+                                    <tr style="font-weight:bold;">
+                                        <th style="border-bottom:0 !important;">NIF</th>
+                                        <th style="border-bottom:0 !important;">Designação</th>
+                                        <th style="border-bottom:0 !important;">Nº</th>
+                                        <th style="border-bottom:0 !important;">Data</th>
+                                        <th class="text-right" style="border-bottom:0 !important;">
+                                            Valor</th>
+                                        <th class="text-right" style="border-bottom:0 !important;">
+                                            IVA</th>
+                                        <th class="text-right" style="border-bottom:0 !important;">
+                                            Total</th>
+                                        <th style="border-bottom:0 !important;">Nº</th>
+                                        <th style="border-bottom:0 !important;">Data</th>
+                                        <th class="text-right" style="border-bottom:0 !important;">
+                                            Valor</th>
+                                        <th class="text-right" style="border-bottom:0 !important;">
+                                            IVA</th>
+                                        <th class="text-right" style="border-bottom:0 !important;">Valor
+                                            Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="number" t-value="1"/>
+                                    <t t-set="col_inv_amount" t-value="0"/>
+                                    <t t-set="col_inv_tax" t-value="0"/>
+                                    <t t-set="col_inv_total" t-value="0"/>
+                                    <t t-set="col_credit_amount" t-value="0"/>
+                                    <t t-set="col_credit_tax" t-value="0"/>
+                                    <t t-set="col_credit_total" t-value="0"/>
+                                    <t t-set="col_captive_50" t-value="0"/>
+                                    <t t-set="col_captive_100" t-value="0"/>
+
+                                    <tr t-foreach="doc.get_credit_notes()" t-as="res">
+                                        <td><span t-out="number"/></td>
+                                        <td><span t-field="res.partner_id.vat"/></td>
+                                        <td><span t-field="res.partner_id"/></td>
+                                        <td><span t-out="res.reversed_entry_id.name"/></td>
+                                        <td><span t-out="res.reversed_entry_id.invoice_date"/></td>
+                                        <td class="text-right">
+                                            <span t-out="doc.amount_format(res.reversed_entry_id.amount_untaxed)"/>
+                                            <t t-set="col_inv_amount"
+                                               t-value="col_inv_amount + res.reversed_entry_id.amount_untaxed"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-out="doc.amount_format(res.reversed_entry_id.amount_tax)"/>
+                                            <t t-set="col_inv_tax"
+                                               t-value="col_inv_tax + res.reversed_entry_id.amount_tax"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-out="doc.amount_format(res.reversed_entry_id.amount_total)"/>
+                                            <t t-set="col_inv_total"
+                                               t-value="col_inv_total + res.reversed_entry_id.amount_total"/>
+                                        </td>
+                                        <td><span t-out="res.name"/></td>
+                                        <td><span t-out="res.invoice_date"/></td>
+                                        <td class="text-right">
+                                            <span t-out="doc.amount_format(res.amount_untaxed)"/>
+                                            <t t-set="col_credit_amount"
+                                               t-value="col_credit_amount + res.amount_untaxed"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-out="doc.amount_format(res.amount_tax)"/>
+                                            <t t-set="col_credit_tax" t-value="col_credit_tax + res.amount_tax"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-out="doc.amount_format(res.amount_total)"/>
+                                            <t t-set="col_credit_total" t-value="col_credit_total + res.amount_total"/>
+                                        </td>
+                                    </tr>
+                                    <tr style="background-color:#2ec18b; font-weight:bold;">
+                                        <td colspan="5" class="text-right"><span>Totais</span></td>
+                                        <td id="col_inv_mount" class="text-right">
+                                            <span t-out="doc.amount_format(col_inv_amount or 0)"/>
+                                        </td>
+                                        <td id="col_inv_tax" class="text-right">
+                                            <span t-out="doc.amount_format(col_inv_tax or 0)"/>
+                                        </td>
+                                        <td id="col_inv_total" class="text-right">
+                                            <span t-out="doc.amount_format(col_inv_total or 0)"/>
+                                        </td>
+                                        <td colspan="2" class="text-right"></td>
+                                        <td id="col_credit_amount" class="text-right">
+                                            <span t-out="doc.amount_format(col_credit_amount or 0)"/>
+                                        </td>
+                                        <td id="col_credit_tax" class="text-right">
+                                            <span t-out="doc.amount_format(col_credit_tax or 0)"/>
+                                        </td>
+                                        <td id="col_credit_total" class="text-right">
+                                            <span t-out="doc.amount_format(col_credit_total or 0)"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <div class="footer">
+                            <div class="text-right" style="font-size:10px">
+                                <b>© COMPLLEXUS</b>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

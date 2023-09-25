@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_treasury_request,treasury.request,model_treasury_request,group_user,1,1,1,0
+access_user_treasury_request_line,treasury.request.line,model_treasury_request_line,group_user,1,1,1,0
+
+access_manager_treasury_request,treasury.request,model_treasury_request,group_manager,1,1,1,1
+access_manger_treasury_request_line,treasury.request.line,model_treasury_request_line,group_manager,1,1,1,1

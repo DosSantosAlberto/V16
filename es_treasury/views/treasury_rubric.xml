@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="treasury_rubric_view_tree" model="ir.ui.view">
+            <field name="name">treasury_rubric_view_tree</field>
+            <field name="model">treasury.rubric</field>
+            <field name="arch" type="xml">
+                <tree string="Treasury Rubric" editable="bottom">
+                    <field name="name"/>
+                    <field name="account_code"/>
+                </tree>
+            </field>
+        </record>
+        <record id="open_treasury_rubric_action" model="ir.actions.act_window">
+            <field name="name">Treasury Rubric</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">treasury.rubric</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="treasury_rubric_menu" name="Rubric"
+                  sequence="4"
+                  action="open_treasury_rubric_action"
+                  groups="account.group_account_manager"
+                  parent="treasury_config"/>
+
+    </data>
+</odoo>

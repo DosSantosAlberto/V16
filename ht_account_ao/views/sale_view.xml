@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_sale_order_form" model="ir.ui.view">
+            <field name="name">sale.order.inherit.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+               <!-- <xpath expr="//button[@name='print_quotation']" position="after">
+                    <button name="print_pro_form" string="Pro-Forma"
+                            type="object"
+                            class="o_sale_print"/>
+                </xpath>-->
+                <field name="tax_totals" position="after">
+                    <field name="amount_total_wth" class="oe_subtotal_footer_separator"
+                           attrs="{'invisible': [('amount_total_wth','=', 0)]}"/>
+                </field>
+                <field name="partner_id" position="after">
+                    <field name="has_cost_center" invisible="1"/>
+                    <field name="cost_center"
+                           attrs="{'required':[('has_cost_center','!=',False)], 'invisible':[('has_cost_center','==',False)]}"/>
+                </field>
+                <xpath expr="//sheet/notebook/page[2]" position="inside">
+                    <field name="tax_line_ids" attrs="{'readonly': [('state','not in', ['draft','sent'])]}">
+                        <tree editable="bottom" string="Taxes" create="0">
+                            <field name="name"/>
+                            <!--Need invisible fields for on_change to create all necessary info -->
+                            <field name="tax_id" invisible="1"/>
+                            <field name="sequence" invisible="1"/>
+                            <field name="account_id" groups="account.group_account_user"/>
+                            <field name="account_analytic_id" domain="[('company_id', '=', parent.company_id)]"
+                                   groups="analytic.group_analytic_accounting"/>
+                            <field name="manual" invisible="1"/>
+                            <field name="amount" invisible="1"/>
+                            <field name="amount_rounding" invisible="1"/>
+                            <field name="amount_total"/>
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="report_trial_balance_wizard_form_view" model="ir.ui.view">
+            <field name="name">account.report.trial.balance.form</field>
+            <field name="model">account.report.trial.balance</field>
+            <field name="arch" type="xml">
+                <form string="Captive Vat">
+                    <sheet>
+                        <group>
+                            <field name="company_id" options="{'no_open': True, 'no_create': True}"
+                                   groups="base.group_multi_currency"/>
+                            <field name="fiscal_year" required="1"/>
+                            <field name="periods" options="{'no_open': True, 'no_create': True}"
+                                   required="1" widget="many2many_tags" domain="[('year','=',fiscal_year)]"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="date_from" required="1"/>
+                                <field name="target_move" required="1" widget="radio"/>
+                            </group>
+                            <group>
+                                <field name="date_to" required="1"/>
+                                <field name="type" required="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button name="print_pdf" type="object"
+                                    string="print" class="oe_highlight"/>
+                            <!--<button name="print_xls" type="object"
+                                    string="PRINT XLS" class="oe_highlight"/>-->
+                            <button string="Cancel" special="cancel"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="open_report_trial_balance_act_window" model="ir.actions.act_window">
+            <field name="name">Balancete Geral</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.report.trial.balance</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_report_trial_balance"
+                  sequence="1"
+                  name="Balancete Geral"
+                  parent="account.account_reports_legal_statements_menu"
+                  action="open_report_trial_balance_act_window"/>
+    </data>
+</odoo>

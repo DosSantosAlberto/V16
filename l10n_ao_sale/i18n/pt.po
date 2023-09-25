@@ -1,0 +1,596 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_ao_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20211208\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-30 14:39+0000\n"
+"PO-Revision-Date: 2021-12-30 14:39+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "&amp;nbsp;<span>on</span>&amp;nbsp;"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model:ir.actions.report,print_report_name:l10n_ao_sale.action_report_saleorder_agt
+msgid ""
+"(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or "
+"'Order - %s' % (object.name.replace('/','_'))"
+msgstr ""
+"(object.state in ('draft', 'sent') and 'Cotação - %s' % (object.name)) or "
+"'Ordem - %s' % (object.name.replace('/','_'))"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid ""
+":\n"
+"                                <span>Consumidor Final</span>"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid ""
+"<span>\n"
+"                                        <strong>Bank Accounts:</strong>\n"
+"                                    </span>"
+msgstr ""
+"<span>\n"
+"                                        <strong>Contas bancárias:</strong>\n"
+"                                    </span>"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<span>Disc.(%)</span>"
+msgstr "<span>Desc.(%)</span>"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<span>Pro-Forma</span>"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid ""
+"<strong class=\"\">Shipping address:</strong>\n"
+"                            <br/>"
+msgstr ""
+"<strong class=\"\">Endereço de Expedição:</strong>\n"
+"                            <br/>"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<strong class=\"mr16\">Valor Transportado</strong>"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<strong class=\"mr16\">Valor a Transportar</strong>"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid ""
+"<strong>Customer:\n"
+"                                <br/>\n"
+"                            </strong>"
+msgstr ""
+"<strong>Cliente:\n"
+"                                <br/>\n"
+"                            </strong>"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<strong>Expiration:</strong>"
+msgstr "<strong>Expiração:</strong>"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<strong>Fiscal Position Remark:</strong>"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<strong>Order Date:</strong>"
+msgstr "<strong>Data da Ordem:</strong>"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<strong>Quotation Date:</strong>"
+msgstr "<strong>Data da Cotação:</strong>"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<strong>Salesperson:</strong>"
+msgstr "<strong>Vendedor:</strong>"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<strong>Signature</strong>"
+msgstr "<strong>Assinatura</strong>"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<strong>Subtotal</strong>"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<strong>Total w/ Withhold</strong>"
+msgstr "<strong>Total c/ Retenção</strong>"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<strong>Total</strong>"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "<strong>Your Reference:</strong>"
+msgstr "<strong>Sua Referência:</strong>"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "Account/IBAN"
+msgstr "Conta/IBAN"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "Amount"
+msgstr "Montante"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "Bank"
+msgstr "Banco"
+
+#. module: l10n_ao_sale
+#: code:addons/l10n_ao_sale/models/sale.py:0
+#, python-format
+msgid "Can not create orders, whose date is before date %s"
+msgstr "Não pode criar vendas, cuja data é anterior a %s"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.ao_sale_order_formview
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__partner_city
+msgid "City"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order_document_type__code
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_ao_sale
+#: model:ir.model,name:l10n_ao_sale.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: l10n_ao_sale
+#: model:ir.model,name:l10n_ao_sale.model_res_config_settings
+msgid "Config Settings"
+msgstr "Configurações"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields.selection,name:l10n_ao_sale.selection__res_company__document_type__cotacao
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "Cotação"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.l10n_ao_sale_order_view_search_inherit_pro_forma
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.l10n_ao_sale_order_view_search_inherit_proposal
+msgid "Create Date"
+msgstr "Data Criação"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.actions.act_window,help:l10n_ao_sale.action_l10n_ao_sale_pp_with_onboarding
+msgid "Create a new pro forma, the first step of a new sale!"
+msgstr "Criar uma nova pro-forma, o primeiro passo para uma nova venda!"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.actions.act_window,help:l10n_ao_sale.action_l10n_ao_sale_or_with_onboarding
+msgid "Create a new proposal, the first step of a new sale!"
+msgstr "Criar um novo Orçamento, o primeiro passo para uma nova venda!"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order_document_type__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order_document_type__create_date
+msgid "Created on"
+msgstr "Criado a"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "Currency"
+msgstr "Moeda"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "Description"
+msgstr "Descrição"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_ir_sequence__display_name
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__display_name
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order_document_type__display_name
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nome"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_res_company__document_type
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_res_config_settings__document_type
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__document_type_id
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.sale_res_config_settings_view_form
+msgid "Document Type"
+msgstr "Tipo de Documento"
+
+#. module: l10n_ao_sale
+#: code:addons/l10n_ao_sale/models/sale_order_documents_type.py:0
+#, python-format
+msgid ""
+"Document Type code cannot contain more than 2 characters. Contact the "
+"administrator"
+msgstr ""
+"O código do Tipo de Documento não pode conter mais de 2 caracteres. Contacte"
+" o Administrador"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__hash
+msgid "Hash"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__hash_control
+msgid "Hash Control"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__hash_to_sign
+msgid "Hash to sign"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_ir_sequence__id
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_res_config_settings__id
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__id
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order_document_type__id
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__secure_sequence_number
+msgid "Inalteralbility No Gap Sequence #"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid ""
+"Invoicing\n"
+"                            address:\n"
+"                            <br/>"
+msgstr ""
+"Endereço de Facturação:\n"
+"                            <br/>"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid ""
+"Invoicing and\n"
+"                            shipping address:\n"
+"                            <br/>"
+msgstr ""
+"Endereço de Facturação e Expedição:\n"
+"                            <br/>"
+
+#. module: l10n_ao_sale
+#: code:addons/l10n_ao_sale/models/sale.py:0
+#, python-format
+msgid ""
+"It is not allowed to confirm an order in %s status, the document must be "
+"validated before"
+msgstr ""
+"Não é permitida a confirmação de uma venda no estado %s, o documento deve "
+"ser validado primeiro"
+
+#. module: l10n_ao_sale
+#: code:addons/l10n_ao_sale/models/sale.py:0
+#, python-format
+msgid "It is not allowed to confirm an order in the following states: %s"
+msgstr "Não é permitido a confirmação de uma venda nos seguintes estados: %s"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_ir_sequence____last_update
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order____last_update
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order_document_type____last_update
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order_document_type__write_uid
+msgid "Last Updated by"
+msgstr "Última Modificação por"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order_document_type__write_date
+msgid "Last Updated on"
+msgstr "Última Modificação em"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.l10n_ao_sale_order_view_search_inherit_pro_forma
+msgid "My Pro Forma"
+msgstr "Minhas Pro-formas"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.l10n_ao_sale_order_view_search_inherit_proposal
+msgid "My Proposal"
+msgstr "Meus Orçamentos"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__partner_vat
+msgid "NIF"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__partner_name
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order_document_type__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.actions.act_window,help:l10n_ao_sale.action_l10n_ao_sale_pp_with_onboarding
+msgid ""
+"Once the pro forma is confirmed by the customer, it becomes a sales order.\n"
+"                    <br>\n"
+"                    You will be able to create an invoice and collect the payment."
+msgstr ""
+"Assim que a Pro-forma é confirmada pelo cliente, a mesma vira uma Ordem de Venda.\n"
+"                    <br>\n"
+"                    Poderá criar uma factura e receber pagamento."
+
+#. module: l10n_ao_sale
+#: model_terms:ir.actions.act_window,help:l10n_ao_sale.action_l10n_ao_sale_or_with_onboarding
+msgid ""
+"Once the proposal is confirmed by the customer, it becomes a sales order.\n"
+"                    <br>\n"
+"                    You will be able to create an invoice and collect the payment."
+msgstr ""
+"Assim que o Orçamento é confirmado pelo cliente, a mesma vira uma Ordem de Venda.\n"
+"                    <br>\n"
+"                    Poderá criar uma factura e receber pagamento."
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields.selection,name:l10n_ao_sale.selection__res_company__document_type__orca
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "Orçamento"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model:ir.actions.act_window,name:l10n_ao_sale.action_l10n_ao_sale_pp_with_onboarding
+#: model:ir.model.fields.selection,name:l10n_ao_sale.selection__res_company__document_type__prof
+#: model:ir.ui.menu,name:l10n_ao_sale.l10n_ao_sale_menu_pp
+msgid "Pro Forma"
+msgstr "Pro-forma"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "Pro-Forma"
+msgstr "Pro-forma"
+
+#. module: l10n_ao_sale
+#: model:ir.actions.act_window,name:l10n_ao_sale.action_l10n_ao_sale_or_with_onboarding
+#: model:ir.ui.menu,name:l10n_ao_sale.l10n_ao_sale_menu_or
+msgid "Proposal"
+msgstr "Orçamento"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "Quantity"
+msgstr "Quantidade"
+
+#. module: l10n_ao_sale
+#: model:ir.actions.report,name:l10n_ao_sale.action_report_saleorder_agt
+msgid "Quotation / Order"
+msgstr "Cotação / Ordem"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__saft_status_date
+msgid "SAFT Status Date"
+msgstr "Data Estado SAFT"
+
+#. module: l10n_ao_sale
+#: model:ir.model,name:l10n_ao_sale.model_sale_order
+msgid "Sales Order"
+msgstr "Ordem de Vendas"
+
+#. module: l10n_ao_sale
+#: model:ir.model,name:l10n_ao_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Linhas da Ordem de Vendas"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.ao_sale_order_formview
+msgid "Send by Email"
+msgstr "Enviar por Email"
+
+#. module: l10n_ao_sale
+#: model:ir.model,name:l10n_ao_sale.model_ir_sequence
+msgid "Sequence"
+msgstr "Sequência"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_invoice_agt_document_inherit_sale
+msgid "Shipping address:<br/>"
+msgstr "Endereço de Expedição:<br/>"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__system_entry_date
+msgid "Signature Datetime"
+msgstr "Data e hora da assinatura"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__partner_state
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__partner_street
+msgid "Street"
+msgstr "Rua"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__partner_street2
+msgid "Street2"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "Taxa"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: code:addons/l10n_ao_sale/models/sale.py:0
+#, python-format
+msgid ""
+"The %s document type does not allow the sale of only items of type product."
+msgstr ""
+"O Tipo de Documento %s não permite a venda exclusiva de Artigos Armazenáveis"
+
+#. module: l10n_ao_sale
+#: code:addons/l10n_ao_sale/models/sale.py:0
+#, python-format
+msgid ""
+"The %s document type does not allow the sale of only items of type service."
+msgstr "O Tipo de Documento %s não permite a venda exclusiva de Serviços"
+
+#. module: l10n_ao_sale
+#: model:ir.model.constraint,message:l10n_ao_sale.constraint_sale_order_document_type_Code
+msgid ""
+"The code and name must be unique per Documents Type.\n"
+"Please specify another Code"
+msgstr ""
+"O código e nome devem ser únicos por Tipo de Documento. Por favor "
+"especifique outro Código"
+
+#. module: l10n_ao_sale
+#: code:addons/l10n_ao_sale/models/sale_order_documents_type.py:0
+#, python-format
+msgid "The code must contain only letters. Contact the administrator"
+msgstr "O Código deve conter apenas letras. Contacte o administrador"
+
+#. module: l10n_ao_sale
+#: code:addons/l10n_ao_sale/models/sale.py:0
+#: code:addons/l10n_ao_sale/models/sale.py:0
+#, python-format
+msgid ""
+"There are missing taxes in the order line!\n"
+" If this is a duty-free product, please add the tax that corresponds to the specific duty-free tax. If not, it will not be possible to validate your SAFT file upon submission!"
+msgstr ""
+"Existem pelo menos uma linha sem imposto definido!\n"
+"Se é um produto isento, por favor use o imposto configurado para o efeito, com o respectivo motivo de isenção. Caso contrário não será possível validar o seu ficheiro SAFT aquando da sua submissão!"
+
+#. module: l10n_ao_sale
+#: code:addons/l10n_ao_sale/models/sale.py:0
+#, python-format
+msgid ""
+"There is a mismatch of the time of your computer and the last order created.\n"
+" Check if you system date it's correct!"
+msgstr ""
+"Existe incoerência entre a hora do seu computador e a última venda criada.\n"
+"Verifique se a data do seu sistema está correcta!"
+
+#. module: l10n_ao_sale
+#: model:ir.model,name:l10n_ao_sale.model_sale_order_document_type
+msgid "This Model represent document type"
+msgstr "Este modelo representa um Tipo de Documento"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "Total Price"
+msgstr "Preço Total"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields,field_description:l10n_ao_sale.field_sale_order__amount_total_wth
+msgid "Total c/ Retenção"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: code:addons/l10n_ao_sale/models/sale.py:0
+#, python-format
+msgid "Total w/ Withhold"
+msgstr ""
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.report_saleorder_document_agt
+msgid "Unit Price"
+msgstr "Preço Unitário"
+
+#. module: l10n_ao_sale
+#: model:ir.model.fields.selection,name:l10n_ao_sale.selection__sale_order__state__valid
+msgid "Valid"
+msgstr "Válido"
+
+#. module: l10n_ao_sale
+#: model_terms:ir.ui.view,arch_db:l10n_ao_sale.ao_sale_order_formview
+msgid "Validate"
+msgstr "Validar"
+
+#. module: l10n_ao_sale
+#: code:addons/l10n_ao_sale/models/sale.py:0
+#, python-format
+msgid "the discount must be between 0 and 100 %."
+msgstr "O valor do desconto deve estar entre 0 e 100."
+
+#. module: l10n_ao_sale
+#: code:addons/l10n_ao_sale/models/sale_order_documents_type.py:0
+#: code:addons/l10n_ao_sale/models/sale_order_documents_type.py:0
+#, python-format
+msgid ""
+"the given doc name % s cannot be saved as it already exists. Contact the "
+"administrator"
+msgstr ""
+"O nome de documento % s não pode ser salvo pois já existe. Contacte o "
+"administrador"
+
+#. module: l10n_ao_sale
+#: code:addons/l10n_ao_sale/models/inherit_ir_sequence.py:0
+#, python-format
+msgid ""
+"the sequence %s was not deleted, as it has an associated document type. "
+"Contact the administrator"
+msgstr ""
+"A sequência %s não foi apagada, uma vez que mesma possui tipo de documento "
+"associado. Por favor contacte o administrador"

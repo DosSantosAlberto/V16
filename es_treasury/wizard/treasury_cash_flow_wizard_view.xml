@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="treasury_cash_flow_report_view_form" model="ir.ui.view">
+            <field name="name">treasury_cash_flow_report_view_form</field>
+            <field name="model">treasury.cash.flow.report</field>
+            <field name="arch" type="xml">
+                <form string="treasury.cash.flow.report_form">
+                    <group>
+                        <field name="start_date" required="1"/>
+                        <field name="end_date" required="1"/>
+                        <field name="box_id" required="1"
+                               options="{'no_open': True, 'no_create': True}"/>
+
+                    </group>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button name="print_report" type="object"
+                                    string="Print" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="cash_flow_act_window" model="ir.actions.act_window">
+            <field name="name">Fluxo de Caixa</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">treasury.cash.flow.report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <menuitem id="menu_cash_flow_report" name="Fluxo de caixa"
+                  action="cash_flow_act_window"
+                  sequence="2"
+                  parent="es_treasury.treasury_report"/>>
+
+    </data>
+</odoo>

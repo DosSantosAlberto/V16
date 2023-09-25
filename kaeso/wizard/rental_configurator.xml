@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Form View  -->
+    <record id="rental_configurator_inherit_form" model="ir.ui.view">
+        <field name="name">rental_configurator.inherit.form</field>
+        <field name="model">rental.wizard</field>
+        <field name="inherit_id" ref="sale_renting.rental_configurator_view_form"/>
+        <field name="arch" type="xml">
+
+           <xpath expr="//group[@name='rental_configurator']" position="before">
+               <group>
+                    <field name="use_order_pricelist" widget="boolean_toggle"/>
+                </group>
+           </xpath>
+
+        </field>
+    </record>
+
+</odoo>

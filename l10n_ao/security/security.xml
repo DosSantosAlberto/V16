@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="access_tax_regime" model="ir.model.access">
+            <field name="name">Account Tax Regime</field>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="model_id" ref="model_account_tax_regime"/>
+        </record>
+
+        <record id="model_vat_access" model="ir.model.access">
+            <field name="name">Account VAT Process</field>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="model_id" ref="model_account_tax_vat"/>
+        </record>
+
+        <record id="account_vat_settlement_comp_rule" model="ir.rule">
+            <field name="name">Account Vat Settlement Multi-Company</field>
+            <field name="model_id" ref="model_account_tax_vat"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record model="ir.rule" id="search_saft_peer_company">
+              <field name="name">Search SAFT Company</field>
+            <field name="model_id" ref="model_l10nao_saft_file"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="account_result_settlement_comp_rule" model="ir.rule">
+            <field name="name">Account Result Settlement Multi-Company</field>
+            <field name="model_id" ref="model_account_result_settlement"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        </record>
+    </data>
+</odoo>

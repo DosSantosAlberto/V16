@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="stock.action_report_delivery" model="ir.actions.report">
+            <field name="name">Guia de remessa</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ht_stock_ao.report_stock_delivery_ao</field>
+            <field name="report_file">ht_stock_ao.report_stock_delivery_ao</field>
+            <field name="print_report_name">'Guia de remessa - %s' % (object.guide_sequence) if object.picking_type_id.code == 'outgoing' else 'Guia de receção - %s' % (object.name)  </field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_transport_slip_ao" model="ir.actions.report">
+            <field name="name">Guia de transporte</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ht_stock_ao.report_stock_transport_ao</field>
+            <field name="report_file">ht_stock_ao.report_stock_transport_ao</field>
+            <field name="print_report_name">'Guia de transporte - %s' % (object.guide_sequence)</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

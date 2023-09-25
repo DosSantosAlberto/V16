@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="report_trial_balance_ao">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="header" style="color: #0B74CE">
+                            <div class="row b_color">
+                                <div class="col-8">
+                                    <b><span class="text-left" t-field="o.company_id"/></b>
+                                </div>
+                                <div class="col-4" style="font-size:10px;">
+                                    <ul class="list-inline text-right">
+                                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                                        |
+                                        Pag. <span class="page"/>/<span class="topage"/>
+                                    </ul>
+                                </div>
+                            </div>
+                            <br/>
+                            <hr style="display: block; height: 1px;
+                            border: 0; border-top: 3px solid #0B74CE;
+                            margin: 0; padding: 0;"/>
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <div align="left">
+                                        <b class="b_color">
+                                            <t t-if="o.type =='reason'">
+                                                Balancete Razão (Abertura a Fim)
+                                            </t>
+                                            <t t-if="o.type =='general'">
+                                                Balancete Geral
+                                            </t>
+                                            (<span  t-out="o.name_balance()"></span>)
+                                        </b>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div align="right"><b class="b_color">Valores em <span
+                                            t-esc="o.company_id.currency_id.symbol"/></b></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 text-left"
+                                     style="font-size:10px; margin-left:15px; padding:0px !important; border-top: 1px solid #0B74CE;">
+                                    <span>Lançamento:</span>
+                                    <span t-if="o.target_move == 'all'">TODOS</span>
+                                    <span t-if="o.target_move == 'posted'">PUBLICADOS</span>
+                                </div>
+                                <div class="col-4"
+                                     style="font-size:10px; margin-left:10px; padding:0px !important; border-top: 1px solid #0B74CE;">
+                                    <span>Data Contab.: </span>
+                                    <span t-esc="o.date_to"/>
+                                </div>
+                                <div class="col-4">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page">
+                            <style>
+                                * {padding-bottom: 0 !important;
+                                padding-top: 0 !important;
+                                margin-bottom: 0 !important;margin-top:0 !important; }
+                                hr {
+                                display: block; height: 1px;
+                                border: 0; border-top: 1px solid #0B74CE;
+                                margin: 0; padding: 0;
+                                }
+                                .b_color{
+                                color: #0B74CE;
+                                }
+
+                                table {
+                                border-spacing: 3px;
+                                border-top: 3px solid black;
+                                border-collapse:collapse;
+                                }
+
+                                td {
+                                border-bottom:0 !important;
+                                border-top: 1px solid #B2BABB !important;
+                                }
+
+                                th {
+                                border-top:0 !important;
+                                border-bottom: 1px solid #B2BABB !important;
+                                }
+
+                                table, tr, th, td {
+                                padding:0px !important;
+                                border-collapse: separate;
+                                padding:1px;
+                                }
+
+                                .border_top_th{
+                                border-top: 1px solid black !important;
+                                }
+                                tr.border-top-tr th {
+                                border-bottom: 1px solid #ff000d;
+                                }
+                            </style>
+                            <table class="table table-condensed" style="font-size:12px;">
+                                <thead>
+                                    <tr>
+                                        <th style="border-bottom:0 !important;">Conta</th>
+                                        <th style="border-bottom:0 !important;">Descrição</th>
+                                        <th style="border-bottom:0 !important;" class="text-right">Mov. Débito</th>
+                                        <th style="border-bottom:0 !important;" class="text-right">Mov. Crédito</th>
+                                        <th style="border-bottom:0 !important;" class="text-right">Saldo Débito</th>
+                                        <th style="border-bottom:0 !important;" class="text-right">Saldo Crédito</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="count" t-value="0"/>
+                                    <t t-set="col_mov_debit" t-value="0"/>
+                                    <t t-set="col_mov_credit" t-value="0"/>
+                                    <t t-set="col_balance_debit" t-value="0"/>
+                                    <t t-set="col_balance_credit" t-value="0"/>
+                                    <t t-set="col_total_balance_debit" t-value="0"/>
+                                    <t t-set="col_total_balance_credit" t-value="0"/>
+                                    <t t-set="total_mov_debit" t-value="0"/>
+                                    <t t-set="total_mov_credit" t-value="0"/>
+                                    <t t-set="total_balance_debit" t-value="0"/>
+                                    <t t-set="total_balance_credit" t-value="0"/>
+                                    <t t-set="total_col_total_balance_debit" t-value="0"/>
+                                    <t t-set="total_col_total_balance_credit" t-value="0"/>
+                                    <t t-if="o.type =='general'">
+                                        <t t-foreach="o.get_balance_general()" t-as="line">
+                                            <t t-set="count" t-value="count + 1"/>
+                                            <t t-if="count > 1 and len(line['code']) == 2">
+                                                <tr id="sum_net">
+                                                    <th style="border:none !important; border-top:1px solid black !important;"
+                                                        class="text-right" colspan="2">
+                                                        Soma Liquida
+                                                    </th>
+                                                    <th style="border:none !important; border-top:1px solid black !important;"
+                                                        class="text-right">
+                                                        <span t-esc="o.amount_format(col_mov_debit)"/>
+                                                    </th>
+                                                    <th style="border:none !important; border-top:1px solid black !important;"
+                                                        class="text-right">
+                                                        <span t-esc="o.amount_format(col_mov_credit)"/>
+                                                    </th>
+                                                    <th style="border:none !important; border-top:1px solid black !important;"
+                                                        class="text-right">
+                                                        <span t-esc="o.amount_format(col_balance_debit)"/>
+                                                    </th>
+                                                    <th style="border:none !important; border-top:1px solid black !important;"
+                                                        class="text-right">
+                                                        <span t-esc="o.amount_format(col_balance_credit)"/>
+                                                    </th>
+                                                </tr>
+                                                <tr id="sum_balance">
+                                                    <th style="border: none !important;" colspan="3"></th>
+                                                    <th style="border: none !important;" class="text-right">Soma
+                                                        Saldos</th>
+                                                    <th style="border: none !important;" class="text-right">
+                                                        <span t-esc="o.amount_format(col_balance_debit or 0.0)"/>
+                                                    </th>
+                                                    <th style="border: none !important;" class="text-right">
+                                                        <span t-esc="o.amount_format(col_balance_credit or 0.0)"/>
+                                                    </th>
+                                                    <t t-set="col_mov_debit" t-value="0"/>
+                                                    <t t-set="col_mov_credit" t-value="0"/>
+                                                    <t t-set="col_balance_debit" t-value="0"/>
+                                                    <t t-set="col_balance_credit" t-value="0"/>
+                                                </tr>
+                                                <tr><td style="border:none !important;" colspan="6"><br/></td></tr>
+                                            </t>
+                                            <tr id="lines">
+                                                <td><span t-esc="line['code']"/></td>
+                                                <td><span t-esc="line['name']"/></td>
+                                                <td class="text-right">
+                                                    <span t-esc="o.amount_format(line['debit'])"/>
+                                                    <t t-set="col_mov_debit" t-if="len(line['code']) == 2"
+                                                       t-value="col_mov_debit + line['debit']"/>
+                                                    <t t-set="total_mov_debit" t-if="len(line['code']) == 2"
+                                                       t-value="total_mov_debit + line['debit']"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-esc="o.amount_format(line['credit'])"/>
+                                                    <t t-set="col_mov_credit" t-if="len(line['code']) == 2"
+                                                       t-value="col_mov_credit + line['credit']"/>
+                                                    <t t-set="total_mov_credit" t-if="len(line['code']) == 2"
+                                                       t-value="total_mov_credit + line['credit']"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-esc="o.amount_format(line['balance_debit'])"/>
+                                                    <t t-set="col_balance_debit" t-if="len(line['code']) == 2"
+                                                       t-value="col_balance_debit + line['balance_debit']"/>
+                                                    <t t-set="col_total_balance_debit" t-if="line['nature'] == 'M'"
+                                                       t-value="col_total_balance_debit + line['balance_debit']"/>
+                                                    <t t-set="total_balance_debit" t-if="len(line['code']) == 2"
+                                                       t-value="total_balance_debit + line['balance_debit']"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-esc="o.amount_format(line['balance_credit'])"/>
+                                                    <t t-set="col_balance_credit" t-if="len(line['code']) == 2"
+                                                       t-value="col_balance_credit + line['balance_credit']"/>
+                                                    <t t-set="col_total_balance_credit" t-if="line['nature'] == 'M'"
+                                                       t-value="col_total_balance_credit + line['balance_debit']"/>
+                                                    <t t-set="total_balance_credit" t-if="len(line['code']) == 2"
+                                                       t-value="total_balance_credit + line['balance_credit']"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <tr>
+                                            <td colspan="6" style="border-top:1px solid black !important;"></td>
+                                        </tr>
+                                        <tr name="sum_net_bottom">
+                                            <th style="border:none !important;" class="text-right" colspan="2">Soma
+                                                Liquida</th>
+                                            <th style="border:none !important;" class="text-right">
+                                                <span t-esc="o.amount_format(col_mov_debit)"/>
+                                            </th>
+                                            <th style="border:none !important;" class="text-right">
+                                                <span t-esc="o.amount_format(col_mov_credit)"/>
+                                            </th>
+                                            <th style="border:none !important;" class="text-right">
+                                                <span t-esc="o.amount_format(col_balance_debit)"/>
+                                            </th>
+                                            <th style="border:none !important;" class="text-right">
+                                                <span t-esc="o.amount_format(col_balance_credit)"/>
+                                            </th>
+                                        </tr>
+                                        <tr name="sum_balance_bottom">
+                                            <th style="border: none !important;" colspan="3"></th>
+                                            <th style="border: none !important;" class="text-right">Soma Saldos</th>
+                                            <th style="border: none !important;" class="text-right">
+                                                <span t-esc="o.amount_format(col_balance_debit)"/>
+                                            </th>
+                                            <th style="border: none !important;" class="text-right">
+                                                <span t-esc="o.amount_format(col_balance_credit)"/>
+                                            </th>
+                                        </tr>
+                                        <tr id="space">
+                                            <td style="border:none !important;" colspan="6">
+                                                <br/>
+                                            </td>
+                                        </tr>
+                                        <tr name="sum_net_bottom">
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right" colspan="2">
+                                                Soma Liquida
+                                            </th>
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right">
+                                                <span t-esc="o.amount_format(total_mov_debit)"/>
+                                            </th>
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right">
+                                                <span t-esc="o.amount_format(total_mov_credit)"/>
+                                            </th>
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right">
+                                                <span t-esc="o.amount_format(total_balance_debit)"/>
+                                            </th>
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right">
+                                                <span t-esc="o.amount_format(total_balance_credit)"/>
+                                            </th>
+                                        </tr>
+                                        <tr name="sum_balance_bottom">
+                                            <th style="border:none !important;" colspan="3"></th>
+                                            <th style="border:none !important;" class="text-right">Soma Saldos</th>
+                                            <th style="border:none !important;" class="text-right">
+                                                <span t-esc="o.amount_format(col_total_balance_debit or 0.0)"/>
+                                            </th>
+                                            <th style="border:none !important;" class="text-right">
+                                                <span t-esc="o.amount_format(col_total_balance_credit or 0.0)"/>
+                                            </th>
+                                        </tr>
+                                    </t>
+                                    <t t-if="o.type =='reason'">
+                                        <t t-set="class_code" t-value="None"/>
+                                        <t t-foreach="o.get_balance_reason()" t-as="line">
+                                            <t t-if="class_code is None">
+                                                <t t-set="class_code" t-value="line['code'][:-1]"/>
+                                            </t>
+                                            <t t-if="class_code != line['code'][:-1]">
+                                                <tr id="sum_net">
+                                                    <th style="border:none !important; border-top:1px solid black !important;"
+                                                        class="text-right" colspan="2">
+                                                        Soma
+                                                        Liquida</th>
+                                                    <th style="border:none !important; border-top:1px solid black !important;"
+                                                        class="text-right">
+                                                        <span t-esc="o.amount_format(col_mov_debit)"/>
+                                                    </th>
+                                                    <th style="border:none !important; border-top:1px solid black !important;"
+                                                        class="text-right">
+                                                        <span t-esc="o.amount_format(col_mov_credit)"/>
+                                                    </th>
+                                                    <th style="border:none !important; border-top:1px solid black !important;"
+                                                        class="text-right">
+                                                        <span t-esc="o.amount_format(col_balance_debit)"/>
+                                                    </th>
+                                                    <th style="border:none !important; border-top:1px solid black !important;"
+                                                        class="text-right">
+                                                        <span t-esc="o.amount_format(col_balance_credit)"/>
+                                                    </th>
+                                                </tr>
+                                                <tr><td style="border: none !important;" colspan="6"><br/></td></tr>
+                                                <t t-set="class_code" t-value="line['code'][:-1]"/>
+                                                <t t-set="col_mov_debit" t-value="0"/>
+                                                <t t-set="col_mov_credit" t-value="0"/>
+                                                <t t-set="col_balance_debit" t-value="0"/>
+                                                <t t-set="col_balance_credit" t-value="0"/>
+                                            </t>
+                                            <tr id="lines">
+                                                <td><span t-esc="line['code']"/></td>
+                                                <td><span t-esc="line['name']"/></td>
+                                                <td class="text-right">
+                                                    <span t-esc="o.amount_format(line['debit'])"/>
+                                                    <t t-set="col_mov_debit"
+                                                       t-value="col_mov_debit + line['debit']"/>
+                                                    <t t-set="total_mov_debit"
+                                                       t-value="total_mov_debit + line['debit']"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-esc="o.amount_format(line['credit'])"/>
+                                                    <t t-set="col_mov_credit"
+                                                       t-value="col_mov_credit + line['credit']"/>
+                                                    <t t-set="total_mov_credit"
+                                                       t-value="total_mov_credit + line['credit']"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-esc="o.amount_format(line['balance_debit'])"/>
+                                                    <t t-set="col_balance_debit"
+                                                       t-value="col_balance_debit + line['balance_debit']"/>
+                                                    <t t-set="total_balance_debit"
+                                                       t-value="total_balance_debit + line['balance_debit']"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-esc="o.amount_format(line['balance_credit'])"/>
+                                                    <t t-set="col_balance_credit"
+                                                       t-value="col_balance_credit + line['balance_credit']"/>
+                                                    <t t-set="total_balance_credit"
+                                                       t-value="total_balance_credit + line['balance_credit']"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <tr>
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right" colspan="2">Soma
+                                                Liquida</th>
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right">
+                                                <span t-esc="o.amount_format(col_mov_debit)"/>
+                                            </th>
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right">
+                                                <span t-esc="o.amount_format(col_mov_credit)"/>
+                                            </th>
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right">
+                                                <span t-esc="o.amount_format(col_balance_debit)"/>
+                                            </th>
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right">
+                                                <span t-esc="o.amount_format(col_balance_credit)"/>
+                                            </th>
+                                        </tr>
+                                        <tr id="space">
+                                            <td style="border: none !important;" colspan="6">
+                                                <br/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right" colspan="2">Soma
+                                                Liquida</th>
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right">
+                                                <span t-esc="o.amount_format(total_mov_debit)"/>
+                                            </th>
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right">
+                                                <span t-esc="o.amount_format(total_mov_credit)"/>
+                                            </th>
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right">
+                                                <span t-esc="o.amount_format(total_balance_debit)"/>
+                                            </th>
+                                            <th style="border:none !important; border-top:1px solid black !important;"
+                                                class="text-right">
+                                                <span t-esc="o.amount_format(total_balance_credit)"/>
+                                            </th>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="footer">
+                            <div class="text-right" style="font-size:9px">
+                                <b>© COMPLLEXUS</b>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

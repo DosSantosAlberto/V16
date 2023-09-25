@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="ao_sale_order_formview" model="ir.ui.view">
+            <field name="name">L10n AO Sale View Inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_shipping_id" position="after">
+                    <field name="document_type_id" invisible="1" options="{'no_open':True,'no_create': True}"/>
+                    <field name="company_country_id" invisible="1"/>
+                </field>
+
+                <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+                    <attribute name="attrs">{'invisible':['|',('state', 'not in', ['draft']),('company_country_id','!=',%(base.ao)d)]}</attribute>
+                </xpath>
+                <!-- HIDEN BUTTON  action_cancel-->
+                <button name="action_cancel" position="attributes">
+                    <attribute name="attrs">{'invisible':[('company_country_id','=',%(base.ao)d)]}</attribute>
+                </button>
+                 <field name="partner_id" position="attributes">
+                    <attribute name="options">{'no_create': True, 'no_create_edit':True}</attribute>
+                </field>
+                <!-- HIDEN BUTTON  action_draft-->
+                <button name="action_draft" position="attributes">
+                    <attribute name="attrs">{'invisible':['|', ('company_country_id','=',%(base.ao)d),'|', ('state', 'not in', ['draft', 'sent','sale']), ('id', '=', False)]}</attribute>
+                </button>
+                <!--action_confirm-->
+                <button name="action_confirm" id="action_confirm" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('state', 'not in', ['sent']),('company_country_id','=',%(base.ao)d),('state', 'not in', ['sent','valid'])]}
+                    </attribute>
+                </button>
+                <button name="action_confirm" id="action_confirm" position="before">
+                    <!-- NEW BUTTON  action_validate-->
+                    <button name="action_validate" string="Validate" type="object"
+                            attrs="{'invisible': ['|',('state', 'not in', ['draft']),('company_country_id','!=',%(base.ao)d)]}"/>
+                </button>
+               <button name="action_confirm" position="after">
+                    <button name="action_cancel_new" string="Cancel" type="object"
+                            attrs="{'invisible': ['|',('state', 'not in', ['sale', 'sent', 'valid']), ('id', '=', False)]}"/>
+                </button>
+
+
+               <field name="tax_totals" position="after">
+                    <field name="amount_total_wth" class="oe_subtotal_footer_separator"
+                           attrs="{'invisible': [('amount_total_wth','=', 0)]}" widget='monetary'
+                           options="{'currency_field': 'currency_id'}"/>
+                </field>
+                <field name="validity_date" position="attributes">
+                    <attribute name="attrs">{'required':[('document_type_id','in', [2,3]),('company_country_id','=',%(base.ao)d)],
+                        'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])],
+                        'invisible': [('document_type_id', 'in', [1])]}
+                    </attribute>
+                </field>
+                <!-- READONLY FIELDS-->
+                <field name="partner_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="date_order" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="payment_term_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="partner_invoice_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="partner_shipping_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <!-- Page Order Lines-->
+                <field name="order_line" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="note" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <!-- Page Customer Signature-->
+                <field name="signed_by" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="signed_on" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="signature" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <!-- Page Other Info-->
+                <field name="user_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="team_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="company_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="require_signature" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="require_payment" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="reference" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="client_order_ref" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="tag_ids" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="fiscal_position_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="analytic_account_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="invoice_status" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="commitment_date" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="origin" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="campaign_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="medium_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="source_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+                <field name="sale_order_option_ids" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['sent', 'sale', 'done', 'cancel', 'valid'])]}
+                    </attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

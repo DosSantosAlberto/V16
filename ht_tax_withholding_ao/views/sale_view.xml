@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="ht_withholding_sale_order" model="ir.ui.view">
+            <field name="name">ht.withholding.sale.order.inherited.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tax_totals']" position="after">
+                    <field name="amount_total_wth" class="oe_subtotal_footer_separator"
+                           attrs="{'invisible':[('amount_total_wth','=',0)]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

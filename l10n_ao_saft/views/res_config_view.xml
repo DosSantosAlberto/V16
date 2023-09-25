@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_res_config_settings_form" model="ir.ui.view">
+            <field name="name">res.config.settings.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='has_chart_of_accounts']" position="before">
+                    <h2>AGT INFORMAÇÕES DO CERTIFICADO</h2>
+                    <div class="row mt16 o_settings_container" id="saft_certification_info">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <div class="row">
+                                    <label string="Productor"
+                                           for="product_company_name"
+                                           class="col-md-3 o_light_label"/>
+                                    <field name="product_company_name" readonly="1"/>
+                                </div>
+                                <div class="row">
+                                    <label string="NIF"
+                                           for="product_company_tax_id"
+                                           class="col-md-3 o_light_label"/>
+                                    <field name="product_company_tax_id" readonly="1"/>
+                                </div>
+                                <div class="row">
+                                    <label string="Website"
+                                           for="product_company_website"
+                                           class="col-md-3 o_light_label"/>
+                                    <field name="product_company_website" widget="url" readonly="1"/>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <b>
+                                            Copyright &amp;copy;
+                                            <span>CBS Angola Lda, Luanda - Angola</span>
+                                        </b>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <div class="row">
+                                    <label string="Software"
+                                           for="product_id"
+                                           class="col-md-3 o_light_label"/>
+                                    <field name="product_id" readonly="1"/>
+                                </div>
+                                <div class="row">
+                                    <label string="Versão"
+                                           for="product_version"
+                                           class="col-md-3 o_light_label"/>
+                                    <field name="product_version" readonly="1"/>
+                                </div>
+                                <div class="row">
+                                    <label string="Certificado"
+                                           for="software_validation_number"
+                                           class="col-md-3 o_light_label"/>
+                                    <field name="software_validation_number" readonly="1"/>
+                                </div>
+                                <div class="row">
+                                    <label string="Chave"
+                                           for="key_version"
+                                           class="col-md-3 o_light_label"/>
+                                    <field name="key_version" readonly="1"/>
+                                </div>
+                                <div class="row">
+                                    <label string="Customer Invoice Sequence"
+                                           for="c_invoice_sequence_int"
+                                           class="col-md-3 o_light_label"/>
+                                    <field name="c_invoice_sequence_int" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <b>Regime</b>
+                                <div class="text-muted">
+                                    Definir o regime da entidade conforme a AGT
+                                </div>
+                                <field name="agt_regime" />
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

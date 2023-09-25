@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="base.res_partner_industry_J" model="res.partner.industry">
+            <field name="name">IT</field>
+            <field name="full_name">TECNOLOGIA INFORMAÇÃO</field>
+        </record>
+        <record id="res_partner_industry_bank" model="res.partner.industry">
+            <field name="name">BANCO</field>
+            <field name="full_name">INSTITUIÇÕES BANCÁRIAS</field>
+        </record>
+    </data>
+</odoo>

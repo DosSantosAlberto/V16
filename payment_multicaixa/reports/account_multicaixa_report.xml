@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="account_multicaixa_footer" inherit_id="account.report_invoice_document">
+            <xpath expr="//div[@name='payment_term']" position="before">
+                <t t-if="o.get_portal_last_transaction().acquirer_id.provider == 'multicaixa'">
+                    <div class="row">
+                        <div class="col-5 ml-3">
+                            <table class="table table-sm table-sm table-borderless m-auto">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Multicaixa Payment Details
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size:9px;border:1px;">
+                                    <tr>
+                                        <td class="text-justify">
+                                            <img src="/payment_multicaixa/static/description/icon.png"
+                                                 style="float:left;width:72px;height:72px; margin-right:5px;">
+                                                <small>Payment Network, use the information provided bellow for
+                                                    entity and reference and go to the closest <b>Multicaixa</b> or <b>
+                                                        Multicaixa Express</b> and follow the steps:
+                                                </small>
+                                                <small>
+                                                    <br/>
+                                                </small>
+                                                <small>
+                                                    Choose the options <b>"Payments -&gt; Reference Payment -&gt;
+                                                    Set Entity Code -&gt; Set your order Reference -&gt;
+                                                    Confirm Amount -&gt; Pay"</b>.
+                                                </small>
+                                            </img>
+                                            <!--font-size:11px;margin-left:61px;-->
+                                            <div>
+                                                <table class="col-4" style="font-weight:bold;width:200px;font-size:12px;border:1px;padding:5px;">
+                                                    <tr>
+                                                        <td>ENTITY</td>
+                                                        <td class="text-right">
+                                                            <span t-esc="o.get_portal_last_transaction().acquirer_id.entity_reference">
+                                                                XXXXX
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>REFERENCE</td>
+                                                        <td class="text-right">
+                                                            <span t-esc="' '.join([o.get_portal_last_transaction().reference_id[i:i+3] for i in range(0, len(o.get_portal_last_transaction().reference_id), 3)]) ">
+                                                                XXX XXX XXX XXX XXX
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>AMOUNT</td>
+                                                        <td class="text-right">
+                                                            <span t-field="o.amount_total"
+                                                                  t-options='{"widget": "monetary", "display_currency": o.currency_id}'>
+                                                                XX XXX.XXX, XX
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+      <!--                          <tfooter>
+                                    <tr>
+
+                                    </tr>
+                                </tfooter>-->
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </xpath>
+        </template>
+    </data>
+</odoo>

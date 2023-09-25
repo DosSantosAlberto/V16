@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <template id="report_account_extract_ao">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="header" style="color: #0B74CE">
+                            <div class="row b_color">
+                                <div class="col-8">
+                                    <b>
+                                        <span class="text-left" t-field="o.company_id"/>
+                                    </b>
+                                </div>
+                                <div class="col-4" style="font-size:10px;">
+                                    <ul class="list-inline text-right">
+                                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                                        |
+                                        Pag.<span class="page"/>/
+                                        <span class="topage"/>
+                                    </ul>
+                                </div>
+                            </div>
+                            <br/>
+                            <hr style="display: block; height: 1px;
+                            border: 0; border-top: 3px solid #0B74CE;
+                            margin: 0; padding: 0;"/>
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <div align="left">
+                                        <b class="b_color">
+                                            Extracto de Conta
+                                            <t t-if="o.filter_by == 'account'">
+                                                <span t-field="o.account_id.code"/>
+                                            </t>
+                                            (
+                                            <span t-field="o.date_from"/>
+                                            até<span t-field="o.date_to"/>)
+                                        </b>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div align="right">
+                                        <b class="b_color">Valores em
+                                            <span
+                                                    t-esc="o.company_id.currency_id.symbol"/>
+                                        </b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 text-left"
+                                     style="font-size:10px; margin-left:15px; padding:0px !important; border-top: 1px solid #0B74CE;">
+                                    <span>Lançamento:</span>
+                                    <span t-if="o.target_move == 'all'">TODOS</span>
+                                    <span t-if="o.target_move == 'posted'">PUBLICADOS</span>
+                                </div>
+                                <div class="col-4"
+                                     style="font-size:10px; margin-left:10px; padding:0px !important; border-top: 1px solid #0B74CE;">
+                                    <span>Data Contab.:</span>
+                                    <span t-esc="o.date_to"/>
+                                </div>
+                                <div class="col-4">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="page">
+                            <style>
+                                * {padding-bottom: 0 !important;
+                                padding-top: 0 !important;
+                                margin-bottom: 0 !important;margin-top:0 !important; }
+                                hr {
+                                display: block; height: 1px;
+                                border: 0; border-top: 1px solid #0B74CE;
+                                margin: 0; padding: 0;
+                                }
+                                .b_color{
+                                color: #0B74CE;
+                                }
+
+                                table {
+                                border-spacing: 3px;
+                                border-top: 3px solid black;
+                                border-collapse:collapse;
+                                }
+
+                                td {
+                                border-bottom:0 !important;
+                                border-top: 1px solid #B2BABB !important;
+                                }
+
+                                th {
+                                border-top:0 !important;
+                                border-bottom: 1px solid #B2BABB !important;
+                                }
+
+                                table, tr, th, td {
+                                padding:0px !important;
+                                border-collapse: separate;
+                                padding:1px;
+                                }
+
+                                .border_top_th{
+                                border-top: 1px solid black !important;
+                                }
+                                tr.border-top-tr th {
+                                border-bottom: 1px solid #ff000d;
+                                }
+                            </style>
+                            <table class="table table-condensed" style="font-size:10px;">
+                                <thead>
+                                    <tr>
+                                        <th style="border-bottom:0 !important;">
+                                            <b>Data</b>
+                                        </th>
+                                        <th style="border-bottom:0 !important;">
+                                            <b>Diário</b>
+                                        </th>
+                                        <th style="border-bottom:0 !important;">
+                                            <b>Nº Diario</b>
+                                        </th>
+                                        <th style="border-bottom:0 !important;">
+                                            <b>Descrição</b>
+                                        </th>
+                                        <th style="border-bottom:0 !important;" class="text-right">
+                                            <b>Débito</b>
+                                        </th>
+                                        <th style="border-bottom:0 !important;" class="text-right">
+                                            <b>Crédito</b>
+                                        </th>
+                                        <th style="border-bottom:0 !important;" class="text-right">
+                                            <b>Saldo</b>
+                                        </th>
+                                        <th style="border-bottom:0 !important;" class="text-left">
+                                            <span>
+                                                <![CDATA[&nbsp;]]></span>
+                                            <b>Doc</b>.
+                                        </th>
+                                        <th style="border-bottom:0 !important;" class="text-right">
+                                            <b>IVA</b>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr name="old_balance">
+                                        <td colspan="4" class="text-right">
+                                            <b>Saldos Anteriores (Débito, Crédito e Saldo)</b>
+                                        </td>
+                                        <td class="text-right">
+                                            <b>0,00</b>
+                                        </td>
+                                        <td class="text-right">
+                                            <b>0,00</b>
+                                        </td>
+                                        <td class="text-right">
+                                            <b>0,00</b>
+                                        </td>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <t t-value="None" t-set="old_date"/>
+                                    <t t-value="None" t-set="old_account"/>
+                                    <t t-value="0.0" t-set="old_balance"/>
+                                    <t t-value="0.0" t-set="old_balance_debit"/>
+                                    <t t-value="0.0" t-set="old_balance_credit"/>
+                                    <t t-value="0" t-set="count_move_line"/>
+                                    <t t-value="0" t-set="count_other_move_line"/>
+
+                                    <t t-if="o.filter_by == 'account'">
+                                        <t t-foreach="o.get_account_move_line()" t-as="move">
+                                            <t t-value="count_move_line + 1" t-set="count_move_line"/>
+                                            <t t-if="old_date">
+                                                <tr name="total_period" t-if="old_date != move['date']">
+                                                    <td colspan="3" class="text-left">
+                                                        <t t-if="o.filter_by == 'account'">
+                                                            <span t-field="o.account_id.name"/>
+                                                        </t>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <b>Total Periodo</b>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <b>
+                                                            <span t-esc="o.amount_format(old_balance_debit)"/>
+                                                        </b>
+                                                    </td>
+                                                    <td class="text-rightdate_to">
+                                                        <b>
+                                                            <span t-esc="o.amount_format(old_balance_credit)"/>
+                                                        </b>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <b>
+                                                            <span t-esc="o.amount_format(old_balance)"/>
+                                                            <span t-esc="move['balance_type']"/>
+                                                        </b>
+                                                    </td>
+                                                    <td colspan="9" style="border:0 !important;">
+                                                        <br/>
+                                                    </td>
+                                                </tr>
+                                                <tr name="total_accumulated" t-if="old_date != move['date']">
+                                                    <th style="border-bottom:0 !important;" colspan="3"
+                                                        class="text-left">
+                                                    </th>
+                                                    <th style="border-bottom:0 !important;" class="text-right">
+                                                        <b>Total Acumulado</b>
+                                                    </th>
+                                                    <th style="border-bottom:0 !important;" class="text-right">
+                                                        <b>
+                                                            <span t-esc="o.amount_format(old_balance_debit)"/>
+                                                        </b>
+                                                    </th>
+                                                    <th style="border-bottom:0 !important;" class="text-right">
+                                                        <b>
+                                                            <span t-esc="o.amount_format(old_balance_credit)"/>
+                                                        </b>
+                                                    </th>
+                                                    <th style="border-bottom:0 !important;" class="text-right">
+                                                        <b>
+                                                            <span t-esc="o.amount_format(old_balance_debit - old_balance_credit)"/>
+                                                            <span t-esc="move['balance_type']"/>
+                                                        </b>
+                                                    </th>
+                                                </tr>
+                                            </t>
+                                            <tr name="move_lines">
+                                                <td>
+                                                    <span t-esc="move['date']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="move['journal_name']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="move['journal']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="move['description']"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-esc="o.amount_format(move['debit'])"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-esc="o.amount_format(move['credit'])"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-esc="o.amount_format(move['current_balance'])"/>
+                                                    <span t-esc="move['balance_type']"/>
+                                                </td>
+                                                <td class="text-left">
+                                                    <span><![CDATA[&nbsp;]]></span>
+                                                    <span t-esc="move['doc']"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <!--  <span t-esc="move['iva_plan']"/> -->
+                                                </td>
+                                            </tr>
+                                            <t t-value="move['date']" t-set="old_date"/>
+                                            <t t-value="move['balance'] + old_balance" t-set="old_balance"/>
+                                            <t t-value="move['debit'] + old_balance_debit" t-set="old_balance_debit"/>
+                                            <t t-value="move['credit'] + old_balance_credit"
+                                               t-set="old_balance_credit"/>
+                                            <t t-if="len(o.get_account_move_line()) == count_move_line">
+                                                <tr name="total_period">
+                                                    <td colspan="3" class="text-left">
+                                                        <t t-if="o.filter_by == 'account'">
+                                                            <span t-field="o.account_id.name"/>
+                                                        </t>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <b>Total Periodo</b>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <b>
+                                                            <span t-if="move.get('balance_debit')"
+                                                                  t-esc="o.amount_format(old_balance_debit)"/>
+                                                            <span t-if="not move.get('balance_debit')">0,00</span>
+                                                        </b>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <b>
+                                                            <span t-if="move.get('balance_credit')"
+                                                                  t-esc="o.amount_format(old_balance_credit)"/>
+                                                            <span t-if="not move.get('balance_credit')">0,00</span>
+                                                        </b>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <b>
+                                                            <span t-esc="o.amount_format(old_balance)"/>
+                                                            <span t-esc="move['balance_type']"/>
+                                                        </b>
+                                                    </td>
+                                                    <td colspan="2">
+
+                                                    </td>
+                                                </tr>
+                                                <tr name="total_accumulated">
+                                                    <th style="border-bottom:0 !important;" colspan="3"
+                                                        class="text-left">
+
+                                                    </th>
+                                                    <th style="border-bottom:0 !important;" class="text-right">
+                                                        Total Acumulado
+                                                    </th>
+                                                    <th style="border-bottom:0 !important;" class="text-right">
+                                                        <span t-esc="o.amount_format(old_balance_debit)"/>
+                                                    </th>
+                                                    <th style="border-bottom:0 !important;" class="text-right">
+                                                        <span t-esc="o.amount_format(old_balance_credit)"/>
+                                                    </th>
+                                                    <th style="border-bottom:0 !important;" class="text-right">
+                                                        <span t-esc="o.amount_format(old_balance_debit - old_balance_credit)"/>
+                                                        <span t-esc="move['balance_type']"/>
+                                                    </th>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </t>
+                                    <t t-if="not o.filter_by == 'account'">
+                                        <tr>
+                                            <td colspan="9">
+                                                <b style="color:#0B74CE">
+                                                    <span t-field="o.cost_center"/>
+                                                </b>
+                                            </td>
+                                            <td colspan="9" style="border:0 !important;">
+                                                <br/>
+                                                <br/>
+                                            </td>
+                                        </tr>
+                                        <t t-foreach="o.get_other_move_line()" t-as="account_code">
+                                            <t t-set="account_setup" t-value="o.account_setup(account_code)"/>
+                                            <t t-value="0" t-set="count_move_line"/>
+                                            <tr name="account_name">
+                                                <td colspan="9">
+                                                    <b>
+                                                        <span t-esc="account_setup['account_code']"/>
+                                                        -
+                                                        <span t-esc="account_setup['account_name']"/>
+                                                    </b>
+                                                </td>
+                                            </tr>
+                                            <t t-value="len(o.get_cost_center_move_line(o.cost_center.id, account_setup['account_id']))"
+                                               t-set="size_move_lines"/>
+                                            <t t-foreach="o.get_cost_center_move_line(o.cost_center.id, account_setup['account_id'])"
+                                               t-as="move">
+                                                <tr name="move_lines">
+                                                    <td>
+                                                        <span t-esc="move['date']"/>
+                                                    </td>
+                                                    <td>
+                                                        <span t-esc="move['journal_name']"/>
+                                                    </td>
+                                                    <td>
+                                                        <span t-esc="move['journal']"/>
+                                                    </td>
+                                                    <td>
+                                                        <span t-esc="move['description']"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <span t-esc="o.amount_format(move['debit'])"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <span t-esc="o.amount_format(move['credit'])"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <span t-esc="o.amount_format(move['current_balance'])"/>
+                                                        <span t-esc="move['balance_type']"/>
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <span><![CDATA[&nbsp;]]></span>
+                                                        <span t-esc="move['doc']"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <!--  <span t-esc="move['iva_plan']"/> -->
+                                                    </td>
+                                                </tr>
+                                                <t t-value="move['date']" t-set="old_date"/>
+                                                <t t-value="move['balance'] + old_balance" t-set="old_balance"/>
+                                                <t t-value="move['debit'] + old_balance_debit"
+                                                   t-set="old_balance_debit"/>
+                                                <t t-value="move['credit'] + old_balance_credit"
+                                                   t-set="old_balance_credit"/>
+                                                <t t-value="count_move_line + 1" t-set="count_move_line"/>
+                                                <t t-if="size_move_lines == count_move_line">
+                                                    <tr name="total_period">
+                                                        <td colspan="3" class="text-left">
+                                                            <t t-if="not o.filter_by == 'account'">
+                                                                <b>
+                                                                    <span t-esc="o.account_id.name or account_setup['account_name']"/>
+                                                                </b>
+                                                            </t>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <b>Total Periodo</b>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <b>
+                                                                <span t-esc="o.amount_format(old_balance_debit)"/>
+                                                            </b>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <b>
+                                                                <span t-esc="o.amount_format(old_balance_credit)"/>
+                                                            </b>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <b>
+                                                                <span t-esc="o.amount_format(old_balance)"/>
+                                                                <span t-esc="move['balance_type']"/>
+                                                            </b>
+                                                        </td>
+                                                        <td colspan="2">
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr name="total_accumulated">
+                                                        <th style="border-bottom:0 !important;" colspan="3"
+                                                            class="text-left">
+
+                                                        </th>
+                                                        <th style="border-bottom:0 !important;" class="text-right">
+                                                            Total Acumulado
+                                                        </th>
+                                                        <th style="border-bottom:0 !important;" class="text-right">
+                                                            <span t-esc="o.amount_format(old_balance_debit)"/>
+                                                        </th>
+                                                        <th style="border-bottom:0 !important;" class="text-right">
+                                                            <span t-esc="o.amount_format(old_balance_credit)"/>
+                                                        </th>
+                                                        <th style="border-bottom:0 !important;" class="text-right">
+                                                            <span t-esc="o.amount_format(old_balance_debit - old_balance_credit)"/>
+                                                            <span t-esc="move['balance_type']"/>
+                                                        </th>
+                                                    </tr>
+                                                    <td colspan="9" style="border:0 !important;">
+                                                        <br/>
+                                                    </td>
+                                                </t>
+                                            </t>
+                                            <t t-value="count_other_move_line + 1" t-set="count_other_move_line"/>
+                                        </t>
+                                        <t t-if="o.get_other_move_line()">
+                                            <t t-if="len(o.get_other_move_line()) == count_other_move_line">
+                                                <tr name="total_period">
+                                                    <td colspan="4" class="text-right">
+                                                        <b>Total Geral Periodo</b>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <b>
+                                                            <span t-esc="o.amount_format(old_balance_debit)"/>
+                                                        </b>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <b>
+                                                            <span t-esc="o.amount_format(old_balance_credit)"/>
+                                                        </b>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <b>
+                                                            <span t-esc="o.amount_format(old_balance)"/>
+                                                            <span t-esc="move['balance_type']"/>
+                                                        </b>
+                                                    </td>
+                                                    <td colspan="2">
+
+                                                    </td>
+                                                </tr>
+                                                <tr name="total_accumulated">
+                                                    <th colspan="4" style="border-bottom:0 !important;"
+                                                        class="text-right">
+                                                        Total Geral Acumulado
+                                                    </th>
+                                                    <th style="border-bottom:0 !important;" class="text-right">
+                                                        <span t-esc="o.amount_format(old_balance_debit)"/>
+                                                    </th>
+                                                    <th style="border-bottom:0 !important;" class="text-right">
+                                                        <span t-esc="o.amount_format(old_balance_credit)"/>
+                                                    </th>
+                                                    <th style="border-bottom:0 !important;" class="text-right">
+                                                        <span t-esc="o.amount_format(old_balance_debit - old_balance_credit)"/>
+                                                        <span t-esc="move['balance_type']"/>
+                                                    </th>
+                                                </tr>
+                                            </t>
+                                        </t>
+
+                                    </t>
+
+                                    <!--<t t-if="not o.filter_by == 'account'">
+                                        <tr>
+                                            <td colspan="9">
+                                                <b style="color:#0B74CE"><span t-esc="moves['name']"/></b>
+                                            </td>
+                                        </tr>
+                                        <t t-foreach="moves['movements']" t-as="items">
+                                            <tr>
+                                                <td colspan="9">
+                                                    <b><span t-esc="items['account_code']"/> - <span
+                                                            t-esc="items['account']"/></b>
+                                                </td>
+                                            </tr>
+                                            <t t-foreach="items['moves_list']" t-as="element">
+                                                <tr>
+                                                    <td>
+                                                        <span t-esc="element['date']"/>
+                                                    </td>
+                                                    <td>
+                                                        <span t-esc="element['journal']"/>
+                                                    </td>
+                                                    <td>
+                                                        <span t-esc="element['journal_number']"/>
+                                                    </td>
+                                                    <td>
+                                                        <span t-esc="element['description']"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <span t-esc="o.amount_format(element['debit'])"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <span t-esc="o.amount_format(element['credit'])"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <span t-esc="o.amount_format(element['accumulated_balance'])"/>
+                                                        <span t-esc="element['balance_type']"/>
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <span t-esc="element['doc']"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <span t-esc="element['iva_plan']"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                        <t>
+                                            <tr>
+                                                <td colspan="9">
+                                                    <br/>
+                                                    <br/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th style="border-color:black;" colspan="3"
+                                                    class="black_border text-left">
+                                                    <t t-if="o.filter_by == 'account'">
+                                                        <span t-field="o.account_id.name"/>
+                                                    </t>
+                                                </th>
+                                                <th style="border-color:black;" class="text-right">
+                                                    Total Periodo
+                                                </th>
+                                                <th style="border-color:black;" class="text-right">
+                                                    <span t-esc="moves['total_period_debit']"/>
+                                                </th>
+                                                <th style="border-color:black;" class="text-right">
+                                                    <span t-esc="moves['total_period_credit']"/>
+                                                </th>
+                                                <th style="border-color:black;" class="text-right">
+                                                    <span t-esc="moves['total_period_balance']"/>
+                                                    <span t-esc="moves['var']"/>
+                                                </th>
+                                                <th colspan="2" style="border-color:black;">
+
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th style="border:none;" colspan="3" class="text-left">
+
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    Total Acumulado
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    <span t-esc="moves['total_accumulated_debit']"/>
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    <span t-esc="moves['total_accumulated_credit']"/>
+                                                </th>
+                                                <th style="border:none;" class="text-right">
+                                                    <span t-esc="moves['total_accumulated_balance']"/>
+                                                    <span t-esc="moves['var']"/>
+                                                </th>
+                                            </tr>
+                                        </t>
+                                    </t>-->
+
+                                    <!--  <t t-if="not o.filter_by == 'account'">
+                                          <t>
+                                              <tr>
+                                                  <td colspan="9">
+                                                      <br/>
+                                                      <br/>
+                                                  </td>
+                                              </tr>
+                                              <tr name="">
+                                                  <th style="border-color:black;" colspan="3"
+                                                      class="black_border text-left">
+                                                      <t t-if="o.filter_by == 'account'">
+                                                          <span t-field="o.account_id.name"/>
+                                                      </t>
+                                                  </th>
+                                                  <th style="border-color:black;" class="text-right">
+                                                      Total Geral Periodo
+                                                  </th>
+                                                  <th style="border-color:black;" class="text-right">
+                                                      <span t-esc="movements_total['total_period_debit']"/>
+                                                  </th>
+                                                  <th style="border-color:black;" class="text-right">
+                                                      <span t-esc="movements_total['total_period_credit']"/>
+                                                  </th>
+                                                  <th style="border-color:black;" class="text-right">
+                                                      <span t-esc="movements_total['total_period_balance']"/>
+                                                      <span t-esc="movements_total['var']"/>
+                                                  </th>
+                                                  <th colspan="2" style="border-color:black;">
+
+                                                  </th>
+                                              </tr>
+                                              <tr>
+                                                  <th style="border:none;" colspan="3" class="text-left">
+
+                                                  </th>
+                                                  <th style="border:none;" class="text-right">
+                                                      Total Geral Acumulado
+                                                  </th>
+                                                  <th style="border:none;" class="text-right">
+                                                      <span t-esc="movements_total['total_accumulated_debit']"/>
+                                                  </th>
+                                                  <th style="border:none;" class="text-right">
+                                                      <span t-esc="movements_total['total_accumulated_credit']"/>
+                                                  </th>
+                                                  <th style="border:none;" class="text-right">
+                                                      <span t-esc="movements_total['total_accumulated_balance']"/>
+                                                      <span t-esc="movements_total['var']"/>
+                                                  </th>
+                                              </tr>
+                                          </t>
+                                      </t>-->
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <div class="footer">
+                            <div class="text-right" style="font-size:10px">
+                                <b>© COMPLLEXUS</b>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

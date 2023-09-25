@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="captive_vat_map_wizard_form_view" model="ir.ui.view">
+            <field name="name">captive.vat.map.form</field>
+            <field name="model">captive.vat.map</field>
+            <field name="arch" type="xml">
+                <form string="Captive Vat">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                MAPA DE IVA CATIVO
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="company_id" options="{'no_open': True, 'no_create': True}"
+                                   readonly="1"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="date_from" required="1"/>
+                                <field name="filter" required="1"/>
+                            </group>
+                            <group>
+                                <field name="date_to" required="1"/>
+                                <field name="customer" options="{'no_open': True, 'no_create': True}"
+                                       attrs="{'invisible':[('filter','!=', 'out_refund')]}"
+                                       widget="many2many_tags_avatar"
+                                       domain="['|',('customer', '!=', False), ('customer_rank', '>', 0)]"/>
+                                <field name="vendor" options="{'no_open': True, 'no_create': True}"
+                                       widget="many2many_tags_avatar"
+                                       attrs="{'invisible':[('filter','!=', 'in_refund')]}"
+                                       domain="['|',('supplier', '!=', False), ('supplier_rank', '>', 0)]"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button name="print" type="object"
+                                    string="print" class="oe_highlight"/>
+                            <!--<button name="print_xls" type="object"
+                                    string="PRINT XLS" class="oe_highlight"/>-->
+                            <button string="Cancel" special="cancel"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="open_captive_vat_map_act_window" model="ir.actions.act_window">
+            <field name="name">Mapa de Iva Cativo</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">captive.vat.map</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_captive_vat_map"
+                  sequence="6"
+                  name="Mapa de Iva Cativo"
+                  parent="account.account_reports_management_menu"
+                  action="open_captive_vat_map_act_window"/>
+    </data>
+</odoo>

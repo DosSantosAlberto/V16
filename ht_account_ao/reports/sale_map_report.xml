@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report
+                id="report_sale_map"
+                model="sale.map.wizard"
+                string="Sale Map"
+                menu="False"
+                name="l10n_ao.report_sale_map_pdf"
+                file="l10n_ao.report_sale_map_pdf"
+                paperformat="l10n_ao.paper_account_landscape"
+                report_type="qweb-pdf"/>
+        <report
+                id="report_sale_map_xlsx"
+                model="sale.map.wizard"
+                string="Sale Map  XLS"
+                menu="False"
+                name="l10n_ao.report_sale_map_xls"
+                file="l10n_ao.report_sale_map_xls"
+                paperformat="l10n_ao.paper_account_landscape"
+                report_type="xlsx"/>
+
+        <template id="report_sale_map_pdf">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page" style="font-family:Calibri; font-size: 11px;">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <br/>
+                                    <t t-if="o.mode == 'resume'">
+                                        <h2>MAPA DE VENDA RESUMIDO</h2>
+                                    </t>
+                                    <t t-if="o.mode == 'detail'">
+                                        <h2>MAPA DE VENDA DETALHADO</h2>
+                                    </t>
+                                    <h4>Referente à <span t-field="o.filter"/></h4>
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>Data de inicio</th>
+                                                <th>Data de término</th>
+                                                <th>Impressão</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <td>
+                                                <span t-field="o.start_date"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.end_date"/>
+                                            </td>
+                                            <td>
+                                                <span t-out="time.strftime('%d-%m-%Y %H:%M:%S')"/>
+                                            </td>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-xs-12">
+                                    <table class="table table-borderless">
+                                        <thead>
+
+                                            <t t-if="o.mode == 'detail'">
+                                                <tr style="background-color:#337AB7; color:#ffffff;">
+                                                    <th>Nome</th>
+                                                    <th>Qt</th>
+                                                    <th>Preço</th>
+                                                    <th>Desc</th>
+                                                    <th>IVA</th>
+                                                    <th>Retenção</th>
+                                                    <th class="text-right">Subtotal</th>
+                                                </tr>
+                                            </t>
+                                            <t t-if="o.mode == 'resume'">
+                                                <tr style="background-color:#337AB7; color:#ffffff;">
+                                                    <th>Nome</th>
+                                                    <th class="text-center">Qt</th>
+                                                    <th class="text-right">Subtotal</th>
+                                                </tr>
+                                            </t>
+                                        </thead>
+                                        <tbody>
+                                            <t t-if="o.mode == 'detail'">
+                                                <t t-set="tax_total" t-value="0"/>
+                                                <t t-set="tax_rf_total" t-value="0"/>
+                                                <t t-set="total" t-value="0"/>
+                                                <tr t-foreach="o.sale_products(o.products)" t-as="line">
+                                                    <td><span t-field="line.product_id"/></td>
+                                                    <td class="text-center"><span t-field="line.quantity"/></td>
+                                                    <td><span t-field="line.price_unit"
+                                                              t-out-options='{"widget": "monetary","display_currency": "o.company_id.currency_id"}'/></td>
+                                                    <td><span t-field="line.discount"/></td>
+                                                    <td class="text-right"><span
+                                                            t-out="o.get_taxes(line.price_unit, line.invoice_line_tax_ids)"
+                                                            t-out-options='{"widget": "monetary","display_currency": "o.company_id.currency_id"}'/></td>
+                                                    <td class="text-right"><span
+                                                            t-out="o.get_tax_rf(line.price_unit, line.invoice_line_tax_ids)"
+                                                            t-out-options='{"widget": "monetary","display_currency": "o.company_id.currency_id"}'/></td>
+                                                    <td class="text-right"><span t-field="line.global_amount_subtotal"/></td>
+
+                                                    <t t-set="tax_total"
+                                                       t-value="tax_total + o.get_taxes(line.price_unit, line.invoice_line_tax_ids)"/>
+                                                    <t t-set="tax_rf_total"
+                                                       t-value="tax_rf_total + o.get_tax_rf(line.price_unit, line.invoice_line_tax_ids)"/>
+                                                    <t t-set="total" t-value="total + line.global_amount_subtotal"/>
+                                                </tr>
+                                                <tr style="background-color:#337AB7; color:#ffffff;">
+                                                    <th colspan="4">Total:</th>
+                                                    <th>
+                                                        <span t-out="tax_total"
+                                                              t-out-options='{"widget": "monetary","display_currency": "o.company_id.currency_id"}'/>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span t-out="tax_rf_total"
+                                                              t-out-options='{"widget": "monetary","display_currency": "o.company_id.currency_id"}'/>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span t-out="total"
+                                                              t-out-options='{"widget": "monetary","display_currency": "o.company_id.currency_id"}'/>
+                                                    </th>
+                                                </tr>
+                                            </t>
+
+                                            <t t-if="o.mode == 'resume'">
+                                                <t t-set="total" t-value="0"/>
+                                                <tr t-foreach="o.products" t-as="product">
+                                                    <td><span t-field="product.name"/></td>
+                                                    <td class="text-center"><span t-out="sum([l.quantity for l in o.sale_product_resume(product)])"/></td>
+                                                    <td class="text-right"><span t-out="sum([l.global_amount_subtotal for l in o.sale_product_resume(product)])"
+                                                              t-out-options='{"widget": "monetary","display_currency": "o.company_id.currency_id"}'/></td>
+                                                    <t t-set="total" t-value="total + sum([l.global_amount_subtotal for l in o.sale_product_resume(product)])"/>
+                                                </tr>
+                                                <tr style="background-color:#337AB7; color:#ffffff;">
+                                                    <th colspan="2">Total:</th>
+                                                    <th class="text-right">
+                                                        <span t-out="total"
+                                                              t-out-options='{"widget": "monetary","display_currency": "o.company_id.currency_id"}'/>
+                                                    </th>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

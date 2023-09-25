@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_form_inherit" model="ir.ui.view">
+            <field name="name">l10n_ao.account.account.form</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='account_type']" position="after">
+                    <field name="nature" invisible="1"/>
+                    <field name="reason_code" invisible=""/>
+                    <field name="integrator_code"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="account_tree_inherit" model="ir.ui.view">
+            <field name="name">l10n_ao.account.account.form</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_list"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='account_type']" position="after">
+                    <field name="nature" readonly="1" force_save="1"/>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="view_account_inherit_search" model="ir.ui.view">
+            <field name="name">ht.account.account.search</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Nature" name="account_nature" domain="" context="{'group_by':'nature'}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

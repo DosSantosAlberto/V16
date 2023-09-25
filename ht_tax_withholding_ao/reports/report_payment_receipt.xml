@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <template id="report_payment_receipt" inherit_id="ht_account_ao.report_payment_receipt_document">
+            <xpath expr="//td[@name='col_withheld']" position="replace">
+                <td class="text-right" name="col_withheld">
+                    <span t-out="o.amount_format(o.deductible_wth + o.deductible_vat)"/>
+                </td>
+            </xpath>
+            <xpath expr="//td[@name='col_withheld_total']" position="replace">
+                <td name="col_withheld_total" class="text-right">
+                    <t t-set="applied_wth"
+                       t-value="-sum([inv.amount_wth_apply for inv in o.reconciled_invoice_ids if inv.amount_residual == 0])"/>
+                    <b><span t-out="o.amount_format((abs(applied_wth) + o.deductible_vat) or o.deductible_wth )"/></b>
+                </td>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

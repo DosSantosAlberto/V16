@@ -1,0 +1,139 @@
+<odoo>
+
+    <data>
+        <record id="saft_ao_wizard_view" model="ir.ui.view">
+            <field name="name">saft.ao.wizard.form</field>
+            <field name="model">saft.ao.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <separator string="Generate XML File of SAF-T AO "/>
+
+                        <p>
+
+                                SAF-T (AO) (Standard Audit File for Tax Purposes – Angola version) é um ficheiro
+                                normalizado (em
+                                formato XML) com o objectivo de permitir uma exportação fácil, em qualquer altura, de um
+                                conjunto
+                                predefinido de registos contabilísticos e de facturação ou equiparados, num formato
+                                legível
+                                e comum,
+                                independente do programa utilizado, sem afectar a estrutura interna da base de dados do
+                                programa ou a
+                                sua funcionalidade. A adopção deste modelo proporciona às empresas uma ferramenta que
+                                permite
+                                satisfazer os requisitos de obtenção de informação dos serviços de inspecção,
+                                simplificando
+                                procedimentos e impulsionando a utilização de novas tecnologias.
+                        </p>
+
+                    <group string="">
+                        <field name="company_id" string="Company Name" readonly="1"/>
+                        <field name="type" required="1"/>
+                        <field name="date_from" required="1"/>
+                        <field name="date_to" required="1"/>
+                        <field name="comment"
+                               placeholder="Header Comment for Standard Audit File  Angola version"/>
+                    </group>
+                   <footer>
+                        <span groups="base.group_user">
+                            <button name="get_xml" type="object"
+                                    string="EXPORT XML" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="saft_ao_wizard_view_action" model="ir.actions.act_window">
+            <field name="name">SAF-T AO XML Files</field>
+            <field name="res_model">saft.ao.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem
+            id="menu_saft_ao"
+            name="SAF-T AO"
+            action="saft_ao_wizard_view_action"
+            parent="account.menu_finance_entries_actions"
+            sequence="20"/>
+    </data>
+</odoo>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="saf_t_ao_wizard_view" model="ir.ui.view">
+            <field name="name">saf_t.ao.wizard.form</field>
+            <field name="model">saf_t.ao.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <separator string="Generate XML File of SAF-T AO "/>
+                    <group colsapn="4">
+                        <p align="justify">
+                            <b>
+                                SAF-T (AO) (Standard Audit File for Tax Purposes – Angola version) é um ficheiro
+                                normalizado (em
+                                formato XML) com o objectivo de permitir uma exportação fácil, em qualquer altura, de um
+                                conjunto
+                                predefinido de registos contabilísticos e de facturação ou equiparados, num formato
+                                legível
+                                e comum,
+                                independente do programa utilizado, sem afectar a estrutura interna da base de dados do
+                                programa ou a
+                                sua funcionalidade. A adopção deste modelo proporciona às empresas uma ferramenta que
+                                permite
+                                satisfazer os requisitos de obtenção de informação dos serviços de inspecção,
+                                simplificando
+                                procedimentos e impulsionando a utilização de novas tecnologias.
+                            </b>
+                        </p>
+                    </group>
+                    <group string="">
+                        <field name="company_id" string="Company Name" readonly="1"/>
+                        <field name="type" required="1"/>
+                        <field name="start_date" required="1"/>
+                        <field name="end_date" required="1"/>
+                        <field name="comment"
+                               placeholder="Header Comment for Standard Audit File  Angola version"/>
+                    </group>
+                    <footer class="">
+                        <button string="Cancel" class="btn-danger"
+                                special="cancel"
+                                style="font-size:14px"/>
+                        <button name="generate__xml_file" string="Generate XML File"
+                                class="oe_highlight"
+                                type="object" style="font-size:14px"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_open_saf_t_ao_wizard_view" model="ir.actions.act_window">
+            <field name="name">SAF-T AO XML Files</field>
+            <field name="res_model">saf_t.ao.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="SAF-T AO" sequence="" id="menu_saf_t_ao" parent="account_accountant.menu_action_change_lock_date" action="act_open_saf_t_ao_wizard_view"/>
+
+    </data>
+
+</odoo> 
+
+-->

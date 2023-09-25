@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="messge_subtype_view_tree" model="ir.ui.view">
+            <field name="name">mail.message.subtype.tree</field>
+            <field name="model">mail.message.subtype</field>
+            <field name="inherit_id" ref="mail.view_mail_message_subtype_form"/>
+            <field name="arch" type="xml">
+                <field name="track_recipients" position="after">
+                    <field name="editable"/>
+                    <field name="delete"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

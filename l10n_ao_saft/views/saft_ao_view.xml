@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="action_report_saft_ao" model="ir.actions.report">
+        <field name="name">Report Saft AO</field>
+        <field name="model">account.general.ledger.report.handler</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">account_saft.saft_template</field>
+        <field name="report_file">account_saft.saft_template</field>
+        <field name="binding_type">report</field>
+    </record>
+
+    <menuitem
+        id="saft_ao_menu" name="SAFT AO" action="action_report_saft_ao" parent="account.account_management_menu" sequence="10" />
+</odoo>

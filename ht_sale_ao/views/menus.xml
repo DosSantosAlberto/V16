@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="ht_sale_ao_menu_control" name="Controle" parent="sale.sale_menu_root" sequence="3" />
+        <menuitem id="ht_sale_ao_menu_action_move_out_invoice_type" action="account.action_move_out_invoice_type" parent="ht_sale_ao_menu_control" sequence="1" name="Faturas de Clientes" />
+    </data>
+</odoo>

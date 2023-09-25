@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Loan Tree view-->
+    <record id="hr_loan_tree_view" model="ir.ui.view">
+        <field name="name">hr.loan.tree</field>
+        <field name="model">hr.loan</field>
+        <field name="arch" type="xml">
+            <tree string="Loan Requests">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="department_id" optional="hide"/>
+                <field name="job_position" optional="hide"/>
+                <field name="loan_amount"/>
+                <field name="request_type"/>
+                <field name="date"/>
+                <field name="state" widget="badge" decoration-danger="state == 'refuse'"
+                       decoration-warning="state == 'waiting_approval_1'" decoration-success="state == 'approve'"
+                       decoration-info="state == 'draft'" optional="show"/>
+                <field name="payment_date" optional="hide"/>
+                <field name="end_date" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_loan_salary_advance_tree_view" model="ir.ui.view">
+        <field name="name">hr.loan.tree</field>
+        <field name="model">hr.loan</field>
+        <field name="arch" type="xml">
+            <tree string="Salary Advance Requests">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="department_id" optional="hide"/>
+                <field name="job_position" optional="hide"/>
+                <field name="loan_amount"/>
+                <field name="request_type"/>
+                <field name="date"/>
+                <field name="state" widget="badge" decoration-danger="state == 'refuse'"
+                       decoration-warning="state == 'waiting_approval_1'" decoration-success="state == 'approve'"
+                       decoration-info="state == 'draft'" optional="show"/>
+                <field name="payment_date" optional="hide"/>
+                <field name="end_date" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--Loan Form view-->
+    <record id="hr_loan_form_view" model="ir.ui.view">
+        <field name="name">hr.loan.form</field>
+        <field name="model">hr.loan</field>
+        <field name="arch" type="xml">
+            <form string="Loan Request">
+                <header>
+                    <button name="compute_installment" type="object" string="Compute Installment" class="oe_highlight"
+                            attrs="{'invisible':[('state','in',('approve', 'refuse'))]}"/>
+                    <button name="action_submit" type="object" string="Submit" states="draft" class="oe_highlight"/>
+                    <button name="action_cancel" type="object" string="Cancel" states="draft"/>
+                    <button name="action_approve" type="object" string="Approve" invisible="1"
+                            states="waiting_approval_1"
+                            class="oe_highlight" groups="hr.group_hr_manager,hr.group_hr_user"/>
+                    <button name="action_refuse" type="object" string="Refuse" invisible="1"
+                            states="draft,waiting_approval_1"
+                            class="oe_highlight" groups="hr.group_hr_manager,hr.group_hr_user"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,waiting_approval_1,approve"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <widget name="web_ribbon" title="Approved"
+                            attrs="{'invisible': [('state', '!=', 'approve')]}"/>
+                    <widget name="web_ribbon" title="Submitted"
+                            bg_color="bg-warning"
+                            attrs="{'invisible': [('state', '!=', 'waiting_approval_1')]}"/>
+                    <widget name="web_ribbon" title="Refused"
+                            bg_color="bg-danger"
+                            attrs="{'invisible': [('state', '!=', 'refuse')]}"/>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group col="4">
+                        <field name="employee_id" attrs="{'readonly':[('state','=','approve')]}"/>
+                        <field name="date"/>
+                        <field name="department_id"/>
+                        <field name="job_position"/>
+                        <field name="end_date" readonly="1"/>
+                        <field name="request_type" invisible="1"/>
+                        <field name="employee_contract_id" required="1"
+                               domain="[('employee_id', '=', employee_id), ('state', '=', 'open')]"/>
+                        <field name="loan_amount" attrs="{'readonly':[('state','=','approve')]}"/>
+                        <field name="installment" attrs="{'readonly':[('state','=','approve')]}"/>
+                        <field name="payment_date" attrs="{'readonly':[('state','=','approve')]}"/>
+                        <field name="salary_advance_reson"
+                               attrs="{'invisible':[('request_type','=','loan')], 'required':[('request_type','=','salary_advance')]}"/>
+                        <field name="loan_purpose"
+                               attrs="{'invisible':[('request_type','=','salary_advance')], 'required':[('request_type','=','loan')]}"/>
+                        <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                        <field name="currency_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                        <field name="term_and_condition"/>
+                    </group>
+                    <notebook>
+                        <page string="Installments">
+                            <field name="loan_lines" readonly="1">
+                                <tree string="Installments" editable="bottom">
+                                    <field name="date"/>
+                                    <field name="amount"/>
+                                    <field name="paid" readonly="1" invisible="1"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right" colspan="2">
+                                <field name="total_amount" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="total_paid_amount" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="balance_amount" class="oe_subtotal_footer_separator" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page string="Approver(s)">
+                            <field name="loan_approvers_line_ids" attrs="{'readonly':[('state','not in', ['draft'] )]}">
+                                <tree editable="bottom">
+                                    <field name="user_id"/>
+                                    <field name="employee_id"/>
+                                    <field name="job_id"/>
+                                    <field name="sign_date"/>
+                                    <field name="state"/>
+                                    <button name="btn_refused" type="object" title="Refuse" icon="fa-close"
+                                            attrs="{'invisible':[('state','not in', ['new'] )]}"/>
+                                    <button name="btn_approve" type="object" title="Approve" icon="fa-check"
+                                            attrs="{'invisible':[('state','not in', ['new'] )]}"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Payment Historic">
+                            <field name="payment_historic_line" readonly="1">
+                                <tree string="Payment Historic" editable="bottom">
+                                    <field name="date"/>
+                                    <field name="amount"/>
+                                    <field name="origin"/>
+                                    <field name="received_amount"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right" colspan="2">
+                                <field name="total_amount" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="total_paid_amount" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="balance_amount" class="oe_subtotal_footer_separator" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page string="Attachment(s)">
+                            <field name="attachment_ids" widget="many2many_binary" string="Attach a file" nolabel="1"
+                                   colspan="2"/>
+                        </page>
+                    </notebook>
+                    <span>
+                        <p>
+                            Eu, concordo que os pagamentos do empréstimo serão deduzidos do meu salário a partir do
+                            próximo período de pagamento após o
+                            empréstimo ter sido desembolsado e concordar com o cronograma de reembolso acima. Eu entendo
+                            que um pagamento é deduzido por salário. Certifico que não tenho nenhum outro empréstimo em
+                            dívida.
+                        </p>
+                        <p>
+                            Se eu deixar a Compllexus antes do reembolso total, ou, se qualquer parcela deste empréstimo
+                            não
+                            for paga quando o prazo terminar, todos os montantes em dívida serão imediatamente pagos.
+                            Eu, nesse caso, autorizo a Empresa a reter, do meu salário de pagamento final, pagamento de
+                            demissão e / ou contribuições de fundo, o montante suficiente para cobrir o saldo
+                            remanescente ou, se o saldo remanescente exceder o valor do Salário de pagamento final, Todo
+                            o montante do salário.
+                        </p>
+
+                        <p>
+                            O empregado pode fazer pagamentos antecipados a qualquer momento sem penalidade, e qualquer
+                            adiantamento será aplicado contra o saldo desta, mas não estenderá nem adiará o prazo de
+                            quaisquer deduções dos salarios subseqüentes ou alterará o valor de quaisquer deduções de
+                            salários a Menos Que a PSI e O empregado concordem de outra forma por escrito.
+                        </p>
+                    </span>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--loan search view-->
+    <record id="view_loan_request_search_form" model="ir.ui.view">
+        <field name="name">hr.loan.search.form</field>
+        <field name="model">hr.loan</field>
+        <field name="arch" type="xml">
+            <search string="Loan">
+                <filter string="My Requests" name="myrequest" domain="[('employee_id.user_id.id', '=', uid)]"/>
+                <field name="employee_id" string="Employee"/>
+                <field name="department_id" string="Department"/>
+                <filter string="Employee" name="employee_id" context="{'group_by':'employee_id'}"/>
+                <filter string="Department" name="department_id" context="{'group_by':'department_id'}"/>
+                <filter string="Status" name="status" context="{'group_by':'state'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_salary_advance_request_search_form" model="ir.ui.view">
+        <field name="name">hr.loan.salary.advance.search.form</field>
+        <field name="model">hr.loan</field>
+        <field name="arch" type="xml">
+            <search string="Loan">
+                <filter string="My Requests" name="myrequest" domain="[('employee_id.user_id.id', '=', uid)]"/>
+                <field name="employee_id" string="Employee"/>
+                <field name="department_id" string="Department"/>
+                <filter string="Employee" name="employee_id" context="{'group_by':'employee_id'}"/>
+                <filter string="Department" name="department_id" context="{'group_by':'department_id'}"/>
+                <filter string="Status" name="status" context="{'group_by':'state'}"/>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_hr_loan_request" model="ir.actions.act_window">
+        <field name="name">Request for Loan</field>
+        <field name="res_model">hr.loan</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_request_type': 'loan'}</field>
+        <field name="domain">[('request_type', 'in', ['loan'])]</field>
+        <field name="search_view_id" ref="view_loan_request_search_form"/>
+        <field name="view_id" ref="hr_loan_tree_view"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new Loan request.
+            </p>
+            <p>
+                Use this menu to create loan requests.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_hr_loan_salary_request" model="ir.actions.act_window">
+        <field name="name">Request for Salary Advance</field>
+        <field name="res_model">hr.loan</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_request_type': 'salary_advance'}</field>
+        <field name="domain">[('request_type', 'in', ['salary_advance'])]</field>
+        <field name="search_view_id" ref="view_salary_advance_request_search_form"/>
+        <field name="view_id" ref="hr_loan_salary_advance_tree_view"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new Salary Advance request.
+            </p>
+            <p>
+                Use this menu to create Salary Advance requests.
+            </p>
+        </field>
+    </record>
+
+    <!--loan menu-->
+
+    <menuitem
+            id="menu_hr_loans_and_advances"
+            name="Emprestimos &amp; Avanços"
+            parent="hr_work_entry_contract_enterprise.menu_hr_payroll_root"
+            sequence="40"
+            groups="group_hr_loan_own_documents"/>
+    <menuitem name="Pedido de Emprestimos"
+              parent="menu_hr_loans_and_advances"
+              id="menu_hr_loan_request"
+              action="action_hr_loan_request" sequence="1" groups="group_hr_loan_own_documents"/>
+    <menuitem id="menu_salary_advance" action="action_hr_loan_salary_request" parent="menu_hr_loans_and_advances"
+              name="Pedir Adiantamento de Salário" sequence="2" groups="group_hr_loan_own_documents"/>
+
+
+    <!-- Shortcuts -->
+    <record id="act_hr_employee_loan_request" model="ir.actions.act_window">
+        <field name="name">Loans</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.loan</field>
+        <field name="binding_model_id" ref="hr.model_hr_employee"/>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_request_type': 'loan'}</field>
+        <field name="domain">[('request_type', 'in', ['loan'])]</field>
+        <field name="view_id" eval="hr_loan_tree_view"/>
+    </record>
+
+
+    <record id="act_hr_employee_loan_salary_request" model="ir.actions.act_window">
+        <field name="name">Salary Advance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.loan</field>
+        <field name="binding_model_id" ref="hr.model_hr_employee"/>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_request_type': 'salary_advance'}</field>
+        <field name="domain">[('request_type', 'in', ['salary_advance'])]</field>
+        <field name="view_id" eval="hr_loan_salary_advance_tree_view"/>
+    </record>
+
+    <!-- HR employee inherit Loans -->
+    <record id="view_employee_form_loan_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.loan.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="%(act_hr_employee_loan_request)d"
+                        type="action"
+                        class="oe_stat_button"
+                        icon="fa-calendar"
+                        groups="hr.group_hr_manager,hr.group_hr_user">
+                    <field name="loan_count" widget="statinfo" string="Loans"/>
+                </button>
+
+                <button name="%(act_hr_employee_loan_salary_request)d"
+                        type="action"
+                        class="oe_stat_button"
+                        icon="fa-calendar"
+                        groups="hr.group_hr_manager,hr.group_hr_user">
+                    <field name="salary_advance_count" widget="statinfo" string="Salary Advances"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_journal_wizard_view_form" model="ir.ui.view">
+            <field name="name">account.extract.wizard_view_form</field>
+            <field name="model">account.journal.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Extrato de Diários">
+                    <div class="oe_title">
+                        <h1>
+                            Extracto  de Diarios
+                        </h1>
+                    </div>
+                    <group col="2">
+                        <field name="company_id" required="1"
+                               options="{'no_create': True, 'no_open': True}"
+                               groups="base.group_multi_company"/>
+                        <field name="filter_by" widget="radio"
+                               required="1" />
+                    </group>
+                    <group>
+                        <group>
+                            <field name="target_move" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="date_from" required="1"/>
+                            <field name="date_to" required="1"/>
+                            <field name="journal_id"  required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button name="print_report" type="object"
+                                    string="Print" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="account_journal_action" model="ir.actions.act_window">
+            <field name="name">Extracto de Diario</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.journal.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="account_journal_menu"
+                  name="Extrato de Diário"
+                  parent="account.account_reports_legal_statements_menu"
+                  sequence="6"
+                  action="account_journal_action"/>
+
+    </data>
+</odoo>

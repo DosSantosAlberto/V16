@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_account_financial_report_form_ao" model="ir.ui.view">
+        <field name="name">account.report.form</field>
+        <field name="model">account.report</field>
+        <field name="inherit_id" ref="account_reports.account_report_form"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="note"/>
+            </field>
+        </field>
+    </record>
+
+   <menuitem id="account_reports_ao_statements_menu" name="Angola Legal Reports"
+              parent="account.menu_finance_reports"
+              sequence="0" groups="account.group_account_user"/>
+</odoo>

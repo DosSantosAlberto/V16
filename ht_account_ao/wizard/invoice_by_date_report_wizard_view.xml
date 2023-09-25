@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="invoice_by_date_wizard_form">
+            <field name="name">invoice.by.date.wizard.form</field>
+            <field name="model">invoice.by.date.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Fatura">
+                    <div style="background-color:#337AB7; color:#ffffff; font-size:14px; margin:0px;">
+                        Com este agente podes obter relatórios de facturas de clientes e fornecedores, por empresas e
+                        estados.
+                        Vai facilitar na tomada de decisão e conhecerá a evolução de sua facturação.
+                    </div>
+                    <group col="2" string="">
+                        <group string="Faturas">
+                            <field name="type" nolabel="1" widget="radio" options="{'horizontal':True}" string="Tipo" />
+                        </group>
+                        <group string="Estado">
+                            <field name="state" nolabel="1" widget="radio" options="{'horizontal':True}" string="Estado" />
+                        </group>
+                    </group>
+                    <group col="4">
+                        <field name="start_date" required="1" string="Data de Início" />
+                        <field name="end_date" required="1" string="Data de Fim" />
+                    </group>
+                    <group col="2" string="">
+                        <group string="Empresas">
+                            <field name="companies" string="Empresas" widget="many2many_checkboxes" nolabel="1" />
+                        </group>
+                        <group string="Parceiros">
+                            <field name="clients" options="{'no_create_edit':True,'no_create':True}" domain="[('customer','=',True)]" widget="many2many_tags" attrs="{'invisible':[('type','=','supplier')]}" string="Clientes" />
+                            <field name="suppliers" options="{'no_create_edit':True,'no_create':True}" domain="[('supplier','=',True)]" widget="many2many_tags" attrs="{'invisible':[('type','=','customer')]}" string="Fornecedores" />
+                        </group>
+                    </group>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button name="show" type="object" string="Pré-visualizar" class="oe_highlight" />
+                            <button name="print" type="object" string="Imprimir" class="oe_highlight" style="margin-left: 5px; margin-right: 5px;" />
+                            <button string="Cancelar" special="cancel" />
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_invoice_by_date_wizard">
+            <field name="name">Faturação Por Datas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">invoice.by.date.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_invoice_by_date_report" name="Faturação por data" parent="account.account_reports_management_menu" sequence="1" active="True" action="act_invoice_by_date_wizard" />
+
+    </data>
+</odoo>
