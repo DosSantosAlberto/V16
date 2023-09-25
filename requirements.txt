@@ -1,5 +1,5 @@
 pyodbc
-pycryptodom
+pycryptodome
 dicttoxml
 xmltodict
 pandas
