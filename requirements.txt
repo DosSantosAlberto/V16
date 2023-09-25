@@ -1,0 +1,5 @@
+pyodbc
+pycryptodom
+dicttoxml
+xmltodict
+pandas
