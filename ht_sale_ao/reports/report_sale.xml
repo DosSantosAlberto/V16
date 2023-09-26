@@ -392,11 +392,11 @@
                                                         <span>Banco</span>
                                                     </b>
                                                 </td>
-                                                <td>
-                                                    <b>
-                                                        <span>Conta</span>
-                                                    </b>
-                                                </td>
+<!--                                                <td>-->
+<!--                                                    <b>-->
+<!--                                                        <span>Conta</span>-->
+<!--                                                    </b>-->
+<!--                                                </td>-->
                                                 <td colspan="2" class="text-right">
                                                     <b>
                                                         <span>IBAN</span>
@@ -408,9 +408,9 @@
                                                     <td>
                                                         <span t-field="bank.bank_id.code"/>
                                                     </td>
-                                                    <td>
-                                                        <span t-field="bank.acc_number"/>
-                                                    </td>
+<!--                                                    <td>-->
+<!--                                                        <span t-field="bank.acc_number"/>-->
+<!--                                                    </td>-->
                                                     <td colspan="2" class="text-right">
                                                         <span t-field="bank.iban_number"/>
                                                     </td>
