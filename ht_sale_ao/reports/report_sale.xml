@@ -392,28 +392,28 @@
                                                         <span>Banco</span>
                                                     </b>
                                                 </td>
-<!--                                                <td>-->
-<!--                                                    <b>-->
-<!--                                                        <span>Conta</span>-->
-<!--                                                    </b>-->
-<!--                                                </td>-->
-                                                <td colspan="2" class="text-right">
+                                                <td>
                                                     <b>
-                                                        <span>IBAN</span>
+                                                        <span>Conta</span>
                                                     </b>
                                                 </td>
+<!--                                                <td colspan="2" class="text-right">-->
+<!--                                                    <b>-->
+<!--                                                        <span>IBAN</span>-->
+<!--                                                    </b>-->
+<!--                                                </td>-->
                                             </tr>
                                             <tr t-foreach="o.company_id.partner_id.bank_ids" t-as="bank">
                                                 <t t-if="bank.show_doc">
                                                     <td>
                                                         <span t-field="bank.bank_id.code"/>
                                                     </td>
-<!--                                                    <td>-->
-<!--                                                        <span t-field="bank.acc_number"/>-->
-<!--                                                    </td>-->
-                                                    <td colspan="2" class="text-right">
-                                                        <span t-field="bank.iban_number"/>
+                                                    <td>
+                                                        <span t-field="bank.acc_number"/>
                                                     </td>
+<!--                                                    <td colspan="2" class="text-right">-->
+<!--                                                        <span t-field="bank.iban_number"/>-->
+<!--                                                    </td>-->
                                                 </t>
                                             </tr>
                                         </t>
