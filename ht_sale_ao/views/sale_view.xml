@@ -12,6 +12,9 @@
                     <field name="cost_center" options="{'no_create': True, 'no_open': True}"
                            attrs="{'required':[('has_cost_center','!=',False)], 'invisible':[('has_cost_center','=',False)], 'readonly': [('state', '!=', 'draft')]}"/>
                 </xpath>
+                 <field name="partner_id" position="attributes">
+                    <attribute name="domain">[('customer','=',True),('supplier','=',False)]</attribute>
+                    </field>
             </field>
         </record>
     </data>
