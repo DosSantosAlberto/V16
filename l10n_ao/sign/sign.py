@@ -10,7 +10,7 @@ import tempfile
 
 def sign_content(content_data):
     dirname = os.path.dirname(__file__)
-    print (dirname)
+    #print (dirname)
     with open(os.path.join(dirname, 'ChavePrivada.pem'), 'r') as reader:
         rsa_private_key = RSA.importKey(reader.read(), "")
         signer = PKCS1_v1_5.new(rsa_private_key)
