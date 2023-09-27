@@ -20,9 +20,9 @@ class MailMessage(models.Model):
         res = super(MailMessage, self).write(vals)
         return res
 
-    def unlink(self):
-        if not self:
-            return True
-        if not self.subtype_id.delete:
-            raise AccessError(_("Only administrators are allowed to Delete this type of message"))
-        return super(MailMessage, self).unlink()
+    # def unlink(self):
+    #     if not self:
+    #         return True
+    #     if not self.subtype_id.delete:
+    #         raise AccessError(_("Only administrators are allowed to Delete this type of message"))
+    #     return super(MailMessage, self).unlink()
