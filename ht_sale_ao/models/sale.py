@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
-    _description = "Angola Sale"
+    # _description = "Angola Sale"
 
     cost_center = fields.Many2one(comodel_name="account.cost.center", string="Cost Center")
     has_cost_center = fields.Boolean(related='company_id.sale_cost_center')
