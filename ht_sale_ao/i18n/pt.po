@@ -1,0 +1,350 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ht_sale_ao
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e-20230920\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-28 16:28+0000\n"
+"PO-Revision-Date: 2023-09-28 17:31+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "0,00"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid ""
+"<b>\n"
+"                                                        <span>Banco</span>\n"
+"                                                    </b>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid ""
+"<b>\n"
+"                                                        <span>Conta</span>\n"
+"                                                    </b>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid ""
+"<b>\n"
+"                                                        <span>Coordenadas "
+"Bancárias</span>\n"
+"                                                    </b>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid ""
+"<b>\n"
+"                                                        <span>Quadro Resumo "
+"de Impostos</span>\n"
+"                                                    </b>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid ""
+"<b>\n"
+"                                                        <span>Quadro de "
+"Retenção</span>\n"
+"                                                    </b>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid ""
+"<b>\n"
+"                                                    <span>Total Ilíquido</"
+"span>\n"
+"                                                </b>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid ""
+"<b>\n"
+"                                    <span>Observação</span>\n"
+"                                </b>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<b>%</b>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<b>Base Tributável</b>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<b>Descrição</b>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<b>Imposto</b>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<b>Isenção/Código</b>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid ""
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">Valor\n"
+"                                            S/Imposto\n"
+"                                        </span>\n"
+"                                        <span groups=\"account."
+"group_show_line_subtotals_tax_included\">Valor\n"
+"                                            C/Imposto\n"
+"                                        </span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span style=\"color:green\">Original</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span style=\"font-size: 18px !important;\">Factura Pro-Forma PP</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>0,00</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Adiantamento</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Artigo</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Condição Pagamento</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Câmbio</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Data de emissão</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Data de validade</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Desc(%)</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Desconto Financeiro</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Descontos Comercias</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Descrição</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Duplicado</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>M21</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Moeda</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Origen</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Pr.Unitário</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Qtd</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Taxa</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Total Imposto</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>Total a Pagar</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<span>outros serviços</span>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "<strong>Cliente</strong>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model:ir.model.fields,field_description:ht_sale_ao.field_res_currency__amount_tax
+msgid "Amount Tax"
+msgstr "Valor do imposto"
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.view_sale_res_config_settings_form
+msgid "Centro de Custo"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model:ir.model,name:ht_sale_ao.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: ht_sale_ao
+#: model:ir.model,name:ht_sale_ao.model_res_config_settings
+msgid "Config Settings"
+msgstr "Configurações"
+
+#. module: ht_sale_ao
+#: model:ir.ui.menu,name:ht_sale_ao.ht_sale_ao_menu_control
+msgid "Control"
+msgstr "Controle"
+
+#. module: ht_sale_ao
+#: model:ir.model.fields,field_description:ht_sale_ao.field_sale_order__cost_center
+msgid "Cost Center"
+msgstr "Centro de custos"
+
+#. module: ht_sale_ao
+#: model:ir.model,name:ht_sale_ao.model_res_currency
+msgid "Currency"
+msgstr "Moeda"
+
+#. module: ht_sale_ao
+#: model:ir.ui.menu,name:ht_sale_ao.ht_sale_ao_menu_action_move_out_invoice_type
+msgid "Customer Invoice"
+msgstr "Fatura do Cliente"
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "Este documento não serve de factura"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.view_sale_res_config_settings_form
+msgid "Gerencie o centro de custo em suas <b>vendas</b>"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.view_sale_res_config_settings_form
+msgid "Gerir centro de custo"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "Isento nos termos da alínea l) do nº1 do artigo 12º do CIVA"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "Isenção"
+msgstr ""
+
+#. module: ht_sale_ao
+#. odoo-python
+#: code:addons/ht_sale_ao/models/sale.py:0
+#, python-format
+msgid ""
+"It is not allowed to confirm an order in %s status, the document must be "
+"validated first"
+msgstr ""
+"Não é permitido confirmar um pedido no status %s, o documento deve ser "
+"validado primeiro"
+
+#. module: ht_sale_ao
+#. odoo-python
+#: code:addons/ht_sale_ao/models/sale.py:0
+#, python-format
+msgid "It is not allowed to confirm an order in the following states: %s"
+msgstr "Não é permitido confirmar um pedido nos seguintes estados: %s"
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "NIF"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "Orçamento OR"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model_terms:ir.ui.view,arch_db:ht_sale_ao.report_sale_document
+msgid "Processado por programa validado Nº 000/AGT/2022 Odoo Eletic v15.0"
+msgstr ""
+
+#. module: ht_sale_ao
+#: model:ir.model.fields,field_description:ht_sale_ao.field_res_company__sale_cost_center
+#: model:ir.model.fields,field_description:ht_sale_ao.field_res_config_settings__sale_cost_center
+#: model:ir.model.fields,field_description:ht_sale_ao.field_sale_order__has_cost_center
+msgid "Sale Cost Center"
+msgstr "Centro de Custos de Venda"
+
+#. module: ht_sale_ao
+#: model:ir.model,name:ht_sale_ao.model_sale_order
+msgid "Sales Order"
+msgstr "Ordem de Vendas"
