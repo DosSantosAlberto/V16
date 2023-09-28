@@ -197,7 +197,7 @@ class TreasuryCashFlow(models.Model):
             move_values = self._prepare_journal_entries(self, self.get_account(), self.journal_id.default_account_id.id)
             move = self.env['account.move'].create(move_values)
             self.move_id = move
-            move.post()  # Posting to Accounting
+            move.action_post()  # Posting to Accounting
         elif self.is_take_money:
             outbound = self.env['treasury.cash.flow'].create(self.get_value(self.journal_id.id, 'outbound'))
             inbound = self.env['treasury.cash.flow'].create(self.get_value(self.destination_journal_id.id, 'inbound'))
@@ -220,8 +220,8 @@ class TreasuryCashFlow(models.Model):
                 outbound.state = 'posted'
                 inbound.move_id = move_in
                 inbound.state = 'posted'
-                move_out.post()  # Posting to Accounting
-                move_in.post()  # Posting to Accounting
+                move_out.action_post()  # Posting to Accounting
+                move_in.action_post()  # Posting to Accounting
         elif self.is_deposit:
             outbound = self.env['treasury.cash.flow'].create(self.get_value(self.journal_id.id, 'outbound'))
             inbound = self.env['treasury.cash.flow'].create(self.get_value(self.destination_journal_id.id, 'inbound'))
@@ -246,8 +246,8 @@ class TreasuryCashFlow(models.Model):
                 outbound.state = 'posted'
                 inbound.move_id = move_in
                 inbound.state = 'posted'
-                move_out.post()  # Posting to Accounting
-                move_in.post()  # Posting to Accounting
+                move_out.action_post()  # Posting to Accounting
+                move_in.action_post()  # Posting to Accounting
         elif self.is_bank_transfer:
             outbound = self.env['treasury.cash.flow'].create(self.get_value(self.journal_id.id, 'outbound'))
             inbound = self.env['treasury.cash.flow'].create(self.get_value(self.destination_journal_id.id, 'inbound'))
@@ -271,8 +271,8 @@ class TreasuryCashFlow(models.Model):
                 outbound.state = 'posted'
                 inbound.move_id = move_in
                 inbound.state = 'posted'
-                move_out.post()  # Posting to Accounting
-                move_in.post()  # Posting to Accounting
+                move_out.action_post()  # Posting to Accounting
+                move_in.action_post()  # Posting to Accounting
         elif self.is_cash_transfer:
             outbound = self.env['treasury.cash.flow'].create(self.get_value(self.journal_id.id, 'outbound'))
             inbound = self.env['treasury.cash.flow'].create(self.get_value(self.destination_journal_id.id, 'inbound'))
@@ -297,8 +297,8 @@ class TreasuryCashFlow(models.Model):
                 outbound.state = 'posted'
                 inbound.move_id = move_in
                 inbound.state = 'posted'
-                move_out.post()  # Posting to Accounting
-                move_in.post()  # Posting to Accounting
+                move_out.action_post()  # Posting to Accounting
+                move_in.action_post()  # Posting to Accounting
         if self.is_inbound:
             self.later_balance = self.get_balance()
         if self.is_outbound:
