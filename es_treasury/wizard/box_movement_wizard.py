@@ -52,6 +52,3 @@ class BoxMovementWizard(models.TransientModel):
         result = self.get_sessions()
         if result:
             return result[-1].end_balance
-
-
-

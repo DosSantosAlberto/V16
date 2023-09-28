@@ -82,13 +82,13 @@
             <field name="context">{'default_is_status': True}</field>
         </record>
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="creditor_menu" name="Credores" parent="treasury_entities"
+        <menuitem id="creditor_menu" name="Creditors" parent="treasury_entities"
                   action="es_treasury.open_es_entity_creditor_action"
                   sequence="5"/>
-        <menuitem id="debtor_menu" name="Devedores" parent="treasury_entities"
+        <menuitem id="debtor_menu" name="Debtors" parent="treasury_entities"
                   action="es_treasury.open_es_entity_debtor_action"
                   sequence="6"/>
-        <menuitem id="status_menu" name="Estado" parent="treasury_entities"
+        <menuitem id="status_menu" name="State" parent="treasury_entities"
                   action="es_treasury.open_es_entity_status_action"
                   sequence="7"/>
     </data>
