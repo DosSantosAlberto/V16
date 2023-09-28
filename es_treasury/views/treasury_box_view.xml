@@ -36,7 +36,7 @@
                                                 </h6>
                                             </t>
 
-                                            <t t-set="unused_message">Não Utilizado</t>
+                                            <t t-set="unused_message">Not used</t>
 
                                             <p class="mt-2">
                                                 <t t-out="record.session_user_name.value || unused_message"/>
@@ -45,13 +45,13 @@
                                             <button t-if="record.state.raw_value === 'closed'" class="btn"
                                                     style="background-color: #76bc79; border-radius: 5px; color: white;"
                                                     name="button_open_box" type="object">
-                                                Abrir caixa
+                                                Open Box
                                             </button>
                                             <t t-if="record.current_session_user.raw_value == record.session_user.raw_value">
                                                 <button t-if="record.state.raw_value === 'opened'"
                                                         class="btn btn-danger" name="button_close_box" type="object"
                                                         style="border-radius: 5px;">
-                                                    Fechar caixa
+                                                    Close Box
                                                 </button>
                                             </t>
                                         </div>
@@ -60,7 +60,7 @@
                                                 <div class="col">
                                                     <div class="card shadow p-4"
                                                          style="border-radius: 10px; background-color: white;">
-                                                        <p>Saldo Anterior</p>
+                                                        <p>Previous Balance</p>
                                                         <h6>
                                                             <t t-out="record.start_balance.value"
                                                                t-out-options='{"widget": "monetary","display_currency": record.company_id.currency_id}'></t>
@@ -70,7 +70,7 @@
                                                 <div class="col">
                                                     <div class="card shadow p-4"
                                                          style="background-color: #76bc79; color: white;border-radius: 10px;">
-                                                        <p>Saldo Posterior</p>
+                                                        <p>Later Balance</p>
                                                         <h6 style="color: white;">
                                                             <t t-out="record.end_balance.value"
                                                                t-out-options='{"widget": "monetary","display_currency": record.company_id.currency_id}'></t>
@@ -79,12 +79,12 @@
                                                 </div>
                                             </div>
                                             <p class="mt-3 mb-2">
-                                                Última data fecho:
+                                                Last Closing Date:
                                                 <t t-out="record.date.value"/>
                                             </p>
 
                                             <p>
-                                                Saldo disponível:
+                                                Balance Available:
                                                 <b>
                                                     <span style="color: #76bc79">
                                                         +
@@ -177,7 +177,7 @@
                     <header>
                         <button name="button_close_box" type="object" class="oe_highlight"
                                 attrs="{'invisible':[('state', '!=', 'new')]}">
-                            <i class="fa fa-times-circle" aria-hidden="true">Fechar Caixa</i>
+                            <i class="fa fa-times-circle" aria-hidden="true">Close Box</i>
                         </button>
                         <field name="state" widget="statusbar" statusbar_visible="new,closed"/>
                     </header>
@@ -228,7 +228,7 @@
             <field name="domain">[('show_on_panel', '!=', False)]</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                    Clique para configurar o caixa
+                    Clique for configure box
                 </p>
             </field>
         </record>
@@ -242,7 +242,7 @@
             <field name="context">{}</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                    Clique para configurar o caixa
+                    Clique for configure box
                 </p>
             </field>
         </record>
@@ -272,13 +272,13 @@
             </field>
         </record>
 
-        <menuitem id="treasury_box_config" name="Caixa" sequence="1" action="hs_treasury_box_config_act_window"
+        <menuitem id="treasury_box_config" name="Box" sequence="1" action="hs_treasury_box_config_act_window"
                   parent="treasury_config"/>
 
-        <menuitem name="Caixa" id="treasury_box_sub_menu" parent="treasury_box_main" action="hs_treasury_box_act_window"
+        <menuitem name="Box" id="treasury_box_sub_menu" parent="treasury_box_main" action="hs_treasury_box_act_window"
                   sequence="1"/>
 
-        <menuitem name="Reforço de Caixa e Banco" id="treasury_box_reinforcement_menu" sequence="3"
+        <menuitem name="Cash and Bank Reinforcement" id="treasury_box_reinforcement_menu" sequence="3"
                   parent="treasury_box_main"/>
 
 

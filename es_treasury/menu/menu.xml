@@ -1,113 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <menuitem id="treasury_root" name="Tesouraria"
+        <menuitem id="treasury_root" name="Treasury"
                   groups="es_treasury.group_treasury_manager,es_treasury.group_treasury_treasurer"
                   web_icon="es_treasury,static/description/icon.png" sequence="11"/>
 
         <menuitem id="treasury_box_main"
                   parent="treasury_root"
-                  name="Caixa" sequence="1"/>
+                  name="Box" sequence="1"/>
 
         <menuitem id="treasury_operations"
                   parent="treasury_box_main"
-                  name="Reforço de Caixa e Banco" sequence="3"/>
+                  name="Cash and Bank reinforcement" sequence="3"/>
 
 
         <!--Menu Vendas -->
-        <menuitem id="treasury_sales" name="Contas a Receber"
+        <menuitem id="treasury_sales" name="Bills To Receive"
                   parent="treasury_root" sequence="3"/>
 
         <menuitem id="in_cash_bak_menu"
                   parent="treasury_sales"
-                  name="Banco e Caixa" sequence="3"/>
+                  name="Cash and bank" sequence="3"/>
 
-        <menuitem id="treasury_documents" name="Documentos"
+        <menuitem id="treasury_documents" name="documents"
                   parent="treasury_sales" sequence="1"/>
 
-        <menuitem id="treasury_invoices" name="Facturas"
+        <menuitem id="treasury_invoices" name="Invoices"
                   action="account.action_move_out_invoice_type"
                   parent="treasury_documents" sequence="1"/>
 
-        <menuitem id="treasury_payments" name="Pagamentos"
+        <menuitem id="treasury_payments" name="Payments"
                   action="account.action_account_payments"
                   parent="treasury_documents" sequence="2"/>
 
-        <menuitem id="treasury_clients" name="Clientes"
+        <menuitem id="treasury_clients" name="Customers"
                   parent="treasury_sales" sequence="5"/>
 
-        <menuitem id="treasury_client" name="Cliente"
+        <menuitem id="treasury_client" name="Customers"
                   action="account.res_partner_action_customer"
                   parent="treasury_clients" sequence="1"/>
 
         <!--Menu Compras -->
-        <menuitem id="treasury_purchases" name="Contas a Pagar"
+        <menuitem id="treasury_purchases" name="Bills To Pay"
                   parent="treasury_root" sequence="4"/>
 
         <menuitem id="out_cash_bak_menu"
                   parent="treasury_purchases"
-                  name="Banco e Caixa" sequence="2"/>
+                  name="Cash and Bank" sequence="2"/>
 
-        <menuitem id="treasury_purchases_documents" name="Documentos"
+        <menuitem id="treasury_purchases_documents" name="Documents"
                   parent="treasury_purchases" sequence="1"/>
 
-        <menuitem id="treasury_purchases_invoices" name="Facturas"
+        <menuitem id="treasury_purchases_invoices" name="Invoices"
                   parent="treasury_purchases_documents"
                   action="account.action_move_in_invoice_type"
                   sequence="1"/>
 
-        <menuitem id="treasury_purchases_payment" name="Pagamentos"
+        <menuitem id="treasury_purchases_payment" name="Payments"
                   parent="treasury_purchases_documents" sequence="2">
 
             <menuitem id="treasury_purchases_payment_supplier" action="account.action_account_payments_payable"
-                      name="Fornecedor" sequence="1"/>
+                      name="Supplier" sequence="1"/>
         </menuitem>
 
-        <menuitem id="treasury_purchases_vendors_supplier" name="Fornecedores"
+        <menuitem id="treasury_purchases_vendors_supplier" name="Supplier"
                   parent="treasury_purchases" sequence="3"/>
 
-        <menuitem id="treasury_purchases_vendor" name="Fornecedor"
+        <menuitem id="treasury_purchases_vendor" name="Supplier"
                   parent="treasury_purchases_vendors_supplier"
                   action="account.res_partner_action_supplier"
                   sequence="1"/>
 
-        <menuitem id="treasury_purchases_product" name="Artigos Adquiriveis"
+        <menuitem id="treasury_purchases_product" name="Purchased Items"
                   parent="treasury_purchases_vendors_supplier"
                   action="account.product_product_action_purchasable"
                   sequence="1"/>
 
         <!-- Entities menu -->
-        <menuitem id="treasury_entities" name="Parceiros"
+        <menuitem id="treasury_entities" name="Partners"
                   sequence="6"
                   parent="treasury_root"/>
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="customer_menu" name="Cliente" parent="treasury_entities"
+        <menuitem id="customer_menu" name="Customers" parent="treasury_entities"
                   action="account.res_partner_action_customer"
                   sequence="1"/>
-        <menuitem id="vendor_menu" name="Fornecedor" parent="treasury_entities"
+        <menuitem id="vendor_menu" name="Supplier" parent="treasury_entities"
                   action="account.res_partner_action_supplier"
                   sequence="2"/>
-        <menuitem id="employee_menu" name="Funcionário" parent="treasury_entities"
+        <menuitem id="employee_menu" name="Employee" parent="treasury_entities"
                   action="hr.open_view_employee_list_my"
                   sequence="3"/>
 
         <!-- Reports menu -->
-        <menuitem id="treasury_report" name="Relatórios"
+        <menuitem id="treasury_report" name="Reports"
                   sequence="9"
                   parent="treasury_root"/>
 
         <!-- Configuration menu -->
-        <menuitem id="treasury_config" name="Configurações"
+        <menuitem id="treasury_config" name="Settings"
                   sequence="10"
                   groups="es_treasury.group_treasury_manager"
                   parent="treasury_root"/>
 
-        <menuitem id="treasury_banks" name="Bancos"
+        <menuitem id="treasury_banks" name="Bank"
                   sequence="2"
                   action="account.action_new_bank_setting"
                   parent="treasury_config"/>
 
-        <menuitem id="treasury_journal" name="Diários"
+        <menuitem id="treasury_journal" name="Journal"
                   sequence="3"
                   action="account.action_account_journal_form"
                   parent="treasury_config"/>

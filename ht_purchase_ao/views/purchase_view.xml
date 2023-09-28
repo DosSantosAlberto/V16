@@ -13,7 +13,7 @@
                            attrs="{'required':[('has_cost_center','!=',False)], 'invisible':[('has_cost_center','=',False)], 'readonly': [('state', '!=', 'draft')]}"/>
                 </xpath>
                 <field name="partner_id" position="attributes">
-                    <attribute name="domain">[('customer','=',False),('supplier','=',True)]</attribute>
+                    <attribute name="domain">['|',('customer','=',False),('supplier','=',True),'|',('customer','=',True),('supplier','=',True)]</attribute>
                 </field>
             </field>
         </record>

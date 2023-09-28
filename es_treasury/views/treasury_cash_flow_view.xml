@@ -357,17 +357,17 @@
         </record>
 
         <!-- This Menu Cash Flow Out -->
-        <menuitem id="es_treasury_cash_out_menu" name="Saida de Caixa" parent="es_treasury.out_cash_bak_menu"
+        <menuitem id="es_treasury_cash_out_menu" name="Cash Outflow" parent="es_treasury.out_cash_bak_menu"
                   action="es_treasury.action_treasury_cash_flow_out" sequence="1"/>
 
-        <menuitem id="es_treasury_bank_out_menu" name="Saida de Banco" parent="es_treasury.out_cash_bak_menu"
+        <menuitem id="es_treasury_bank_out_menu" name="Bank Outflow" parent="es_treasury.out_cash_bak_menu"
                   action="es_treasury.action_treasury_bank_flow_out" sequence="2"/>
 
         <!-- This Menu Cash Flow In -->
-        <menuitem id="es_treasury_cash_in_menu" name="Entrada de Caixa" parent="es_treasury.in_cash_bak_menu"
+        <menuitem id="es_treasury_cash_in_menu" name="Cash Inflow" parent="es_treasury.in_cash_bak_menu"
                   action="es_treasury.action_treasury_cash_flow_in" sequence="1"/>
 
-        <menuitem id="es_treasury_bank_in_menu" name="Entrada de Banco" parent="es_treasury.in_cash_bak_menu"
+        <menuitem id="es_treasury_bank_in_menu" name="Bank Inflow" parent="es_treasury.in_cash_bak_menu"
                   action="es_treasury.action_treasury_bank_flow_in" sequence="2"/>
     </data>
 </odoo>

@@ -26,7 +26,7 @@
         </record>
 
         <record id="cash_flow_act_window" model="ir.actions.act_window">
-            <field name="name">Fluxo de Caixa</field>
+            <field name="name">Cash Flow</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">treasury.cash.flow.report</field>
             <field name="view_mode">form</field>
@@ -35,10 +35,10 @@
             <field name="context">{}</field>
         </record>
 
-        <menuitem id="menu_cash_flow_report" name="Fluxo de caixa"
+        <menuitem id="menu_cash_flow_report" name="Cash Flow"
                   action="cash_flow_act_window"
                   sequence="2"
-                  parent="es_treasury.treasury_report"/>>
+                  parent="es_treasury.treasury_report"/>
 
     </data>
 </odoo>

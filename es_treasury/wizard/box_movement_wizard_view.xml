@@ -30,7 +30,7 @@
         </record>
 
         <record id="hs_tresury_box_movement_act_window" model="ir.actions.act_window">
-            <field name="name">Movimento de Caixa</field>
+            <field name="name">Cash Movement</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">hs_tresury.box.movement</field>
             <field name="view_type">form</field>
@@ -40,7 +40,7 @@
             <field name="context">{}</field>
         </record>
 
-        <menuitem id="hs_treasury_menu_box_movement_report" name="Movimento de caixa"
+        <menuitem id="hs_treasury_menu_box_movement_report" name="Cash Movement"
                   action="hs_tresury_box_movement_act_window"
                   sequence="1"
                   parent="hs_treasury_report"/>>

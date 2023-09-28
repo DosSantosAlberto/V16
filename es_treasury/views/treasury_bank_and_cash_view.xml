@@ -334,19 +334,19 @@
             <field name="view_id" ref="view_treasury_bank_and_cash_tree"/>
         </record>
 
-        <menuitem id="treasury_take_bank_money_menu" name="Levantamento de dinheiro"
+        <menuitem id="treasury_take_bank_money_menu" name="Cash withdrawal"
                   parent="treasury_operations"
                   action="action_treasury_take_bank_money"
                   sequence="1"/>
-        <menuitem id="hs_treasury_cash_deposit_menu" name="Depósito de dinheiro"
+        <menuitem id="hs_treasury_cash_deposit_menu" name="Money Deposit"
                   parent="treasury_operations"
                   action="action_treasury_cash_deposit"
                   sequence="5"/>
 
-        <menuitem id="treasury_transfer" name="Transferências" parent="treasury_box_main" sequence="10"/>
-        <menuitem id="treasury_cash_transfer_menu" name="Transferência de Caixa" parent="treasury_transfer"
+        <menuitem id="treasury_transfer" name="Transfer" parent="treasury_box_main" sequence="10"/>
+        <menuitem id="treasury_cash_transfer_menu" name="Cash Transfer" parent="treasury_transfer"
                   action="action_treasury_cash_transfer" sequence="1"/>
-        <menuitem id="treasury_bank_transfer_menu" name="Transferência de Banco" parent="treasury_transfer"
+        <menuitem id="treasury_bank_transfer_menu" name="Bank Transfer" parent="treasury_transfer"
                   action="action_treasury_bank_transfer" sequence="1"/>
 
 
