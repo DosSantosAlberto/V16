@@ -25,8 +25,8 @@ class EsEntity(models.Model):
     @api.constrains('is_foreign')
     def chek_nationality(self):
         if self.is_foreign and self.country_id.code.upper() == 'AO':
-            raise UserError(_("Altera o Pais para ser considerado estangeiro.\n"
-                              "Ou desmarcar o campo estrangeiro para ser considerado Angolano"))
+            raise UserError(_("Change the country to be considered a foreigner.\n"
+                              "Change the country to be considered a foreigner"))
 
     @api.onchange('is_foreign')
     def onchange_foreign(self):
