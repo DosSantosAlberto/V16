@@ -290,35 +290,35 @@ msgstr ""
 #. module: es_treasury
 #: model:ir.ui.menu,name:es_treasury.es_treasury_bank_out_menu
 msgid "Bank Outflow"
-msgstr ""
+msgstr "Saida de Banco"
 
 #. module: es_treasury
 #: model:ir.actions.act_window,name:es_treasury.action_treasury_bank_transfer
 #: model:ir.ui.menu,name:es_treasury.treasury_bank_transfer_menu
 msgid "Bank Transfer"
-msgstr ""
+msgstr "Transferencia Bancarias"
 
 #. module: es_treasury
 #: model_terms:ir.ui.view,arch_db:es_treasury.iew_account_journal_search
 msgid "Bank and Cash"
-msgstr ""
+msgstr "Dinheiro e Banco"
 
 #. module: es_treasury
 #: model:ir.ui.menu,name:es_treasury.treasury_purchases
 msgid "Bills To Pay"
-msgstr ""
+msgstr "Conta a Pagar"
 
 #. module: es_treasury
 #: model:ir.ui.menu,name:es_treasury.treasury_sales
 msgid "Bills To Receive"
-msgstr ""
+msgstr " Conta a Receber"
 
 #. module: es_treasury
 #. odoo-python
 #: code:addons/es_treasury/models/account.py:0
 #, python-format
 msgid "Bills to pay"
-msgstr ""
+msgstr "Conta a Pagar"
 
 #. module: es_treasury
 #: model:ir.actions.act_window,name:es_treasury.hs_treasury_box_act_window
@@ -328,19 +328,19 @@ msgstr ""
 #: model:ir.ui.menu,name:es_treasury.treasury_box_main
 #: model:ir.ui.menu,name:es_treasury.treasury_box_sub_menu
 msgid "Box"
-msgstr ""
+msgstr "Caixa"
 
 #. module: es_treasury
 #: model_terms:ir.ui.view,arch_db:es_treasury.hs_treasury_box_form_view
 #: model_terms:ir.ui.view,arch_db:es_treasury.hs_treasury_box_session_form_view
 #: model_terms:ir.ui.view,arch_db:es_treasury.hs_treasury_box_tree_view
 msgid "Box Close"
-msgstr ""
+msgstr "Fechar o Caixa"
 
 #. module: es_treasury
 #: model:ir.actions.act_window,name:es_treasury.hs_treasury_box_reinforcement_action
 msgid "Box Reinforcement"
-msgstr ""
+msgstr "Reforço de Caixa"
 
 #. module: es_treasury
 #. odoo-python
@@ -348,24 +348,24 @@ msgstr ""
 #: code:addons/es_treasury/models/treasury_cash_flow.py:0
 #, python-format
 msgid "Box closed, please open an box first that have a journal %s !"
-msgstr ""
+msgstr "Caixa Fechado, Por favor abra um caixa primeiro que tenha um diario"
 
 #. module: es_treasury
 #: model:ir.actions.act_window,name:es_treasury.hs_treasury_box_config_act_window
 msgid "Box config"
-msgstr ""
+msgstr "Configuraçao de Caixa"
 
 #. module: es_treasury
 #: model_terms:ir.actions.act_window,help:es_treasury.open_account_journal_dashboard_kanban
 msgid "Browse available countries."
-msgstr ""
+msgstr "Navegar pelos paises disponiveis"
 
 #. module: es_treasury
 #. odoo-python
 #: code:addons/es_treasury/models/treasury_box.py:0
 #, python-format
 msgid "Can not open this box, please close your current session first "
-msgstr ""
+msgstr "Nao pode abrir este caixa, Por favor feche sua sessao atual primeiro"
 
 #. module: es_treasury
 #: model_terms:ir.ui.view,arch_db:es_treasury.treasury_cash_flow_report_view_form
@@ -376,58 +376,58 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_cash_transfer_form
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_take_bank_money_form
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: es_treasury
 #: model:ir.model.fields.selection,name:es_treasury.selection__treasury_cash_flow__state__cancelled
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancelado"
 
 #. module: es_treasury
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_cash_deposit_form
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_take_bank_money_form
 msgid "Cash"
-msgstr ""
+msgstr "Dinheiro"
 
 #. module: es_treasury
 #: model:ir.actions.act_window,name:es_treasury.action_treasury_cash_deposit
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_cash_deposit_form
 msgid "Cash Deposit"
-msgstr ""
+msgstr "Deposito em dinheiro"
 
 #. module: es_treasury
 #: model:ir.model,name:es_treasury.model_treasury_cash_flow_report
 msgid "Cash FLow Report"
-msgstr ""
+msgstr "Relatorio de fluxo de caixa"
 
 #. module: es_treasury
 #: model:ir.actions.act_window,name:es_treasury.cash_flow_act_window
 #: model:ir.ui.menu,name:es_treasury.menu_cash_flow_report
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_cash_flow_graph
 msgid "Cash Flow"
-msgstr ""
+msgstr "Fluxo de Caixa"
 
 #. module: es_treasury
 #: model:ir.actions.act_window,name:es_treasury.action_treasury_cash_flow_in
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_cash_transfer_form
 msgid "Cash In"
-msgstr ""
+msgstr "Entrada de Dinheiro"
 
 #. module: es_treasury
 #: model:ir.ui.menu,name:es_treasury.es_treasury_cash_in_menu
 msgid "Cash Inflow"
-msgstr ""
+msgstr "Entrada de Dinheiro"
 
 #. module: es_treasury
 #: model:ir.actions.act_window,name:es_treasury.action_treasury_cash_flow_out
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_cash_transfer_form
 msgid "Cash Out"
-msgstr ""
+msgstr "Saida de Dinheiro"
 
 #. module: es_treasury
 #: model:ir.ui.menu,name:es_treasury.es_treasury_cash_out_menu
 msgid "Cash Outflow"
-msgstr ""
+msgstr "Saida de Dinheiro"
 
 #. module: es_treasury
 #: model:ir.actions.act_window,name:es_treasury.action_treasury_cash_transfer
@@ -435,32 +435,32 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_bank_transfer_form
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_cash_transfer_form
 msgid "Cash Transfer"
-msgstr ""
+msgstr "Transferencia de Dinheiro"
 
 #. module: es_treasury
 #: model:ir.ui.menu,name:es_treasury.out_cash_bak_menu
 msgid "Cash and Bank"
-msgstr ""
+msgstr "Dinheiro e Banco"
 
 #. module: es_treasury
 #: model:ir.ui.menu,name:es_treasury.treasury_box_reinforcement_menu
 msgid "Cash and Bank Reinforcement"
-msgstr ""
+msgstr "Reforço de Banco e Dinheiro"
 
 #. module: es_treasury
 #: model:ir.ui.menu,name:es_treasury.treasury_operations
 msgid "Cash and Bank reinforcement"
-msgstr ""
+msgstr "Reforço de Banco e Dinheiro"
 
 #. module: es_treasury
 #: model:ir.ui.menu,name:es_treasury.in_cash_bak_menu
 msgid "Cash and bank"
-msgstr ""
+msgstr "Banco e Dinheiro"
 
 #. module: es_treasury
 #: model:ir.ui.menu,name:es_treasury.treasury_take_bank_money_menu
 msgid "Cash withdrawal"
-msgstr ""
+msgstr "Saida de Dinheiro"
 
 #. module: es_treasury
 #: model_terms:ir.ui.view,arch_db:es_treasury.treasury_res_config_settings_view_form
@@ -474,39 +474,39 @@ msgstr ""
 msgid ""
 "Change the country to be considered a foreigner.\n"
 "Change the country to be considered a foreigner"
-msgstr ""
+msgstr "Mude o pais para ser considerado um estrangueiro"
 
 #. module: es_treasury
 #: model_terms:ir.actions.act_window,help:es_treasury.hs_treasury_box_reinforcement_action
 msgid "Click to add a box reinforcement."
-msgstr ""
+msgstr "Clica para adicionar um caixa com reforço"
 
 #. module: es_treasury
 #: model_terms:ir.actions.act_window,help:es_treasury.hs_treasury_box_act_window
 #: model_terms:ir.actions.act_window,help:es_treasury.hs_treasury_box_config_act_window
 msgid "Clique for configure box"
-msgstr ""
+msgstr "Clica para configurar um caixa"
 
 #. module: es_treasury
 #: model_terms:ir.actions.act_window,help:es_treasury.hs_treasury_box_session_act_window
 msgid "Clique for create Session"
-msgstr ""
+msgstr "Clica para criar uma sessao"
 
 #. module: es_treasury
 #: model_terms:ir.ui.view,arch_db:es_treasury.hs_treasury_box_session_form_view
 msgid "Close"
-msgstr ""
+msgstr "Fechar"
 
 #. module: es_treasury
 #: model_terms:ir.ui.view,arch_db:es_treasury.hs_treasury_box_kanban_view
 msgid "Close Box"
-msgstr ""
+msgstr "Fechar o Caixa"
 
 #. module: es_treasury
 #: model:ir.model.fields.selection,name:es_treasury.selection__treasury_box__state__closed
 #: model:ir.model.fields.selection,name:es_treasury.selection__treasury_box_session__state__closed
 msgid "Closed"
-msgstr ""
+msgstr "Fechado"
 
 #. module: es_treasury
 #: model:ir.model,name:es_treasury.model_res_company
@@ -517,7 +517,7 @@ msgstr "Empresas"
 #: model:ir.model.fields,field_description:es_treasury.field_treasury_box__company_id
 #: model:ir.model.fields,field_description:es_treasury.field_treasury_cash_flow__company_id
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: es_treasury
 #: model:ir.model,name:es_treasury.model_res_config_settings
@@ -532,7 +532,7 @@ msgstr "Configurações"
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_cash_transfer_form
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_take_bank_money_form
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #. module: es_treasury
 #: model_terms:ir.ui.view,arch_db:es_treasury.treasury_res_config_settings_view_form
@@ -552,7 +552,7 @@ msgstr ""
 #. module: es_treasury
 #: model:ir.model.fields,field_description:es_treasury.field_treasury_cash_flow__cost_center
 msgid "Cost Center"
-msgstr ""
+msgstr "Centro de custo"
 
 #. module: es_treasury
 #: model:ir.model.fields,field_description:es_treasury.field_es_entity__create_uid
@@ -563,7 +563,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:es_treasury.field_treasury_cash_flow_report__create_uid
 #: model:ir.model.fields,field_description:es_treasury.field_treasury_rubric__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Criado por"
 
 #. module: es_treasury
 #: model:ir.model.fields,field_description:es_treasury.field_es_entity__create_date
@@ -574,7 +574,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:es_treasury.field_treasury_cash_flow_report__create_date
 #: model:ir.model.fields,field_description:es_treasury.field_treasury_rubric__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Criado em"
 
 #. module: es_treasury
 #: model:ir.actions.act_window,name:es_treasury.open_es_entity_creditor_action
@@ -582,7 +582,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:es_treasury.field_treasury_box_session_line__creditor
 #: model:ir.model.fields,field_description:es_treasury.field_treasury_cash_flow__creditor
 msgid "Creditor"
-msgstr ""
+msgstr "Credor"
 
 #. module: es_treasury
 #: model:ir.ui.menu,name:es_treasury.creditor_menu
@@ -594,25 +594,25 @@ msgstr ""
 #: model:ir.model.fields,field_description:es_treasury.field_treasury_cash_flow__currency_id
 #: model:ir.model.fields,field_description:es_treasury.field_treasury_cash_flow_report__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Moeda"
 
 #. module: es_treasury
 #: model:ir.model.fields,field_description:es_treasury.field_treasury_cash_flow__customer
 #: model:ir.model.fields.selection,name:es_treasury.selection__treasury_cash_flow__partner_type__customer
 msgid "Customer"
-msgstr ""
+msgstr "Cliente"
 
 #. module: es_treasury
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_cash_flow_search
 msgid "Customer/Vendor"
-msgstr ""
+msgstr "Cliente/Fornecedor"
 
 #. module: es_treasury
 #: model:ir.ui.menu,name:es_treasury.customer_menu
 #: model:ir.ui.menu,name:es_treasury.treasury_client
 #: model:ir.ui.menu,name:es_treasury.treasury_clients
 msgid "Customers"
-msgstr ""
+msgstr "Cliente"
 
 #. module: es_treasury
 #: model:ir.model.fields,field_description:es_treasury.field_treasury_box__date
@@ -622,7 +622,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_cash_transfer_form
 #: model_terms:ir.ui.view,arch_db:es_treasury.view_treasury_take_bank_money_form
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: es_treasury
 #: model:ir.actions.act_window,name:es_treasury.open_es_entity_debtor_action
