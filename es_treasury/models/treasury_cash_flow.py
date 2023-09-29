@@ -153,8 +153,10 @@ class TreasuryCashFlow(models.Model):
         for session in opened_session:
             total = 0.0
             for journal in session.journals:
-                journal_data = journal.get_journal_dashboard_datas()
-                total += journal_data['amount_balance']
+                for j in journal.default_account_id:
+                    total += j.current_balance
+                # journal_data = journal.get_journal_dashboard_datas()
+                # total += journal_data['amount_balance']
         return total
 
     @staticmethod
@@ -377,8 +379,13 @@ class TreasuryCashFlow(models.Model):
 
     @staticmethod
     def get_actual_balance(journal_id):
-        journal_data = journal_id.get_journal_dashboard_datas()
-        return journal_data['amount_balance']
+        total = 0.0
+        for jornal in journal_id:
+            if jornal.default_account_id:
+                total += jornal.default_account_id.current_balance
+        return total
+        # journal_data = journal_id.get_journal_dashboard_datas()
+        # return journal_data['amount_balance']
 
     def unlink(self):
         for res in self:
