@@ -74,6 +74,10 @@ class AccountAccount(models.Model):
                         # })
                         pass
 
+    def _update_code_nature(self):
+        for rec in self.search([()]):
+            rec.check_nature(rec)
+
     def write(self, vals):
         if vals.get('code'):
             vals['code'] = vals['code'].replace(" ", "")
