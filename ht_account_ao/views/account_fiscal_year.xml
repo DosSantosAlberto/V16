@@ -29,7 +29,7 @@
                         </group>
                         <group string="O ano fiscal vai permitir organizar melhor os movimentos
                                     contabilistico">
-                            <img src="ht_account_ao/static/img/fiscal_year_ht.png"
+                            <img src="ht_account_ao/static/img/fiscal_year_ht.png" class="img-thumbnail"
                                  alt="Banner Halow Tecnology"/>
                         </group>
                     </group>

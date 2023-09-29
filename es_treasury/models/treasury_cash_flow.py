@@ -4,7 +4,6 @@ from datetime import datetime
 
 out_balance = 0.0
 
-
 class TreasuryCashFlow(models.Model):
     _name = 'treasury.cash.flow'
     _inherit = ['mail.thread', 'mail.activity.mixin']

@@ -113,17 +113,17 @@
             <field name="binding_type">report</field>
         </record>
 
-        <record id="action_report_captive_vat" model="ir.actions.report">
-            <field name="name">Map Captive Vat</field>
-            <field name="model">captive.vat.map</field>
-            <field name="report_type">qweb-pdf</field>
-            <field name="report_name">ht_account_ao.report_captive_iva_map_pdf</field>
-            <field name="report_file">ht_account_ao.report_captive_iva_map_pdf</field>
-            <field name="print_report_nƒame">'Mapa de iva cativo - %s' % (object.date_from)</field>
-            <field name="paperformat_id" ref="ht_account_ao.paper_account_landscape"/>
-            <!--  <field name="binding_model_id" ref="model_sale_summary_wizard"/>-->
-            <field name="binding_type">report</field>
-        </record>
+<!--        <record id="action_report_captive_vat" model="ir.actions.report">-->
+<!--            <field name="name">Map Captive Vat</field>-->
+<!--            <field name="model">captive.vat.map</field>-->
+<!--            <field name="report_type">qweb-pdf</field>-->
+<!--            <field name="report_name">ht_account_ao.report_captive_iva_map_pdf</field>-->
+<!--            <field name="report_file">ht_account_ao.report_captive_iva_map_pdf</field>-->
+<!--            <field name="print_report_nƒame">'Mapa de iva cativo - %s' % (object.date_from)</field>-->
+<!--            <field name="paperformat_id" ref="ht_account_ao.paper_account_landscape"/>-->
+<!--            &lt;!&ndash;  <field name="binding_model_id" ref="model_sale_summary_wizard"/>&ndash;&gt;-->
+<!--            <field name="binding_type">report</field>-->
+<!--        </record>-->
 
         <record id="action_report_credit_note_map" model="ir.actions.report">
             <field name="name">Mapa de Notas de Crédito</field>
