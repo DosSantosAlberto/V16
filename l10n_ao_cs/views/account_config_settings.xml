@@ -35,40 +35,40 @@
                                 <div class="text-muted">
                                     This prefix will allow to automatically creation
                                 </div>
-                                <div class="row mt16">
-                                    <label string="Receivable"
-                                           for="partner_receivable_code_prefix"
-                                           class="col-md-3 o_light_label"/>
-                                    <field name="partner_receivable_code_prefix"
-                                           readonly="0" attrs="{'required':[('automatic_partner_account','=',True)]}"
-                                           groups="base.group_no_one"/>
-                                </div>
-                                <div class="row">
-                                    <label string="Payable"
-                                           for="partner_payable_code_prefix"
-                                           class="col-md-3 o_light_label"/>
-                                    <field name="partner_payable_code_prefix"
-                                           readonly="0" attrs="{'required':[('automatic_partner_account','=',True)]}"
-                                           groups="base.group_no_one"/>
-                                </div>
-                                <div class="row">
-                                    <label string="F. Receivable"
-                                           for="fpartner_receivable_code_prefix"
-                                           class="col-md-3 o_light_label"/>
-                                    <field name="fpartner_receivable_code_prefix"
-                                           readonly="0" attrs="{'required':[('automatic_partner_account','=',True)]}"
-                                           groups="base.group_no_one"/>
-                                </div>
+<!--                                <div class="row mt16">-->
+<!--                                    <label string="Receivable"-->
+<!--                                           for="partner_receivable_code_prefix"-->
+<!--                                           class="col-md-3 o_light_label"/>-->
+<!--                                    <field name="partner_receivable_code_prefix"-->
+<!--                                           readonly="0" attrs="{'required':[('automatic_partner_account','=',True)]}"-->
+<!--                                           groups="base.group_no_one"/>-->
+<!--                                </div>-->
+<!--                                <div class="row">-->
+<!--                                    <label string="Payable"-->
+<!--                                           for="partner_payable_code_prefix"-->
+<!--                                           class="col-md-3 o_light_label"/>-->
+<!--                                    <field name="partner_payable_code_prefix"-->
+<!--                                           readonly="0" attrs="{'required':[('automatic_partner_account','=',True)]}"-->
+<!--                                           groups="base.group_no_one"/>-->
+<!--                                </div>-->
+<!--                                <div class="row">-->
+<!--                                    <label string="F. Receivable"-->
+<!--                                           for="fpartner_receivable_code_prefix"-->
+<!--                                           class="col-md-3 o_light_label"/>-->
+<!--                                    <field name="fpartner_receivable_code_prefix"-->
+<!--                                           readonly="0" attrs="{'required':[('automatic_partner_account','=',True)]}"-->
+<!--                                           groups="base.group_no_one"/>-->
+<!--                                </div>-->
 
-                                <div class="row">
-                                    <label string="F.Payable "
-                                           for="fpartner_payable_code_prefix"
-                                           class="col-md-3 o_light_label"/>
+<!--                                <div class="row">-->
+<!--                                    <label string="F.Payable "-->
+<!--                                           for="fpartner_payable_code_prefix"-->
+<!--                                           class="col-md-3 o_light_label"/>-->
 
-                                    <field name="fpartner_payable_code_prefix"
-                                           readonly="0" attrs="{'required':[('automatic_partner_account','=',True)]}"
-                                           groups="base.group_no_one"/>
-                                </div>
+<!--                                    <field name="fpartner_payable_code_prefix"-->
+<!--                                           readonly="0" attrs="{'required':[('automatic_partner_account','=',True)]}"-->
+<!--                                           groups="base.group_no_one"/>-->
+<!--                                </div>-->
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">

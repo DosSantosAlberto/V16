@@ -38,6 +38,7 @@ class AccountPayment(models.Model):
                 # journal_data = journal.get_journal_dashboard_datas()
                 # total += journal_data['amount_balance']
         return total
+
     def write(self, values):
         values['date_update'] = datetime.now()
         values['later_balance'] = self.get_later_balance()
@@ -60,8 +61,11 @@ class AccountPayment(models.Model):
 
     @staticmethod
     def get_journal_actual_balance(journal_id):
-        journal_data = journal_id.get_journal_dashboard_datas()
-        return journal_data['amount_balance']
+        total = 0.0
+        for jornal in journal_id:
+            if jornal.default_account_id:
+                total += jornal.default_account_id.current_balance
+        return total
 
     def check_balance_restriction(self):
         if self.payment_type == 'outbound':

@@ -24,7 +24,7 @@
         # "data/account_chart_template_data.xml",
         # "data/account_tax_group_data.xml",
         "data/account_note_data.xml",
-        "data/account_sequence.xml",
+        # "data/account_sequence.xml",
         # "data/account_tax_data.xml",
         # "data/account_exemption_taxes.xml",
         # "data/account_chart_template_configure_data.xml",

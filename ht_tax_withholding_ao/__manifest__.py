@@ -23,7 +23,7 @@
         'views/account_payment_view.xml',
         'views/sale_view.xml',
 
-        'reports/report_payment_receipt.xml',
+        # 'reports/report_payment_receipt.xml',
 
         'wizard/account_payment_register_view.xml',
     ],

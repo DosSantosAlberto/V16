@@ -408,9 +408,7 @@ class AccountPaymentRegister(models.TransientModel):
 
             payment_lines = payment.line_ids.filtered_domain(domain)
             for account in payment_lines.account_id:
-                (payment_lines + lines) \
-                    .filtered_domain([('account_id', '=', account.id), ('reconciled', '=', False)]) \
-                    .reconcile()
+                (payment_lines + lines).filtered_domain([('account_id', '=', account.id), ('reconciled', '=', False)]).reconcile()
 
         self._set_invoice_difference()
         self._check_register_payment()

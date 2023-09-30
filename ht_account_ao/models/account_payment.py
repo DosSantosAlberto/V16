@@ -5,7 +5,7 @@ from odoo.tools.misc import formatLang
 
 class AccountPayment(models.Model):
     _inherit = "account.payment"
-    _description = "Payment in Angola"
+    # _description = "Payment in Angola"
 
     amount_text = fields.Char(string="Amount in Words", compute="_get_amount_in_words", store=True)
     receipt_no = fields.Char(string="Receipt Nª")

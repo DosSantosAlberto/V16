@@ -19,15 +19,15 @@
         'base'
     ],
     'data': [
-        'data/ir_sequence_data.xml',
+        # 'data/ir_sequence_data.xml',
 
         'views/sale_view.xml',
         'views/res_company_view.xml',
         'views/res_config_view.xml',
         'views/res_currency_view.xml',
 
-        'reports/report.xml',
-        'reports/report_sale.xml',
+        # 'reports/report.xml',
+        # 'reports/report_sale.xml',
 
         'views/menus.xml',
     ],

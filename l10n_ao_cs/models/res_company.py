@@ -5,10 +5,10 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     inv_signed = fields.Boolean('Sign Invoice')
-    partner_receivable_code_prefix = fields.Char('Partner receivable Account Code Prefix', size=64, default='31121')
-    partner_payable_code_prefix = fields.Char('Partner payable Account Code Prefix', size=64, default='32121')
-    fpartner_receivable_code_prefix = fields.Char('F. Partner receivable Account Code Prefix', size=64, default='31122')
-    fpartner_payable_code_prefix = fields.Char('F. Partner payable Account Code Prefix', size=64, default='32122')
+    # partner_receivable_code_prefix = fields.Char('Partner receivable Account Code Prefix', size=64, default='31121')
+    # partner_payable_code_prefix = fields.Char('Partner payable Account Code Prefix', size=64, default='32121')
+    # fpartner_receivable_code_prefix = fields.Char('F. Partner receivable Account Code Prefix', size=64, default='31122')
+    # fpartner_payable_code_prefix = fields.Char('F. Partner payable Account Code Prefix', size=64, default='32122')
     control_account_nature = fields.Boolean(string="Control of Account Nature")
     # tax_withhold_journal_id = fields.Many2one('account.journal', 'Withhold Journal')
     # tax_withhold_received_account_id = fields.Many2one('account.account', 'DAR Received Account')

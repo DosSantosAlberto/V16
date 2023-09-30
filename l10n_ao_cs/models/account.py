@@ -14,6 +14,17 @@ class AccountAccount(models.Model):
         ('M', 'Movement'),
     ], string="Nature")
 
+    def _create_account_if_not_exist(self, code, type, reconcile):
+        rec = self.search([('code', '=', code)])
+        if not rec:
+            self.create({
+                'name': '.........................',
+                'code': code,
+                'account_type': type,
+                'reconcile': reconcile,
+                'company_id': 1
+            })
+
     @api.constrains('code')
     def _check_account_code(self):
         size = len(self.code)
@@ -38,13 +49,14 @@ class AccountAccount(models.Model):
     def check_nature(self, res_id):
         size = len(res_id.code)
         _code = res_id.code.replace('.', '')
+        print("#" * 40, "code :", _code, "#" * 40)
         if _code:
             if size == 1:
-                res_id.nature = 'C'
+                res_id.write({'nature': 'C'})
             elif size == 2:
-                res_id.nature = 'R'
+                res_id.write({'nature': 'R'})
             elif size == 3:
-                res_id.nature = 'I'
+                res_id.write({'nature': 'I'})
                 res_id.reason_code = res_id.get_reason_code(_code)
             elif size >= 4:
                 if _code.count('0') != 0:
@@ -57,10 +69,25 @@ class AccountAccount(models.Model):
                 # type_payable = self.env.ref('account.data_account_type_payable')
                 if account:
                     account.nature = 'I'
-                    res_id.nature = 'M'
-                    res_id.reason_code = res_id.get_reason_code(_code)
-                    res_id.integrator_code = _code[:-1]
+                    res_id.write({'nature': 'M'})
+                    res_id.write({'reason_code': res_id.get_reason_code(_code)})
+                    res_id.write({'integrator_code': _code[:-1]})
+                    print(res_id.code, res_id.nature)
+                    print(account.code, account.nature)
+
                 else:
+                    for c in res_id:
+                        _cod = str()
+                        for k, j in enumerate(c.code[:-1]):
+                            if k == 0:
+                                _cod = str(_cod) + str(j)
+                                print(_cod)
+                                self._create_account_if_not_exist(j, res_id.account_type, res_id.reconcile)
+                            else:
+                                _cod = str(_cod) + str(j)
+                                self._create_account_if_not_exist(_cod, res_id.account_type, res_id.reconcile)
+                                print(_cod)
+
                     if res_id.company_id.control_account_nature:
                         # CREATE ACCOUNT, Getting the order of accountants right
                         # allow = False
@@ -75,7 +102,7 @@ class AccountAccount(models.Model):
                         pass
 
     def _update_code_nature(self):
-        for rec in self.search([()]):
+        for rec in self.search([], order='code'):
             rec.check_nature(rec)
 
     def write(self, vals):
