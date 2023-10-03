@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <template id="report_invoice_document_agt">
-            <t t-call="l10n_ao.external_layout_agt">
+            <t t-call="l10n_ao.external_layout_agt" t-foreach="3" t-as="print_counter">
                 <t t-set="o" t-value="o.with_context(lang=lang)"/>
                 <t t-set="address">
                     <div class="row" style="font-size:small;min-height:150px;max-height:150px;overflow:hidden;">
@@ -49,6 +49,7 @@
                         <span t-if="o.state != 'draft'" t-field="o.name"/>
                         <span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">Draft</span>
                     </t>
+
                     <t t-set="custom_agt_header">
                         <!-- <div id="informations" class="row" style="white-space: nowrap;"> -->
                         <table id="informations" class="table table-sm o_main_table table-borderless"
@@ -77,12 +78,16 @@
                                     <td class="mb-0" t-if="o.move_type == 'out_refund' and o.reversed_entry_id">
                                         <strong>Source Doc.:</strong>
                                     </td>
-                                    <td class="mb-0">
-                                        <strong>Via:</strong>
+                                    <td t-if="print_counter ==0" class="mb-0">
+                                        <strong style="color:green"> Original</strong>
                                     </td>
-                                    <!--<td class="mb-o">
-                                        <strong></strong>
-                                    </td>-->
+                                     <td t-if="print_counter ==1" class="mb-0">
+                                        <strong> Duplicado</strong>
+                                    </td>
+                                    <td t-if="print_counter ==2" class="mb-0">
+                                        <strong> Triplicado</strong>
+                                    </td>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,19 +117,7 @@
                                             <t t-esc="o.reversed_entry_id.name"/>
                                         </span>
                                     </td>
-                                    <td>
-                                        <span t-if="copy == 0 and o.print_counter &gt;= 1 and o.print_counter &lt;= 2">
-                                            Original
-                                        </span>
-                                        <span t-if="copy == 1 and o.print_counter &gt;= 1 and o.print_counter &lt;= 2">
-                                            Duplicado
-                                        </span>
-                                        <span t-if="copy == 2 and o.print_counter == 2">Triplicado</span>
-                                        <span t-if="o.move_type == 'out_refund' and o.print_counter == 1" class="m-0">
-                                            Original
-                                        </span>
-                                        <span t-if="o.print_counter &gt; 2" class="m-0">2ª Via</span>
-                                    </td>
+
                                     <!--<td>
                                         <span class="m-0" t-field="o.invoice_user_id"/>
                                     </td>-->
@@ -442,7 +435,7 @@
                         </div>
                     </div>
                     <br/>
-                    <p t-if="o.print_counter &gt; 2" class="m-0">2ª Via em conformidade com original</p>
+                    <!--<p t-if="o.print_counter &gt; 2" class="m-0">2ª Via em conformidade com original</p>-->
                     <p t-if="o.move_type in ('out_invoice', 'in_refund') and o.payment_reference"
                        name="payment_communication" style="font-size:small;">
                         Please use the following communication for your payment :
@@ -486,7 +479,9 @@
                         <br/>
                         <p>_________________________________________</p>
                     </div>
-                </div>
+                              </div>
+
+
 
                 <t t-if="o.invoice_date" t-set="document_name"
                    t-value="'Os bens/serviços foram colocados à disposição do adquirente à ' + o.invoice_date.strftime('%d-%m-%Y') +' no endereço acima referido.'"/>
